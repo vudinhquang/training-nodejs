@@ -29,3 +29,11 @@
 	Ở bên tập tin cần sử dụng phải kéo module đó vào bằng require
 	listen(moduleOne.port): Các tham số ở đằng sau như hostname hay Error function thì nó sẽ sử dụng các giá trị
 		mặc định
+		
+- Output HTML tag:
+	Cách trả về 1 đoạn HTML hay 1 trang HTML
+	require('./mmodule/config'): cùng thư mực với mmodule
+	res.setHeader('Content-Type', 'text/text'): Xuất ra text
+		res.end('<h1>Hello NodeJS</h1>');
+	res.setHeader('Content-Type', 'text/html'): Xuất ra HTML
+		res.end('<h1>Hello NodeJS</h1>');
