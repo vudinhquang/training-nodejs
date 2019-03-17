@@ -1,0 +1,13 @@
+
+			Training Nodejs
+	
+-------------------------------------------------------------------------------------------------------
+	
+- Cài đặt Nodejs:
+	Truy cập vào trang web của nodejs: https://nodejs.org/en/ rồi tải về phiên bản Recommended For Most Users
+		rồi cài đặt
+	Sau khi kết thúc phần cài đặt, để kiểm tra xem phần cài đặt có thành công hay không thì có thể dùng CMD,
+		Windows PowerShell hoặc sử dụng Git Bash để kiểm tra bằng câu lệnh: node -v
+	Dùng câu lệnh npm -v để kiểm tra phiên bản(Node Package Manager), khi sử dụng nodejs thì cần cài thêm các 
+		package vào --> npm giúp ta cài thêm các package vào. Khi cài đặt node thì nó sẽ tự động cài thêm npm
+		
