@@ -1,7 +1,7 @@
 
 			Training Nodejs
 	
--------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 	
 - Cài đặt Nodejs:
 	Truy cập vào trang web của nodejs: https://nodejs.org/en/ rồi tải về phiên bản Recommended For Most Users
@@ -11,3 +11,14 @@
 	Dùng câu lệnh npm -v để kiểm tra phiên bản(Node Package Manager), khi sử dụng nodejs thì cần cài thêm các 
 		package vào --> npm giúp ta cài thêm các package vào. Khi cài đặt node thì nó sẽ tự động cài thêm npm
 		
+- Hello NodeJS:
+	Để thực thi chương trình trên Visual Studio Code thì sử dụng phím tắt là Ctrl + `
+	https://nodejs.org --> DOCS --> Guides --> tạo 1 tập tin là app.js và thực thi chương trình bằng câu lệnh 
+		node app.js --> Truy cập http://127.0.0.1:3000/ <--> http://localhost:3000
+	const http = require('http'): Nodejs nó là tập hợp của rất nhiều module, có rất nhiều module được xây dựng
+		sẵn, khi muốn sử dụng module nào thì sử dụng require + tên của module
+	http.createServer(): Tạo ra Server
+		req: Request là gì
+		res: Response là gì
+		res.end('Hello World\n') --> Trả về kết quả là 'Hello World\n'
+	Ngắt kết nối: Ctrl + C
