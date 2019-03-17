@@ -22,3 +22,10 @@
 		res: Response là gì
 		res.end('Hello World\n') --> Trả về kết quả là 'Hello World\n'
 	Ngắt kết nối: Ctrl + C
+	
+- Module:
+	Tự viết 1 module và gọi vào để dùng.
+	module.exports: Để dùng được module này thì cần phải exports ra
+	Ở bên tập tin cần sử dụng phải kéo module đó vào bằng require
+	listen(moduleOne.port): Các tham số ở đằng sau như hostname hay Error function thì nó sẽ sử dụng các giá trị
+		mặc định
