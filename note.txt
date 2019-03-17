@@ -37,3 +37,10 @@
 		res.end('<h1>Hello NodeJS</h1>');
 	res.setHeader('Content-Type', 'text/html'): Xuất ra HTML
 		res.end('<h1>Hello NodeJS</h1>');
+		
+- Sử dụng nodemon:
+	Ở các phần trên cứ mỗi lần chỉnh sửa thì chúng ta phải ngắt server rồi sau đó chạy lại câu lệnh là node + tên
+		tập tin(app.js)
+	Để khi mà thay đổi tập tin mà không cần ngắt và chạy lại
+	Keyword: nodemon npm
+	Cách sử dụng nodemon: nodemon [your node app]
