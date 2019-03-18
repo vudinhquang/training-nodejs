@@ -44,3 +44,7 @@
 	Để khi mà thay đổi tập tin mà không cần ngắt và chạy lại
 	Keyword: nodemon npm
 	Cách sử dụng nodemon: nodemon [your node app]
+	
+- Output HTML file: Đọc 1 tập tin HTML và xuất tập tin ra khi truy cập vào Site
+	nodejs open html file
+	fs.readFile(file[, options], callback)
