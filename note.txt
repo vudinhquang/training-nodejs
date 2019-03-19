@@ -1,5 +1,5 @@
 
-			Training Nodejs
+									Training Nodejs
 	
 ------------------------------------------------------------------------------------------------------------
 	
@@ -48,3 +48,6 @@
 - Output HTML file: Đọc 1 tập tin HTML và xuất tập tin ra khi truy cập vào Site
 	nodejs open html file
 	fs.readFile(file[, options], callback)
+	
+- Routing:
+	Vấn đề là làm sao để người dùng lấy được giá trị nhập trên URL ---> có thể dùng đến module mới đó là url
