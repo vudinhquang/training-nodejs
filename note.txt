@@ -51,3 +51,6 @@
 	
 - Routing:
 	Vấn đề là làm sao để người dùng lấy được giá trị nhập trên URL ---> có thể dùng đến module mới đó là url
+	Keyword liên quan: How to get the full url in Express?
+	Giảm ngắn lại mã trong tập tin app.js --> Tách riêng code 1 số phần
+	-->Viết gọn lại phần mã nguồn cho Routing 
