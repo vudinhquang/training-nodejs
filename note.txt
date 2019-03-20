@@ -54,3 +54,20 @@
 	Keyword liên quan: How to get the full url in Express?
 	Giảm ngắn lại mã trong tập tin app.js --> Tách riêng code 1 số phần
 	-->Viết gọn lại phần mã nguồn cho Routing 
+
+			-----------------------------------------------------------------------------------------
+
+										Express
+-----> Là 1 Framework cho NodeJs
+
+- Express generator:
+	Site: https://expressjs.com/
+	Express generator: Là 1 công cụ giúp ta tạo nhanh ra một ứng dụng trên Express
+	Cách cài: npm install express-generator -g
+	Cách tạo nhanh một ứng dụng: express --view=pug myapp
+		--view: nó sẽ add vào 1 view engine, view engine này có thể là ejs|hbs|hjs|jade|pug|twig|vash
+			như ở câu lệnh trên thì sẽ add vào view engine là pug
+	Keyword: express template engine
+	Trong phần này mình sẽ sử dụng template engine là ejs -> cài đặt: express --view=ejs project-nodejs
+	Sau khi quá trình cài đặt kết thúc thì vào trong folder project-nodejs rồi chạy câu lệnh: npm install
+	Khởi động server nodejs: npm start rồi sau đó vào http://localhost:3000/ để xem project được tạo ra
