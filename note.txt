@@ -142,3 +142,11 @@
 	--> Làm như vậy giúp ta thuận lợi khi maintain
 	Tách giao diện phần navbar
 	Cách Format code: chuyển về html --> chuột phải --> Format Document
+	header: Tách riêng những phần nằm trong thẻ <head>
+	script: Tách riêng những thẻ script được nhúng vào
+	Để vào được các tập tin Css thì đường dẫn đúng là: http://localhost:6969/public/
+	Khi tách các tập tin script và Header ra thì thứ tự bị thay đổi --> cần phải có base href để định lại đường dẫn
+		đặt trong thẻ <head> ---> <base href="/">
+	Keyword: html base href
+	Folder pages: Để định nghĩa view của từng trang, quản lý các view chẳng hạn như qua lý các view dashboard, items
+	Khi thay đổi vị trí của các tập tin view thì phần nội dung trong routes phần render() cũng phải thay đổi theo
