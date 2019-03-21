@@ -137,3 +137,8 @@
 	Keyword: ejs include file
 		cú pháp: <% include filename %>
 	---> Biết cách kéo một tập tin vào bên trong một tập tin nào đó
+
+- Kỹ thuật nhúng giao diện và module mở rộng: Tách giao diện thì mình sẽ tìm các phần giao diện chung để tách riêng ra
+	--> Làm như vậy giúp ta thuận lợi khi maintain
+	Tách giao diện phần navbar
+	Cách Format code: chuyển về html --> chuột phải --> Format Document
