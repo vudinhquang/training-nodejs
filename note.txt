@@ -123,3 +123,11 @@
 				res.send(req.params)
 			})
 	Một số phương thức hay dùng khi sử dụng: res.redirect(), res.render(), res.send(), res.sendFile(), res.end()...
+
+- Sử dụng View:
+	Khi ta có 1 giao diện, làm thế nào để tích hợp vào project mình đang làm
+	Hiểu cách thay đổi tập tin view cho từng Router khác nhau
+	Để cho dễ dàng quản lý views thì trong folder views tạo thêm các folder để quản lý riêng cho các phần khác nhau
+		chẳng hạn như: items, categories... --> Biết cách nhóm các view đối với các phần quản lý khác nhau
+	Ở đây ta có itmes.js trong routes đóng vai trò giống như Controller
+	---> Làm rõ hơn về cách sử dụng của Router và cách kéo view vào trong 1 Router nào đó.

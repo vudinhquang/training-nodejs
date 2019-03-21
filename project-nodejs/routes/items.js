@@ -2,15 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/list', function(req, res, next) {
-  res.send('List video');
+  res.render('items/list', { title: 'Item List Page' });
 });
 
 router.get('/add', function(req, res, next) {
-  res.send('Add video');
-});
-
-router.get('/edit', function(req, res, next) {
-  res.send('Edit video');
+  res.render('items/add', { title: 'Item Add Page' });
 });
 
 module.exports = router;
