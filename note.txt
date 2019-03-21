@@ -106,3 +106,20 @@
 			"start": "nodemon ./bin/www"
 		},
 	Start server bằng: npm start
+
+- Sử dụng Router:
+	Link: https://expressjs.com/en/guide/routing.html
+	Route paths: Cũng có thể áp dụng biểu thức chính quy
+		app.get('/ab(cd)?e', function (req, res) {
+			res.send('ab(cd)?e')
+		})
+		--> đường dẫn sẽ match với các trường hợp là: /abe hoặc /abcde
+	Route parameters: Tham số truyền trên URL
+		Route path: /users/:userId/books/:bookId
+		Request URL: http://localhost:3000/users/34/books/8989
+		req.params: { "userId": "34", "bookId": "8989" }
+		Xác định tham số truyền trên URL:
+			app.get('/users/:userId/books/:bookId', function (req, res) {
+				res.send(req.params)
+			})
+	Một số phương thức hay dùng khi sử dụng: res.redirect(), res.render(), res.send(), res.sendFile(), res.end()...
