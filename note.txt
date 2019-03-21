@@ -150,3 +150,10 @@
 	Keyword: html base href
 	Folder pages: Để định nghĩa view của từng trang, quản lý các view chẳng hạn như qua lý các view dashboard, items
 	Khi thay đổi vị trí của các tập tin view thì phần nội dung trong routes phần render() cũng phải thay đổi theo
+	html format: Dùng để format code html
+	Mỗi trang khác nhau thì có 1 Title khác nhau, nếu như mà thay đổi cấu trúc html của nó thì có bao nhiêu trang -> 
+		phải thay đổi bấy nhiêu lần. Thay vì cứ mỗi trang mình phải lặp lại cấu trúc html của title thì mình sẽ tách nó
+		ra thành 1 file riêng để khi mà khi thay đổi cấu trúc html dành cho title thì chỉ cần sửa ở 1 chỗ mà thôi
+	In ra giá trị được truyền từ Router ra View: <%= pageTitle %>
+	--> Tách ra thêm 1 phần quản lý title
+	Keyword: ejs --> https://ejs.co/
