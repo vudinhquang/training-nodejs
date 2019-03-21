@@ -96,3 +96,13 @@
 		Khai báo sử dụng routes:
 			app.use('/', indexRouter), trong đó: var indexRouter = require('./routes/index');
 			app.use('/users', usersRouter), trong đó: var usersRouter = require('./routes/users');
+
+- Nodemon: Ta muốn mỗi lần chỉnh sửa gì đó mà ko cần Stop lại server và khởi động lại server bằng npm start nữa
+	mà nó sẽ tự động thực hiện --> cần phải sử dụng được nodemon trong Express generator.
+	Keyword: Express generator auto restart
+	Cài đặt nodemon: npm install -g nodemon
+	Để sử dụng được nodemon:
+		"scripts": {
+			"start": "nodemon ./bin/www"
+		},
+	Start server bằng: npm start
