@@ -71,3 +71,28 @@
 	Trong phần này mình sẽ sử dụng template engine là ejs -> cài đặt: express --view=ejs project-nodejs
 	Sau khi quá trình cài đặt kết thúc thì vào trong folder project-nodejs rồi chạy câu lệnh: npm install
 	Khởi động server nodejs: npm start rồi sau đó vào http://localhost:3000/ để xem project được tạo ra
+
+- Express structure:
+	Tìm hiểu một số folder và tập tin khi mình tạo ra bằng Express generator
+	Folder bin: có chứa tập tin là www. Kéo vào tập tin app và module http, và thực hiện khai báo port
+		--> có thể thực hiên thay đổi được giá trị của port ở đây
+	Folder node_modules: Khi sử dụng npm để cài đặt những thư viện, module để cài đặt về thì nó sẽ nằm 
+		trong folder này(express, ejs)
+		Khi mà thực hiện copy source code từ máy này sang máy khác thì chỉ cần Copy hết các tập tin và thư
+			mục ngoại trừ thư mục node_modules này rồi sau đó dùng câu lệnh npm install để cài đặt --> nó 
+			tạo ra folder node_modules và tự động download các package module về, chúng ta sử dụng các package
+			module nào thì nó đều khai báo trong package.json
+	Folder public: Là nơi chứa hình ảnh trong ứng dụng, js trong javascripts, css trong stylesheets
+	Folder routes: Giúp ta khai báo các đường dẫn--> điều hướng đến các trang cần mở
+	Folder views: Chứa các tập tin view
+	Tập tin app.js: 
+		Thực hiện kéo vào module express: var express = require('express')
+		Tạo ra 1 app bằng cách sử dụng express: var app = express()
+		app khai báo vị trí của folder views: app.set('views', path.join(__dirname, 'views')) , nếu mà mình 
+			không muốn folder views có tên là views mà là tên khác thì chỉ cần cấu hình lại ở đây
+		Cấu hình view engine: app.set('view engine', 'ejs')
+		app.use(express.static(path.join(__dirname, 'public'))): Khai báo các tài nguyên về css, js, image thì
+			vào bên trong folder public để lấy lên, nếu ko muốn để tên là public thì mình có thể đổi lại là được
+		Khai báo sử dụng routes:
+			app.use('/', indexRouter), trong đó: var indexRouter = require('./routes/index');
+			app.use('/users', usersRouter), trong đó: var usersRouter = require('./routes/users');
