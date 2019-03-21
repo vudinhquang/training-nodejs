@@ -188,3 +188,8 @@
 	In ra content: <%- body %>
 	---> Trong app.js mình cài đặt express-ejs-layouts, khai báo sử dụng layout default là backend, trong backend thì 
 		khai báo sử dụng cho phần content là <%- body %>
+
+- Setup Router:
+	Truy cập vào mỗi trang bằng cách gắn link
+	Phần quản lý đường link thì mình có các đường link cho người quản trị và các đường link cho người sử dụng bình thường
+		ở phần này mình sẽ xây dựng cho phần quản lý admin
