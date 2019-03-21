@@ -157,3 +157,29 @@
 	In ra giá trị được truyền từ Router ra View: <%= pageTitle %>
 	--> Tách ra thêm 1 phần quản lý title
 	Keyword: ejs --> https://ejs.co/
+	Nhúng giao diện cho phần add items
+	Ở cứ mỗi trang thì mỗi view của nó tương đối là ít --> không cần Copy cấu trúc html của toàn bộ trang, nếu như mà 
+		cấu trúc html của trang thay đổi thì mình phải đi tất cả các trang để thay đổi
+		để tối ưu mã html thì ở mỗi trang, nó chỉ chứa mã html của chính nó --> mà ko cần chứa mã của toàn bộ trang
+	Tùy thuộc vào việc mình sử dụng template engine là gì thì nó sẽ có package để tách được phần layouts ra
+	Keyword: express-ejs-layouts --> https://www.npmjs.com/package/express-ejs-layouts
+	Cài đặt: npm install express-ejs-layouts
+	Khi cài đặt thành công thì kiểm tra trong file package.json và folder node_modules thì thấy nó đã có thêm 
+		express-ejs-layouts
+	Sau khi cài đặt xong thì import nó vào tập tin chạy chính app.js để sử dụng: 
+		var expressLayouts = require('express-ejs-layouts');
+	Thứ tự sắp xếp các module trong app.js:
+		module của hệ thống 
+		module cài thêm vào
+		module tự viết
+			var createError = require('http-errors');
+			var express = require('express');
+			var path = require('path');
+			var cookieParser = require('cookie-parser');
+			var logger = require('morgan');
+
+			var expressLayouts = require('express-ejs-layouts');
+
+			var indexRouter = require('./routes/index');
+			var usersRouter = require('./routes/users');
+	Khai báo sử dụng: app.use(expressLayouts);
