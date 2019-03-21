@@ -183,3 +183,8 @@
 			var indexRouter = require('./routes/index');
 			var usersRouter = require('./routes/users');
 	Khai báo sử dụng: app.use(expressLayouts);
+	Set custom default layout: app.set('layout', 'layouts/layout');
+	Tùy thuộc vào vị trí layout được đặt ở đâu thì tương ứng ta sẽ có đường dẫn, đường dẫn sẽ được tính từ Folder views
+	In ra content: <%- body %>
+	---> Trong app.js mình cài đặt express-ejs-layouts, khai báo sử dụng layout default là backend, trong backend thì 
+		khai báo sử dụng cho phần content là <%- body %>
