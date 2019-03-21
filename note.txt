@@ -131,3 +131,9 @@
 		chẳng hạn như: items, categories... --> Biết cách nhóm các view đối với các phần quản lý khác nhau
 	Ở đây ta có itmes.js trong routes đóng vai trò giống như Controller
 	---> Làm rõ hơn về cách sử dụng của Router và cách kéo view vào trong 1 Router nào đó.
+
+- View - Include:
+	Trong Folder views tạo thêm 1 folder nữa là elements
+	Keyword: ejs include file
+		cú pháp: <% include filename %>
+	---> Biết cách kéo một tập tin vào bên trong một tập tin nào đó
