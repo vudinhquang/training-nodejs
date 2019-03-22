@@ -193,3 +193,11 @@
 	Truy cập vào mỗi trang bằng cách gắn link
 	Phần quản lý đường link thì mình có các đường link cho người quản trị và các đường link cho người sử dụng bình thường
 		ở phần này mình sẽ xây dựng cho phần quản lý admin
+	Theo cách viết ở trên thì trong file app.js mình cần import rất nhiều các Router vào, theo cách viết như vậy thì sẽ làm cho app.js
+		có nhiều dòng. Ý tưởng ở đây là trong routes mình sẽ kéo các Router khác vào--> trong app.js mình chỉ cần kéo 
+		file đại diện của từng phần(items, categories...) vào mà thôi, đồng thời giúp cho phần routes cũng rất dễ quản lý
+		res.render('pages/home/index', { pageTitle: 'HomePage' }) --> Cách viết đúng
+		res.render('/pages/home/index', { pageTitle: 'HomePage' }) --> Cách viết sai
+	Đối với phần routes thì chia ra 2 phần là backend và frontend để dễ quản lý--> trong app.js chit cần import vào backend và
+		frontend là được ---> đến khi thêm 1 view mới cho backend hoặc frontend thì chỉ cần viết trong routes/backend và
+		routes/frontend rồi import và trong index của 2 thằng này là được
