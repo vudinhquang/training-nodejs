@@ -223,3 +223,8 @@
 	views: Tách ra cho từng trang riêng
 	Giảm thiểu mã nguồn trùng lặp bằng cách sử dụng layouts backend
 	Ngoài việc sử dụng template engine là ejs mình cũng đã sử dụng thêm 1 module nữa đó là express-ejs-layouts
+
+- Mlab:
+	Site: https://mlab.com/
+	MongoDB Atlas: https://www.mongodb.com/cloud/atlas
+	Tạo được ra DB ra trong MongoDB
