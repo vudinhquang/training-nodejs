@@ -201,3 +201,8 @@
 	Đối với phần routes thì chia ra 2 phần là backend và frontend để dễ quản lý--> trong app.js chit cần import vào backend và
 		frontend là được ---> đến khi thêm 1 view mới cho backend hoặc frontend thì chỉ cần viết trong routes/backend và
 		routes/frontend rồi import và trong index của 2 thằng này là được
+
+- Prefix Admin:
+	Trong ứng dụng thì khả năng mở rộng, khả năng chuyển biến linh hoặt của nó phải cao
+	Local variable: Là variable có thể sử dụng trong ứng dụng của mình
+		app.locals.systemConfig = 'admin123'

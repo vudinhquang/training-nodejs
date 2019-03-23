@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var expressLayouts = require('express-ejs-layouts');
 
+const systemConfig = require('./configs/system');
+
 var app = express();
 
 // view engine setup
@@ -21,8 +23,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Local variable
+app.locals.systemConfig = systemConfig;
+
 // Setup router
-app.use('/admin', require('./routes/backend/index'));
+app.use(`/${systemConfig.prefixAdmin}`, require('./routes/backend/index'));
 app.use('/', require('./routes/frontend/index'));
 
 // catch 404 and forward to error handler
