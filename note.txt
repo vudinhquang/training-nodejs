@@ -206,3 +206,11 @@
 	Trong ứng dụng thì khả năng mở rộng, khả năng chuyển biến linh hoặt của nó phải cao
 	Local variable: Là variable có thể sử dụng trong ứng dụng của mình
 		app.locals.systemConfig = 'admin123'
+
+- Error Page:
+	Khi truy cập vào một đường dẫn không tồn tại --> phần error handler sẽ được gọi --> nó sẽ render về tập tin là error
+		khi render ra trang error thì sẽ phát sinh lỗi bởi vì hiện tại app đang sử dụng layout là backend, layout này import
+		vào title-page --> trong đây có sử đến pageTitle. Việc này dẫn đến khi render ra trang error thì nó chưa được truyền
+		vào biến pageTitle --> lỗi bị phát sinh --> muốn không có lỗi thì khi render ra trang error thì chỉ cần truyền vào
+		thêm biến pageTitle
+	Có thể thay đổi cho trang Error như vị trí, nội dung hiển thị...
