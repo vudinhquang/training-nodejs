@@ -214,3 +214,12 @@
 		vào biến pageTitle --> lỗi bị phát sinh --> muốn không có lỗi thì khi render ra trang error thì chỉ cần truyền vào
 		thêm biến pageTitle
 	Có thể thay đổi cho trang Error như vị trí, nội dung hiển thị...
+
+- Review NodeJS:
+	Tìm hiểu cơ bản về nodejs
+	Cơ bản về cách dùng ExpressJs
+	routes: Phân ra thành folder backend dành cho Router cho phần quản trị backend
+			frontend dành cho phần quản trị frontend
+	views: Tách ra cho từng trang riêng
+	Giảm thiểu mã nguồn trùng lặp bằng cách sử dụng layouts backend
+	Ngoài việc sử dụng template engine là ejs mình cũng đã sử dụng thêm 1 module nữa đó là express-ejs-layouts
