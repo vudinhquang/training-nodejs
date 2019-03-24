@@ -8,8 +8,6 @@ var expressLayouts = require('express-ejs-layouts');
 var mongoose = require('mongoose');
 
 const systemConfig = require('./configs/system');
-const ItemsModel = require('./schemas/items');
-
 
 mongoose.connect('mongodb+srv://vuquang:Vudinhquang2202@cluster0-jhlkz.mongodb.net/training_nodejs?retryWrites=true', { useNewUrlParser: true });
 var db = mongoose.connection;
@@ -18,11 +16,6 @@ db.on('error', () => {
 });
 db.once('open', () => {
 	console.log('connected!')
-});
-
-ItemsModel.find({}, function(err, items){
-	console.log(err);
-	console.log(items);
 });
 
 var app = express();

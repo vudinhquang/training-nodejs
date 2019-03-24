@@ -1,12 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', function(req, res, next) {
-  res.render('pages/items/list', { pageTitle: 'Item List Page' });
+const ItemsModel = require('../../schemas/items');
+
+router.get('/', (req, res, next) => {
+	ItemsModel.find({}) .then((items) => {
+		res.render('pages/items/list', { 
+			pageTitle: 'Item List Page',
+			items
+		});
+	});
 });
 
-router.get('/add', function(req, res, next) {
-  res.render('pages/items/add', { pageTitle: 'Item Add Page' });
+router.get('/add', (req, res, next) => {
+	res.render('pages/items/add', { pageTitle: 'Item Add Page' });
 });
 
 module.exports = router;

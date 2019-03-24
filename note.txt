@@ -262,3 +262,8 @@
 		Tất cả các hàm callback đều có dạng callback(error, result)
 			Trong trường hợp có lỗi xảy ra thì tham số error sẽ trả về 1 error parameter và result là null
 			Ngược lại nếu truy vấn thành công thì error trả về null và result là kết quả của câu query
+
+- Get items: Thực hiện truy vấn dữ liệu item và truyền ra view
+	Ở đây thì dữ liệu được đổ ra view /admin/items --> Trong routes của items phải thực hiện lấy ra các items trong
+		DB rồi truyền ra view
+	Keyword: javascript print object
