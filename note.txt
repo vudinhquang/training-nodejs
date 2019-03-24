@@ -283,3 +283,7 @@
 - Show status filter: Lọc items theo status active, inactive, all + hiện thị có bao nhiêu phần tử ở trạng thái đó
 	-> Các thuộc tính của mỗi nút filter đó là: 
 		name: All/Active/Inactive, count: 4, link: '#', class(khi click vào phần tử nào thì phần tử đó được active)
+
+- Count by status:
+	Đối với trường status thì có thể nó có rất nhiều trạng thái: active, unactive, public, trash... -> thiết lập giá trị
+		cho trường này là các giá trị text
