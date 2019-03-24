@@ -8,6 +8,7 @@ var expressLayouts = require('express-ejs-layouts');
 var mongoose = require('mongoose');
 
 const systemConfig = require('./configs/system');
+const ItemsModel = require('./schemas/items');
 
 
 mongoose.connect('mongodb+srv://vuquang:Vudinhquang2202@cluster0-jhlkz.mongodb.net/training_nodejs?retryWrites=true', { useNewUrlParser: true });
@@ -19,17 +20,9 @@ db.once('open', () => {
 	console.log('connected!')
 });
 
-var kittySchema = new mongoose.Schema({
-	name: String
-});
-
-var Kitten = mongoose.model('Kitten', kittySchema);
-
-var silence = new Kitten({ name: 'nodejs' });
-console.log(silence.name); // 'Silence'
-
-silence.save(function (err, silence) {
-    if (err) return console.error(err);
+ItemsModel.find({}, function(err, items){
+	console.log(err);
+	console.log(items);
 });
 
 var app = express();

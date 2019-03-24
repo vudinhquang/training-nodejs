@@ -251,4 +251,14 @@
 			Phân quyền là: Read and write to any database
 		Kết nối với Cluster: Connect Your Application
 
-- MoogoDB Quickstart:
+- MoogoDB Quickstart
+
+- Mongoose basic:
+	Thực hiện hiển thị danh sách các item -> Cần đến câu lệnh Sellect
+	Để dễ quản lý -> tạo thêm thư mục schemas, mỗi Collection sẽ có 1 tập tin schema riêng: items, categories...
+	Keyword: mongoose get all items
+	Mongoose thực hiện các phương thức và kết quả trả về được truyền vào lmaf tham số của hàm callback, đồng thời
+		Mongoose cũng có phương thức .then() để thực hiện tiếp theo bước truy vấn.
+		Tất cả các hàm callback đều có dạng callback(error, result)
+			Trong trường hợp có lỗi xảy ra thì tham số error sẽ trả về 1 error parameter và result là null
+			Ngược lại nếu truy vấn thành công thì error trả về null và result là kết quả của câu query
