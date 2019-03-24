@@ -279,3 +279,7 @@
 	Khi xây dựng thêm các phần quản lý khác như categories, video... thì trên các view nó cũng có phần Status, phần này	
 		sẽ được lặp lại -> Xây dựng phần Helpers hỗ trợ cung cấp sinh ra mã HTML giúp cho việc maintain cũng dễ dàng
 	Include helper đã viết: <% include ../../helpers/status %>
+
+- Show status filter: Lọc items theo status active, inactive, all + hiện thị có bao nhiêu phần tử ở trạng thái đó
+	-> Các thuộc tính của mỗi nút filter đó là: 
+		name: All/Active/Inactive, count: 4, link: '#', class(khi click vào phần tử nào thì phần tử đó được active)
