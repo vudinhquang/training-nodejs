@@ -290,3 +290,7 @@
 
 - Helper Show Filter Status:
 	Xây dựng helper cho phần hiển thị phần Filter trên view
+
+- Helper Create Filter Status:
+	Viết helper để tạo ra phần Status Filter -> làm giảm thiểu mã nguồn trong routes
+	Sử dụng phương thức countDocuments() thay cho phương thức count()
