@@ -92,106 +92,39 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>
-										<input type="checkbox" name="cid" value="5a9e5a96da67bc078421d7d6" />
-									</td>
-									<td>
-										1
-									</td>
-									<td>
-										Super Admin
-									</td>
-									<td>
-										<a href="admin123/item/change-status/5a9e5a96da67bc078421d7d6/active">
-											<span class="label label-success">active</span>
-										</a>
-									</td>
-									<td>
-										<input type="number" value="2" class="text-center ordering">
-									</td>
-									<td>
-										<a href="admin123/item/form/5a9e5a96da67bc078421d7d6" type="button"
-											class="btn btn-warning btn-sm">Edit</a>
-										<a href="admin123/item/delete/5a9e5a96da67bc078421d7d6" type="button"
-											class="btn btn-danger btn-sm btn-delete">Delete</a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<input type="checkbox" name="cid" value="5abdc9aa598c600b6c7fd56b" />
-									</td>
-									<td>
-										2
-									</td>
-									<td>
-										Editor
-									</td>
-									<td>
-										<a href="admin123/item/change-status/5abdc9aa598c600b6c7fd56b/active">
-											<span class="label label-success">active</span>
-										</a>
-									</td>
-									<td>
-										<input type="number" value="3" class="text-center ordering">
-									</td>
-									<td>
-										<a href="admin123/item/form/5abdc9aa598c600b6c7fd56b" type="button"
-											class="btn btn-warning btn-sm">Edit</a>
-										<a href="admin123/item/delete/5abdc9aa598c600b6c7fd56b" type="button"
-											class="btn btn-danger btn-sm btn-delete">Delete</a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<input type="checkbox" name="cid" value="5af7d6a306b3d71a08df04b1" />
-									</td>
-									<td>
-										3
-									</td>
-									<td>
-										Manager
-									</td>
-									<td>
-										<a href="admin123/item/change-status/5af7d6a306b3d71a08df04b1/active">
-											<span class="label label-success">active</span>
-										</a>
-									</td>
-									<td>
-										<input type="number" value="3" class="text-center ordering">
-									</td>
-									<td>
-										<a href="admin123/item/form/5af7d6a306b3d71a08df04b1" type="button"
-											class="btn btn-warning btn-sm">Edit</a>
-										<a href="admin123/item/delete/5af7d6a306b3d71a08df04b1" type="button"
-											class="btn btn-danger btn-sm btn-delete">Delete</a>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<input type="checkbox" name="cid" value="5af7d6d506b3d71a08df04b2" />
-									</td>
-									<td>
-										4
-									</td>
-									<td>
-										Manager
-									</td>
-									<td>
-										<a href="admin123/item/change-status/5af7d6d506b3d71a08df04b2/active">
-											<span class="label label-success">active</span>
-										</a>
-									</td>
-									<td>
-										<input type="number" value="3" class="text-center ordering">
-									</td>
-									<td>
-										<a href="admin123/item/form/5af7d6d506b3d71a08df04b2" type="button"
-											class="btn btn-warning btn-sm">Edit</a>
-										<a href="admin123/item/delete/5af7d6d506b3d71a08df04b2" type="button"
-											class="btn btn-danger btn-sm btn-delete">Delete</a>
-									</td>
-								</tr>
+								<%	items.forEach((item, index) => { %>		
+									<tr>
+										<td>
+											<input type="checkbox" name="cid" value="5a9e5a96da67bc078421d7d6" />
+										</td>
+										<td>
+											<%= index + 1 %>
+										</td>
+										<td>
+											<%= item.name %>
+										</td>
+										<td>
+											<%	if(item.status == 1) { %>		
+												<a href="#">
+													<span class="label label-success">active</span>
+												</a>
+											<% } else if(item.status == 0) { %>
+												<a href="#">
+													<span class="label label-warning">inactive</span>
+												</a>
+											<%	} %>
+										</td>
+										<td>
+											<input type="number" value="<%= item.ordering %>" class="text-center ordering">
+										</td>
+										<td>
+											<a href="#" type="button"
+												class="btn btn-warning btn-sm">Edit</a>
+											<a href="#" type="button"
+												class="btn btn-danger btn-sm btn-delete">Delete</a>
+										</td>
+									</tr>
+								<%	}) %>
 							</tbody>
 						</table>
 					</div>

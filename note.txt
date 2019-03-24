@@ -267,3 +267,10 @@
 	Ở đây thì dữ liệu được đổ ra view /admin/items --> Trong routes của items phải thực hiện lấy ra các items trong
 		DB rồi truyền ra view
 	Keyword: javascript print object
+
+- Foreach:
+	Khi đổ dữ liệu items ra view sử dụng Foreach --> hiển thị dữ liệu ra phần list item
+	Để hiện thị các thông báo lỗi trong trang error để kiểm tra lỗi khi code:
+		<h1><%= message %></h1>
+		<h2><%= error.status %></h2>
+		<pre><%= error.stack %></pre> 
