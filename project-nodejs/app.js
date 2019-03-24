@@ -10,9 +10,8 @@ var mongoose = require('mongoose');
 const systemConfig = require('./configs/system');
 
 
-mongoose.connect('mongodb+srv://vuquang:Vudinhquang2202@cluster0-jhlkz.mongodb.net/test?retryWrites=true', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://vuquang:Vudinhquang2202@cluster0-jhlkz.mongodb.net/training_nodejs?retryWrites=true', { useNewUrlParser: true });
 var db = mongoose.connection;
-// db.on('error', console.log('connection error:'));
 db.on('error', () => {
 	console.log('connection error');
 });
@@ -20,6 +19,18 @@ db.once('open', () => {
 	console.log('connected!')
 });
 
+var kittySchema = new mongoose.Schema({
+	name: String
+});
+
+var Kitten = mongoose.model('Kitten', kittySchema);
+
+var silence = new Kitten({ name: 'nodejs' });
+console.log(silence.name); // 'Silence'
+
+silence.save(function (err, silence) {
+    if (err) return console.error(err);
+});
 
 var app = express();
 
