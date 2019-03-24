@@ -228,3 +228,25 @@
 	Site: https://mlab.com/
 	MongoDB Atlas: https://www.mongodb.com/cloud/atlas
 	Tạo được ra DB ra trong MongoDB
+
+- MongoDB Connect: Biết cách kết nối vơi mongodb thông qua dịch vụ của mlab
+	Cách kết nối với cơ sở dữ liệu sử dụng MongoDB
+	Thư viện(package) phổ biến giúp ta có thể làm việc được với MongoDB đó là Mongoose
+	Site: https://mongoosejs.com/
+		  https://mongoosejs.com/docs/guide.html  --> Bắt đầu từ Quick Start
+	Cài đặt: npm install mongoose
+	Keyword: mongodb atlas connect node
+		--> https://docs.atlas.mongodb.com/connect-to-cluster/
+	Trước tiên thì cần thực hiện 1 số yêu cầu:
+		Tạo project: Training
+		Thực hiện thêm Cluster mới
+			Cluster Name: Cluster0
+		Whitelist: Thực hiện add IP address  ở tab Security --> Add IP Address --> Allow Access from Anywhere, 
+			khi add chỉ cần thực hiện các thông số mặc định 0.0.0.0/0
+		MongoDB User: Để truy cập được vào cluster thì cần phải add thêm MongoDB User để có thể truy cập vào các 
+			CSDL mong muốn trên Atlas cluster. Tài khoản MongoDB User là khác với tài khoản Atlas users. MongoDB user
+			là dùng để truy cập vào CSDL MongoDB, còn Atlas users là để login vào ứng dụng Atlas
+			user: vuquang
+			pass: Vudinhquang2202
+			Phân quyền là: Read and write to any database
+		Kết nối với Cluster: Connect Your Application
