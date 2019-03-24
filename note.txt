@@ -274,3 +274,8 @@
 		<h1><%= message %></h1>
 		<h2><%= error.status %></h2>
 		<pre><%= error.stack %></pre> 
+
+- Status Helper:
+	Khi xây dựng thêm các phần quản lý khác như categories, video... thì trên các view nó cũng có phần Status, phần này	
+		sẽ được lặp lại -> Xây dựng phần Helpers hỗ trợ cung cấp sinh ra mã HTML giúp cho việc maintain cũng dễ dàng
+	Include helper đã viết: <% include ../../helpers/status %>
