@@ -287,3 +287,6 @@
 - Count by status:
 	Đối với trường status thì có thể nó có rất nhiều trạng thái: active, unactive, public, trash... -> thiết lập giá trị
 		cho trường này là các giá trị text
+
+- Helper Show Filter Status:
+	Xây dựng helper cho phần hiển thị phần Filter trên view

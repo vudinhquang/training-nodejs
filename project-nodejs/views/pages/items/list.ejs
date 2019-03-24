@@ -15,15 +15,9 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="status-list col-sm-6 pl0">
-						<% 
-							statusFilter.forEach((item) =>{
-						%>	
-							<a class="btn m-b-sm btn-<%= item.class %> btn-sm" href="admin123/item/all">
-								<%= item.name.toUpperCase() + " ("+ item.count +")" %>
-							</a>
-						<% 
-							})
-						%>
+						<!-- Filter Status -->
+						<% include ../../helpers/filter-status %>
+						<% filterStatusHelper(statusFilter) %>
 					</div>
 					<div class="col-sm-6">
 						<form action="admin123/item/all" method="GET">
@@ -105,7 +99,7 @@
 											<%= item.name %>
 										</td>
 										<td>
-											<%= statusHelper(item.status, '#') %>
+											<% statusHelper(item.status, '#') %>
 										</td>
 										<td>
 											<input type="number" value="<%= item.ordering %>" class="text-center ordering">
