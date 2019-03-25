@@ -6,8 +6,8 @@ const UtilsHelpers = require('../../helpers/utils');
 
 // List items
 router.get('(/:status)?', (req, res, next) => {
-	let statusFilter = UtilsHelpers.createFilterStatus();
 	let currentStatus = req.params.status;
+	let statusFilter = UtilsHelpers.createFilterStatus(currentStatus);
 
 	ItemsModel.find({}).then((items) => {
 		res.render('pages/items/list', { 

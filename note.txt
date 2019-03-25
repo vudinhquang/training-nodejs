@@ -305,3 +305,7 @@
 		});
 	Cách lấy giá trị của status: req.params.status
 	(/:status)?  -> trên URL thì giá trị này có thể xuất hiện hoặc không
+
+- Active filter:
+	Active cho các button Filter Status khi click vào các button đó để chuyển trang
+	Hiện thị status khi hiện thị list các item
