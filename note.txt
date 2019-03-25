@@ -309,3 +309,6 @@
 - Active filter:
 	Active cho các button Filter Status khi click vào các button đó để chuyển trang
 	Hiện thị status khi hiện thị list các item
+
+- List by status:
+	Dựa vào trạng thái status ở trên URL mà mình sẽ đổ danh sách item ra ở phần list
