@@ -4,8 +4,10 @@ var router = express.Router();
 const ItemsModel = require('../../schemas/items');
 const UtilsHelpers = require('../../helpers/utils');
 
-router.get('/', (req, res, next) => {
+// List items
+router.get('(/:status)?', (req, res, next) => {
 	let statusFilter = UtilsHelpers.createFilterStatus();
+	let currentStatus = req.params.status;
 
 	ItemsModel.find({}).then((items) => {
 		res.render('pages/items/list', { 

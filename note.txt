@@ -294,3 +294,14 @@
 - Helper Create Filter Status:
 	Viết helper để tạo ra phần Status Filter -> làm giảm thiểu mã nguồn trong routes
 	Sử dụng phương thức countDocuments() thay cho phương thức count()
+
+- Status router:
+	Dựa vào URL có thể lấy được các giả trị status: all, active, inactive, rồi từ đó hiện thị các giá trị theo Status
+		đồng thời add class Css vào cho các nút Filter theo Status
+	Cách ghi tổng quát cho status
+		router.get('/:status', (req, res, next) => {
+			res.write('test');
+			res.end();
+		});
+	Cách lấy giá trị của status: req.params.status
+	(/:status)?  -> trên URL thì giá trị này có thể xuất hiện hoặc không
