@@ -6,7 +6,7 @@ const UtilsHelpers = require('../../helpers/utils');
 const ParamsHelpers = require('../../helpers/params');
 
 // List items
-router.get('(/:status)?', (req, res, next) => {
+router.get('(/status/:status)?', (req, res, next) => {
 	let objWhere = {};
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
 

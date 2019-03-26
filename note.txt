@@ -325,3 +325,10 @@
 			}
 			return defaultValue;
 		}
+		
+- Filter Status - Error:
+	Khi nhấn vào các filter status thì ta sẽ có các đường dẫn có dạng như:
+		/status/active
+		/status/inactive
+		--> 'status' được bổ sung vào URL
+	Error: Có lỗi bất đồng bộ xảy ra khi hiện thị giá trị count của mỗi status
