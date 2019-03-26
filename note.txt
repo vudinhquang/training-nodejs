@@ -332,3 +332,12 @@
 		/status/inactive
 		--> 'status' được bổ sung vào URL
 	Error: Có lỗi bất đồng bộ xảy ra khi hiện thị giá trị count của mỗi status
+
+- Submit keyword: Thực hiện lấy giá trị keyword nhập vào khi nhấn nút Submit
+	Khi nhắn nút tìm kiếm thì giá trị keyword được gắn lên trên URL, sau đó lấy giá trị keyword trên URL xuống để tìm
+		kiếm
+	Tùy thuộc vào mình đang ở trạng thái nào mà ta có đường link tương ứng khi tìm kiếm: /items/all?keyword=abc
+		--> Truyền giá trị status hiện tại ra view để gắn vào đường link
+	Khi nhấn vào nút Search để tìm theo keyword thì giá trị keyword nhập vào vẫn phải được hiển thị trên ô input
+		-> Trong routes mình cần lấy được keyword trên URL rồi truyền nó ra view
+	app.use(logger('dev')) ---> comment để ẩn đi một số dòng hiển thị trong console
