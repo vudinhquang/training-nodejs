@@ -312,3 +312,16 @@
 
 - List by status:
 	Dựa vào trạng thái status ở trên URL mà mình sẽ đổ danh sách item ra ở phần list
+
+- getParam:
+	Khi mà không lấy được status từ URL, hoặc là giá trị của nó bằng rỗng thì gán giá trị mặc định cho nó là all
+		nếu mà nó có tồn tại thì lấy giá trị của nó bình thường
+	Keyword: javascript check object has property. javascript hasOwnProperty example
+	--> Xử lý đế lấy giá trị: currentStatus
+	Helper get param:
+		let getParam = (params, property, defaultValue) => {
+			if (params.hasOwnProperty(property) && params[property] !== undefined) {
+				return params[property];
+			}
+			return defaultValue;
+		}
