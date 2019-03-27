@@ -341,3 +341,6 @@
 	Khi nhấn vào nút Search để tìm theo keyword thì giá trị keyword nhập vào vẫn phải được hiển thị trên ô input
 		-> Trong routes mình cần lấy được keyword trên URL rồi truyền nó ra view
 	app.use(logger('dev')) ---> comment để ẩn đi một số dòng hiển thị trong console
+
+- Search normarl: Đưa ra trị keyword lấy được ra view -> đưa vào hiển thị trong ô input, và lọc các item theo keyword đó
+	hiển thị ở phần view

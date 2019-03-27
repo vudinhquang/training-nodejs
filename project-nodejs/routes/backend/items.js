@@ -12,14 +12,25 @@ router.get('(/:status)?', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
 	let statusFilter  = UtilsHelpers.createFilterStatus(currentStatus);
 
-	if (currentStatus !== 'all') objWhere = {status: currentStatus};
+	if (currentStatus !== 'all') {
+		if (keyword == '') {
+			objWhere = {status: currentStatus};
+		} else {
+			objWhere = {status: currentStatus, name: keyword};
+		}
+	} else {
+		if (keyword !== '') {
+			objWhere = {name: keyword};
+		}
+	}
 
 	ItemsModel.find(objWhere).then((items) => {
 		res.render('pages/items/list', { 
 			pageTitle: 'Item List Page',
 			items,
 			statusFilter,
-			currentStatus
+			currentStatus,
+			keyword
 		});
 	});
 });
