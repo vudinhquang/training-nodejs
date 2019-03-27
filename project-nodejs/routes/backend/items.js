@@ -16,11 +16,11 @@ router.get('(/:status)?', (req, res, next) => {
 		if (keyword == '') {
 			objWhere = {status: currentStatus};
 		} else {
-			objWhere = {status: currentStatus, name: keyword};
+			objWhere = {status: currentStatus, name: new RegExp(keyword, 'i')};
 		}
 	} else {
 		if (keyword !== '') {
-			objWhere = {name: keyword};
+			objWhere = {name: new RegExp(keyword, 'i')};
 		}
 	}
 

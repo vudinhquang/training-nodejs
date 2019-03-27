@@ -344,3 +344,9 @@
 
 - Search normarl: Đưa ra trị keyword lấy được ra view -> đưa vào hiển thị trong ô input, và lọc các item theo keyword đó
 	hiển thị ở phần view
+
+- Search RE: Tìm kiếm sử dụng đến Regular Expression
+	keyword: mongoose Regular Expression, mongoose find regex
+	objWhere = {name: { $regex: /socket/, $options: 'i' }}
+		Tìm các giá trị có chứa giá trị 'socket' và không phân biệt chữ hoa, chữ thường
+	objWhere = {name: new RegExp(keyword, 'i')};
