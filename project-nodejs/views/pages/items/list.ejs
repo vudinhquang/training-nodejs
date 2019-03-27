@@ -7,7 +7,7 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				Search & Filter
-				<a href="admin123/item">
+				<a href="<%= systemConfig.prefixAdmin %>/items/all">
 					<span id="icon-reload" class="glyphicon glyphicon-refresh"></span>
 				</a>
 			</div>
@@ -28,7 +28,7 @@
 								</span>
 								<span class="input-group-btn">
 									<button class="btn btn-success" type="button"><a
-											href="admin123/group/all">Clear</a></button>
+											href="<%= systemConfig.prefixAdmin %>/items/<%= currentStatus %>">Clear</a></button>
 								</span>
 							</div>
 						</form>

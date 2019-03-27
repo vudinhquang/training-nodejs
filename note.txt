@@ -350,3 +350,12 @@
 	objWhere = {name: { $regex: /socket/, $options: 'i' }}
 		Tìm các giá trị có chứa giá trị 'socket' và không phân biệt chữ hoa, chữ thường
 	objWhere = {name: new RegExp(keyword, 'i')};
+
+- Clear & Reset: 
+	Clear: Nhấn vào nút Clear để thực hiện xóa việc tìm kiếm -> quay về trạng thái ban đầu không thực tìm kiếm theo
+	keyword
+		Cách 1: Khi nhấn vào nút Clear thì thực hiện xóa giá trị trong ô input và thực hiện Submit Form
+		Cách 2: Gắn link vào cho nút Clear, khi mà nhấn nút Clear thì quay về trang với status hiện tại
+	Refresh: Vừa Reset phần Search -> không tìm kiếm theo status, vừa Reset theo status -> status được Reset về giá trị
+		default là All
+		-> Cách làm giống như là nút Clear, nhưng ở đây ta có status là All
