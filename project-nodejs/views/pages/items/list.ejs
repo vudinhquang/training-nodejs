@@ -16,7 +16,7 @@
 					<div class="status-list col-sm-6 pl0">
 						<!-- Filter Status -->
 						<% include ../../helpers/filter-status %>
-						<% filterStatusHelper(statusFilter) %>
+						<% filterStatusHelper(statusFilter, keyword) %>
 					</div>
 					<div class="col-sm-6">
 						<form action="/<%= systemConfig.prefixAdmin %>/items/<%= currentStatus %>" method="GET">
