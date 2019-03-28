@@ -374,3 +374,8 @@
 	--> Khi return về mã HTML mà mình muốn in nó ra thì dùng <%- %>
 	keyword: mongoose sort by date -> sort()
 	Ở mỗi phần(item, user, group, category...) nếu chúng đều có phần phân trang -> Xây dựng Helper cho phần phân trang
+
+- Fix Helper Status:
+	`` ----> ${link}
+	Sửa Helper cho phần status
+	Sửa Helper cho phần filterStatus
