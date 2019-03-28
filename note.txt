@@ -363,3 +363,14 @@
 - Update Filter status link:
 	Khi thực hiện tìm kiếm theo keyword, người dùng nhấn vào nút chuyển trạng thái -> giá trị keyword vẫn phải được giữ
 		nguyên trong ô input
+
+---------------------------------------------------------------------------------------------
+
+							Xây Dựng Chức Năng Phân Trang	
+
+- Sort Helper:	Khi lấy dữ liệu ra thì mình cần có sự sắp xếp
+	<%- %>: In ra mã HTML
+	<%= %>: In ra giá trị của 1 biến 
+	--> Khi return về mã HTML mà mình muốn in nó ra thì dùng <%- %>
+	keyword: mongoose sort by date -> sort()
+	Ở mỗi phần(item, user, group, category...) nếu chúng đều có phần phân trang -> Xây dựng Helper cho phần phân trang

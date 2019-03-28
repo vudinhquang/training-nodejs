@@ -118,30 +118,7 @@
 		</div>
 	</div>
 	<div class="col-lg-12">
-		<div class="panel panel-info" id="pagination">
-			<div class="panel-heading">
-				Pagination
-				<span>^</span>
-				<span class="label label-warning">Total pages: 0</span>
-				<span class="label label-danger">Total entries: 0</span>
-			</div>
-			<div class="panel-body">
-				<div class="infor-pagination">
-					<p>Number of elements on the page: <span>0</span></p>
-					<p>Showing <span> 0 </span> to <span>0</span> of <span>0</span> entries</p>
-				</div>
-				<div class="ad-pagination">
-					<ul class="pagination text-center">
-						<li class="disabled"><a>«</a></li>
-						<li><a href="admin123/item/page=1">1</a></li>
-						<li class="active"><a>2</a></li>
-						<li><a href="admin123/item/page=3">3</a></li>
-						<li><a href="admin123/item/page=4">4</a></li>
-						<li><a href="admin123/item/page=5">5</a></li>
-						<li><a href="admin123/item/page=0">»</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<% include ../../helpers/pagination %>
+		<%- paginationHelper() %>
 	</div>
 </div>

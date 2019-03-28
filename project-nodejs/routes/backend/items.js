@@ -24,7 +24,10 @@ router.get('(/:status)?', (req, res, next) => {
 		}
 	}
 
-	ItemsModel.find(objWhere).then((items) => {
+	ItemsModel
+		.find(objWhere)
+		.sort({ordering: 'desc'})
+		.then((items) => {
 		res.render('pages/items/list', { 
 			pageTitle: 'Item List Page',
 			items,
