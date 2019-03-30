@@ -1,5 +1,5 @@
 <%
-    paginationHelper = (paginationObj) => {
+    paginationHelper = (paginationObj, type, currentStatus, keyword) => {
         let totalItems         = paginationObj.totalItems;
         let totalItemsPerPage  = paginationObj.totalItemsPerPage;
         let totalPages         = Math.ceil(totalItems/totalItemsPerPage);
@@ -12,16 +12,18 @@
 
         if(totalPages > 1){
             let xhtmlStart = '', xhtmlPrevious = '', xhtmlPages = '', xhtmlNext = '', xhtmlEnd = '';  
-            let link       = '/' + systemConfig.prefixAdmin + '/items';
-    
+            let link       = '/' + systemConfig.prefixAdmin + '/' + type + '/' + currentStatus;
+            if(keyword !== '') link += '?keyword=' + keyword + '&page=';
+            else link += '?page=';
+
             if(currentPage > 1){
-                xhtmlStart = `<li><a href="${link}?page=1">«</a></li>`;
-                xhtmlPrevious = `<li><a href="${link}?page=${currentPage-1}">Previous</a></li>`;
+                xhtmlStart = `<li><a href="${link}1">«</a></li>`;
+                xhtmlPrevious = `<li><a href="${link}${currentPage-1}">Previous</a></li>`;
             }
     
             if(currentPage < totalPages){
-                xhtmlNext = `<li><a href="${link}?page=${currentPage+1}">Next</a></li>`;
-                xhtmlEnd = `<li><a href="${link}?page=${totalPages}">End</a></li>`;
+                xhtmlNext = `<li><a href="${link}${currentPage+1}">Next</a></li>`;
+                xhtmlEnd = `<li><a href="${link}${totalPages}">End</a></li>`;
             }
     
             let middle = Math.ceil(pageRanges/2);
@@ -42,7 +44,7 @@
                 if(i === currentPage){
                     xhtmlPages += `<li class = "active"><a>${i}</a></li>`;
                 }else{
-                    xhtmlPages += `<li><a href="${link}?page=${i}">${i}</a></li>`;
+                    xhtmlPages += `<li><a href="${link}${i}">${i}</a></li>`;
                 }
             }
     

@@ -439,3 +439,11 @@
 - Fix pagination: Hoàn thiện cho phần phân trang
 	Giải quyết trường hợp khi totalPages nhỏ hơn hoặc bằng giá trị thiết lập pageRanges -> min sẽ có giá trị là 1
 	Khi nếu chỉ có 1 trang thôi thì không cần hiển thị cũng được --> xhtmlPagination = ''
+
+- Link pagination:
+	Giữ lại trạng thái lọc theo Status, cũng như giá trị tìm kiếm khi chuyển sang trang khác -> truyền giá trị Status
+		ra helper pagination
+	Có cách sử lý khác đó là đưa các giá trị Status và keyword vào trong Session
+	Phần quản lý pagination sẽ là phần dùng chung cho nhiều các phần quản lý khác: items, user, category -> để tổng quát
+		hơn thì ở phần tạo link của pagination cần thêm 1 variable là type(items, user, category) -> dễ dàng tái sử dụng 
+		mã nguồn
