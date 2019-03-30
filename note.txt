@@ -390,3 +390,9 @@
 	Thống kê tổng cộng có bao nhiêu phần tử
 	Tổng cộng có bao nhiêu trang
 	Khi tìm kiếm cũng phải lọc theo Status và keyword
+
+- Number:
+	Thống kê tổng số trang: totalItems/totalItemsPerPage
+	Tổng số phần tử trên một trang
+	Ở trang hiện tại hiển thị phần tử nào đến phần tử nào: from -> to
+		Nếu mà to > totalItems thì gán to = totalItems

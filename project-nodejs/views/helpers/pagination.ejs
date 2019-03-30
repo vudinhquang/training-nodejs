@@ -1,16 +1,23 @@
 <%
     paginationHelper = (paginationObj) => {
-        let totalItems = paginationObj.totalItems;
+        let totalItems        = paginationObj.totalItems;
+        let totalItemsPerPage = paginationObj.totalItemsPerPage;
+        let totalPages        = Math.ceil(totalItems/totalItemsPerPage);
+        let currentPage       = paginationObj.currentPage;
+        let to                = currentPage*totalItemsPerPage;
+        let from              = to - totalItemsPerPage + 1;
+        if(to > totalItems) to = totalItems;
+
         return  `<div class="panel panel-info" id="pagination">
             <div class="panel-heading">
-                Pagination 123
-                <span class="label label-warning">Total pages: ${totalItems}</span>
-                <span class="label label-danger">Total entries: 0</span>
+                Pagination
+                <span class="label label-warning">Total pages: ${totalPages}</span>
+                <span class="label label-danger">Total entries: ${totalItems}</span>
             </div>
             <div class="panel-body">
                 <div class="infor-pagination">
-                    <p>Number of elements on the page: <span>0</span></p>
-                    <p>Showing <span> 0 </span> to <span>0</span> of <span>0</span> entries</p>
+                    <p>Number of entries on the page: <span>${totalItemsPerPage}</span></p>
+                    <p>Showing <span> ${from} </span> to <span>${to}</span> of <span>${totalItems}</span> entries</p>
                 </div>
                 <div class="ad-pagination">
                     <ul class="pagination text-center">
