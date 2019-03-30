@@ -8,17 +8,18 @@
         let from               = to - totalItemsPerPage + 1;
         if(to > totalItems) to = totalItems;
 
-        let xhtmlPagination    = '';  
-        let xhtmlStart         = '<li class="disabled"><a>«</a></li>';  
-        let xhtmlPrevious      = '<li class="disabled"><a>Previous</a></li>';  
-        let xhtmlPages         = ''; 
-        let xhtmlNext          = ''; 
-        let xhtmlEnd           = '';
+        let xhtmlPagination    = '', xhtmlStart = '', xhtmlPrevious = '', xhtmlPages = '', xhtmlNext = '', xhtmlEnd = '';  
+
         let link               = '/' + systemConfig.prefixAdmin + '/items';
 
         if(currentPage > 1){
             xhtmlStart = `<li><a href="${link}?page=1">«</a></li>`;
             xhtmlPrevious = `<li><a href="${link}?page=${currentPage-1}">Previous</a></li>`;
+        }
+
+        if(currentPage < totalPages){
+            xhtmlNext = `<li><a href="${link}?page=${currentPage+1}">Previous</a></li>`;
+            xhtmlEnd = `<li><a href="${link}?page=${totalPages}">End</a></li>`;
         }
 
         xhtmlPagination = '<ul class="pagination text-center">' + xhtmlStart + xhtmlPrevious + xhtmlPages + xhtmlNext + xhtmlEnd + '</ul>';

@@ -397,10 +397,6 @@
 	Ở trang hiện tại hiển thị phần tử nào đến phần tử nào: from -> to
 		Nếu mà to > totalItems thì gán to = totalItems
 
-
-
-
-
 - Start, Previous:
 	Nút Start: Có thể có link hoặc không
 		Nếu không phải trang đầu tiên -> có link
@@ -408,3 +404,10 @@
 	Nút Previous: 
 		Khi đang ở trang 1 thì không cần có link
 		Khi ở từ trang 2 trở đi thì cần có link
+
+- Next, End: Xây dựng cũng tương tự như 2 nút Start và Previous
+	Nếu trang hiện tại không phải trang cuối cùng thì gắn link cho Next và End
+	Nếu mà đang ở trang đầu tiên thì không cần hiển thị 2 nút Start và Previous
+	Nếu đang ở trang cuối cùng thì không cần hiển thị 2 trang Next và End
+	--> Ban đầu gắn cho nó các giá trị là rỗng
+	keyword: javascript declare multi variable --> Định nghĩa nhiều variable trên cùng 1 dòng
