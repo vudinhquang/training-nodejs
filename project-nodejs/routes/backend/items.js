@@ -13,7 +13,7 @@ router.get('(/:status)?', (req, res, next) => {
 	let statusFilter = UtilsHelpers.createFilterStatus(currentStatus);
 	let pagination = {
 		totalItems: 1,
-		totalItemsPerPage: 1,
+		totalItemsPerPage: 2,
 		currentPage: 1,
 		pageRanges : 3
 	};
@@ -32,7 +32,7 @@ router.get('(/:status)?', (req, res, next) => {
 		}
 	}
 
-	ItemsModel.estimatedDocumentCount({ objWhere }).then((data) => {
+	ItemsModel.countDocuments(objWhere).then((data) => {
 		pagination.totalItems = data;
 		ItemsModel
 			.find(objWhere)

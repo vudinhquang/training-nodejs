@@ -5,47 +5,49 @@
         let totalPages         = Math.ceil(totalItems/totalItemsPerPage);
         let currentPage        = paginationObj.currentPage;
         let pageRanges         = paginationObj.pageRanges;
+        let xhtmlPagination    = '';
         let to                 = currentPage*totalItemsPerPage;
         let from               = to - totalItemsPerPage + 1;
         if(to > totalItems) to = totalItems;
 
-        let xhtmlPagination    = '', xhtmlStart = '', xhtmlPrevious = '', xhtmlPages = '', xhtmlNext = '', xhtmlEnd = '';  
-
-        let link               = '/' + systemConfig.prefixAdmin + '/items';
-
-        if(currentPage > 1){
-            xhtmlStart = `<li><a href="${link}?page=1">«</a></li>`;
-            xhtmlPrevious = `<li><a href="${link}?page=${currentPage-1}">Previous</a></li>`;
-        }
-
-        if(currentPage < totalPages){
-            xhtmlNext = `<li><a href="${link}?page=${currentPage+1}">Next</a></li>`;
-            xhtmlEnd = `<li><a href="${link}?page=${totalPages}">End</a></li>`;
-        }
-
-        let middle = Math.ceil(pageRanges/2);
-        let min = currentPage - middle + 1;
-        let max = min + pageRanges -1;
-
-        if(min <= 1){
-            min = 1;
-            max = pageRanges;
-        }
-
-        if(max >= totalPages){
-            max = totalPages;
-            min = max - pageRanges + 1;
-        }
-
-        for(let i=min; i<=max; i++){
-            if(i === currentPage){
-                xhtmlPages += `<li class = "active"><a>${i}</a></li>`;
-            }else{
-                xhtmlPages += `<li><a href="${link}?page=${i}">${i}</a></li>`;
+        if(totalPages > 1){
+            let xhtmlStart = '', xhtmlPrevious = '', xhtmlPages = '', xhtmlNext = '', xhtmlEnd = '';  
+            let link       = '/' + systemConfig.prefixAdmin + '/items';
+    
+            if(currentPage > 1){
+                xhtmlStart = `<li><a href="${link}?page=1">«</a></li>`;
+                xhtmlPrevious = `<li><a href="${link}?page=${currentPage-1}">Previous</a></li>`;
             }
+    
+            if(currentPage < totalPages){
+                xhtmlNext = `<li><a href="${link}?page=${currentPage+1}">Next</a></li>`;
+                xhtmlEnd = `<li><a href="${link}?page=${totalPages}">End</a></li>`;
+            }
+    
+            let middle = Math.ceil(pageRanges/2);
+            let min = currentPage - middle + 1;
+            let max = min + pageRanges -1;
+    
+            if(min <= 1){
+                min = 1;
+                max = pageRanges;
+            }
+    
+            if(max >= totalPages){
+                max = totalPages;
+                min = ((max - pageRanges + 1) <= 1) ? 1 : (max - pageRanges + 1);
+            }
+    
+            for(let i=min; i<=max; i++){
+                if(i === currentPage){
+                    xhtmlPages += `<li class = "active"><a>${i}</a></li>`;
+                }else{
+                    xhtmlPages += `<li><a href="${link}?page=${i}">${i}</a></li>`;
+                }
+            }
+    
+            xhtmlPagination = '<ul class="pagination text-center">' + xhtmlStart + xhtmlPrevious + xhtmlPages + xhtmlNext + xhtmlEnd + '</ul>';
         }
-
-        xhtmlPagination = '<ul class="pagination text-center">' + xhtmlStart + xhtmlPrevious + xhtmlPages + xhtmlNext + xhtmlEnd + '</ul>';
 
         return  `<div class="panel panel-info" id="pagination">
             <div class="panel-heading">

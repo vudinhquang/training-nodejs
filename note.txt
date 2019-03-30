@@ -435,3 +435,7 @@
 		--> Giá trị đầu và cuối sẽ thay đổi tùy thuộc vào giá trị của currentPage
 			Do đó mình sẽ đặt ra 2 giá trị là min và max(của dãy số nằm trong pageRange)
 			-> Cần xác định 2 giá trị min và max
+
+- Fix pagination: Hoàn thiện cho phần phân trang
+	Giải quyết trường hợp khi totalPages nhỏ hơn hoặc bằng giá trị thiết lập pageRanges -> min sẽ có giá trị là 1
+	Khi nếu chỉ có 1 trang thôi thì không cần hiển thị cũng được --> xhtmlPagination = ''
