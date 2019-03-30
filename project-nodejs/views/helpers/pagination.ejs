@@ -22,6 +22,14 @@
             xhtmlEnd = `<li><a href="${link}?page=${totalPages}">End</a></li>`;
         }
 
+        for(let i=1; i<=totalPages; i++){
+            if(i === currentPage){
+                xhtmlPages += `<li class = "active"><a>${i}</a></li>`;
+            }else{
+                xhtmlPages += `<li><a href="${link}?page=${i}">${i}</a></li>`;
+            }
+        }
+
         xhtmlPagination = '<ul class="pagination text-center">' + xhtmlStart + xhtmlPrevious + xhtmlPages + xhtmlNext + xhtmlEnd + '</ul>';
 
         return  `<div class="panel panel-info" id="pagination">

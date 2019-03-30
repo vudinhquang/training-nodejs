@@ -411,3 +411,8 @@
 	Nếu đang ở trang cuối cùng thì không cần hiển thị 2 trang Next và End
 	--> Ban đầu gắn cho nó các giá trị là rỗng
 	keyword: javascript declare multi variable --> Định nghĩa nhiều variable trên cùng 1 dòng
+
+- Pages: Xây dựng phần giao diện để hiện thị những con số ở phần phân trang
+	Cần có thêm phần active, chẳng hạn như nếu đang ỏ trang 3 thì ở 3 không cần gắn link cho nó và gắn thêm cho nó
+		thêm 1 class(active)
+	Tham khảo thêm cấu tạo của phần phân trang của Bootstrap 3
