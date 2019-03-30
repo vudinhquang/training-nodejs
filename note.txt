@@ -416,3 +416,22 @@
 	Cần có thêm phần active, chẳng hạn như nếu đang ỏ trang 3 thì ở 3 không cần gắn link cho nó và gắn thêm cho nó
 		thêm 1 class(active)
 	Tham khảo thêm cấu tạo của phần phân trang của Bootstrap 3
+
+- Pagerange: Giới hạn số trang hiển thị ở phần hiển thị các con số
+	-> Thiết lập thêm là muốn hiện thị lên bao nhiêu trang, thay vì có bao nhiêu trang thì hiện thị lên hết bấy 
+		nhiêu trang
+	VD: totalItems = 15, totalItemsPerPage = 2 -> totalPage = 8, pageRange = 5 -> midle = 5/2 = 3
+		currentPage		xhtmlPages								 min = currentPage - midle + 1     max	= min + pageRange -1
+		1				1 2 3 4 5									  1 - 3 + 1 = -1 <= 1 -> 1	   5				
+		2				1 2 3 4 5									  2 - 3 + 1	= 0	 <= 1 -> 1	   5
+		3				1 2 3 4 5									  3 - 3 + 1	= 1	 <= 1 -> 1     5
+
+		4				2 3 4 5 6 -> currentPage nằm ở giữa		--	  4 - 3 + 1	= 2  			   6	 = 2 + 5 -1
+		5				3 4 5 6 7 -> currentPage nằm ở giữa		--	  5 - 3 + 1	= 3				   7	 = 3 + 5 -1
+
+		6				4 5 6 7 8									  6 - 3 + 1	= 4   -> 4		   8	   4 + 5 -1	= totalPage -> totalPage
+		7				4 5 6 7 8									  7 - 3 + 1	= 5	  -> 4		   8	   5 + 5 -1 > totalPage -> totalPage
+		8				4 5 6 7 8									  8 - 3 + 1	= 6   -> 4		   8	   6 + 5 -1 > totalPage -> totalPage
+		--> Giá trị đầu và cuối sẽ thay đổi tùy thuộc vào giá trị của currentPage
+			Do đó mình sẽ đặt ra 2 giá trị là min và max(của dãy số nằm trong pageRange)
+			-> Cần xác định 2 giá trị min và max
