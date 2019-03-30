@@ -396,3 +396,15 @@
 	Tổng số phần tử trên một trang
 	Ở trang hiện tại hiển thị phần tử nào đến phần tử nào: from -> to
 		Nếu mà to > totalItems thì gán to = totalItems
+
+
+
+
+
+- Start, Previous:
+	Nút Start: Có thể có link hoặc không
+		Nếu không phải trang đầu tiên -> có link
+		Nếu là trang đầu tiên thì nó có link(disable)
+	Nút Previous: 
+		Khi đang ở trang 1 thì không cần có link
+		Khi ở từ trang 2 trở đi thì cần có link

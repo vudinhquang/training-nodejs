@@ -1,12 +1,27 @@
 <%
     paginationHelper = (paginationObj) => {
-        let totalItems        = paginationObj.totalItems;
-        let totalItemsPerPage = paginationObj.totalItemsPerPage;
-        let totalPages        = Math.ceil(totalItems/totalItemsPerPage);
-        let currentPage       = paginationObj.currentPage;
-        let to                = currentPage*totalItemsPerPage;
-        let from              = to - totalItemsPerPage + 1;
+        let totalItems         = paginationObj.totalItems;
+        let totalItemsPerPage  = paginationObj.totalItemsPerPage;
+        let totalPages         = Math.ceil(totalItems/totalItemsPerPage);
+        let currentPage        = paginationObj.currentPage;
+        let to                 = currentPage*totalItemsPerPage;
+        let from               = to - totalItemsPerPage + 1;
         if(to > totalItems) to = totalItems;
+
+        let xhtmlPagination    = '';  
+        let xhtmlStart         = '<li class="disabled"><a>«</a></li>';  
+        let xhtmlPrevious      = '<li class="disabled"><a>Previous</a></li>';  
+        let xhtmlPages         = ''; 
+        let xhtmlNext          = ''; 
+        let xhtmlEnd           = '';
+        let link               = '/' + systemConfig.prefixAdmin + '/items';
+
+        if(currentPage > 1){
+            xhtmlStart = `<li><a href="${link}?page=1">«</a></li>`;
+            xhtmlPrevious = `<li><a href="${link}?page=${currentPage-1}">Previous</a></li>`;
+        }
+
+        xhtmlPagination = '<ul class="pagination text-center">' + xhtmlStart + xhtmlPrevious + xhtmlPages + xhtmlNext + xhtmlEnd + '</ul>';
 
         return  `<div class="panel panel-info" id="pagination">
             <div class="panel-heading">
@@ -20,15 +35,7 @@
                     <p>Showing <span> ${from} </span> to <span>${to}</span> of <span>${totalItems}</span> entries</p>
                 </div>
                 <div class="ad-pagination">
-                    <ul class="pagination text-center">
-                        <li class="disabled"><a>«</a></li>
-                        <li><a href="admin123/item/page=1">1</a></li>
-                        <li class="active"><a>2</a></li>
-                        <li><a href="admin123/item/page=3">3</a></li>
-                        <li><a href="admin123/item/page=4">4</a></li>
-                        <li><a href="admin123/item/page=5">5</a></li>
-                        <li><a href="admin123/item/page=0">»</a></li>
-                    </ul>
+                    ${xhtmlPagination}
                 </div>
             </div>
         </div>`
