@@ -11,6 +11,12 @@ router.get('(/:status)?', (req, res, next) => {
 	let keyword		  = ParamsHelpers.getParam(req.query, 'keyword', '');
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
 	let statusFilter  = UtilsHelpers.createFilterStatus(currentStatus);
+	let pagination	  = {
+		totalItemsPerPage: 2,
+		currentPage		 :1
+	};
+
+	pagination.currentPage = parseInt(ParamsHelpers.getParam(req.query, 'page', '1'));
 
 	if (currentStatus !== 'all') {
 		if (keyword == '') {
@@ -26,7 +32,9 @@ router.get('(/:status)?', (req, res, next) => {
 
 	ItemsModel
 		.find(objWhere)
-		.sort({ordering: 'desc'})
+		.sort({ordering: 'asc'})
+		.skip((pagination.currentPage -1)*pagination.totalItemsPerPage)
+		.limit(pagination.totalItemsPerPage)
 		.then((items) => {
 		res.render('pages/items/list', { 
 			pageTitle: 'Item List Page',

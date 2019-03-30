@@ -379,3 +379,9 @@
 	`` ----> ${link}
 	Sửa Helper cho phần status
 	Sửa Helper cho phần filterStatus
+
+- List by page:
+	Cần xác định được có bao nhiêu phần tử trên một trang(limit)	-> Cấu hình
+	Cần biết đang ở trang nào để biết là lấy từ phần tử nào(skip) --> Lấy trên URL
+	keyword: javascript convert string to int
+	skip:(currentPage -1)*totalItemsPerPage
