@@ -385,3 +385,8 @@
 	Cần biết đang ở trang nào để biết là lấy từ phần tử nào(skip) --> Lấy trên URL
 	keyword: javascript convert string to int
 	skip:(currentPage -1)*totalItemsPerPage
+
+- Total Items:
+	Thống kê tổng cộng có bao nhiêu phần tử
+	Tổng cộng có bao nhiêu trang
+	Khi tìm kiếm cũng phải lọc theo Status và keyword

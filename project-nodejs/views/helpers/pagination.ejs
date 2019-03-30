@@ -1,9 +1,10 @@
 <%
-    paginationHelper = () => {
+    paginationHelper = (paginationObj) => {
+        let totalItems = paginationObj.totalItems;
         return  `<div class="panel panel-info" id="pagination">
             <div class="panel-heading">
                 Pagination 123
-                <span class="label label-warning">Total pages: 0</span>
+                <span class="label label-warning">Total pages: ${totalItems}</span>
                 <span class="label label-danger">Total entries: 0</span>
             </div>
             <div class="panel-body">

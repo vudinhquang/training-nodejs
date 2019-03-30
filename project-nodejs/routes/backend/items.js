@@ -12,8 +12,9 @@ router.get('(/:status)?', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
 	let statusFilter  = UtilsHelpers.createFilterStatus(currentStatus);
 	let pagination	  = {
+		totalItems		 : 1,
 		totalItemsPerPage: 2,
-		currentPage		 :1
+		currentPage		 : 1,
 	};
 
 	pagination.currentPage = parseInt(ParamsHelpers.getParam(req.query, 'page', '1'));
@@ -30,6 +31,10 @@ router.get('(/:status)?', (req, res, next) => {
 		}
 	}
 
+	ItemsModel.estimatedDocumentCount({objWhere}).then((data) => {
+		pagination.totalItems = data;
+	})
+
 	ItemsModel
 		.find(objWhere)
 		.sort({ordering: 'asc'})
@@ -40,6 +45,7 @@ router.get('(/:status)?', (req, res, next) => {
 			pageTitle: 'Item List Page',
 			items,
 			statusFilter,
+			pagination,
 			currentStatus,
 			keyword
 		});

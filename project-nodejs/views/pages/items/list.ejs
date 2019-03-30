@@ -118,7 +118,8 @@
 		</div>
 	</div>
 	<div class="col-lg-12">
+		<h4><%= JSON.stringify(pagination) %></h4>
 		<% include ../../helpers/pagination %>
-		<%- paginationHelper() %>
+		<%- paginationHelper(pagination) %>
 	</div>
 </div>
