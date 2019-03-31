@@ -451,3 +451,10 @@
 - Link change status: Thay đổi trạng thái của 1 phần tử nào đó
 	admin/items/change-status/12/active -> lấy được id và status của phần tử hiện tại
 	res.send('test'): Truyền ra browser giá trị là 'test'
+
+- Change status:
+	Từ giá trị id và Status tiến hành cập nhật lại status cho item
+	active <-> inactive
+	keyword: Mongoose updateOne
+	then()
+	res.redirect() ---------res: Response

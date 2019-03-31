@@ -15,7 +15,7 @@ router.get('(/:status)?', (req, res, next) => {
 		totalItems: 1,
 		totalItemsPerPage: 2,
 		currentPage: 1,
-		pageRanges : 3
+		pageRanges: 3
 	};
 
 	pagination.currentPage = parseInt(ParamsHelpers.getParam(req.query, 'page', '1'));
@@ -55,8 +55,12 @@ router.get('(/:status)?', (req, res, next) => {
 // Change status
 router.get('/change-status/:id/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
-	let id            = ParamsHelpers.getParam(req.params, 'id', '');
-	res.send(currentStatus + '-' + id);
+	let id = ParamsHelpers.getParam(req.params, 'id', '');
+	let status = (currentStatus === 'active') ? 'inactive' : 'active';
+
+	ItemsModel.updateOne({_id: id}, {status: status}, (err, result) => {
+		res.redirect('/admin/items');
+	});
 });
 
 router.get('/add', (req, res, next) => {
