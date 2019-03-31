@@ -52,6 +52,13 @@ router.get('(/:status)?', (req, res, next) => {
 	})
 });
 
+// Change status
+router.get('/change-status/:id/:status', (req, res, next) => {
+	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
+	let id            = ParamsHelpers.getParam(req.params, 'id', '');
+	res.send(currentStatus + '-' + id);
+});
+
 router.get('/add', (req, res, next) => {
 	res.render('pages/items/add', { pageTitle: 'Item Add Page' });
 });

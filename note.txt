@@ -442,8 +442,12 @@
 
 - Link pagination:
 	Giữ lại trạng thái lọc theo Status, cũng như giá trị tìm kiếm khi chuyển sang trang khác -> truyền giá trị Status
-		ra helper pagination
+		ra helper pagination	
 	Có cách sử lý khác đó là đưa các giá trị Status và keyword vào trong Session
 	Phần quản lý pagination sẽ là phần dùng chung cho nhiều các phần quản lý khác: items, user, category -> để tổng quát
 		hơn thì ở phần tạo link của pagination cần thêm 1 variable là type(items, user, category) -> dễ dàng tái sử dụng 
-		mã nguồn
+		mã nguồn	
+
+- Link change status: Thay đổi trạng thái của 1 phần tử nào đó
+	admin/items/change-status/12/active -> lấy được id và status của phần tử hiện tại
+	res.send('test'): Truyền ra browser giá trị là 'test'
