@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-const systemConfig = require('../../configs/system');
-const ItemsModel = require('../../schemas/items');
-const UtilsHelpers = require('../../helpers/utils');
-const ParamsHelpers = require('../../helpers/params');
+const systemConfig   = require('../../configs/system');
+const ItemsModel     = require('../../schemas/items');
+const UtilsHelpers   = require('../../helpers/utils');
+const ParamsHelpers  = require('../../helpers/params');
+const linkIndex 	 = '/' + systemConfig.prefixAdmin + '/items';
 
 // List items
 router.get('(/:status)?', (req, res, next) => {
@@ -14,7 +15,7 @@ router.get('(/:status)?', (req, res, next) => {
 	let statusFilter = UtilsHelpers.createFilterStatus(currentStatus);
 	let pagination = {
 		totalItems: 1,
-		totalItemsPerPage: 2,
+		totalItemsPerPage: 5,
 		currentPage: parseInt(ParamsHelpers.getParam(req.query, 'page', '1')),
 		pageRanges: 3
 	};
@@ -57,7 +58,15 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
 	let status = (currentStatus === 'active') ? 'inactive' : 'active';
 	ItemsModel.updateOne({_id: id}, {status: status}, (err, result) => {
-		res.redirect(`/${systemConfig.prefixAdmin}/items`);
+		res.redirect(linkIndex);
+	});
+});
+
+// Delete item
+router.get('/delete/:id', (req, res, next) => {
+	let id = ParamsHelpers.getParam(req.params, 'id', '');
+	ItemsModel.deleteOne({_id: id}, (err) => {
+		res.redirect(linkIndex);
 	});
 });
 

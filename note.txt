@@ -460,3 +460,7 @@
 	res.redirect() ---------res: Response
 	Chỉnh sửa cho phần Change status bằng cách khi redirect về trang items thì ko fix cứng giá trị admin trong đường dẫn
 		mà sử dụng giá trị trong config
+
+- Delete item: Thực hiện chức năng là xóa 1 phần tử nào đó
+	deleteOne()
+	const linkIndex: Khai báo biến link cho index để có thể dùng chung cho các route
