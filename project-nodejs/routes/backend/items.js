@@ -62,6 +62,14 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 	});
 });
 
+// Change status - Multi
+router.post('/change-status/:status', (req, res, next) => {
+	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
+	ItemsModel.updateMany({_id: {$in: req.body.cid}}, {status: currentStatus}, (err, result) => {
+		res.redirect(linkIndex);
+	});
+});
+
 // Delete item
 router.get('/delete/:id', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');

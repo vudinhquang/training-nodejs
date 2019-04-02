@@ -452,6 +452,8 @@
 	admin/items/change-status/12/active -> lấy được id và status của phần tử hiện tại
 	res.send('test'): Truyền ra browser giá trị là 'test'
 
+----------------------------------------------------------------------------------------------------
+
 - Change status:
 	Từ giá trị id và Status tiến hành cập nhật lại status cho item
 	active <-> inactive
@@ -464,3 +466,20 @@
 - Delete item: Thực hiện chức năng là xóa 1 phần tử nào đó
 	deleteOne()
 	const linkIndex: Khai báo biến link cho index để có thể dùng chung cho các route
+
+- Xây dựng chức năng Change Status cho nhiều phần tử:
+	Chọn những phần tử mà mình muốn thay đổi trạng thái cho nó
+	Chọn trạng thái muốn thay đổi
+	Nhấn Apply
+	Khi vừa vào trang thì nút Apply không Click được(vì chưa chọn hành động)
+	Nếu nhấn nút Apply khi chưa chọn phần tử nào thì sẽ hiện lên câu thông báo yêu cầu chọn phần tử để thay đổi
+	change_form_action: Chứa 3 tham số
+		Tham số thứ nhất: Sellect box. Trong các option của Sellect Box thì lưu trực tiếp link mình muốn Submit đến
+		Tham số thứ 2: Form -> chứa cả các input là checkbox, để khi mà Form Submit đi Form sẽ nhận được các giá trị 
+			checkbox đó -> biết phần tử muốn thay đổi là phần tử nào
+		Tham số thứ 3: Nút Apply
+	test(): Kiểm tra 1 giá trị nào đó có nằm trong 1 chuỗi hay không
+	Form để method là post
+	console.log(req.body): Kiểm tra các giá trị có trong req -> giúp ta lấy được các dữ liệu gửi từ Form
+	keyword: mongoose update many, mongo update many
+	https://docs.mongodb.com/manual/reference/operator/query/#query-selectors
