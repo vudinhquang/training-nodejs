@@ -478,8 +478,13 @@
 		Tham số thứ 2: Form -> chứa cả các input là checkbox, để khi mà Form Submit đi Form sẽ nhận được các giá trị 
 			checkbox đó -> biết phần tử muốn thay đổi là phần tử nào
 		Tham số thứ 3: Nút Apply
-	test(): Kiểm tra 1 giá trị nào đó có nằm trong 1 chuỗi hay không
+	test() trong javascript: Kiểm tra 1 giá trị nào đó có nằm trong 1 chuỗi hay không
 	Form để method là post
 	console.log(req.body): Kiểm tra các giá trị có trong req -> giúp ta lấy được các dữ liệu gửi từ Form
 	keyword: mongoose update many, mongo update many
 	https://docs.mongodb.com/manual/reference/operator/query/#query-selectors
+
+- Delete multi item:
+	Khi nhấn Apply để Delete thì hộp thoại để xác nhận được hiện lên
+	Cần lấy được danh sách các id của item mà người dùng muốn xóa
+	remove()

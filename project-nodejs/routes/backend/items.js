@@ -78,6 +78,13 @@ router.get('/delete/:id', (req, res, next) => {
 	});
 });
 
+// Delete - Multi
+router.post('/delete', (req, res, next) => {
+	ItemsModel.remove({_id: {$in: req.body.cid}}, (err) => {
+		res.redirect(linkIndex);
+	});
+});
+
 router.get('/add', (req, res, next) => {
 	res.render('pages/items/add', { pageTitle: 'Item Add Page' });
 });
