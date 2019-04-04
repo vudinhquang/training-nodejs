@@ -70,6 +70,21 @@ router.post('/change-status/:status', (req, res, next) => {
 	});
 });
 
+// Change ordering - Multi
+router.post('/change-ordering', function (req, res, next) {
+	let cids 		= req.body.cid;
+    let orderings 	= req.body.ordering;
+
+	if (Array.isArray(cids)) {
+		cids.forEach((item, index) => {
+			ItemsModel.updateOne({_id: item}, {ordering: parseInt(orderings[index])}, (err) => {});
+		})
+	} else {
+		ItemsModel.updateOne({_id: cids}, {ordering: parseInt(orderings)}, (err) => {});
+	}
+	res.redirect(linkIndex);
+});
+
 // Delete item
 router.get('/delete/:id', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');

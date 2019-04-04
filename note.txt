@@ -488,3 +488,17 @@
 	Khi nhấn Apply để Delete thì hộp thoại để xác nhận được hiện lên
 	Cần lấy được danh sách các id của item mà người dùng muốn xóa
 	remove()
+
+- Change ordering: Xây dựng chức năng Change Ordering của nhiều phần tử:
+	Nhập giá trị mới cho ordering
+	checkbox
+	Chọn Change Ordering và nhấn nút Apply
+	-> Có id và các giá trị ordering của các item muốn thay đổi
+	Phần tử được check: $(".ordering").attr("name", "ordering")
+	Phần tử không được check: $(".ordering").removeAttr("name")
+	Có 2 trường hợp cập nhật đó là: Cập nhật 1 item và cập nhật nhiều item
+	keyword: mongoose updateMany() -> giá trị update là cố định
+	Cấu trúc từ phần Select, Button Apply và Button Add New khi mà qua các phần quản lý khác như quản lý User, quản
+		lý group... sẽ tiếp tục lặp lại cấu trúc html đó -> tạo mới helper
+	filterStatusHelper(): Thêm 1 tham số mới đó là collection rồi truyền vào giá trị là items
+	actionHelper(): Để tạo mã html cho phần thay đổi status, ordering, delete
