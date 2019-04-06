@@ -8,7 +8,7 @@ const ParamsHelpers  = require('../../helpers/params');
 const linkIndex 	 = '/' + systemConfig.prefixAdmin + '/items';
 
 // List items
-router.get('(/:status)?', (req, res, next) => {
+router.get('(status/:status)?', (req, res, next) => {
 	let objWhere = {};
 	let keyword = ParamsHelpers.getParam(req.query, 'keyword', '');
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
@@ -58,6 +58,7 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
 	let status = (currentStatus === 'active') ? 'inactive' : 'active';
 	ItemsModel.updateOne({_id: id}, {status: status}, (err, result) => {
+		req.flash('success', 'Cập nhật status thành công!', false);
 		res.redirect(linkIndex);
 	});
 });
@@ -66,6 +67,7 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 router.post('/change-status/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
 	ItemsModel.updateMany({_id: {$in: req.body.cid}}, {status: currentStatus}, (err, result) => {
+		req.flash('success', `Có ${result.n} phần tử được cập nhật thành công!`, false);
 		res.redirect(linkIndex);
 	});
 });
@@ -82,6 +84,7 @@ router.post('/change-ordering', function (req, res, next) {
 	} else {
 		ItemsModel.updateOne({_id: cids}, {ordering: parseInt(orderings)}, (err) => {});
 	}
+	req.flash('success', 'Cập nhật ordering thành công!', false);
 	res.redirect(linkIndex);
 });
 
@@ -89,6 +92,7 @@ router.post('/change-ordering', function (req, res, next) {
 router.get('/delete/:id', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
 	ItemsModel.deleteOne({_id: id}, (err) => {
+		req.flash('success', 'Xóa thành công!', false);
 		res.redirect(linkIndex);
 	});
 });
@@ -96,12 +100,15 @@ router.get('/delete/:id', (req, res, next) => {
 // Delete - Multi
 router.post('/delete', (req, res, next) => {
 	ItemsModel.remove({_id: {$in: req.body.cid}}, (err) => {
+		req.flash('success', 'Xóa nhiều phần tử thành công!', false);
 		res.redirect(linkIndex);
 	});
 });
 
 router.get('/add', (req, res, next) => {
-	res.render('pages/items/add', { pageTitle: 'Item Add Page' });
+	req.flash('success', 'invalid username or password');
+	res.send('Test Flash');
+	res.end();
 });
 
 module.exports = router;

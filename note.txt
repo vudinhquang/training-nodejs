@@ -502,3 +502,47 @@
 		lý group... sẽ tiếp tục lặp lại cấu trúc html đó -> tạo mới helper
 	filterStatusHelper(): Thêm 1 tham số mới đó là collection rồi truyền vào giá trị là items
 	actionHelper(): Để tạo mã html cho phần thay đổi status, ordering, delete
+
+- Show messsage: Xây dựng chức năng hiển thị thông báo khi thực hiện xong 1 hành động nào đó
+	keyword: nodejs express show notification
+			express session
+			setTimeout(): Thực hiện 1 hàm hay 1 biểu thức nào đó do mình viết sau 1 khoảng time nào đó
+	site: https://www.npmjs.com/package/express-flash-notification
+		https://www.npmjs.com/package/express-session
+	Cài đặt: npm i express-flash-notification --save
+	Copy:
+		Trước: const app = express()
+			const flash = require('express-flash-notification');
+			const cookieParser = require('cookie-parser');
+			const session = require('express-session');
+		Sau: const app = express()
+			app.use(cookieParser());
+			app.use(session({...}}));
+			app.use(flash(app));
+	Express session:
+		app.use(session({
+			secret: 'qtgbjhyd',
+			resave: false,
+			saveUninitialized: true,
+		}));
+	Lỗi: Cannot find module 'express-session' 
+		->Fix: npm install express-session
+	In ra câu thông báo ở ngoài layout: <%- locals.flash %>
+	Định nghĩa câu thông báo: req.flash('info', 'invalid username or password');
+	Lỗi: Failed to lookup view "flash" in views directory "C:\xampp\htdocs\training-nodejs\project-nodejs\views"
+	-> cần tạo ra 1 view flash.ejs trong thư mục views:
+		<div class="alert flash">
+			<button type="button" class="close">×</button>
+			<i class="fa sign"></i><strong><%= type %></strong>
+			<span><%= message %></span>
+		</div>
+	type: Ta có các loại thông báo như là thông báo thành công, lỗi: success, warning, danger...
+	Error: Cannot set headers after they are sent to the client
+		req.flash(String type, String message, Boolean renderInThisRequest) 
+		->Trong trường hợp này thì change status, delete... không cần phải render -> renderInThisRequest có giá 
+			trị là false
+	Trường hợp mà cập nhật nhiều phần tử -> đưa ra cả số lượng phần tử được cập nhật
+		keyword: mongoose update many get number of documents
+	Hiện nay tập tin hiện thị câu thông báo đang mặc định tên là flash -> có thể thay đổi tên,
+		cũng như là thay đổi vị trí đặt tập tin
+		-> Khi sử dụng flash thì ngoài việc truyền vào app thì cần truyền thêm 1 đối tượng cấu hình các thông số
