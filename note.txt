@@ -566,3 +566,26 @@
 	Kéo vào app.js để sử dụng: const flash = require('express-validator');
 	errors = req.validationErrors(): Giá trị là false khi không có lỗi, nếu có lỗi thì nó là 1 array chứa phần tử ở 
 		bên trong
+
+- Validator: Thực hiện validate khi add item
+	keyword: express validator check interger, express validator check not equal
+	Tự xây dựng một validator riêng:
+		Cách 1: router
+			req.checkBody('status', 'Phải chọn status').custom(() => {
+				if (req.body.status !== 'novalue') {
+					return true;
+				} else {
+					return false;
+				}
+			});
+		Cách 2: router và app
+			app.use(validator(
+				{
+					customValidators:{
+						isNotEqual: (val1, val2) =>{
+							return val1 !== val2;
+						}
+					}
+				}
+			));
+			req.checkBody('status', 'Phải chọn status').isNotEqual('novalue');

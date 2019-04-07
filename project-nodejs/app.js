@@ -35,6 +35,15 @@ app.use(flash(app, {
 }));
 
 app.use(validator());
+// app.use(validator(
+// 	{
+// 		customValidators:{
+// 			isNotEqual: (val1, val2) =>{
+// 				return val1 !== val2;
+// 			}
+// 		}
+// 	}
+// ));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

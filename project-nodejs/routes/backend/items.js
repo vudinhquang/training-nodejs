@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-const systemConfig = require('../../configs/system');
-const ItemsModel = require('../../schemas/items');
-const UtilsHelpers = require('../../helpers/utils');
+const systemConfig  = require('../../configs/system');
+const ItemsModel    = require('../../schemas/items');
+const ValidateItems = require('../../validators/items');
+const UtilsHelpers  = require('../../helpers/utils');
 const ParamsHelpers = require('../../helpers/params');
-const linkIndex = '/' + systemConfig.prefixAdmin + '/items';
+const linkIndex     = '/' + systemConfig.prefixAdmin + '/items';
 
 const pageTitleIndex = 'Item Managment';
 const pageTitleAdd = 'Item Managment - Add';
@@ -135,23 +136,25 @@ router.get('/form(/:id)?', (req, res, next) => {
 // Add
 router.post('/save', (req, res, next) => {
 	req.body = JSON.parse(JSON.stringify(req.body));
-	req.checkBody('name', 'khong dc rong').isLength({ min: 5, max: 20 });
-	req.checkBody('ordering', 'phai la so').isNumeric();
 
-	let errors = req.validationErrors();
-	console.log(req.body);
-	console.log(errors);
+	let errors = ValidateItems.validator(req);
 
-	// let item = new ItemsModel({ 
-	// 	name      : ParamsHelpers.getParam(req.body, 'name', '')
-	// 	, ordering: ParamsHelpers.getParam(req.body, 'ordering', '')
-	// 	, status  : ParamsHelpers.getParam(req.body, 'status', 'active')
-	// });
+	if (errors !== false) { // errors
+		console.log('errors');
+		console.log(errors);
+	} else { // no errors
+		console.log('no errors');
+		// let item = new ItemsModel({
+		// 	name: ParamsHelpers.getParam(req.body, 'name', '')
+		// 	, ordering: ParamsHelpers.getParam(req.body, 'ordering', '')
+		// 	, status: ParamsHelpers.getParam(req.body, 'status', 'active')
+		// });
 
-	// item.save((err) => {
-	// 	req.flash('success', 'Thêm mới thành công!', false);
-	// 	res.redirect(linkIndex);
-	// });
+		// item.save((err) => {
+		// 	req.flash('success', 'Thêm mới thành công!', false);
+		// 	res.redirect(linkIndex);
+		// });
+	}
 });
 
 module.exports = router;
