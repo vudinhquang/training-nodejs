@@ -5,16 +5,7 @@
 				Form
 			</div>
 			<div class="panel-body">
-				<div class="row">
-					<div class="col-lg-6">
-						<div class="alert alert-danger" role="alert">
-							<ul>
-								<li>Name: không được rỗng</li>
-								<li>Status: chọn một trạng thái</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				<% include ../../elements/errors %>
 				<div class="row">
 					<div class="col-lg-6">
 						<form role="form" action="<%= systemConfig.prefixAdmin %>/items/save" method="POST">
@@ -30,13 +21,17 @@
 								<label>Status</label>
 								<select name="status" class="form-control">
 									<option value="novalue">Choose Status</option>
-									<option value="active" <%= (item.status === 'active') ? 'selected="selected"' : '' %>>Active</option>
-									<option value="inactive" <%= (item.status === 'inactive') ? 'selected="selected"' : '' %>>Inactive</option>
+									<option value="active"
+										<%= (item.status === 'active') ? 'selected="selected"' : '' %>>Active</option>
+									<option value="inactive"
+										<%= (item.status === 'inactive') ? 'selected="selected"' : '' %>>Inactive
+									</option>
 								</select>
 							</div>
 							<input class="form-control" name="id" value="" type="hidden">
 							<button type="submit" class="btn btn-primary">Submit </button>
-							<a type="button" href="<%= systemConfig.prefixAdmin %>/items" class="btn btn-default">Cancel</a>
+							<a type="button" href="<%= systemConfig.prefixAdmin %>/items"
+								class="btn btn-default">Cancel</a>
 						</form>
 					</div>
 				</div>

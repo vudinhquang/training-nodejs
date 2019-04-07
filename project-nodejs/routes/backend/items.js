@@ -118,16 +118,19 @@ router.get('/form(/:id)?', (req, res, next) => {
 		ordering: '',
 		status: 'novalue'
 	};
+	let errors = null;
 	if (id === '') {	//Add
 		res.render('pages/items/form', {
 			pageTitle: pageTitleAdd,
-			item
+			item,
+			errors
 		});
 	} else {	//Edit
 		ItemsModel.findById(id, (err, item) => {
 			res.render('pages/items/form', {
 				pageTitle: pageTitleEdit,
-				item
+				item,
+				errors
 			});
 		});
 	}
@@ -135,25 +138,21 @@ router.get('/form(/:id)?', (req, res, next) => {
 
 // Add
 router.post('/save', (req, res, next) => {
-	req.body = JSON.parse(JSON.stringify(req.body));
-
+	let item   = Object.assign({}, req.body);
 	let errors = ValidateItems.validator(req);
 
-	if (errors !== false) { // errors
-		console.log('errors');
-		console.log(errors);
-	} else { // no errors
-		console.log('no errors');
-		// let item = new ItemsModel({
-		// 	name: ParamsHelpers.getParam(req.body, 'name', '')
-		// 	, ordering: ParamsHelpers.getParam(req.body, 'ordering', '')
-		// 	, status: ParamsHelpers.getParam(req.body, 'status', 'active')
-		// });
-
-		// item.save((err) => {
-		// 	req.flash('success', 'Thêm mới thành công!', false);
-		// 	res.redirect(linkIndex);
-		// });
+	if (errors) { // errors
+		res.render('pages/items/form', {
+			pageTitle: pageTitleAdd,
+			item,
+			errors
+		});
+	} else { // no errors		
+		new ItemsModel(item)
+		.save((err) => {
+			req.flash('success', 'Thêm mới thành công!', false);
+			res.redirect(linkIndex);
+		});
 	}
 });
 

@@ -589,3 +589,11 @@
 				}
 			));
 			req.checkBody('status', 'Phải chọn status').isNotEqual('novalue');
+
+- Show Error: Thực hiện hiển thị các câu thông báo lỗi khi có lỗi xả ra
+	Khi add dữ liệu mà có lỗi xảy ra thì vẫn ở lại trang Form và hiển thị lỗi lên trên trang đó
+		-> Truyền giá trị errors lên trên view
+	Xây dựng element riêng để hiện thị errors trên Form
+	keyword: javascript uppercase first letter
+	Object.assign(): được sử dụng để sao chép các giá trị của tất cả thuộc tính có thể liệt kê từ 
+		một hoặc nhiều đối tượng nguồn đến một đối tượng đích. Nó sẽ  trả về đối tượng đích đó.
