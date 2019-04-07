@@ -559,3 +559,10 @@
 			[Object: null prototype] { name: 'ABC 123', ordering: '123', status: 'active', id: '' }
 	Fix: Để khắc phục lỗi này thì không nên gán từ req.body 
 		hoặc parse ra obj: req.body = JSON.parse(JSON.stringify(req.body));
+
+- Xây dựng chức năng Validator:
+	keyword: nodejs express validator
+	Installation: npm install express-validator
+	Kéo vào app.js để sử dụng: const flash = require('express-validator');
+	errors = req.validationErrors(): Giá trị là false khi không có lỗi, nếu có lỗi thì nó là 1 array chứa phần tử ở 
+		bên trong

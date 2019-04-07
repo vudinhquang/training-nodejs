@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 const flash = require('express-flash-notification');
+const validator = require('express-validator');
 const session = require('express-session');
 
 var expressLayouts = require('express-ejs-layouts');
@@ -32,6 +33,8 @@ app.use(session({
 app.use(flash(app, {
 	viewName: 'elements/notify',
 }));
+
+app.use(validator());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

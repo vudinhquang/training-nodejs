@@ -135,16 +135,23 @@ router.get('/form(/:id)?', (req, res, next) => {
 // Add
 router.post('/save', (req, res, next) => {
 	req.body = JSON.parse(JSON.stringify(req.body));
-	let item = new ItemsModel({ 
-		name      : ParamsHelpers.getParam(req.body, 'name', '')
-		, ordering: ParamsHelpers.getParam(req.body, 'ordering', '')
-		, status  : ParamsHelpers.getParam(req.body, 'status', 'active')
-	});
+	req.checkBody('name', 'khong dc rong').isLength({ min: 5, max: 20 });
+	req.checkBody('ordering', 'phai la so').isNumeric();
 
-	item.save((err) => {
-		req.flash('success', 'Thêm mới thành công!', false);
-		res.redirect(linkIndex);
-	});
+	let errors = req.validationErrors();
+	console.log(req.body);
+	console.log(errors);
+
+	// let item = new ItemsModel({ 
+	// 	name      : ParamsHelpers.getParam(req.body, 'name', '')
+	// 	, ordering: ParamsHelpers.getParam(req.body, 'ordering', '')
+	// 	, status  : ParamsHelpers.getParam(req.body, 'status', 'active')
+	// });
+
+	// item.save((err) => {
+	// 	req.flash('success', 'Thêm mới thành công!', false);
+	// 	res.redirect(linkIndex);
+	// });
 });
 
 module.exports = router;
