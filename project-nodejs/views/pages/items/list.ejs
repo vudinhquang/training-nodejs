@@ -10,7 +10,7 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				Search & Filter
-				<a href="<%= systemConfig.prefixAdmin %>/items/all">
+				<a href="<%= systemConfig.prefixAdmin %>/items/status/all">
 					<span id="icon-reload" class="glyphicon glyphicon-refresh"></span>
 				</a>
 			</div>
@@ -21,7 +21,7 @@
 						<%- filterStatusHelper('items', statusFilter, keyword) %>
 					</div>
 					<div class="col-sm-6">
-						<form action="/<%= systemConfig.prefixAdmin %>/items/<%= currentStatus %>" method="GET">
+						<form action="<%= systemConfig.prefixAdmin %>/items/status/<%= currentStatus %>" method="GET">
 							<div class="input-group">
 								<input type="text" class="form-control" name="keyword" placeholder="Search for..."
 									value="<%= keyword %>">
@@ -30,7 +30,7 @@
 								</span>
 								<span class="input-group-btn">
 									<button class="btn btn-success" type="button"><a
-											href="<%= systemConfig.prefixAdmin %>/items/<%= currentStatus %>">Clear</a></button>
+											href="<%= systemConfig.prefixAdmin %>/items/status/<%= currentStatus %>">Clear</a></button>
 								</span>
 							</div>
 						</form>
@@ -81,9 +81,9 @@
 											<input type="number" value="<%= item.ordering %>" class="text-center ordering ">
 										</td>
 										<td>
-											<a href="#" type="button"
+											<a href="<%= systemConfig.prefixAdmin %>/items/form/<%= item.id %>" type="button"
 												class="btn btn-warning btn-sm">Edit</a>
-											<a href="/<%= systemConfig.prefixAdmin %>/items/delete/<%= item.id %>" type="button"
+											<a href="<%= systemConfig.prefixAdmin %>/items/delete/<%= item.id %>" type="button"
 												class="btn btn-danger btn-sm btn-delete">Delete</a>
 										</td>
 									</tr>

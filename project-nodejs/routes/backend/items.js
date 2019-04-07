@@ -1,14 +1,18 @@
 var express = require('express');
 var router = express.Router();
 
-const systemConfig   = require('../../configs/system');
-const ItemsModel     = require('../../schemas/items');
-const UtilsHelpers   = require('../../helpers/utils');
-const ParamsHelpers  = require('../../helpers/params');
-const linkIndex 	 = '/' + systemConfig.prefixAdmin + '/items';
+const systemConfig = require('../../configs/system');
+const ItemsModel = require('../../schemas/items');
+const UtilsHelpers = require('../../helpers/utils');
+const ParamsHelpers = require('../../helpers/params');
+const linkIndex = '/' + systemConfig.prefixAdmin + '/items';
+
+const pageTitleIndex = 'Item Managment';
+const pageTitleAdd = 'Item Managment - Add';
+const pageTitleEdit = 'Item Managment - Edit';
 
 // List items
-router.get('(status/:status)?', (req, res, next) => {
+router.get('(/status/:status)?', (req, res, next) => {
 	let objWhere = {};
 	let keyword = ParamsHelpers.getParam(req.query, 'keyword', '');
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
@@ -57,7 +61,7 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
 	let status = (currentStatus === 'active') ? 'inactive' : 'active';
-	ItemsModel.updateOne({_id: id}, {status: status}, (err, result) => {
+	ItemsModel.updateOne({ _id: id }, { status: status }, (err, result) => {
 		req.flash('success', 'Cập nhật status thành công!', false);
 		res.redirect(linkIndex);
 	});
@@ -66,7 +70,7 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 // Change status - Multi
 router.post('/change-status/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
-	ItemsModel.updateMany({_id: {$in: req.body.cid}}, {status: currentStatus}, (err, result) => {
+	ItemsModel.updateMany({ _id: { $in: req.body.cid } }, { status: currentStatus }, (err, result) => {
 		req.flash('success', `Có ${result.n} phần tử được cập nhật thành công!`, false);
 		res.redirect(linkIndex);
 	});
@@ -74,15 +78,15 @@ router.post('/change-status/:status', (req, res, next) => {
 
 // Change ordering - Multi
 router.post('/change-ordering', function (req, res, next) {
-	let cids 		= req.body.cid;
-    let orderings 	= req.body.ordering;
+	let cids = req.body.cid;
+	let orderings = req.body.ordering;
 
 	if (Array.isArray(cids)) {
 		cids.forEach((item, index) => {
-			ItemsModel.updateOne({_id: item}, {ordering: parseInt(orderings[index])}, (err) => {});
+			ItemsModel.updateOne({ _id: item }, { ordering: parseInt(orderings[index]) }, (err) => { });
 		})
 	} else {
-		ItemsModel.updateOne({_id: cids}, {ordering: parseInt(orderings)}, (err) => {});
+		ItemsModel.updateOne({ _id: cids }, { ordering: parseInt(orderings) }, (err) => { });
 	}
 	req.flash('success', 'Cập nhật ordering thành công!', false);
 	res.redirect(linkIndex);
@@ -91,7 +95,7 @@ router.post('/change-ordering', function (req, res, next) {
 // Delete item
 router.get('/delete/:id', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
-	ItemsModel.deleteOne({_id: id}, (err) => {
+	ItemsModel.deleteOne({ _id: id }, (err) => {
 		req.flash('success', 'Xóa thành công!', false);
 		res.redirect(linkIndex);
 	});
@@ -99,16 +103,48 @@ router.get('/delete/:id', (req, res, next) => {
 
 // Delete - Multi
 router.post('/delete', (req, res, next) => {
-	ItemsModel.remove({_id: {$in: req.body.cid}}, (err) => {
+	ItemsModel.remove({ _id: { $in: req.body.cid } }, (err) => {
 		req.flash('success', 'Xóa nhiều phần tử thành công!', false);
 		res.redirect(linkIndex);
 	});
 });
 
-router.get('/add', (req, res, next) => {
-	req.flash('success', 'invalid username or password');
-	res.send('Test Flash');
-	res.end();
+// Form
+router.get('/form(/:id)?', (req, res, next) => {
+	let id = ParamsHelpers.getParam(req.params, 'id', '');
+	let item = {
+		name: '',
+		ordering: '',
+		status: 'novalue'
+	};
+	if (id === '') {	//Add
+		res.render('pages/items/form', {
+			pageTitle: pageTitleAdd,
+			item
+		});
+	} else {	//Edit
+		ItemsModel.findById(id, (err, item) => {
+			res.render('pages/items/form', {
+				pageTitle: pageTitleEdit,
+				item
+			});
+		});
+	}
+});
+
+// Add
+router.post('/save', (req, res, next) => {
+	req.body = JSON.parse(JSON.stringify(req.body));
+	let item = new ItemsModel({ 
+		name      : ParamsHelpers.getParam(req.body, 'name', '')
+		, ordering: ParamsHelpers.getParam(req.body, 'ordering', '')
+		, status  : ParamsHelpers.getParam(req.body, 'status', 'active')
+	});
+
+	item.save((err) => {
+		req.flash('success', 'Thêm mới thành công!', false);
+		res.redirect(linkIndex);
+	});
 });
 
 module.exports = router;

@@ -12,7 +12,7 @@
 
         if(totalPages > 1){
             let xhtmlStart = '', xhtmlPrevious = '', xhtmlPages = '', xhtmlNext = '', xhtmlEnd = '';  
-            let link       = '/' + systemConfig.prefixAdmin + '/' + type + '/' + currentStatus;
+            let link       = systemConfig.prefixAdmin + '/' + type + '/status/' + currentStatus;
             if(keyword !== '') link += '?keyword=' + keyword + '&page=';
             else link += '?page=';
 

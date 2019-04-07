@@ -546,3 +546,16 @@
 	Hiện nay tập tin hiện thị câu thông báo đang mặc định tên là flash -> có thể thay đổi tên,
 		cũng như là thay đổi vị trí đặt tập tin
 		-> Khi sử dụng flash thì ngoài việc truyền vào app thì cần truyền thêm 1 đối tượng cấu hình các thông số
+
+- Add item: Xây dựng chức năng Add phần tử
+	form.ejs: Phần add và edit sẽ dùng chung 1 tập tin view
+		add: form
+		edit: form/id -> từ id lấy được các giá trị liên quan đến item đó rồi đổ ra lên trên view
+	Kiểm tra URL nếu như mà có id thì nó là Form để Edit, còn nếu như mà không có id thì đó là trường hợp thêm mới
+	Khi edit, ban đầu trang sẽ hiển thị đầy đủ thông tin của item cần edit -> cần lấy ra thông tin của phần tử
+	Error: item.setPrototypeOf is not a function 
+	keyword: req.body hasOwnProperty is not define
+		Do đối tượng item đã được gán trực tiếp giá trị của req.body có dạng: 
+			[Object: null prototype] { name: 'ABC 123', ordering: '123', status: 'active', id: '' }
+	Fix: Để khắc phục lỗi này thì không nên gán từ req.body 
+		hoặc parse ra obj: req.body = JSON.parse(JSON.stringify(req.body));
