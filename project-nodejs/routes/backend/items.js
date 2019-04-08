@@ -136,23 +136,42 @@ router.get('/form(/:id)?', (req, res, next) => {
 	}
 });
 
-// Add
+// Add and Edit
 router.post('/save', (req, res, next) => {
 	let item   = Object.assign({}, req.body);
 	let errors = ValidateItems.validator(req);
 
-	if (errors) { // errors
-		res.render('pages/items/form', {
-			pageTitle: pageTitleAdd,
-			item,
-			errors
-		});
-	} else { // no errors		
-		new ItemsModel(item)
-		.save((err) => {
-			req.flash('success', 'Thêm mới thành công!', false);
-			res.redirect(linkIndex);
-		});
+	if (item.id !== '') { // Edit
+		if (errors) { // errors
+			res.render('pages/items/form', {
+				pageTitle: pageTitleEdit,
+				item,
+				errors
+			});
+		} else { // no errors		
+			ItemsModel.updateOne({ _id: item.id }, { 
+				name: item.name
+				, ordering: parseInt(item.ordering) 
+				, status: item.status
+			}, (err) => { 
+				req.flash('success', 'Cập nhật thành công!', false);
+				res.redirect(linkIndex);
+			});
+		}
+	} else { // Add
+		if (errors) { // errors
+			res.render('pages/items/form', {
+				pageTitle: pageTitleAdd,
+				item,
+				errors
+			});
+		} else { // no errors		
+			new ItemsModel(item)
+			.save((err) => {
+				req.flash('success', 'Thêm mới thành công!', false);
+				res.redirect(linkIndex);
+			});
+		}
 	}
 });
 

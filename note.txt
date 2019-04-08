@@ -597,3 +597,6 @@
 	keyword: javascript uppercase first letter
 	Object.assign(): được sử dụng để sao chép các giá trị của tất cả thuộc tính có thể liệt kê từ 
 		một hoặc nhiều đối tượng nguồn đến một đối tượng đích. Nó sẽ  trả về đối tượng đích đó.
+
+- Edit item: Edit thông tin của 1 phần tử nào đó
+	Dựa vào giá trị id trong ô input rỗng được truyền đi từ form để phân biệt trường hợp Add và Edit
