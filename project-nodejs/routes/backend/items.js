@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const util = require('util');
 
 const systemConfig  = require('../../configs/system');
+const notify  		= require('../../configs/notify');
 const ItemsModel    = require('../../schemas/items');
 const ValidateItems = require('../../validators/items');
 const UtilsHelpers  = require('../../helpers/utils');
@@ -63,7 +65,7 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
 	let status = (currentStatus === 'active') ? 'inactive' : 'active';
 	ItemsModel.updateOne({ _id: id }, { status: status }, (err, result) => {
-		req.flash('success', 'Cập nhật status thành công!', false);
+		req.flash('success', notify.CHANGE_STATUS_SUCCSESS, false);
 		res.redirect(linkIndex);
 	});
 });
@@ -72,24 +74,24 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 router.post('/change-status/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
 	ItemsModel.updateMany({ _id: { $in: req.body.cid } }, { status: currentStatus }, (err, result) => {
-		req.flash('success', `Có ${result.n} phần tử được cập nhật thành công!`, false);
+		req.flash('success', util.format(notify.CHANGE_STATUS_MULTI_SUCCSESS, result.n), false);
 		res.redirect(linkIndex);
 	});
 });
 
-// Change ordering - Multi
+// Change ordering
 router.post('/change-ordering', function (req, res, next) {
 	let cids = req.body.cid;
 	let orderings = req.body.ordering;
 
-	if (Array.isArray(cids)) {
+	if (Array.isArray(cids)) { // Change ordering - Multi
 		cids.forEach((item, index) => {
 			ItemsModel.updateOne({ _id: item }, { ordering: parseInt(orderings[index]) }, (err) => { });
 		})
-	} else {
+	} else { // Change ordering - One
 		ItemsModel.updateOne({ _id: cids }, { ordering: parseInt(orderings) }, (err) => { });
 	}
-	req.flash('success', 'Cập nhật ordering thành công!', false);
+	req.flash('success', notify.CHANGE_ORDERING_SUCCESS, false);
 	res.redirect(linkIndex);
 });
 
@@ -97,15 +99,15 @@ router.post('/change-ordering', function (req, res, next) {
 router.get('/delete/:id', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
 	ItemsModel.deleteOne({ _id: id }, (err) => {
-		req.flash('success', 'Xóa thành công!', false);
+		req.flash('success', notify.DELETE_SUCCESS, false);
 		res.redirect(linkIndex);
 	});
 });
 
 // Delete - Multi
 router.post('/delete', (req, res, next) => {
-	ItemsModel.remove({ _id: { $in: req.body.cid } }, (err) => {
-		req.flash('success', 'Xóa nhiều phần tử thành công!', false);
+	ItemsModel.remove({ _id: { $in: req.body.cid } }, (err, result) => {
+		req.flash('success', util.format(notify.DELETE_MULTI_SUCCESS, result.n), false);
 		res.redirect(linkIndex);
 	});
 });
@@ -154,7 +156,7 @@ router.post('/save', (req, res, next) => {
 				, ordering: parseInt(item.ordering) 
 				, status: item.status
 			}, (err) => { 
-				req.flash('success', 'Cập nhật thành công!', false);
+				req.flash('success', notify.EDIT_SUCCESS, false);
 				res.redirect(linkIndex);
 			});
 		}
@@ -168,7 +170,7 @@ router.post('/save', (req, res, next) => {
 		} else { // no errors		
 			new ItemsModel(item)
 			.save((err) => {
-				req.flash('success', 'Thêm mới thành công!', false);
+				req.flash('success', notify.ADD_SUCCESS, false);
 				res.redirect(linkIndex);
 			});
 		}

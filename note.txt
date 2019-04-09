@@ -600,3 +600,15 @@
 
 - Edit item: Edit thông tin của 1 phần tử nào đó
 	Dựa vào giá trị id trong ô input rỗng được truyền đi từ form để phân biệt trường hợp Add và Edit
+
+----------------------------------------------------------------------------------------------------
+
+							Tối Ưu Và Hoàn Chỉnh Phần Quản Lý
+
+- Notify: Sau khi thực hiện thành công 1 tác vụ nào đó -> hiện thị ra câu thông báo
+	Khi quản lý các phần khác ko phải quản lý item thì các câu thông báo này cũng lặp đi lặp lại
+	-> Tạo ra 1 tập tin để định nghĩa câu thông báo, điều này khiên việc muốn thay đổi nội dung câu 
+		thông báo được thực hiện dễ dàng
+	Hiện thị câu thông báo khi thay đổi status của nhiều item cùng 1 lúc:
+	-> Sử dụng thư viện Utilities của Nodejs -> util.format()
+	Hiện thị các câu thông báo khi Validate
