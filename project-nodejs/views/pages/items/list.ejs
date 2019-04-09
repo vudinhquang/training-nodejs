@@ -2,6 +2,10 @@
 <% include ../../helpers/action %>
 <% include ../../helpers/status %>
 <% include ../../helpers/pagination %>
+<%
+	const collection = 'items';
+	const linkPrefix = systemConfig.prefixAdmin + '/' + collection + '/';
+%>
 
 <%- locals.flash %>
 
@@ -10,7 +14,7 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				Search & Filter
-				<a href="<%= systemConfig.prefixAdmin %>/items/status/all">
+				<a href="<%= linkPrefix %>status/all">
 					<span id="icon-reload" class="glyphicon glyphicon-refresh"></span>
 				</a>
 			</div>
@@ -18,10 +22,10 @@
 				<div class="row">
 					<div class="status-list col-sm-6 pl0">
 						<!-- Filter Status -->
-						<%- filterStatusHelper('items', statusFilter, keyword) %>
+						<%- filterStatusHelper(collection, statusFilter, keyword) %>
 					</div>
 					<div class="col-sm-6">
-						<form action="<%= systemConfig.prefixAdmin %>/items/status/<%= currentStatus %>" method="GET">
+						<form action="<%= linkPrefix %>status/<%= currentStatus %>" method="GET">
 							<div class="input-group">
 								<input type="text" class="form-control" name="keyword" placeholder="Search for..."
 									value="<%= keyword %>">
@@ -30,7 +34,7 @@
 								</span>
 								<span class="input-group-btn">
 									<button class="btn btn-success" type="button"><a
-											href="<%= systemConfig.prefixAdmin %>/items/status/<%= currentStatus %>">Clear</a></button>
+											href="<%= linkPrefix %>status/<%= currentStatus %>">Clear</a></button>
 								</span>
 							</div>
 						</form>
@@ -47,7 +51,7 @@
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<form role="form" class="form-inline zt-form" id="zt-form" action="" method="post">
-					<%- actionHelper('items') %>
+					<%- actionHelper(collection) %>
 					<div class="table-responsive">
 						<table class="table table-striped">
 							<thead>
@@ -75,15 +79,15 @@
 											<%= item.name %>
 										</td>
 										<td>
-											<%- statusHelper('items', item.status, item.id) %>
+											<%- statusHelper(collection, item.status, item.id) %>
 										</td>
 										<td>
 											<input type="number" value="<%= item.ordering %>" class="text-center ordering ">
 										</td>
 										<td>
-											<a href="<%= systemConfig.prefixAdmin %>/items/form/<%= item.id %>" type="button"
+											<a href="<%= linkPrefix %>form/<%= item.id %>" type="button"
 												class="btn btn-warning btn-sm">Edit</a>
-											<a href="<%= systemConfig.prefixAdmin %>/items/delete/<%= item.id %>" type="button"
+											<a href="<%= linkPrefix %>delete/<%= item.id %>" type="button"
 												class="btn btn-danger btn-sm btn-delete">Delete</a>
 										</td>
 									</tr>
@@ -96,6 +100,6 @@
 		</div>
 	</div>
 	<div class="col-lg-12">
-		<%- paginationHelper(pagination,'items' , currentStatus, keyword) %>
+		<%- paginationHelper(pagination,collection , currentStatus, keyword) %>
 	</div>
 </div>

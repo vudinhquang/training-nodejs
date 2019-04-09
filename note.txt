@@ -621,3 +621,8 @@
 
 - Database config: Ở phần kết nối với mongodb thì nên tách ra thành 1 file cấu hình riêng để định nghĩa 
 	các thông số database
+
+- View: Khi tạo view cho các phần quản lý khác ngoài quản lý item thì để có thể sử dụng dễ dàng các view đã viết của item, 
+	thì mình có thể thêm 1 số phần định nghĩa như sau trong list.ejs và form.ejs:
+	const collection = 'items';
+	const linkPrefix = systemConfig.prefixAdmin + '/' + collection + '/';
