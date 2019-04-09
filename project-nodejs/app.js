@@ -11,16 +11,10 @@ const session = require('express-session');
 var expressLayouts = require('express-ejs-layouts');
 var mongoose = require('mongoose');
 
-const systemConfig = require('./configs/system');
+const systemConfig   = require('./configs/system');
+const databaseConfig = require('./configs/database');
 
-mongoose.connect('mongodb+srv://vuquang:Vudinhquang2202@cluster0-jhlkz.mongodb.net/training_nodejs?retryWrites=true', { useNewUrlParser: true });
-var db = mongoose.connection;
-db.on('error', () => {
-	console.log('connection error');
-});
-db.once('open', () => {
-	console.log('connected!')
-});
+mongoose.connect(`mongodb+srv://${databaseConfig.username}:${databaseConfig.password}@cluster0-jhlkz.mongodb.net/${databaseConfig.database}?retryWrites=true`, { useNewUrlParser: true });
 
 var app = express();
 

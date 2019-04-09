@@ -618,3 +618,6 @@
 		form: pages/items/form
 		list: pages/items/list
 	-> Tổng quát hóa bằng cách đặt thêm biến folderView	 = 'pages/items/'
+
+- Database config: Ở phần kết nối với mongodb thì nên tách ra thành 1 file cấu hình riêng để định nghĩa 
+	các thông số database
