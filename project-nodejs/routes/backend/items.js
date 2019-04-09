@@ -11,16 +11,17 @@ const ParamsHelpers = require('../../helpers/params');
 const linkIndex     = '/' + systemConfig.prefixAdmin + '/items';
 
 const pageTitleIndex = 'Item Managment';
-const pageTitleAdd = 'Item Managment - Add';
-const pageTitleEdit = 'Item Managment - Edit';
+const pageTitleAdd   = 'Item Managment - Add';
+const pageTitleEdit  = 'Item Managment - Edit';
+const folderView	 = 'pages/items/';
 
 // List items
 router.get('(/status/:status)?', (req, res, next) => {
-	let objWhere = {};
-	let keyword = ParamsHelpers.getParam(req.query, 'keyword', '');
+	let objWhere      = {};
+	let keyword       = ParamsHelpers.getParam(req.query, 'keyword', '');
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
-	let statusFilter = UtilsHelpers.createFilterStatus(currentStatus);
-	let pagination = {
+	let statusFilter  = UtilsHelpers.createFilterStatus(currentStatus);
+	let pagination    = {
 		totalItems: 1,
 		totalItemsPerPage: 5,
 		currentPage: parseInt(ParamsHelpers.getParam(req.query, 'page', '1')),
@@ -47,7 +48,7 @@ router.get('(/status/:status)?', (req, res, next) => {
 			.skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
 			.limit(pagination.totalItemsPerPage)
 			.then((items) => {
-				res.render('pages/items/list', {
+				res.render(folderView + 'list', {
 					pageTitle: 'Item List Page',
 					items,
 					statusFilter,
@@ -122,14 +123,14 @@ router.get('/form(/:id)?', (req, res, next) => {
 	};
 	let errors = null;
 	if (id === '') {	//Add
-		res.render('pages/items/form', {
+		res.render(folderView + 'form', {
 			pageTitle: pageTitleAdd,
 			item,
 			errors
 		});
 	} else {	//Edit
 		ItemsModel.findById(id, (err, item) => {
-			res.render('pages/items/form', {
+			res.render(folderView + 'form', {
 				pageTitle: pageTitleEdit,
 				item,
 				errors

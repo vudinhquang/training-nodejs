@@ -612,3 +612,9 @@
 	Hiện thị câu thông báo khi thay đổi status của nhiều item cùng 1 lúc:
 	-> Sử dụng thư viện Utilities của Nodejs -> util.format()
 	Hiện thị các câu thông báo khi Validate
+
+- Folder view:
+	Hiện tại thì item có 2 view đó là:
+		form: pages/items/form
+		list: pages/items/list
+	-> Tổng quát hóa bằng cách đặt thêm biến folderView	 = 'pages/items/'
