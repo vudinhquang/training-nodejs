@@ -2,18 +2,18 @@ var express = require('express');
 var router = express.Router();
 const util = require('util');
 
-const systemConfig  = require('../../configs/system');
-const notify  		= require('../../configs/notify');
-const ItemsModel    = require('../../schemas/items');
-const ValidateItems = require('../../validators/items');
-const UtilsHelpers  = require('../../helpers/utils');
-const ParamsHelpers = require('../../helpers/params');
-const linkIndex     = '/' + systemConfig.prefixAdmin + '/items';
+const systemConfig  = require(__path_configs + '/system');
+const notify  		= require(__path_configs + '/notify');
+const ItemsModel    = require(__path_schemas + '/items');
+const ValidateItems = require(__path_validators +'/items');
+const UtilsHelpers  = require(__path_helpers + '/utils');
+const ParamsHelpers = require(__path_helpers + '/params');
 
+const linkIndex     = '/' + systemConfig.prefixAdmin + '/items';
 const pageTitleIndex = 'Item Managment';
 const pageTitleAdd   = 'Item Managment - Add';
 const pageTitleEdit  = 'Item Managment - Edit';
-const folderView	 = 'pages/items/';
+const folderView	 =  __path_views + '/pages/items';
 
 // List items
 router.get('(/status/:status)?', (req, res, next) => {
@@ -48,7 +48,7 @@ router.get('(/status/:status)?', (req, res, next) => {
 			.skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
 			.limit(pagination.totalItemsPerPage)
 			.then((items) => {
-				res.render(folderView + 'list', {
+				res.render(folderView + '/list', {
 					pageTitle: 'Item List Page',
 					items,
 					statusFilter,
@@ -123,14 +123,14 @@ router.get('/form(/:id)?', (req, res, next) => {
 	};
 	let errors = null;
 	if (id === '') {	//Add
-		res.render(folderView + 'form', {
+		res.render(folderView + '/form', {
 			pageTitle: pageTitleAdd,
 			item,
 			errors
 		});
 	} else {	//Edit
 		ItemsModel.findById(id, (err, item) => {
-			res.render(folderView + 'form', {
+			res.render(folderView + '/form', {
 				pageTitle: pageTitleEdit,
 				item,
 				errors
@@ -146,7 +146,7 @@ router.post('/save', (req, res, next) => {
 
 	if (item.id !== '') { // Edit
 		if (errors) { // errors
-			res.render('pages/items/form', {
+			res.render(folderView + '/form', {
 				pageTitle: pageTitleEdit,
 				item,
 				errors
@@ -163,7 +163,7 @@ router.post('/save', (req, res, next) => {
 		}
 	} else { // Add
 		if (errors) { // errors
-			res.render('pages/items/form', {
+			res.render(folderView + '/form', {
 				pageTitle: pageTitleAdd,
 				item,
 				errors

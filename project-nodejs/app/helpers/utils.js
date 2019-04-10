@@ -1,4 +1,4 @@
-const ItemsModel = require('../schemas/items');
+const ItemsModel = require(__path_schemas + '/items');
 let createFilterStatus = (currentStatus) => {
 	let statusFilter = [
 		{name: 'All', value: 'all', count: 1, link: '#', class: 'default'},

@@ -11,8 +11,20 @@ const session = require('express-session');
 var expressLayouts = require('express-ejs-layouts');
 var mongoose = require('mongoose');
 
-const systemConfig   = require('./configs/system');
-const databaseConfig = require('./configs/database');
+const pathConfig = require('./path');
+
+// Define Path
+global.__base 			 = __dirname;
+global.__path_app   	 = __base + '/' + pathConfig.folder_app;
+global.__path_configs	 = __path_app + '/' + pathConfig.folder_configs;
+global.__path_helpers	 = __path_app + '/' + pathConfig.folder_helpers;
+global.__path_routes	 = __path_app + '/' + pathConfig.folder_routes;
+global.__path_schemas	 = __path_app + '/' + pathConfig.folder_schemas;
+global.__path_validators = __path_app + '/' + pathConfig.folder_validators;
+global.__path_views		 = __path_app + '/' + pathConfig.folder_views;
+
+const systemConfig   = require(__path_configs + '/system');
+const databaseConfig = require(__path_configs + '/database');
 
 mongoose.connect(`mongodb+srv://${databaseConfig.username}:${databaseConfig.password}@cluster0-jhlkz.mongodb.net/${databaseConfig.database}?retryWrites=true`, { useNewUrlParser: true });
 
@@ -25,7 +37,7 @@ app.use(session({
 	saveUninitialized: true,
 }));
 app.use(flash(app, {
-	viewName: 'elements/notify',
+	viewName: __path_views + '/elements/notify',
 }));
 
 app.use(validator());
@@ -44,7 +56,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(expressLayouts);
-app.set('layout', 'backend');
+app.set('layout',__path_views + '/backend');
 
 // app.use(logger('dev'));
 app.use(express.json());
@@ -56,8 +68,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.locals.systemConfig = systemConfig;
 
 // Setup router
-app.use(`/${systemConfig.prefixAdmin}`, require('./routes/backend/index'));
-app.use('/', require('./routes/frontend/index'));
+app.use(`/${systemConfig.prefixAdmin}`, require(__path_routes + '/backend/index'));
+app.use('/', require(__path_routes + '/frontend/index'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -72,7 +84,7 @@ app.use(function (err, req, res, next) {
 
 	// render the error page
 	res.status(err.status || 500);
-	res.render('pages/error', { pageTitle: 'Page Not Found' });
+	res.render(__path_views + '/pages/error', { pageTitle: 'Page Not Found' });
 });
 
 module.exports = app;

@@ -1,6 +1,6 @@
 <%
 	const collection = 'items';
-	const linkPrefix = systemConfig.prefixAdmin + '/' + collection + '/';
+	const linkPrefix = systemConfig.prefixAdmin + '/' + collection;
 %>
 
 <div class="row">
@@ -13,7 +13,7 @@
 				<% include ../../elements/errors %>
 				<div class="row">
 					<div class="col-lg-6">
-						<form role="form" action="<%= linkPrefix %>save" method="POST">
+						<form role="form" action="<%= linkPrefix %>/save" method="POST">
 							<div class="form-group">
 								<label>Name</label>
 								<input class="form-control" name="name" value="<%= item.name %>">
