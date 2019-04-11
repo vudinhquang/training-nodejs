@@ -644,3 +644,11 @@
 		hiện count xong thì phần render ở dưới nó đã thực Hiện
 		Để khắc phục tình trạng này thì mình sử dụng async await
 	-> Giải quyết được vấn đề lấy dữ liệu lên không kịp
+
+- Fix filter status:
+	Fix lỗi trong vấn đề hiển thị ở phần filterStatus đôi khi phần đếm bị sai, phần đếm số phần tử được đặt trong vòng lặp Foreach
+		và đếm chưa thực hiện xong thì nó đã nhảy đến phần tử tiếp theo
+	keyword: async await in Foreach
+	Ở đây thì async await không dùng được với Foreach -> thay nó bằng for
+
+----------------------------------------------------------------------------------------------------
