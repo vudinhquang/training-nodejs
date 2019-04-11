@@ -634,3 +634,6 @@
 	Trong trường hợp này sử dụng Global
 	Để cấu trúc tập tin của ta đỡ phức tạp và nhiều, dễ quản lý hơn. Ta tạo ra folder app để chứa mã nguồn mình sẽ viết
 	Đặt phần cấu hình đường dẫn thành 1 tập tin riêng để dễ dàng quản lý
+
+- Fix filter status: routes -> items.js
+	Viết gọn mã nguồn đối với điều kiện lọc dữ liệu theo currentStatus và keyword

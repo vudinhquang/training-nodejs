@@ -28,17 +28,8 @@ router.get('(/status/:status)?', (req, res, next) => {
 		pageRanges: 3
 	};
 
-	if (currentStatus !== 'all') {
-		if (keyword == '') {
-			objWhere = { status: currentStatus };
-		} else {
-			objWhere = { status: currentStatus, name: new RegExp(keyword, 'i') };
-		}
-	} else {
-		if (keyword !== '') {
-			objWhere = { name: new RegExp(keyword, 'i') };
-		}
-	}
+	if(currentStatus !== 'all') objWhere.status	= currentStatus;
+	if(keyword !== '') objWhere.name = new RegExp(keyword, 'i');
 
 	ItemsModel.countDocuments(objWhere).then((data) => {
 		pagination.totalItems = data;
