@@ -16,7 +16,7 @@ const pageTitleEdit  = 'Item Managment - Edit';
 const folderView	 =  __path_views + '/pages/items';
 
 // List items
-router.get('(/status/:status)?', (req, res, next) => {
+router.get('(/status/:status)?', async (req, res, next) => {
 	let objWhere      = {};
 	let keyword       = ParamsHelpers.getParam(req.query, 'keyword', '');
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
@@ -31,24 +31,25 @@ router.get('(/status/:status)?', (req, res, next) => {
 	if(currentStatus !== 'all') objWhere.status	= currentStatus;
 	if(keyword !== '') objWhere.name = new RegExp(keyword, 'i');
 
-	ItemsModel.countDocuments(objWhere).then((data) => {
+	await ItemsModel.countDocuments(objWhere).then((data) => {
 		pagination.totalItems = data;
-		ItemsModel
-			.find(objWhere)
-			.sort({ ordering: 'asc' })
-			.skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
-			.limit(pagination.totalItemsPerPage)
-			.then((items) => {
-				res.render(folderView + '/list', {
-					pageTitle: 'Item List Page',
-					items,
-					statusFilter,
-					pagination,
-					currentStatus,
-					keyword
-				});
-			});
-	})
+	});
+
+	ItemsModel
+	.find(objWhere)
+	.sort({ ordering: 'asc' })
+	.skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
+	.limit(pagination.totalItemsPerPage)
+	.then((items) => {
+		res.render(folderView + '/list', {
+			pageTitle: 'Item List Page',
+			items,
+			statusFilter,
+			pagination,
+			currentStatus,
+			keyword
+		});
+	});
 });
 
 // Change status

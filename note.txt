@@ -637,3 +637,10 @@
 
 - Fix filter status: routes -> items.js
 	Viết gọn mã nguồn đối với điều kiện lọc dữ liệu theo currentStatus và keyword
+
+- Pagination: javascript đồng bộ và bất đồng bộ
+	keyword: javascript promise, javascript async await
+	Ở phần phân trang thì phải count số phần tử trước rồi mới thực hiện render ra view, nhưng vấn đề xảy ra là chưa thực
+		hiện count xong thì phần render ở dưới nó đã thực Hiện
+		Để khắc phục tình trạng này thì mình sử dụng async await
+	-> Giải quyết được vấn đề lấy dữ liệu lên không kịp
