@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
+const folderView	 =  __path_views + '/pages/dashboard';
+
 /* GET dashboard page. */
 router.get('/', function(req, res, next) {
-  res.render('pages/dashboard/index', { pageTitle: 'Dashboard Page' });
+  res.render(folderView + '/index', { pageTitle: 'Dashboard Page' });
 });
 
 module.exports = router;

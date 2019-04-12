@@ -652,3 +652,36 @@
 	Ở đây thì async await không dùng được với Foreach -> thay nó bằng for
 
 ----------------------------------------------------------------------------------------------------
+
+- Publish:
+	Tiến hành đưa sản phẩm lên hosting
+	keyword: nodejs deploy
+	App: project-nodejs-ver1
+
+Install the Heroku CLI
+Download and install the Heroku CLI.
+
+If you haven't already, log in to your Heroku account and follow the prompts to create a new SSH public key.
+
+$ heroku login
+Clone the repository
+Use Git to clone project-nodejs-ver1's source code to your local machine.
+
+$ heroku git:clone -a project-nodejs-ver1
+$ cd project-nodejs-ver1
+Deploy your changes
+Make some changes to the code you just cloned and deploy them to Heroku using Git.
+
+$ git add .
+$ git commit -am "make it better"
+$ git push heroku master
+
+Sau khi push thành công quay lại trang ứng dụng của ta: https://project-nodejs-ver1.herokuapp.com/
+Để xem log lỗi xảy ra: heroku logs --tail
+-> nodemon: not found
+Do đó cần sửa lại trong package.json:
+	"start": "nodemon ./bin/www" -> "start": "nodem ./bin/www"
+Rồi tiến hành commit và push lên heroku
+Error: Failed to lookup view "pages/publish/index" in views directory "/app/views"
+	-> Fix home.js trong routes
+Tương tự fix lỗi khi click vào dashboard
