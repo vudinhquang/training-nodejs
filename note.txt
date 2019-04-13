@@ -705,3 +705,7 @@ Tương tự fix lỗi khi click vào dashboard
 							sẽ không cần jion vào bảng user
 			time:    ->created_at
 		}
+
+- Edit - Status - Ordering:
+	Lưu thông tin modified khi Edit status của 1 or nhiều phần tử, Edit ordering của 1 or nhiều phần tử hoặc khi
+	thực hiện Edit phần tử

@@ -57,7 +57,15 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
 	let status = (currentStatus === 'active') ? 'inactive' : 'active';
-	ItemsModel.updateOne({ _id: id }, { status: status }, (err, result) => {
+	let data = {
+		status: status
+		, modified: {
+			user_id: 0
+			, user_name: 'admin'
+			, time: Date.now()
+		}
+	};
+	ItemsModel.updateOne({ _id: id }, data, (err, result) => {
 		req.flash('success', notify.CHANGE_STATUS_SUCCSESS, false);
 		res.redirect(linkIndex);
 	});
@@ -66,7 +74,15 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 // Change status - Multi
 router.post('/change-status/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
-	ItemsModel.updateMany({ _id: { $in: req.body.cid } }, { status: currentStatus }, (err, result) => {
+	let data = {
+		status: currentStatus
+		, modified:{
+			user_id: 0
+			, user_name: 'admin'
+			, time: Date.now()
+		}
+	};
+	ItemsModel.updateMany({ _id: { $in: req.body.cid } }, data, (err, result) => {
 		req.flash('success', util.format(notify.CHANGE_STATUS_MULTI_SUCCSESS, result.n), false);
 		res.redirect(linkIndex);
 	});
@@ -79,10 +95,26 @@ router.post('/change-ordering', function (req, res, next) {
 
 	if (Array.isArray(cids)) { // Change ordering - Multi
 		cids.forEach((item, index) => {
-			ItemsModel.updateOne({ _id: item }, { ordering: parseInt(orderings[index]) }, (err) => { });
+			let data = {
+				ordering: parseInt(orderings[index])
+				, modified:{
+					user_id: 0
+					, user_name: 'admin'
+					, time: Date.now()
+				}
+			};
+			ItemsModel.updateOne({ _id: item }, data, (err) => { });
 		})
 	} else { // Change ordering - One
-		ItemsModel.updateOne({ _id: cids }, { ordering: parseInt(orderings) }, (err) => { });
+		let data = {
+			ordering: parseInt(orderings)
+			, modified:{
+				user_id: 0
+				, user_name: 'admin'
+				, time: Date.now()
+			}
+		};
+		ItemsModel.updateOne({ _id: cids }, data, (err) => { });
 	}
 	req.flash('success', notify.CHANGE_ORDERING_SUCCESS, false);
 	res.redirect(linkIndex);
@@ -148,6 +180,11 @@ router.post('/save', (req, res, next) => {
 				name: item.name
 				, ordering: parseInt(item.ordering)
 				, status: item.status
+				, modified:{
+					user_id: 0
+					, user_name: 'admin'
+					, time: Date.now()
+				}
 			}, (err) => {
 				req.flash('success', notify.EDIT_SUCCESS, false);
 				res.redirect(linkIndex);
@@ -163,9 +200,9 @@ router.post('/save', (req, res, next) => {
 		} else { // no errors		
 			item.created = {
 				user_id: 0
-				, username: 'admin'
+				, user_name: 'admin'
 				, time: Date.now()
-			}
+			};
 			new ItemsModel(item)
 				.save((err) => {
 					req.flash('success', notify.ADD_SUCCESS, false);

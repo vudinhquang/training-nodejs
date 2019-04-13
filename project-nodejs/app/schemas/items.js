@@ -7,12 +7,12 @@ var schema = new mongoose.Schema({
     , ordering: Number
     , created:{
         user_id: Number
-        , username: String       
+        , user_name: String       
         , time: Date
     }
     , modified:{
         user_id: Number
-        , username: String       
+        , user_name: String       
         , time: Date   
     }
 });
