@@ -2,54 +2,54 @@ var express = require('express');
 var router = express.Router();
 const util = require('util');
 
-const systemConfig  = require(__path_configs + '/system');
-const notify  		= require(__path_configs + '/notify');
-const ItemsModel    = require(__path_schemas + '/items');
-const ValidateItems = require(__path_validators +'/items');
-const UtilsHelpers  = require(__path_helpers + '/utils');
+const systemConfig = require(__path_configs + '/system');
+const notify = require(__path_configs + '/notify');
+const ItemsModel = require(__path_schemas + '/items');
+const ValidateItems = require(__path_validators + '/items');
+const UtilsHelpers = require(__path_helpers + '/utils');
 const ParamsHelpers = require(__path_helpers + '/params');
 
-const linkIndex     = '/' + systemConfig.prefixAdmin + '/items';
+const linkIndex = '/' + systemConfig.prefixAdmin + '/items';
 const pageTitleIndex = 'Item Managment';
-const pageTitleAdd   = 'Item Managment - Add';
-const pageTitleEdit  = 'Item Managment - Edit';
-const folderView	 =  __path_views + '/pages/items';
+const pageTitleAdd = 'Item Managment - Add';
+const pageTitleEdit = 'Item Managment - Edit';
+const folderView = __path_views + '/pages/items';
 
 // List items
 router.get('(/status/:status)?', async (req, res, next) => {
-	let objWhere      = {};
-	let keyword       = ParamsHelpers.getParam(req.query, 'keyword', '');
+	let objWhere = {};
+	let keyword = ParamsHelpers.getParam(req.query, 'keyword', '');
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
-	let statusFilter  = await UtilsHelpers.createFilterStatus(currentStatus);
-	let pagination    = {
+	let statusFilter = await UtilsHelpers.createFilterStatus(currentStatus);
+	let pagination = {
 		totalItems: 1,
 		totalItemsPerPage: 5,
 		currentPage: parseInt(ParamsHelpers.getParam(req.query, 'page', '1')),
 		pageRanges: 3
 	};
 
-	if(currentStatus !== 'all') objWhere.status	= currentStatus;
-	if(keyword !== '') objWhere.name = new RegExp(keyword, 'i');
+	if (currentStatus !== 'all') objWhere.status = currentStatus;
+	if (keyword !== '') objWhere.name = new RegExp(keyword, 'i');
 
 	await ItemsModel.countDocuments(objWhere).then((data) => {
 		pagination.totalItems = data;
 	});
 
 	ItemsModel
-	.find(objWhere)
-	.sort({ ordering: 'asc' })
-	.skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
-	.limit(pagination.totalItemsPerPage)
-	.then((items) => {
-		res.render(folderView + '/list', {
-			pageTitle: 'Item List Page',
-			items,
-			statusFilter,
-			pagination,
-			currentStatus,
-			keyword
+		.find(objWhere)
+		.sort({ ordering: 'asc' })
+		.skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
+		.limit(pagination.totalItemsPerPage)
+		.then((items) => {
+			res.render(folderView + '/list', {
+				pageTitle: 'Item List Page',
+				items,
+				statusFilter,
+				pagination,
+				currentStatus,
+				keyword
+			});
 		});
-	});
 });
 
 // Change status
@@ -133,7 +133,7 @@ router.get('/form(/:id)?', (req, res, next) => {
 
 // Add and Edit
 router.post('/save', (req, res, next) => {
-	let item   = Object.assign({}, req.body);
+	let item = Object.assign({}, req.body);
 	let errors = ValidateItems.validator(req);
 
 	if (item.id !== '') { // Edit
@@ -144,11 +144,11 @@ router.post('/save', (req, res, next) => {
 				errors
 			});
 		} else { // no errors		
-			ItemsModel.updateOne({ _id: item.id }, { 
+			ItemsModel.updateOne({ _id: item.id }, {
 				name: item.name
-				, ordering: parseInt(item.ordering) 
+				, ordering: parseInt(item.ordering)
 				, status: item.status
-			}, (err) => { 
+			}, (err) => {
 				req.flash('success', notify.EDIT_SUCCESS, false);
 				res.redirect(linkIndex);
 			});
@@ -161,11 +161,16 @@ router.post('/save', (req, res, next) => {
 				errors
 			});
 		} else { // no errors		
+			item.created = {
+				user_id: 0
+				, username: 'admin'
+				, time: Date.now()
+			}
 			new ItemsModel(item)
-			.save((err) => {
-				req.flash('success', notify.ADD_SUCCESS, false);
-				res.redirect(linkIndex);
-			});
+				.save((err) => {
+					req.flash('success', notify.ADD_SUCCESS, false);
+					res.redirect(linkIndex);
+				});
 		}
 	}
 });

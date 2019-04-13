@@ -685,3 +685,23 @@ Rồi tiến hành commit và push lên heroku
 Error: Failed to lookup view "pages/publish/index" in views directory "/app/views"
 	-> Fix home.js trong routes
 Tương tự fix lỗi khi click vào dashboard
+
+----------------------------------------------------------------------------------------------------
+										Version 2
+
+- Add: Thêm mới thuộc tính created
+	Tiếp tục thêm vào phần quản lý item phần tạo ra vào lúc nào và tạo ra bởi ai
+	Để lưu được các nội dung này thì tạo thêm phần thuộc tính:
+		created{
+			user_id: ->created_by
+			username -> tuy dư thừa dữ liệu nhưng khi trên phần quản lý item khi hiển thị thông tin người sửa
+							sẽ không cần jion vào bảng user
+			time:    ->created_at
+		}
+	Được chỉnh sửa lần cuối cùng bởi ai:
+		modified{
+			user_id: ->created_by
+			username -> tuy dư thừa dữ liệu nhưng khi trên phần quản lý item khi hiển thị thông tin người sửa
+							sẽ không cần jion vào bảng user
+			time:    ->created_at
+		}
