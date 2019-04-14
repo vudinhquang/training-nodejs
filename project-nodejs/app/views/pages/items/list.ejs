@@ -3,6 +3,7 @@
 <% include ../../helpers/status %>
 <% include ../../helpers/pagination %>
 <% include ../../helpers/source-by %>
+<% include ../../helpers/sort %>
 <%
 	const collection = 'items';
 	const linkPrefix = systemConfig.prefixAdmin + '/' + collection + '/';
@@ -61,15 +62,9 @@
 										<input type="checkbox" class="cbAll" />
 									</th>
 									<th>#</th>
-									<th class="text-center pointer">
-										<a href="<%= linkPrefix %>sort/name/desc " class="title_col">Name<i class="fa fa-fw fa-sort-asc"></i></a>
-									</th>
-									<th class="text-center pointer">
-										<a href="#" class="title_col">Status<i class="fa fa-fw fa-sort"></i></a>
-									</th>
-									<th class="text-center pointer">
-										<a href="<%= linkPrefix %>sort/ordering/desc" class="title_col">Ordering<i class="fa fa-fw fa-sort-asc"></i></a>
-									</th>
+									<%- sortHelper(collection, 'Name', 'name', sortField, sortType) %>
+									<%- sortHelper(collection, 'Status', 'status', sortField, sortType) %>
+									<%- sortHelper(collection, 'Ordering', 'ordering', sortField, sortType) %>
 									<th>Created</th>
 									<th>Modified</th>
 									<th>Action</th>

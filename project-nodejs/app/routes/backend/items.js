@@ -23,10 +23,9 @@ router.get('(/status/:status)?', async (req, res, next) => {
 	let statusFilter  = await UtilsHelpers.createFilterStatus(currentStatus);
 	let sortField 	  = ParamsHelpers.getParam(req.session, 'sort_field', 'ordering');
 	let sortType 	  = ParamsHelpers.getParam(req.session, 'sort_type', 'asc');
+	req.session.destroy();
 	let sort		  = {};
 	sort[sortField]   = sortType;
-
-	console.log(sortField + '-' + sortType);
 
 	let pagination = {
 		totalItems: 1,
@@ -55,7 +54,9 @@ router.get('(/status/:status)?', async (req, res, next) => {
 				statusFilter,
 				pagination,
 				currentStatus,
-				keyword
+				keyword,
+				sortField,
+				sortType
 			});
 		});
 });

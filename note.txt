@@ -727,3 +727,9 @@ Tương tự fix lỗi khi click vào dashboard
 	Tại 1 thời điểm thì chỉ sắp xếp theo 1 cột hoặc là name hoặc là ordering
 	Có thể thực hiện bằng cách đưa lên URL: /colname=name&sorttype=desc
 	...
+
+- Link: 
+	Tạo helper cho các phần tạo link cho phần sắp xếp
+	Sắp xếp theo hướng nào thì giá trị hướng đó không phải do mình truyền vào mà là do sắp xếp hiện tại
+		-> từ gia trị sắp xếp hiện tại suy ra được sắp xếp truyền vào link(hiện tại là asc thì truyền vào link
+			là desc và ngược lại)
