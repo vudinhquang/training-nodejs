@@ -37,6 +37,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 
 	ItemsModel
 		.find(objWhere)
+		.select('name status ordering created modified')
 		.sort({ ordering: 'asc' })
 		.skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
 		.limit(pagination.totalItemsPerPage)

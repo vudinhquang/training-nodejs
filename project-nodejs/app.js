@@ -66,6 +66,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Local variable
 app.locals.systemConfig = systemConfig;
+app.locals.moment = require('moment');
 
 // Setup router
 app.use(`/${systemConfig.prefixAdmin}`, require(__path_routes + '/backend/index'));

@@ -709,3 +709,16 @@ Tương tự fix lỗi khi click vào dashboard
 - Edit - Status - Ordering:
 	Lưu thông tin modified khi Edit status của 1 or nhiều phần tử, Edit ordering của 1 or nhiều phần tử hoặc khi
 	thực hiện Edit phần tử
+
+- Show date:
+	Show thông tin modified và created lên trên view
+	Thông tin item được tạo ra bởi người dùng nào, và time nào
+	glyphicon -> Có thể sử dụng lệnh tắt của Bootstrap trên tập tin ejs
+	-> EJS language support
+	select('name status orderring created modified'): Giới hạn các thuộc tính lấy ra từ cơ sở dữ liệu
+	moement: Thư viện của javascript để định dạng thời gian
+	Cài đặt moment như 1 package dùng trong project: nodejs express moment
+	keyword: Using Moment.js in Node.js
+	Site: https://dzone.com/articles/using-momentjs-in-nodejs
+		https://momentjs.com/
+	Xây dựng helper để hiện thời gian theo format

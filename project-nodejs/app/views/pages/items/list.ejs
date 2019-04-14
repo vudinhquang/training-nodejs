@@ -2,6 +2,7 @@
 <% include ../../helpers/action %>
 <% include ../../helpers/status %>
 <% include ../../helpers/pagination %>
+<% include ../../helpers/source-by %>
 <%
 	const collection = 'items';
 	const linkPrefix = systemConfig.prefixAdmin + '/' + collection + '/';
@@ -63,6 +64,8 @@
 									<th>Name</th>
 									<th>Status</th>
 									<th>Ordering</th>
+									<th>Created</th>
+									<th>Modified</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -84,6 +87,8 @@
 										<td>
 											<input type="number" value="<%= item.ordering %>" class="text-center ordering ">
 										</td>
+										<td><%- sourceByHelper(item.created.user_name, item.created.time) %></td>
+										<td><%- sourceByHelper(item.modified.user_name, item.modified.time) %></td>
 										<td>
 											<a href="<%= linkPrefix %>form/<%= item.id %>" type="button"
 												class="btn btn-warning btn-sm">Edit</a>
