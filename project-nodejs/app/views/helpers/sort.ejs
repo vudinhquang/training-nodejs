@@ -1,14 +1,15 @@
 <% 
-    sortHelper = (collection, name, sortField, sortFieldCurrent, sortTypeCurrent) => { 
+    sortHelper = (collection, name, sortField, sortFieldCurrent, sortTypeCurrent, options) => { 
         let xhtmlResult = '';
-        let order       = (sortTypeCurrent === 'asc') ? 'desc' : 'asc';
+        let style       = (options !==null && options) ? `style="${options}"` : '';
+        let order       = (sortTypeCurrent === undefined) ? 'desc' : 'asc';
         let link        = systemConfig.prefixAdmin + '/' + collection + '/sort/' + sortField + '/' + order;  
         let icon        =  '<i class="fa fa-fw fa-sort"></i>';
         if(sortField === sortFieldCurrent){
             icon =`<i class="fa fa-fw fa-sort-${sortTypeCurrent}"></i>`;
         }
 
-        xhtmlResult += `<th class="text-center pointer">
+        xhtmlResult += `<th class="text-center pointer" ${style}>
                             <a href="${link}" class="title_col">${name}${icon}</a>
                         </th>`;
 

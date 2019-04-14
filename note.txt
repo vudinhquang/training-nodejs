@@ -733,3 +733,6 @@ Tương tự fix lỗi khi click vào dashboard
 	Sắp xếp theo hướng nào thì giá trị hướng đó không phải do mình truyền vào mà là do sắp xếp hiện tại
 		-> từ gia trị sắp xếp hiện tại suy ra được sắp xếp truyền vào link(hiện tại là asc thì truyền vào link
 			là desc và ngược lại)
+
+- Style: Thêm style để định dạng cho các cột khi tạo các phần sort
+	sortHelper(collection, 'Name', 'name', sortField, sortType, 'width:20%')
