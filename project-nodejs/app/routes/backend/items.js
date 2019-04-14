@@ -189,6 +189,7 @@ router.post('/save', (req, res, next) => {
 				name: item.name
 				, ordering: parseInt(item.ordering)
 				, status: item.status
+				, content: item.content
 				, modified:{
 					user_id: 0
 					, user_name: 'admin'

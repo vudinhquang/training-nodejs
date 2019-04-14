@@ -2,9 +2,6 @@ $(document).ready(function () {
     var ckbAll = $(".cbAll");
     var fmAdmin = $("#zt-form");
 
-    // CKEDITOR
-    CKEDITOR.replace( 'content_ckeditor' );
-
     //call active menu
     activeMenu();
 

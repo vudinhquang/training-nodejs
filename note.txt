@@ -740,3 +740,7 @@ Tương tự fix lỗi khi click vào dashboard
 - CKEditor: 
 	Thêm thuộc tính mới về mô tả Item, nội dung này người dùng có thể định dạng chữ...
 	-> Sử dụng ckeditor
+
+- Save:
+	Tiến hành validate thông tin có hợp nệ hay không
+	Tiến hành lưu thông tin(có thêm content)

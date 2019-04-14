@@ -5,6 +5,7 @@ const options = {
     name: { min: 5, max: 20 }
     , ordering: { min: 0, max: 100 }
     , status: { value: 'novalue' }
+    , content: { min: 5, max: 200 }
 };
 
 const isNotEqual = (req) => {
@@ -26,7 +27,10 @@ const validator = (req) => {
         .custom(() => {
             return isNotEqual(req);
         });
+    req.checkBody('content', util.format(notify.ERROR_NAME, options.content.min, options.content.max))
+        .isLength({ min: options.content.min, max: options.content.max });
     errors = req.validationErrors();
+    
     return errors;
 };
 
