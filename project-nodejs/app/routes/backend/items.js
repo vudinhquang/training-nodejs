@@ -17,10 +17,17 @@ const folderView = __path_views + '/pages/items';
 
 // List items
 router.get('(/status/:status)?', async (req, res, next) => {
-	let objWhere = {};
-	let keyword = ParamsHelpers.getParam(req.query, 'keyword', '');
+	let objWhere	  = {};
+	let keyword 	  = ParamsHelpers.getParam(req.query, 'keyword', '');
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
-	let statusFilter = await UtilsHelpers.createFilterStatus(currentStatus);
+	let statusFilter  = await UtilsHelpers.createFilterStatus(currentStatus);
+	let sortField 	  = ParamsHelpers.getParam(req.session, 'sort_field', 'ordering');
+	let sortType 	  = ParamsHelpers.getParam(req.session, 'sort_type', 'asc');
+	let sort		  = {};
+	sort[sortField]   = sortType;
+
+	console.log(sortField + '-' + sortType);
+
 	let pagination = {
 		totalItems: 1,
 		totalItemsPerPage: 5,
@@ -38,7 +45,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 	ItemsModel
 		.find(objWhere)
 		.select('name status ordering created modified')
-		.sort({ ordering: 'asc' })
+		.sort(sort)
 		.skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
 		.limit(pagination.totalItemsPerPage)
 		.then((items) => {
@@ -211,6 +218,14 @@ router.post('/save', (req, res, next) => {
 				});
 		}
 	}
+});
+
+// Sort
+router.get('/sort/:sort_field/:sort_type', (req, res, next) => {
+	req.session.sort_field = ParamsHelpers.getParam(req.params, 'sort_field', 'ordering');
+	req.session.sort_type  = ParamsHelpers.getParam(req.params, 'sort_type', 'asc');
+
+	res.redirect(linkIndex);
 });
 
 module.exports = router;

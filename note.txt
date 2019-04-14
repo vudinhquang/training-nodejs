@@ -722,3 +722,8 @@ Tương tự fix lỗi khi click vào dashboard
 	Site: https://dzone.com/articles/using-momentjs-in-nodejs
 		https://momentjs.com/
 	Xây dựng helper để hiện thời gian theo format
+
+- Sort: Thay đổi thứ tự sắp xếp trên view
+	Tại 1 thời điểm thì chỉ sắp xếp theo 1 cột hoặc là name hoặc là ordering
+	Có thể thực hiện bằng cách đưa lên URL: /colname=name&sorttype=desc
+	...
