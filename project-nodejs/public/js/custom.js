@@ -1,13 +1,9 @@
-CKEDITOR.replace('content_ckeditor');
-
 $(document).ready(function () {
     var ckbAll = $(".cbAll");
     var fmAdmin = $("#zt-form");
 
     // CKEDITOR
-    if ($('textarea#content_ck').length) {
-        CKEDITOR.replace('content_ck');
-    }
+    CKEDITOR.replace( 'content_ckeditor' );
 
     //call active menu
     activeMenu();
