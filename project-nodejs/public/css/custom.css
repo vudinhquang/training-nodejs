@@ -46,3 +46,8 @@ img.error-page-img{
 img.error-page-img {
     width: 800px
 }
+
+/* Dinh dang cho phan content su dung ckeditor */
+div#cke_content_ckeditor{
+    margin-bottom: 15px;
+}

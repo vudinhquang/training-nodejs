@@ -736,3 +736,7 @@ Tương tự fix lỗi khi click vào dashboard
 
 - Style: Thêm style để định dạng cho các cột khi tạo các phần sort
 	sortHelper(collection, 'Name', 'name', sortField, sortType, 'width:20%')
+
+- CKEditor: 
+	Thêm thuộc tính mới về mô tả Item, nội dung này người dùng có thể định dạng chữ...
+	-> Sử dụng ckeditor
