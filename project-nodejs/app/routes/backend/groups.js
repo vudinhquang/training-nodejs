@@ -20,7 +20,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 	let objWhere	  = {};
 	let keyword 	  = ParamsHelpers.getParam(req.query, 'keyword', '');
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
-	let statusFilter  = await UtilsHelpers.createFilterStatus(currentStatus);
+	let statusFilter  = await UtilsHelpers.createFilterStatus(currentStatus, 'groups');
 	let sortField 	  = ParamsHelpers.getParam(req.session, 'sort_field', 'ordering');
 	let sortType 	  = ParamsHelpers.getParam(req.session, 'sort_type', 'asc');
 	req.session.destroy();

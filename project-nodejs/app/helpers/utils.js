@@ -1,5 +1,5 @@
-const ItemsModel = require(__path_schemas + '/items');
-let createFilterStatus = async (currentStatus) => {
+let createFilterStatus = async (currentStatus, collection) => {
+	const currentModel = require(__path_schemas + '/' + collection);
 	let statusFilter = [
 		{name: 'All', value: 'all', count: 1, class: 'default'},
 		{name: 'Active', value: 'active', count: 2, class: 'default'},
@@ -11,7 +11,7 @@ let createFilterStatus = async (currentStatus) => {
 		let condition = (item.value !== 'all') ? {status: item.value} : {};
 		
 		if(item.value === currentStatus) statusFilter[index].class = 'success'
-		await ItemsModel.countDocuments(condition).then((countItem) => {
+		await currentModel.countDocuments(condition).then((countItem) => {
 			statusFilter[index].count = countItem;
 		});
     }

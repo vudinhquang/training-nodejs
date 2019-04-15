@@ -749,3 +749,5 @@ Tương tự fix lỗi khi click vào dashboard
 								Xây dựng nhóm chức năng quản lý người dùng
 
 - Group CRUD: Copy và kế thừa từ quản lý Item
+
+- Fix filterStatusHelper: Fix phần thống kê status của Group
