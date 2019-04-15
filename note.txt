@@ -751,3 +751,8 @@ Tương tự fix lỗi khi click vào dashboard
 - Group CRUD: Copy và kế thừa từ quản lý Item
 
 - Fix filterStatusHelper: Fix phần thống kê status của Group
+
+- Save:
+	group_acp: Có giá trị bằng 1 thì có thể truy cập được vào vùng quản trị 0 thì không có quyền truy Cập
+		vùng quản trị
+	Khi hiện thị thông báo lỗi: group_acp -> Group Acp

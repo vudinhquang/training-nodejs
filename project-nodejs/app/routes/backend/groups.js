@@ -190,6 +190,7 @@ router.post('/save', (req, res, next) => {
 				, ordering: parseInt(item.ordering)
 				, status: item.status
 				, content: item.content
+				, group_acp: item.group_acp
 				, modified:{
 					user_id: 0
 					, user_name: 'admin'

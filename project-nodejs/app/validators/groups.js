@@ -27,10 +27,11 @@ const validator = (req) => {
         .custom(() => {
             return isNotEqual(req);
         });
+    req.checkBody('group_acp', notify.ERROR_GROUPACP)
+        .notEmpty();
     req.checkBody('content', util.format(notify.ERROR_NAME, options.content.min, options.content.max))
         .isLength({ min: options.content.min, max: options.content.max });
     errors = req.validationErrors();
-    
     return errors;
 };
 

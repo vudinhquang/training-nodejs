@@ -33,10 +33,21 @@
 									</option>
 								</select>
 							</div>
-							<label>Content</label>
-							<textarea name="content" id="content_ckeditor" rows="10" cols="80">
-								<%= item.content %>
-							</textarea>
+
+
+							<div class="form-group">
+								<label>Group ACP</label><br />
+								<label><input type="radio" name="group_acp" value="yes" <% if(item.group_acp === 'yes'){%> checked="checked" <%}%>> Yes</label>
+								<label><input type="radio" name="group_acp" value="no" <% if(item.group_acp === 'no'){%> checked="checked" <%}%>> No</label>
+							</div>
+
+
+							<div class="form-group">
+								<label>Content</label>
+								<textarea class="form-control" name="content" rows="2"  id="content_ckeditor" >
+									<%= item.content %>
+								</textarea>
+							</div>
 							<input class="form-control" name="id" value="<%= item.id %>" type="hidden">
 							<button type="submit" class="btn btn-primary">Submit </button>
 							<a type="button" href="<%= linkPrefix %>"

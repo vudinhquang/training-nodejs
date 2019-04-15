@@ -9,4 +9,5 @@ module.exports = {
     , ERROR_NAME: 'Chiều dài từ %d đến %d ký tự'
     , ERROR_ORDERING: 'Phải là số nguyên lớn hơn %d và bé hơn %d'
     , ERROR_STATUS: 'Phải chọn giá trị status'
+    , ERROR_GROUPACP: 'Phải chọn giá trị status'
 }
