@@ -687,7 +687,7 @@ Error: Failed to lookup view "pages/publish/index" in views directory "/app/view
 Tương tự fix lỗi khi click vào dashboard
 
 ----------------------------------------------------------------------------------------------------
-										Version 2
+									Xây dựng trang quản lý Items nâng cao
 
 - Add: Thêm mới thuộc tính created
 	Tiếp tục thêm vào phần quản lý item phần tạo ra vào lúc nào và tạo ra bởi ai
@@ -744,3 +744,8 @@ Tương tự fix lỗi khi click vào dashboard
 - Save:
 	Tiến hành validate thông tin có hợp nệ hay không
 	Tiến hành lưu thông tin(có thêm content)
+
+----------------------------------------------------------------------------------------------------
+								Xây dựng nhóm chức năng quản lý người dùng
+
+- Group CRUD: Copy và kế thừa từ quản lý Item
