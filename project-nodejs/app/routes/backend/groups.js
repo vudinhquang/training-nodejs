@@ -43,7 +43,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 
 	GroupsModel
 		.find(objWhere)
-		.select('name status ordering created modified')
+		.select('name status ordering created modified group_acp')
 		.sort(sort)
 		.skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
 		.limit(pagination.totalItemsPerPage)
