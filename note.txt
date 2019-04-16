@@ -759,3 +759,5 @@ Tương tự fix lỗi khi click vào dashboard
 
 - Show Group ACP: Trên trang Group Managment thì hiện thị lên group nào là nhóm quản trị, nhóm nào không
 	phải nhóm quản trị
+
+- Change Group ACP: Thực hiện chức năng thay đổi Group ACP

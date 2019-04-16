@@ -91,7 +91,7 @@
 										<input type="number" value="<%= item.ordering %>" class="text-center ordering ">
 									</td>
 									<td>
-										<%- groupACPHelper(item.group_acp) %>
+										<%- groupACPHelper(collection, item.group_acp, item.id) %>
 									</td>
 									<td><%- sourceByHelper(item.created.user_name, item.created.time) %></td>
 									<td><%- sourceByHelper(item.modified.user_name, item.modified.time) %></td>

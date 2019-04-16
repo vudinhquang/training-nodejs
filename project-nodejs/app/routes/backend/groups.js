@@ -80,6 +80,25 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 	});
 });
 
+// Change Group ACP
+router.get('/change-group-acp/:id/:group_acp', (req, res, next) => {
+	let currentGroupACP = ParamsHelpers.getParam(req.params, 'group_acp', 'yes');
+	let id 				= ParamsHelpers.getParam(req.params, 'id', '');
+	let groupACP 		= (currentGroupACP === 'yes') ? 'no' : 'yes';
+	let data 			= {
+							group_acp: groupACP
+							, modified: {
+								user_id: 0
+								, user_name: 'admin'
+								, time: Date.now()
+							}
+						};
+	GroupsModel.updateOne({ _id: id }, data, (err, result) => {
+		req.flash('success', notify.CHANGE_GROUP_ACP_SUCCSESS, false);
+		res.redirect(linkIndex);
+	});
+});
+
 // Change status - Multi
 router.post('/change-status/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
