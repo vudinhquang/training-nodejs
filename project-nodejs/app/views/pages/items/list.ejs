@@ -24,7 +24,7 @@
 				<div class="row">
 					<div class="status-list col-sm-6 pl0">
 						<!-- Filter Status -->
-						<%- filterStatusHelper(collection, statusFilter, keyword) %>
+						<%- filterStatusHelper(linkPrefix, statusFilter, keyword) %>
 					</div>
 					<div class="col-sm-6">
 						<form action="<%= linkPrefix %>status/<%= currentStatus %>" method="GET">
@@ -53,7 +53,7 @@
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<form role="form" class="form-inline zt-form" id="zt-form" action="" method="post">
-					<%- actionHelper(collection) %>
+					<%- actionHelper(linkPrefix) %>
 					<div class="table-responsive">
 						<table class="table table-striped">
 							<thead>
@@ -62,9 +62,9 @@
 										<input type="checkbox" class="cbAll" />
 									</th>
 									<th>#</th>
-									<%- sortHelper(collection, 'Name', 'name', sortField, sortType) %>
-									<%- sortHelper(collection, 'Status', 'status', sortField, sortType) %>
-									<%- sortHelper(collection, 'Ordering', 'ordering', sortField, sortType) %>
+									<%- sortHelper(linkPrefix, 'Name', 'name', sortField, sortType) %>
+									<%- sortHelper(linkPrefix, 'Status', 'status', sortField, sortType) %>
+									<%- sortHelper(linkPrefix, 'Ordering', 'ordering', sortField, sortType) %>
 									<th>Created</th>
 									<th>Modified</th>
 									<th>Action</th>
@@ -83,7 +83,7 @@
 										<%= item.name %>
 									</td>
 									<td>
-										<%- statusHelper(collection, item.status, item.id) %>
+										<%- statusHelper(linkPrefix, item.status, item.id) %>
 									</td>
 									<td>
 										<input type="number" value="<%= item.ordering %>" class="text-center ordering ">
@@ -106,6 +106,6 @@
 		</div>
 	</div>
 	<div class="col-lg-12">
-		<%- paginationHelper(pagination,collection , currentStatus, keyword) %>
+		<%- paginationHelper(pagination,linkPrefix , currentStatus, keyword) %>
 	</div>
 </div>

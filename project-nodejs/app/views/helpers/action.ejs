@@ -1,7 +1,7 @@
 <% 
-    actionHelper = (collection) => { 
+    actionHelper = (linkPrefix) => { 
         let xhtmlAction = '';
-        let linkAddNew = systemConfig.prefixAdmin + '/' + collection + '/form';
+        let linkAddNew = linkPrefix + 'form';
         let actions = [
               {value: '', name: 'Bulk Action'}
             , {value: 'change-status/active', name: 'Active'}
@@ -10,7 +10,7 @@
             , {value: 'delete', name: 'Delete'}
         ];
         actions.forEach((action) => {
-            let link = systemConfig.prefixAdmin + '/' + collection + '/' + action.value;
+            let link = linkPrefix + action.value;
             xhtmlAction += `<option value="${link}">${action.name}</option>`;
         });
 

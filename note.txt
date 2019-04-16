@@ -761,3 +761,8 @@ Tương tự fix lỗi khi click vào dashboard
 	phải nhóm quản trị
 
 - Change Group ACP: Thực hiện chức năng thay đổi Group ACP
+
+- Fix linkPrefix: 
+	Viết gọn lại code bằng cách 
+		Trên view đã có sẵn const linkPrefix = systemConfig.prefixAdmin + '/' + collection + '/' -> truyền
+		vào làm tham số trong các helper

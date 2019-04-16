@@ -1,9 +1,9 @@
 <% 
-    sortHelper = (collection, name, sortField, sortFieldCurrent, sortTypeCurrent, options) => { 
+    sortHelper = (linkPrefix, name, sortField, sortFieldCurrent, sortTypeCurrent, options) => { 
         let xhtmlResult = '';
         let style       = (options !==undefined && options) ? `style="${options}"` : '';
         let order       = (sortTypeCurrent === 'asc') ? 'desc' : 'asc';
-        let link        = systemConfig.prefixAdmin + '/' + collection + '/sort/' + sortField + '/' + order;  
+        let link        = linkPrefix + 'sort/' + sortField + '/' + order;  
         let icon        =  '<i class="fa fa-fw fa-sort"></i>';
         if(sortField === sortFieldCurrent){
             icon =`<i class="fa fa-fw fa-sort-${sortTypeCurrent}"></i>`;
