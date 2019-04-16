@@ -11,8 +11,8 @@ const ParamsHelpers = require(__path_helpers + '/params');
 
 const linkIndex = '/' + systemConfig.prefixAdmin + '/items';
 const pageTitleIndex = 'Item Managment';
-const pageTitleAdd = 'Item Managment - Add';
-const pageTitleEdit = 'Item Managment - Edit';
+const pageTitleAdd   = pageTitleIndex + ' - Add';
+const pageTitleEdit  = pageTitleIndex + ' - Edit';
 const folderView = __path_views + '/pages/items';
 
 // List items
@@ -49,7 +49,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 		.limit(pagination.totalItemsPerPage)
 		.then((items) => {
 			res.render(folderView + '/list', {
-				pageTitle: 'Item List Page',
+				pageTitle: pageTitleIndex,
 				items,
 				statusFilter,
 				pagination,

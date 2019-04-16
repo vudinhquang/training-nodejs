@@ -748,6 +748,7 @@ Tương tự fix lỗi khi click vào dashboard
 ----------------------------------------------------------------------------------------------------
 								Xây dựng nhóm chức năng quản lý người dùng
 
+-----Xây dựng chức năng quyền truy cập của nhóm người dùng:
 - Group CRUD: Copy và kế thừa từ quản lý Item
 
 - Fix filterStatusHelper: Fix phần thống kê status của Group
@@ -766,3 +767,6 @@ Tương tự fix lỗi khi click vào dashboard
 	Viết gọn lại code bằng cách 
 		Trên view đã có sẵn const linkPrefix = systemConfig.prefixAdmin + '/' + collection + '/' -> truyền
 		vào làm tham số trong các helper
+
+-----Xây dựng trang quản lý người dùng:
+- User CRUD: Tạo phần CRUD cho phần user

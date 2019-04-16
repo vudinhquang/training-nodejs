@@ -4,4 +4,5 @@ module.exports = {
     , database : 'training_nodejs'
     , modelItem: 'Item'
     , modelGroup: 'Group'
+    , modelUser: 'User'
 }
