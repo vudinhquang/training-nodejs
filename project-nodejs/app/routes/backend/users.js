@@ -5,6 +5,7 @@ const util = require('util');
 const systemConfig = require(__path_configs + '/system');
 const notify = require(__path_configs + '/notify');
 const UsersModel = require(__path_schemas + '/users');
+const GroupsModel = require(__path_schemas + '/groups');
 const ValidateUsers = require(__path_validators + '/users');
 const UtilsHelpers = require(__path_helpers + '/utils');
 const ParamsHelpers = require(__path_helpers + '/params');
@@ -147,7 +148,7 @@ router.post('/delete', (req, res, next) => {
 });
 
 // Form
-router.get('/form(/:id)?', (req, res, next) => {
+router.get('/form(/:id)?', async (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
 	let item = {
 		name: '',
@@ -155,18 +156,25 @@ router.get('/form(/:id)?', (req, res, next) => {
 		status: 'novalue'
 	};
 	let errors = null;
+	let groupsItems = [];
+	await GroupsModel.find({},{_id:1, name:1}, (err, items) => {
+		groupsItems = items;
+		groupsItems.unshift({_id: '', name: 'Choose Group'})
+	});
 	if (id === '') {	//Add
 		res.render(folderView + '/form', {
 			pageTitle: pageTitleAdd,
 			item,
-			errors
+			errors,
+			groupsItems
 		});
 	} else {	//Edit
 		UsersModel.findById(id, (err, item) => {
 			res.render(folderView + '/form', {
 				pageTitle: pageTitleEdit,
 				item,
-				errors
+				errors,
+				groupsItems
 			});
 		});
 	}

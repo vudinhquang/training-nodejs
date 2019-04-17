@@ -1,3 +1,4 @@
+<% include ../../helpers/selectbox %>
 <%
 	const collection = 'users';
 	const linkPrefix = systemConfig.prefixAdmin + '/' + collection;
@@ -32,6 +33,10 @@
 										<%= (item.status === 'inactive') ? 'selected="selected"' : '' %>>Inactive
 									</option>
 								</select>
+							</div>
+							<div class="form-group">
+								<label>Group</label>
+								<%- selectboxHelper('group', groupsItems) %>
 							</div>
 							<div class="form-group">
 								<label>Content</label>

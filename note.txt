@@ -770,3 +770,9 @@ Tương tự fix lỗi khi click vào dashboard
 
 -----Xây dựng trang quản lý người dùng:
 - User CRUD: Tạo phần CRUD cho phần user
+
+- get groupsItems, selectboxGroupsItems: Trong trường hợp này thì mình cũng lưu dư thừa dữ liệu
+	group{id, name} -> do đó ở phần hiển thị user thì mình có thể hiển thị lên luôn tên group mà không cần join
+	Khi thêm user mới thì có SelectBox để chọn user đó thuộc về group nào
+	selectboxGroupsItems: Xây dựng 1 helper để tạo ra SelectBox trên view
+	groupsItems.unshift(): Bổ sung thêm 1 phần tử mới vào đầu mảng
