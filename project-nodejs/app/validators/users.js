@@ -5,11 +5,12 @@ const options = {
     name: { min: 5, max: 20 }
     , ordering: { min: 0, max: 100 }
     , status: { value: 'novalue' }
+    , group: { value: 'novalue' }
     , content: { min: 5, max: 200 }
 };
 
-const isNotEqual = (req) => {
-    if (req.body.status !== 'novalue') {
+const isNotEqual = (req, ele) => {
+    if (req.body[ele] !== 'novalue') {
         return true;
     } else {
         return false;
@@ -25,8 +26,12 @@ const validator = (req) => {
     // req.checkBody('status', 'Phải chọn status').isNotEqual('novalue');
     req.checkBody('status', notify.ERROR_STATUS)
         .custom(() => {
-            return isNotEqual(req);
+            return isNotEqual(req), 'status';
         });
+    req.checkBody('group', notify.ERROR_GROUP)
+        .custom(() => {
+        return isNotEqual(req, 'group');
+    });
     req.checkBody('content', util.format(notify.ERROR_NAME, options.content.min, options.content.max))
         .isLength({ min: options.content.min, max: options.content.max });
     errors = req.validationErrors();

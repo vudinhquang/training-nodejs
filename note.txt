@@ -776,3 +776,8 @@ Tương tự fix lỗi khi click vào dashboard
 	Khi thêm user mới thì có SelectBox để chọn user đó thuộc về group nào
 	selectboxGroupsItems: Xây dựng 1 helper để tạo ra SelectBox trên view
 	groupsItems.unshift(): Bổ sung thêm 1 phần tử mới vào đầu mảng
+
+Group - Validate:
+	Ctrl + K + 0: đóng lại
+	Ctrl + K + J: mở hết
+	Khi mà submit validate chưa thành công thì giá trị group đã được chọn phải được giữ lại
