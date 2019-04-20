@@ -4,13 +4,14 @@ const util   = require('util');
 const options = {
     name: { min: 5, max: 20 }
     , ordering: { min: 0, max: 100 }
-    , status: { value: 'novalue' }
-    , group: { value: 'novalue' }
+    // , status: { value: 'novalue' }
+    // , group_id: { value: 'novalue' }
+    , selectEle: { value: 'novalue' }
     , content: { min: 5, max: 200 }
 };
 
 const isNotEqual = (req, ele) => {
-    if (req.body[ele] !== 'novalue') {
+    if (req.body[ele] !== options.selectEle.value) {
         return true;
     } else {
         return false;
@@ -28,9 +29,9 @@ const validator = (req) => {
         .custom(() => {
             return isNotEqual(req), 'status';
         });
-    req.checkBody('group', notify.ERROR_GROUP)
+    req.checkBody('group_id', notify.ERROR_GROUP)
         .custom(() => {
-        return isNotEqual(req, 'group');
+        return isNotEqual(req, 'group_id');
     });
     req.checkBody('content', util.format(notify.ERROR_NAME, options.content.min, options.content.max))
         .isLength({ min: options.content.min, max: options.content.max });

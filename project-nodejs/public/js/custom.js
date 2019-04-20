@@ -117,4 +117,8 @@ $(document).ready(function () {
             $(this).parent().css({'display':'none'});
         })    
     }
+
+    $('select[name="group_id"]').change(function(){
+        $('input[name="group_name"]').val($(this).find('option:selected').text()); //TH chọn Choose Group: validate đã kiểm tra
+    });
 });

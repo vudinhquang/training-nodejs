@@ -224,8 +224,12 @@ router.post('/save', async (req, res, next) => {
 		} else { // no errors		
 			item.created = {
 				user_id: 0
-				, user_name: 'admin'
+				, user_name: 'admin'	
 				, time: Date.now()
+			};
+			item.group = {
+				id: item.group_id,
+				name: item.group_name
 			};
 			new UsersModel(item)
 				.save((err) => {

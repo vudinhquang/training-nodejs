@@ -781,3 +781,5 @@ Group - Validate:
 	Ctrl + K + 0: đóng lại
 	Ctrl + K + J: mở hết
 	Khi mà submit validate chưa thành công thì giá trị group đã được chọn phải được giữ lại
+
+ Save: Lưu thông tin của người dùng khi mà biết thông tin group của người dùng đó
