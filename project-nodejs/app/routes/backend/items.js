@@ -64,7 +64,6 @@ router.post('/change-status/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
 
 	ItemsModel.changeStatus(req.body.cid, currentStatus, {'task': 'update-multi'}).then((result) => {
-		console.log(result);
 		req.flash('success', util.format(notify.CHANGE_STATUS_MULTI_SUCCSESS, result.n), false);
 		res.redirect(linkIndex);
 	});
@@ -74,32 +73,11 @@ router.post('/change-status/:status', (req, res, next) => {
 router.post('/change-ordering', function (req, res, next) {
 	let cids = req.body.cid;
 	let orderings = req.body.ordering;
-
-	if (Array.isArray(cids)) { // Change ordering - Multi
-		cids.forEach((item, index) => {
-			let data = {
-				ordering: parseInt(orderings[index])
-				, modified:{
-					user_id: 0
-					, user_name: 'admin'
-					, time: Date.now()
-				}
-			};
-			ItemsModel.updateOne({ _id: item }, data, (err) => { });
-		})
-	} else { // Change ordering - One
-		let data = {
-			ordering: parseInt(orderings)
-			, modified:{
-				user_id: 0
-				, user_name: 'admin'
-				, time: Date.now()
-			}
-		};
-		ItemsModel.updateOne({ _id: cids }, data, (err) => { });
-	}
-	req.flash('success', notify.CHANGE_ORDERING_SUCCESS, false);
-	res.redirect(linkIndex);
+	
+	ItemsModel.changeOrdering(cids, orderings).then((result) => {
+		req.flash('success', notify.CHANGE_ORDERING_SUCCESS, false);
+		res.redirect(linkIndex);
+	});
 });
 
 // Delete item
