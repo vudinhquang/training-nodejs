@@ -777,11 +777,19 @@ Tương tự fix lỗi khi click vào dashboard
 	selectboxGroupsItems: Xây dựng 1 helper để tạo ra SelectBox trên view
 	groupsItems.unshift(): Bổ sung thêm 1 phần tử mới vào đầu mảng
 
-Group - Validate:
+- Group - Validate:
 	Ctrl + K + 0: đóng lại
 	Ctrl + K + J: mở hết
 	Khi mà submit validate chưa thành công thì giá trị group đã được chọn phải được giữ lại
 
- Save: Lưu thông tin của người dùng khi mà biết thông tin group của người dùng đó
+ - Save: Lưu thông tin của người dùng khi mà biết thông tin group của người dùng đó
 
- Edit: Edit thông tin user
+ - Edit: Edit thông tin user
+
+ - selectboxGroup: 
+ 	Hiển thị thêm thông tin Group của user
+	Lọc danh sách user theo group:
+		Có nhiều cách để thực hiện: Giống như phần filter theo status, search, submitform...
+		Ở đây thì mình dùng Session
+	Session: Khi chọn 1 phần tử nào đó -> gửi đến 1 url nào đó, thực hiện lưu Session
+	Khi chọn 1 nhóm nào đó mà không có phần tử nào thì hiện thị câu thông báo cho người sử dụng

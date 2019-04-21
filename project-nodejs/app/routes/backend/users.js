@@ -24,6 +24,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 	let statusFilter  = await UtilsHelpers.createFilterStatus(currentStatus, 'users');
 	let sortField 	  = ParamsHelpers.getParam(req.session, 'sort_field', 'ordering');
 	let sortType 	  = ParamsHelpers.getParam(req.session, 'sort_type', 'asc');
+	let groupID 	  = ParamsHelpers.getParam(req.session, 'group_id', 'allvalue');
 	req.session.destroy();
 	let sort		  = {};
 	sort[sortField]   = sortType;
@@ -35,6 +36,11 @@ router.get('(/status/:status)?', async (req, res, next) => {
 		pageRanges: 3
 	};
 
+	let groupsItems = [];
+	groupsItems = await GroupsModel.find({},{_id:1, name:1});
+	groupsItems.unshift({_id: 'allvalue', name: 'All Group'});
+
+	if (groupID !== 'allvalue') objWhere['group.id'] = groupID;
 	if (currentStatus !== 'all') objWhere.status = currentStatus;
 	if (keyword !== '') objWhere.name = new RegExp(keyword, 'i');
 
@@ -44,7 +50,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 
 	UsersModel
 		.find(objWhere)
-		.select('name status ordering created modified')
+		.select('name status ordering created modified group.name')
 		.sort(sort)
 		.skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
 		.limit(pagination.totalItemsPerPage)
@@ -57,7 +63,9 @@ router.get('(/status/:status)?', async (req, res, next) => {
 				currentStatus,
 				keyword,
 				sortField,
-				sortType
+				sortType,
+				groupsItems,
+				groupID
 			});
 		});
 });
@@ -254,6 +262,13 @@ router.post('/save', async (req, res, next) => {
 router.get('/sort/:sort_field/:sort_type', (req, res, next) => {
 	req.session.sort_field = ParamsHelpers.getParam(req.params, 'sort_field', 'ordering');
 	req.session.sort_type  = ParamsHelpers.getParam(req.params, 'sort_type', 'asc');
+
+	res.redirect(linkIndex);
+});
+
+// Filter Group
+router.get('/filter-group/:group_id', (req, res, next) => {
+	req.session.group_id = ParamsHelpers.getParam(req.params, 'group_id', 'allvalue');
 
 	res.redirect(linkIndex);
 });

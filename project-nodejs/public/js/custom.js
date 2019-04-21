@@ -6,7 +6,7 @@ $(document).ready(function () {
     activeMenu();
 
     //check selectbox
-    change_form_action("#zt-form .slbAction", "#zt-form","#btn-action");
+    change_form_action("#zt-form .slbAction", "#zt-form", "#btn-action");
 
     //check all
     ckbAll.click(function () {
@@ -24,7 +24,7 @@ $(document).ready(function () {
     $("input[name=cid]").click(function () {
         if ($(this).is(':checked')) {
             $(this).parents("tr").find('.ordering').attr("name", "ordering");
-        }else{
+        } else {
             $(this).parents("tr").find('.ordering').removeAttr("name");
         }
     });
@@ -66,8 +66,8 @@ $(document).ready(function () {
         $(slb_selector).on("change", function () {
             optValue = $(this).val();
 
-            
-            if(optValue !== "") {
+
+            if (optValue !== "") {
                 $(id_btn_action).removeAttr('disabled');
             } else {
                 $(id_btn_action).attr('disabled', 'disabled');
@@ -77,9 +77,9 @@ $(document).ready(function () {
 
         $(form_selector + " .btnAction").on("click", function () {
             isDelete = pattenCheckDelete.test($(slb_selector).val());
-            if(isDelete){
+            if (isDelete) {
                 var confirmDelete = confirm('Are you really want to delete?');
-                if(confirmDelete === false){
+                if (confirmDelete === false) {
                     return;
                 }
             }
@@ -112,13 +112,20 @@ $(document).ready(function () {
     }
 
     // hidden parent (hidden message notify)
-    function hiddenNotify(close_btn_selector){
-        $(close_btn_selector).on('click', function(){
-            $(this).parent().css({'display':'none'});
-        })    
+    function hiddenNotify(close_btn_selector) {
+        $(close_btn_selector).on('click', function () {
+            $(this).parent().css({ 'display': 'none' });
+        })
     }
 
-    $('select[name="group_id"]').change(function(){
+    $('select[name="group_id"]').change(function () {
         $('input[name="group_name"]').val($(this).find('option:selected').text()); //TH chọn Choose Group: validate đã kiểm tra
     });
+
+    $('select[name="filter_group"]').change(function () {
+        var path = window.location.pathname.split('/');
+        var linkRedirect = '/' + path[1] + '/' + path[2] + '/filter-group/' + $(this).val();
+        window.location.pathname = linkRedirect;
+    });
+
 });

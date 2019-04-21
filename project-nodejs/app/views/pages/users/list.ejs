@@ -4,6 +4,7 @@
 <% include ../../helpers/pagination %>
 <% include ../../helpers/source-by %>
 <% include ../../helpers/sort %>
+<% include ../../helpers/selectbox %>
 <%
 	const collection = 'users';
 	const linkPrefix = systemConfig.prefixAdmin + '/' + collection + '/';
@@ -22,11 +23,16 @@
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="status-list col-sm-6 pl0">
+					<div class="status-list col-sm-5 pl0">
 						<!-- Filter Status -->
 						<%- filterStatusHelper(linkPrefix, statusFilter, keyword) %>
 					</div>
-					<div class="col-sm-6">
+
+					<div class="col-sm-2">
+						<%- selectboxHelper('filter_group', groupsItems, groupID) %>
+					</div>
+
+					<div class="col-sm-5">
 						<form action="<%= linkPrefix %>status/<%= currentStatus %>" method="GET">
 							<div class="input-group">
 								<input type="text" class="form-control" name="keyword" placeholder="Search for..."
@@ -65,39 +71,47 @@
 									<%- sortHelper(linkPrefix, 'Name', 'name', sortField, sortType) %>
 									<%- sortHelper(linkPrefix, 'Status', 'status', sortField, sortType) %>
 									<%- sortHelper(linkPrefix, 'Ordering', 'ordering', sortField, sortType) %>
+									<%- sortHelper(linkPrefix, 'Group', 'group.name', sortField, sortType) %>
 									<th>Created</th>
 									<th>Modified</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<%	items.forEach((item, index) => { %>
-								<tr>
-									<td>
-										<input type="checkbox" name="cid" value="<%= item.id %>" />
-									</td>
-									<td>
-										<%= index + 1 %>
-									</td>
-									<td>
-										<%= item.name %>
-									</td>
-									<td>
-										<%- statusHelper(linkPrefix, item.status, item.id) %>
-									</td>
-									<td>
-										<input type="number" value="<%= item.ordering %>" class="text-center ordering ">
-									</td>
-									<td><%- sourceByHelper(item.created.user_name, item.created.time) %></td>
-									<td><%- sourceByHelper(item.modified.user_name, item.modified.time) %></td>
-									<td>
-										<a href="<%= linkPrefix %>form/<%= item.id %>" type="button"
-											class="btn btn-warning btn-sm">Edit</a>
-										<a href="<%= linkPrefix %>delete/<%= item.id %>" type="button"
-											class="btn btn-danger btn-sm btn-delete">Delete</a>
-									</td>
-								</tr>
-								<%	}) %>
+								<% if(items.length > 0) { %>
+									<%	items.forEach((item, index) => { %>
+									<tr>
+										<td>
+											<input type="checkbox" name="cid" value="<%= item.id %>" />
+										</td>
+										<td>
+											<%= index + 1 %>
+										</td>
+										<td>
+											<%= item.name %>
+										</td>
+										<td>
+											<%- statusHelper(linkPrefix, item.status, item.id) %>
+										</td>
+										<td>
+											<input type="number" value="<%= item.ordering %>" class="text-center ordering ">
+										</td>
+										<td>
+											<%= item.group.name %>
+										</td>
+										<td><%- sourceByHelper(item.created.user_name, item.created.time) %></td>
+										<td><%- sourceByHelper(item.modified.user_name, item.modified.time) %></td>
+										<td>
+											<a href="<%= linkPrefix %>form/<%= item.id %>" type="button"
+												class="btn btn-warning btn-sm">Edit</a>
+											<a href="<%= linkPrefix %>delete/<%= item.id %>" type="button"
+												class="btn btn-danger btn-sm btn-delete">Delete</a>
+										</td>
+									</tr>
+									<%	}) %>
+								<% } else{ %>
+									<tr ><td colspan="9"><h3>Không có dữ liệu</h3></td></tr>
+								<% } %>
 							</tbody>
 						</table>
 					</div>

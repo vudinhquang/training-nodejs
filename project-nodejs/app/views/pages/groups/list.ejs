@@ -73,36 +73,40 @@
 								</tr>
 							</thead>
 							<tbody>
-								<%	items.forEach((item, index) => { %>
-								<tr>
-									<td>
-										<input type="checkbox" name="cid" value="<%= item.id %>" />
-									</td>
-									<td>
-										<%= index + 1 %>
-									</td>
-									<td>
-										<%= item.name %>
-									</td>
-									<td>
-										<%- statusHelper(linkPrefix, item.status, item.id) %>
-									</td>
-									<td>
-										<input type="number" value="<%= item.ordering %>" class="text-center ordering ">
-									</td>
-									<td>
-										<%- groupACPHelper(linkPrefix, item.group_acp, item.id) %>
-									</td>
-									<td><%- sourceByHelper(item.created.user_name, item.created.time) %></td>
-									<td><%- sourceByHelper(item.modified.user_name, item.modified.time) %></td>
-									<td>
-										<a href="<%= linkPrefix %>form/<%= item.id %>" type="button"
-											class="btn btn-warning btn-sm">Edit</a>
-										<a href="<%= linkPrefix %>delete/<%= item.id %>" type="button"
-											class="btn btn-danger btn-sm btn-delete">Delete</a>
-									</td>
-								</tr>
-								<%	}) %>
+								<% if(items.length > 0) { %>
+									<%	items.forEach((item, index) => { %>
+									<tr>
+										<td>
+											<input type="checkbox" name="cid" value="<%= item.id %>" />
+										</td>
+										<td>
+											<%= index + 1 %>
+										</td>
+										<td>
+											<%= item.name %>
+										</td>
+										<td>
+											<%- statusHelper(linkPrefix, item.status, item.id) %>
+										</td>
+										<td>
+											<input type="number" value="<%= item.ordering %>" class="text-center ordering ">
+										</td>
+										<td>
+											<%- groupACPHelper(linkPrefix, item.group_acp, item.id) %>
+										</td>
+										<td><%- sourceByHelper(item.created.user_name, item.created.time) %></td>
+										<td><%- sourceByHelper(item.modified.user_name, item.modified.time) %></td>
+										<td>
+											<a href="<%= linkPrefix %>form/<%= item.id %>" type="button"
+												class="btn btn-warning btn-sm">Edit</a>
+											<a href="<%= linkPrefix %>delete/<%= item.id %>" type="button"
+												class="btn btn-danger btn-sm btn-delete">Delete</a>
+										</td>
+									</tr>
+									<%	}) %>
+								<% } else { %>
+									<tr ><td colspan="9"><h3>Không có dữ liệu</h3></td></tr>
+								<% } %>	
 							</tbody>
 						</table>
 					</div>
