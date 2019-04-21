@@ -140,7 +140,7 @@ router.get('/delete/:id', (req, res, next) => {
 
 // Delete - Multi
 router.post('/delete', (req, res, next) => {
-	ItemsModel.remove({ _id: { $in: req.body.cid } }, (err, result) => {
+	ItemsModel.deleteMany({ _id: { $in: req.body.cid } }, (err, result) => {
 		req.flash('success', util.format(notify.DELETE_MULTI_SUCCESS, result.n), false);
 		res.redirect(linkIndex);
 	});
