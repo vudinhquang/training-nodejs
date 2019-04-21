@@ -83,7 +83,7 @@ router.post('/change-ordering', function (req, res, next) {
 // Delete item
 router.get('/delete/:id', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
-	ItemsModel.deleteOne({ _id: id }, (err) => {
+	ItemsModel.deleteItem(id, {'task': 'delete-one'}).then((result) => {
 		req.flash('success', notify.DELETE_SUCCESS, false);
 		res.redirect(linkIndex);
 	});
@@ -91,7 +91,7 @@ router.get('/delete/:id', (req, res, next) => {
 
 // Delete - Multi
 router.post('/delete', (req, res, next) => {
-	ItemsModel.deleteMany({ _id: { $in: req.body.cid } }, (err, result) => {
+	ItemsModel.deleteItem(req.body.cid, {'task': 'delete-multi'}).then((result) => {
 		req.flash('success', util.format(notify.DELETE_MULTI_SUCCESS, result.n), false);
 		res.redirect(linkIndex);
 	});
@@ -113,7 +113,7 @@ router.get('/form(/:id)?', (req, res, next) => {
 			errors
 		});
 	} else {	//Edit
-		ItemsModel.findById(id, (err, item) => {
+		ItemsModel.getItem(id).then((item) => {
 			res.render(folderView + '/form', {
 				pageTitle: pageTitleEdit,
 				item,

@@ -807,3 +807,7 @@ Tương tự fix lỗi khi click vào dashboard
 - changeOrdering: 
 	Khi vòng for chạy xong để thay đổi ordering của các phần tử xong thì nó return lại 1 promise
 	keyword: promise resolve reject return 
+
+- delete & get:
+	Xóa 1 hoặc nhiều phần tử
+	Lấy thông tin phần tử hiện lên trên Form khi thực hiện Edit

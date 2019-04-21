@@ -15,8 +15,8 @@ module.exports = {
             .limit(params.pagination.totalItemsPerPage);
     }
 
-    , getItem: () => {
-        
+    , getItem: (id, options = {}) => {
+        return ItemsModel.findById(id);
     }
 
     , countItems: (params, options = null) => {
@@ -62,6 +62,16 @@ module.exports = {
             return Promise.resolve('Succsess');
         } else { // Change ordering - One
             return ItemsModel.updateOne({ _id: cids }, data);
+        }
+    }
+
+    , deleteItem: (id, options = {}) => {
+        if(options.task === 'delete-one'){
+            return ItemsModel.deleteOne({ _id: id });
+        }
+
+        if(options.task === 'delete-multi'){
+            return ItemsModel.deleteMany({ _id: { $in: id } });
         }
     }
 }
