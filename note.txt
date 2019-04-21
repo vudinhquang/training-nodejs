@@ -793,3 +793,10 @@ Tương tự fix lỗi khi click vào dashboard
 		Ở đây thì mình dùng Session
 	Session: Khi chọn 1 phần tử nào đó -> gửi đến 1 url nào đó, thực hiện lưu Session
 	Khi chọn 1 nhóm nào đó mà không có phần tử nào thì hiện thị câu thông báo cho người sử dụng
+
+
+-----Tối ưu mã phần xây dựng Model 
+- listItem:
+	Tối ưu mã nguồn và tách nhỏ các phần xử lý giúp cho việc maintain dễ hơn
+	Tìm cách tách phần Model riêng để cho routes chỉ đóng vai trò như là Controller
+	Liên quan đến lấy dữ liệu -> đặt trong Model

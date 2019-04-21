@@ -24,19 +24,19 @@
 				<div class="row">
 					<div class="status-list col-sm-6 pl0">
 						<!-- Filter Status -->
-						<%- filterStatusHelper(linkPrefix, statusFilter, keyword) %>
+						<%- filterStatusHelper(linkPrefix, statusFilter, params.keyword) %>
 					</div>
 					<div class="col-sm-6">
-						<form action="<%= linkPrefix %>status/<%= currentStatus %>" method="GET">
+						<form action="<%= linkPrefix %>status/<%= params.currentStatus %>" method="GET">
 							<div class="input-group">
 								<input type="text" class="form-control" name="keyword" placeholder="Search for..."
-									value="<%= keyword %>">
+									value="<%= params.keyword %>">
 								<span class="input-group-btn">
 									<button class="btn btn-info" type="submit">Search</button>
 								</span>
 								<span class="input-group-btn">
 									<button class="btn btn-success" type="button"><a
-											href="<%= linkPrefix %>status/<%= currentStatus %>">Clear</a></button>
+											href="<%= linkPrefix %>status/<%= params.currentStatus %>">Clear</a></button>
 								</span>
 							</div>
 						</form>
@@ -62,9 +62,9 @@
 										<input type="checkbox" class="cbAll" />
 									</th>
 									<th>#</th>
-									<%- sortHelper(linkPrefix, 'Name', 'name', sortField, sortType) %>
-									<%- sortHelper(linkPrefix, 'Status', 'status', sortField, sortType) %>
-									<%- sortHelper(linkPrefix, 'Ordering', 'ordering', sortField, sortType) %>
+									<%- sortHelper(linkPrefix, 'Name', 'name', params.sortField, params.sortType) %>
+									<%- sortHelper(linkPrefix, 'Status', 'status', params.sortField, params.sortType) %>
+									<%- sortHelper(linkPrefix, 'Ordering', 'ordering', params.sortField, params.sortType) %>
 									<th>Created</th>
 									<th>Modified</th>
 									<th>Action</th>
@@ -110,6 +110,6 @@
 		</div>
 	</div>
 	<div class="col-lg-12">
-		<%- paginationHelper(pagination,linkPrefix , currentStatus, keyword) %>
+		<%- paginationHelper(params.pagination,linkPrefix , params.currentStatus, params.keyword) %>
 	</div>
 </div>

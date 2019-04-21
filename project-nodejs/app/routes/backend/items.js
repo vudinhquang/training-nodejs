@@ -1,62 +1,49 @@
 var express = require('express');
-var router = express.Router();
-const util = require('util');
+var router  = express.Router();
+const util  = require('util');
 
-const systemConfig = require(__path_configs + '/system');
-const notify = require(__path_configs + '/notify');
-const ItemsModel = require(__path_schemas + '/items');
+const systemConfig  = require(__path_configs + '/system');
+const notify        = require(__path_configs + '/notify');
+const ItemsModel    = require(__path_models + '/items');
 const ValidateItems = require(__path_validators + '/items');
-const UtilsHelpers = require(__path_helpers + '/utils');
+const UtilsHelpers  = require(__path_helpers + '/utils');
 const ParamsHelpers = require(__path_helpers + '/params');
 
-const linkIndex = '/' + systemConfig.prefixAdmin + '/items';
+const linkIndex 	 = '/' + systemConfig.prefixAdmin + '/items';
 const pageTitleIndex = 'Item Managment';
 const pageTitleAdd   = pageTitleIndex + ' - Add';
 const pageTitleEdit  = pageTitleIndex + ' - Edit';
-const folderView = __path_views + '/pages/items';
+const folderView     = __path_views + '/pages/items';
 
 // List items
 router.get('(/status/:status)?', async (req, res, next) => {
-	let objWhere	  = {};
-	let keyword 	  = ParamsHelpers.getParam(req.query, 'keyword', '');
-	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
-	let statusFilter  = await UtilsHelpers.createFilterStatus(currentStatus, 'items');
-	let sortField 	  = ParamsHelpers.getParam(req.session, 'sort_field', 'ordering');
-	let sortType 	  = ParamsHelpers.getParam(req.session, 'sort_type', 'asc');
+	let params		     = {};
+	params.objWhere	     = {};
+	params.keyword 	     = ParamsHelpers.getParam(req.query, 'keyword', '');
+	params.currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
+	params.sortField 	 = ParamsHelpers.getParam(req.session, 'sort_field', 'ordering');
+	params.sortType 	 = ParamsHelpers.getParam(req.session, 'sort_type', 'asc');
 	req.session.destroy();
-	let sort		  = {};
-	sort[sortField]   = sortType;
 
-	let pagination = {
+	params.pagination = {
 		totalItems: 1,
 		totalItemsPerPage: 5,
 		currentPage: parseInt(ParamsHelpers.getParam(req.query, 'page', '1')),
 		pageRanges: 3
 	};
 
-	if (currentStatus !== 'all') objWhere.status = currentStatus;
-	if (keyword !== '') objWhere.name = new RegExp(keyword, 'i');
-
-	await ItemsModel.countDocuments(objWhere).then((data) => {
-		pagination.totalItems = data;
+	let statusFilter  = await UtilsHelpers.createFilterStatus(params.currentStatus, 'items');
+	await ItemsModel.countItems(params).then((data) => {
+		params.pagination.totalItems = data;
 	});
 
-	ItemsModel
-		.find(objWhere)
-		.select('name status ordering created modified')
-		.sort(sort)
-		.skip((pagination.currentPage - 1) * pagination.totalItemsPerPage)
-		.limit(pagination.totalItemsPerPage)
+	ItemsModel.listItems(params)
 		.then((items) => {
 			res.render(folderView + '/list', {
 				pageTitle: pageTitleIndex,
 				items,
 				statusFilter,
-				pagination,
-				currentStatus,
-				keyword,
-				sortField,
-				sortType
+				params
 			});
 		});
 });
