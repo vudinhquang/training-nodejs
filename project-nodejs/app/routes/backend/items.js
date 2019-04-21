@@ -52,16 +52,8 @@ router.get('(/status/:status)?', async (req, res, next) => {
 router.get('/change-status/:id/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
-	let status = (currentStatus === 'active') ? 'inactive' : 'active';
-	let data = {
-		status: status
-		, modified: {
-			user_id: 0
-			, user_name: 'admin'
-			, time: Date.now()
-		}
-	};
-	ItemsModel.updateOne({ _id: id }, data, (err, result) => {
+
+	ItemsModel.changeStatus(id, currentStatus, {'task': 'update-one'}).then((result) => {
 		req.flash('success', notify.CHANGE_STATUS_SUCCSESS, false);
 		res.redirect(linkIndex);
 	});
@@ -70,15 +62,9 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 // Change status - Multi
 router.post('/change-status/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
-	let data = {
-		status: currentStatus
-		, modified:{
-			user_id: 0
-			, user_name: 'admin'
-			, time: Date.now()
-		}
-	};
-	ItemsModel.updateMany({ _id: { $in: req.body.cid } }, data, (err, result) => {
+
+	ItemsModel.changeStatus(req.body.cid, currentStatus, {'task': 'update-multi'}).then((result) => {
+		console.log(result);
 		req.flash('success', util.format(notify.CHANGE_STATUS_MULTI_SUCCSESS, result.n), false);
 		res.redirect(linkIndex);
 	});

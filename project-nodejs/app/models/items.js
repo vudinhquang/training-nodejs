@@ -1,7 +1,7 @@
 const ItemsModel = require(__path_schemas + '/items');
 
 module.exports = {
-    listItems: (params) => {
+    listItems: (params, options = null) => {
         if (params.currentStatus !== 'all') params.objWhere.status = params.currentStatus;
         if (params.keyword !== '') params.objWhere.name = new RegExp(params.keyword, 'i');
         let sort		  = {};
@@ -14,11 +14,33 @@ module.exports = {
             .skip((params.pagination.currentPage - 1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
     }
+
     , getItem: () => {
         
     }
 
-    , countItems: (params) => {
+    , countItems: (params, options = null) => {
         return ItemsModel.countDocuments(params.objWhere);
+    }
+
+    , changeStatus: (id, currentStatus, options = {}) => {
+        let status = (currentStatus === 'active') ? 'inactive' : 'active';
+        let data = {
+            status: status
+            , modified: {
+                user_id: 0
+                , user_name: 'admin'
+                , time: Date.now()
+            }
+        };
+    
+        if(options.task === 'update-one'){
+            return ItemsModel.updateOne({ _id: id }, data);
+        }
+
+        if(options.task === 'update-multi'){
+            data.status = currentStatus;
+            return ItemsModel.updateMany({ _id: { $in: id } }, data);
+        }
     }
 }

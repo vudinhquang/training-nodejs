@@ -800,3 +800,6 @@ Tương tự fix lỗi khi click vào dashboard
 	Tối ưu mã nguồn và tách nhỏ các phần xử lý giúp cho việc maintain dễ hơn
 	Tìm cách tách phần Model riêng để cho routes chỉ đóng vai trò như là Controller
 	Liên quan đến lấy dữ liệu -> đặt trong Model
+
+- changeStatus: Xây dựng phương thức changeStatus để thay đổi status của 1 phần tử và nhiều phần
+	tử cùng 1 lúc
