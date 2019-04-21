@@ -783,3 +783,5 @@ Group - Validate:
 	Khi mà submit validate chưa thành công thì giá trị group đã được chọn phải được giữ lại
 
  Save: Lưu thông tin của người dùng khi mà biết thông tin group của người dùng đó
+
+ Edit: Edit thông tin user

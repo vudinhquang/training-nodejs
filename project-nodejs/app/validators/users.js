@@ -27,7 +27,7 @@ const validator = (req) => {
     // req.checkBody('status', 'Phải chọn status').isNotEqual('novalue');
     req.checkBody('status', notify.ERROR_STATUS)
         .custom(() => {
-            return isNotEqual(req), 'status';
+            return isNotEqual(req, 'status');
         });
     req.checkBody('group_id', notify.ERROR_GROUP)
         .custom(() => {

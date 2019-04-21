@@ -153,15 +153,17 @@ router.get('/form(/:id)?', async (req, res, next) => {
 	let item = {
 		name: '',
 		ordering: '',
-		status: 'novalue'
+		status: 'novalue',
+		group_id: 'novalue',
+		group_name: ''
 	};
 	let errors = null;
-	// let groupsItems = [];
+	let groupsItems = [];
 	// await GroupsModel.find({},{_id:1, name:1}, (err, items) => {
 	// 	groupsItems = items;
 	// 	groupsItems.unshift({_id: '', name: 'Choose Group'})
 	// });
-	let groupsItems = await GroupsModel.find({},{_id:1, name:1});
+	groupsItems = await GroupsModel.find({},{_id:1, name:1});
 	groupsItems.unshift({_id: 'novalue', name: 'Choose Group'});
 	if (id === '') {	//Add
 		res.render(folderView + '/form', {
@@ -172,6 +174,8 @@ router.get('/form(/:id)?', async (req, res, next) => {
 		});
 	} else {	//Edit
 		UsersModel.findById(id, (err, item) => {
+			item.group_id 	= item.group.id;
+			item.group_name = item.group.name;
 			res.render(folderView + '/form', {
 				pageTitle: pageTitleEdit,
 				item,
@@ -187,13 +191,15 @@ router.post('/save', async (req, res, next) => {
 	let item = Object.assign({}, req.body);
 	let errors = ValidateUsers.validator(req);
 	let groupsItems = [];
-	
 	if (item.id !== '') { // Edit
+		groupsItems = await GroupsModel.find({},{_id:1, name:1});
+		groupsItems.unshift({_id: 'novalue', name: 'Choose Group'});
 		if (errors) { // errors
 			res.render(folderView + '/form', {
 				pageTitle: pageTitleEdit,
 				item,
-				errors
+				errors,
+				groupsItems
 			});
 		} else { // no errors		
 			UsersModel.updateOne({ _id: item.id }, {
@@ -201,6 +207,10 @@ router.post('/save', async (req, res, next) => {
 				, ordering: parseInt(item.ordering)
 				, status: item.status
 				, content: item.content
+				, group: {
+					id: item.group_id,
+					name: item.group_name
+				}
 				, modified:{
 					user_id: 0
 					, user_name: 'admin'
