@@ -18,7 +18,6 @@ const folderView     = __path_views + '/pages/items';
 // List items
 router.get('(/status/:status)?', async (req, res, next) => {
 	let params		     = {};
-	params.objWhere	     = {};
 	params.keyword 	     = ParamsHelpers.getParam(req.query, 'keyword', '');
 	params.currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
 	params.sortField 	 = ParamsHelpers.getParam(req.session, 'sort_field', 'ordering');

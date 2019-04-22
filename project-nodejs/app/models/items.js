@@ -2,13 +2,14 @@ const ItemsModel = require(__path_schemas + '/items');
 
 module.exports = {
     listItems: (params, options = null) => {
-        if (params.currentStatus !== 'all') params.objWhere.status = params.currentStatus;
-        if (params.keyword !== '') params.objWhere.name = new RegExp(params.keyword, 'i');
+        let objWhere = {};
+        if (params.currentStatus !== 'all') objWhere.status = params.currentStatus;
+        if (params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
         let sort		  = {};
         sort[params.sortField]   = params.sortType;
 
         return ItemsModel
-            .find(params.objWhere)
+            .find(objWhere)
             .select('name status ordering created modified')
             .sort(sort)
             .skip((params.pagination.currentPage - 1) * params.pagination.totalItemsPerPage)
@@ -20,7 +21,8 @@ module.exports = {
     }
 
     , countItems: (params, options = null) => {
-        return ItemsModel.countDocuments(params.objWhere);
+        let objWhere = {};
+        return ItemsModel.countDocuments(objWhere);
     }
 
     , changeStatus: (id, currentStatus, options = {}) => {
