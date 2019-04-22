@@ -127,47 +127,23 @@ router.post('/save', (req, res, next) => {
 	let item = Object.assign({}, req.body);
 	let errors = ValidateItems.validator(req);
 
-	if (item.id !== '') { // Edit
-		if (errors) { // errors
-			res.render(folderView + '/form', {
-				pageTitle: pageTitleEdit,
-				item,
-				errors
-			});
-		} else { // no errors		
-			ItemsModel.updateOne({ _id: item.id }, {
-				name: item.name
-				, ordering: parseInt(item.ordering)
-				, status: item.status
-				, content: item.content
-				, modified:{
-					user_id: 0
-					, user_name: 'admin'
-					, time: Date.now()
-				}
-			}, (err) => {
+	if(errors){
+		res.render(folderView + '/form', {
+			pageTitle: pageTitleEdit,
+			item,
+			errors
+		});
+	}else{
+		if (item.id !== '') { // Edit
+			ItemsModel.saveItem(item, {'task': 'edit'}).then(() => {
 				req.flash('success', notify.EDIT_SUCCESS, false);
 				res.redirect(linkIndex);
 			});
-		}
-	} else { // Add
-		if (errors) { // errors
-			res.render(folderView + '/form', {
-				pageTitle: pageTitleAdd,
-				item,
-				errors
+		}else{
+			ItemsModel.saveItem(item, {'task': 'add'}).then(() => {
+				req.flash('success', notify.ADD_SUCCESS, false);
+				res.redirect(linkIndex);
 			});
-		} else { // no errors		
-			item.created = {
-				user_id: 0
-				, user_name: 'admin'
-				, time: Date.now()
-			};
-			new ItemsModel(item)
-				.save((err) => {
-					req.flash('success', notify.ADD_SUCCESS, false);
-					res.redirect(linkIndex);
-				});
 		}
 	}
 });

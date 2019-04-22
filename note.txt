@@ -811,3 +811,5 @@ Tương tự fix lỗi khi click vào dashboard
 - delete & get:
 	Xóa 1 hoặc nhiều phần tử
 	Lấy thông tin phần tử hiện lên trên Form khi thực hiện Edit
+
+- save: Save thông tin phần tử khi add và save

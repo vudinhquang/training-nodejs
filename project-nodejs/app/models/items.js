@@ -76,4 +76,29 @@ module.exports = {
             return ItemsModel.deleteMany({ _id: { $in: id } });
         }
     }
+
+    , saveItem: (item, options = {}) => {
+        if(options.task === 'add'){
+			item.created = {
+				user_id: 0
+				, user_name: 'admin'
+				, time: Date.now()
+			};
+			return new ItemsModel(item).save();
+        }
+
+        if(options.task === 'edit'){
+			return ItemsModel.updateOne({ _id: item.id }, {
+                        name: item.name
+                        , ordering: parseInt(item.ordering)
+                        , status: item.status
+                        , content: item.content
+                        , modified:{
+                            user_id: 0
+                            , user_name: 'admin'
+                            , time: Date.now()
+                        }
+                    });
+        }
+    }
 }
