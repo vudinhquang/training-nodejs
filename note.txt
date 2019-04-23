@@ -813,3 +813,5 @@ Tương tự fix lỗi khi click vào dashboard
 	Lấy thông tin phần tử hiện lên trên Form khi thực hiện Edit
 
 - save: Save thông tin phần tử khi add và save
+
+- GroupsModel: Xây dựng Model groups để quản lý groups
