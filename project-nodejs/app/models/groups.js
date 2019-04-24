@@ -26,6 +26,10 @@ module.exports = {
 
     , countItems: (params, options = {}) => {
         let objWhere = {};
+
+        if(params.currentStatus !== 'all') objWhere.status = params.currentStatus;
+        if(params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
+        
         return GroupsModel.countDocuments(objWhere);
     }
 
