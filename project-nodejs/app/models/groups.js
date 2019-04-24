@@ -1,7 +1,7 @@
 const GroupsModel = require(__path_schemas + '/groups');
 
 module.exports = {
-    listItems: (params, options = null) => {
+    listItems: (params, options = {}) => {
         let objWhere = {};
         if (params.currentStatus !== 'all') objWhere.status = params.currentStatus;
         if (params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
@@ -16,11 +16,15 @@ module.exports = {
             .limit(params.pagination.totalItemsPerPage);
     }
 
+    , listItemsInSelectbox: (params, options = {}) => {
+        return GroupsModel.find({},{_id:1, name:1});
+    }
+
     , getItem: (id, options = {}) => {
         return GroupsModel.findById(id);
     }
 
-    , countItems: (params, options = null) => {
+    , countItems: (params, options = {}) => {
         let objWhere = {};
         return GroupsModel.countDocuments(objWhere);
     }

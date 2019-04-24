@@ -1,7 +1,7 @@
 const ItemsModel = require(__path_schemas + '/items');
 
 module.exports = {
-    listItems: (params, options = null) => {
+    listItems: (params, options = {}) => {
         let objWhere = {};
         if (params.currentStatus !== 'all') objWhere.status = params.currentStatus;
         if (params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
@@ -20,7 +20,7 @@ module.exports = {
         return ItemsModel.findById(id);
     }
 
-    , countItems: (params, options = null) => {
+    , countItems: (params, options = {}) => {
         let objWhere = {};
         return ItemsModel.countDocuments(objWhere);
     }
