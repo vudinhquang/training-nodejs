@@ -815,3 +815,5 @@ Tương tự fix lỗi khi click vào dashboard
 - save: Save thông tin phần tử khi add và save
 
 - GroupsModel: Xây dựng Model groups để quản lý groups
+
+- UsersModel: Xây dựng Model users để quản lý users
