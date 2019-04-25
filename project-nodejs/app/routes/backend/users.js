@@ -147,33 +147,29 @@ router.get('/form(/:id)?', async (req, res, next) => {
 
 // Add and Edit
 router.post('/save', async (req, res, next) => {
-	let item = Object.assign({}, req.body);
+	let item   = Object.assign({}, req.body);
 	let errors = ValidateUsers.validator(req);
-	let groupsItems = [];
+	let task   = (item.id !== '') ? 'edit' : 'add';
 
 	if(errors){
+		let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
+		let groupsItems = [];
 		await GroupsModel.listItemsInSelectbox().then((items)=> {
 			groupsItems = items;
 			groupsItems.unshift({_id: 'novalue', name: 'All group'});
 		});
 		res.render(folderView + '/form', {
-			pageTitle: pageTitleEdit,
+			pageTitle,
 			item,
 			errors,
 			groupsItems
 		});
 	}else{
-		if (item.id !== '') { // Edit
-			UsersModel.saveItem(item, {'task': 'edit'}).then(() => {
-				req.flash('success', notify.EDIT_SUCCESS, false);
-				res.redirect(linkIndex);
-			});
-		}else{
-			UsersModel.saveItem(item, {'task': 'add'}).then(() => {
-				req.flash('success', notify.ADD_SUCCESS, false);
-				res.redirect(linkIndex);
-			});
-		}
+		let message = (task === 'add') ? notify.ADD_SUCCESS : notify.EDIT_SUCCESS;
+		UsersModel.saveItem(item, {'task': task}).then(() => {
+			req.flash('success', message, false);
+			res.redirect(linkIndex);
+		});
 	}
 });
 

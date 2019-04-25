@@ -124,27 +124,23 @@ router.get('/form(/:id)?', (req, res, next) => {
 
 // Add and Edit
 router.post('/save', (req, res, next) => {
-	let item = Object.assign({}, req.body);
-	let errors = ValidateItems.validator(req);
+	let item    = Object.assign({}, req.body);
+	let errors  = ValidateItems.validator(req);
+	let task    = (item.id !== '') ? 'edit' : 'add';
 
 	if(errors){
+		let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
 		res.render(folderView + '/form', {
-			pageTitle: pageTitleEdit,
+			pageTitle,
 			item,
 			errors
 		});
 	}else{
-		if (item.id !== '') { // Edit
-			ItemsModel.saveItem(item, {'task': 'edit'}).then(() => {
-				req.flash('success', notify.EDIT_SUCCESS, false);
-				res.redirect(linkIndex);
-			});
-		}else{
-			ItemsModel.saveItem(item, {'task': 'add'}).then(() => {
-				req.flash('success', notify.ADD_SUCCESS, false);
-				res.redirect(linkIndex);
-			});
-		}
+		let message = (task === 'add') ? notify.ADD_SUCCESS : notify.EDIT_SUCCESS;
+		ItemsModel.saveItem(item, {'task': task}).then(() => {
+			req.flash('success', message, false);
+			res.redirect(linkIndex);
+		});
 	}
 });
 

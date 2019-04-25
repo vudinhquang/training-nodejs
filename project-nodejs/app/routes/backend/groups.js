@@ -138,27 +138,28 @@ router.get('/form(/:id)?', (req, res, next) => {
 router.post('/save', (req, res, next) => {
 	let item = Object.assign({}, req.body);
 	let errors = ValidateGroups.validator(req);
+	let task    = (item.id !== '') ? 'edit' : 'add';
 
 	if(errors){
+		let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
 		res.render(folderView + '/form', {
-			pageTitle: pageTitleEdit,
+			pageTitle,
 			item,
 			errors
 		});
 	}else{
-		if (item.id !== '') { // Edit
-			GroupsModel.saveItem(item, {'task': 'edit'}).then(() => {
+		let message = (task === 'add') ? notify.ADD_SUCCESS : notify.EDIT_SUCCESS;
+		GroupsModel.saveItem(item, {'task': task}).then(() => {
+			if(task === 'add'){
+				req.flash('success', message, false);
+				res.redirect(linkIndex);
+			}else if(task === 'edit'){
 				UsersModel.saveItem(item, {'task': 'change-group-name'}).then(() => {
 					req.flash('success', notify.EDIT_SUCCESS, false);
 					res.redirect(linkIndex);
 				});
-			});
-		}else{
-			GroupsModel.saveItem(item, {'task': 'add'}).then(() => {
-				req.flash('success', notify.ADD_SUCCESS, false);
-				res.redirect(linkIndex);
-			});
-		}
+			}
+		});
 	}
 });
 
