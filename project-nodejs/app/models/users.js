@@ -116,5 +116,14 @@ module.exports = {
                         }
                     });
         }
+
+        if(options.task === 'change-group-name'){
+			return UsersModel.updateMany({ 'group.id': item.id }, {
+                        group: {
+                            id: item.id,
+                            name: item.name
+                        }
+                    });
+        }
     }
 }

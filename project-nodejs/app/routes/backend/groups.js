@@ -1,13 +1,14 @@
 var express = require('express');
-var router = express.Router();
-const util = require('util');
+var router  = express.Router();
+const util  = require('util');
 
-const systemConfig = require(__path_configs + '/system');
-const notify = require(__path_configs + '/notify');
-const GroupsModel = require(__path_models + '/groups');
+const systemConfig   = require(__path_configs + '/system');
+const notify         = require(__path_configs + '/notify');
+const GroupsModel    = require(__path_models + '/groups');
+const UsersModel     = require(__path_models + '/users');
 const ValidateGroups = require(__path_validators + '/groups');
-const UtilsHelpers = require(__path_helpers + '/utils');
-const ParamsHelpers = require(__path_helpers + '/params');
+const UtilsHelpers   = require(__path_helpers + '/utils');
+const ParamsHelpers  = require(__path_helpers + '/params');
 
 const linkIndex = '/' + systemConfig.prefixAdmin + '/groups';
 const pageTitleIndex = 'Group Managment';
@@ -147,8 +148,10 @@ router.post('/save', (req, res, next) => {
 	}else{
 		if (item.id !== '') { // Edit
 			GroupsModel.saveItem(item, {'task': 'edit'}).then(() => {
-				req.flash('success', notify.EDIT_SUCCESS, false);
-				res.redirect(linkIndex);
+				UsersModel.saveItem(item, {'task': 'change-group-name'}).then(() => {
+					req.flash('success', notify.EDIT_SUCCESS, false);
+					res.redirect(linkIndex);
+				});
 			});
 		}else{
 			GroupsModel.saveItem(item, {'task': 'add'}).then(() => {

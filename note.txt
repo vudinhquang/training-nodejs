@@ -817,3 +817,9 @@ Tương tự fix lỗi khi click vào dashboard
 - GroupsModel: Xây dựng Model groups để quản lý groups
 
 - UsersModel: Xây dựng Model users để quản lý users
+
+-----Cập nhật đồng bộ thông tin nhóm người dùng
+	Tên group ở đây ít bị thay đổi -> có thể sử dụng kỹ thuật dư thừa dữ liệu để lưu tên group trong 
+		user
+	Trong bảng users thì user có lưu cả thông tin nhóm người dùng, vì vậy để khi mà ta thay đổi
+		thông tin nhóm người dùng -> trong user cũng phải cập nhật lại.
