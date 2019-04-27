@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 const util = require('util');
+const path = require('path');
 
 var multer = require('multer');
+var randomstring = require("randomstring");
 
 const systemConfig = require(__path_configs + '/system');
 const notify = require(__path_configs + '/notify');
@@ -23,12 +25,16 @@ var storage = multer.diskStorage({
 		cb(null, __path_public + '/uploads/users')
 	},
 	filename: function (req, file, cb) {
-		console.log(file);
-		cb(null, Date.now() + file.originalname)
+		cb(null, randomstring.generate(10) + path.extname(file.originalname))
 	}
 });
 
-var upload = multer({ storage: storage });
+var upload = multer({ 
+	storage: storage 
+	, limits: {
+		fileSize: 1 * 1024 * 1024,
+	},
+});
 
 // Test upload - form
 router.get('/upload', (req, res, next) => {
@@ -38,7 +44,7 @@ router.get('/upload', (req, res, next) => {
 });
 
 // Test upload - post
-router.post('/upload', upload.single('avatar'),(req, res, next) => {
+router.post('/upload', upload.single('avatar'), (req, res, next) => {
 	res.render(folderView + '/upload', {
 		pageTitle: pageTitleIndex
 	});

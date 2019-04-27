@@ -852,3 +852,11 @@ Tương tự fix lỗi khi click vào dashboard
 	Site:https://www.npmjs.com/package/multer
 	Cài đặt: $ npm install --save multer
 	Thiết lập nơi chứa tập tin mà ta upload lên
+
+- Multer - fileName fileSize:
+	Sử dụng hàm sinh ra chuỗi ngẫu nhiên để đặt tên cho file được upload lên
+		Keyword: nodejs random string
+		Cài đặt: npm install randomstring
+		Lấy phần mở rộng của tập tin: const path = require('path')
+	Giới hạn dung lượng của tập tin
+		Keyword: multer filesize
