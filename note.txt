@@ -860,3 +860,8 @@ Tương tự fix lỗi khi click vào dashboard
 		Lấy phần mở rộng của tập tin: const path = require('path')
 	Giới hạn dung lượng của tập tin
 		Keyword: multer filesize
+
+- Multer - fileFilter:
+	Giới hạn phần mở rộng của 1 tập tin nào đó
+	Keyword: multer fileFilter
+	-> Tìm hiểu cách validate phần mở rộng của tập tin khi upload

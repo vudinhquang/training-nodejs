@@ -21,19 +21,30 @@ const pageTitleEdit = pageTitleIndex + ' - Edit';
 const folderView = __path_views + '/pages/users';
 
 var storage = multer.diskStorage({
-	destination: function (req, file, cb) {
+	destination: (req, file, cb) => {
 		cb(null, __path_public + '/uploads/users')
 	},
-	filename: function (req, file, cb) {
+	filename: (req, file, cb) => {
 		cb(null, randomstring.generate(10) + path.extname(file.originalname))
 	}
 });
 
-var upload = multer({ 
-	storage: storage 
+var upload = multer({
+	storage: storage
 	, limits: {
 		fileSize: 1 * 1024 * 1024,
-	},
+	}
+	, fileFilter: (req, file, cb) => {
+		let filetypes = new RegExp('jpeg|jpg|png|gif');
+		let extname   = filetypes.test(path.extname(file.originalname).toLowerCase());
+		let mimetype  = filetypes.test(file.mimetype);
+
+		if(mimetype && extname){
+			return cb(null, true);
+		}else{
+			cb(new Error('Phần mở rộng không phù hợp'))
+		}
+	}
 });
 
 // Test upload - form
