@@ -842,3 +842,13 @@ Tương tự fix lỗi khi click vào dashboard
 		Mặc dù giá trị được tự động chuyển đổi từ giá trị name nhưng người dùng vẫn có thể nhập giá trị khác
 			vào slug, lúc này khi submit thì giá trị ở trong ô slug sẽ được chuẩn hóa lại theo đúng cấu trúc
 			của trường slug -> ở Model khi lưu thì sẽ tiến hành chuyển hóa lại
+
+-----Sử dụng multer trong việc upload hình ảnh
+- Multer - Basic:
+	Ở phần quản lý người dùng thì người dùng có ảnh đại diện và ảnh avata của họ -> khi mà tiến hành thêm mới
+		cần có 1 field để chọn hình đại diện của 1 người dùng nào đó.
+		Edit user cũng có thể cập nhật lại ảnh đại diện của 1 người dùng nào đó
+	Keyword: nodejs multer
+	Site:https://www.npmjs.com/package/multer
+	Cài đặt: $ npm install --save multer
+	Thiết lập nơi chứa tập tin mà ta upload lên
