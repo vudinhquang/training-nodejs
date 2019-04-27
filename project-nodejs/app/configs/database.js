@@ -5,4 +5,5 @@ module.exports = {
     , modelItem: 'Item'
     , modelGroup: 'Group'
     , modelUser: 'User'
+    , modelCategory: 'Category'
 }

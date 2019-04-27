@@ -827,3 +827,18 @@ Tương tự fix lỗi khi click vào dashboard
 
 - Optimize add edit:
 	Tối ưu hóa mã nguồn cho phần add và edit
+
+----------------------------------------------------------------------------------------------------
+							Xây dựng nhóm chức năng quản lý bài viết
+
+-----Xây dựng chức năng quản lý category
+- Category:
+	Trong Category thì có nhiều bài viết, như vạy thì ta thấy mối quan hệ của category với item nó giống với
+		mối quan hệ của group với item
+	Category ở đây có thêm 1 trường nữa đó là slug
+	Slug:
+		Khi nhập vào ô name của category thì ở ô slug sẽ tự động được nhập vào dạng slug được chuyển từ name
+		validate cho slug
+		Mặc dù giá trị được tự động chuyển đổi từ giá trị name nhưng người dùng vẫn có thể nhập giá trị khác
+			vào slug, lúc này khi submit thì giá trị ở trong ô slug sẽ được chuẩn hóa lại theo đúng cấu trúc
+			của trường slug -> ở Model khi lưu thì sẽ tiến hành chuyển hóa lại
