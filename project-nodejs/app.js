@@ -24,6 +24,7 @@ global.__path_models	 = __path_app + '/' + pathConfig.folder_models;
 global.__path_validators = __path_app + '/' + pathConfig.folder_validators;
 global.__path_views		 = __path_app + '/' + pathConfig.folder_views;
 global.__path_public     = __base + '/' + pathConfig.folder_public;
+global.__path_uploads    = __path_public + '/' + pathConfig.folder_uploads;
 
 const systemConfig   = require(__path_configs + '/system');
 const databaseConfig = require(__path_configs + '/database');

@@ -1,10 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const util = require('util');
-const path = require('path');
-
-var multer = require('multer');
-var randomstring = require("randomstring");
 
 const systemConfig = require(__path_configs + '/system');
 const notify = require(__path_configs + '/notify');
@@ -12,6 +8,7 @@ const UsersModel = require(__path_models + '/users');
 const GroupsModel = require(__path_models + '/groups');
 const ValidateUsers = require(__path_validators + '/users');
 const UtilsHelpers = require(__path_helpers + '/utils');
+const UploadHelpers = require(__path_helpers + '/upload');
 const ParamsHelpers = require(__path_helpers + '/params');
 
 const linkIndex = '/' + systemConfig.prefixAdmin + '/users';
@@ -19,33 +16,7 @@ const pageTitleIndex = 'User Managment';
 const pageTitleAdd = pageTitleIndex + ' - Add';
 const pageTitleEdit = pageTitleIndex + ' - Edit';
 const folderView = __path_views + '/pages/users';
-
-var storage = multer.diskStorage({
-	destination: (req, file, cb) => {
-		cb(null, __path_public + '/uploads/users')
-	},
-	filename: (req, file, cb) => {
-		cb(null, randomstring.generate(10) + path.extname(file.originalname))
-	}
-});
-
-var upload = multer({
-	storage: storage
-	, limits: {
-		fileSize: 1 * 1024 * 1024,
-	}
-	, fileFilter: (req, file, cb) => {
-		let filetypes = new RegExp('jpeg|jpg|png|gif');
-		let extname   = filetypes.test(path.extname(file.originalname).toLowerCase());
-		let mimetype  = filetypes.test(file.mimetype);
-
-		if(mimetype && extname){
-			return cb(null, true);
-		}else{
-			cb(new Error('Phần mở rộng không phù hợp'))
-		}
-	}
-});
+const uploadAvatar = UploadHelpers.uploadFile('avatar', '/users', 10, 1, 'jpeg|jpg|png|gif');
 
 // Test upload - form
 router.get('/upload', (req, res, next) => {
@@ -55,7 +26,7 @@ router.get('/upload', (req, res, next) => {
 });
 
 // Test upload - post
-router.post('/upload', upload.single('avatar'), (req, res, next) => {
+router.post('/upload', uploadAvatar, (req, res, next) => {
 	res.render(folderView + '/upload', {
 		pageTitle: pageTitleIndex
 	});

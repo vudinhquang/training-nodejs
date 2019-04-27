@@ -8,4 +8,5 @@ module.exports = {
     , folder_validators : 'validators'
     , folder_views		: 'views'
     , folder_public		: 'public'
+    , folder_uploads    : 'uploads'
 }

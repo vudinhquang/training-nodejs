@@ -865,3 +865,5 @@ Tương tự fix lỗi khi click vào dashboard
 	Giới hạn phần mở rộng của 1 tập tin nào đó
 	Keyword: multer fileFilter
 	-> Tìm hiểu cách validate phần mở rộng của tập tin khi upload
+
+- Multer - uploadHelper: Viết helper để thực hiện việc upload
