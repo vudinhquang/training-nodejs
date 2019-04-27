@@ -867,3 +867,7 @@ Tương tự fix lỗi khi click vào dashboard
 	-> Tìm hiểu cách validate phần mở rộng của tập tin khi upload
 
 - Multer - uploadHelper: Viết helper để thực hiện việc upload
+
+- Multer - customError:
+	Bắt câu thông báo lỗi khi thực hiện việc upload
+	Định nghĩa khi validate extension file

@@ -25,7 +25,8 @@ let uploadFile = (field, folderDes =  '/users', fileNameLength = 10, fileSizeMb 
 			if(mimetype && extname){
 				return cb(null, true);
 			}else{
-				cb(new Error('Phần mở rộng không phù hợp'))
+				// cb(('Phần mở rộng không phù hợp'))
+				cb({'extname': 'Phần mở rộng không phù hợp'})
 			}
 		}
 	}).single(field);

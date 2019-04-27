@@ -20,15 +20,30 @@ const uploadAvatar = UploadHelpers.uploadFile('avatar', '/users', 10, 1, 'jpeg|j
 
 // Test upload - form
 router.get('/upload', (req, res, next) => {
+	let errors = null;
 	res.render(folderView + '/upload', {
 		pageTitle: pageTitleIndex
+		, errors
 	});
 });
 
 // Test upload - post
-router.post('/upload', uploadAvatar, (req, res, next) => {
-	res.render(folderView + '/upload', {
-		pageTitle: pageTitleIndex
+router.post('/upload', (req, res, next) => {
+	let errors = [];
+	uploadAvatar(req, res, function (err) {
+		if (err) {
+			if (err.code === 'LIMIT_FILE_SIZE') {
+				errors.push({ 'param': 'avatar', 'msg': 'Kích thước file upload quá lớn' });
+			}
+
+			if(err.extname){
+				errors.push({ 'param': 'avatar', 'msg': err.extname });
+			}
+		}
+		res.render(folderView + '/upload', {
+			pageTitle: pageTitleIndex
+			, errors
+		});
 	});
 });
 
@@ -166,7 +181,6 @@ router.post('/save', async (req, res, next) => {
 	let item = Object.assign({}, req.body);
 	let errors = ValidateUsers.validator(req);
 	let task = (item.id !== '') ? 'edit' : 'add';
-
 	if (errors) {
 		let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
 		let groupsItems = [];
