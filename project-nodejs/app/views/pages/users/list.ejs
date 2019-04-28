@@ -5,9 +5,11 @@
 <% include ../../helpers/source-by %>
 <% include ../../helpers/sort %>
 <% include ../../helpers/selectbox %>
+<% include ../../helpers/image %>
 <%
-	const collection = 'users';
-	const linkPrefix = systemConfig.prefixAdmin + '/' + collection + '/';
+	const collection   = 'users';
+	const linkPrefix   = systemConfig.prefixAdmin + '/' + collection + '/';
+	const folderUpload = 'uploads/users/'
 %>
 <%- locals.flash %>
 
@@ -67,7 +69,8 @@
 										<input type="checkbox" class="cbAll" />
 									</th>
 									<th>#</th>
-									<%- sortHelper(linkPrefix, 'Name', 'name', params.sortField, params.sortType) %>
+									<%- sortHelper(linkPrefix, 'Name', 'name', params.sortField, params.sortType, 'width:12%') %>
+									<th>Avatar</th>
 									<%- sortHelper(linkPrefix, 'Status', 'status', params.sortField, params.sortType) %>
 									<%- sortHelper(linkPrefix, 'Ordering', 'ordering', params.sortField, params.sortType) %>
 									<%- sortHelper(linkPrefix, 'Group', 'group.name', params.sortField, params.sortType) %>
@@ -88,6 +91,9 @@
 										</td>
 										<td>
 											<%= item.name %>
+										</td>
+										<td>
+											<%- imageHelper(folderUpload, item.avatar, item.name, 'no-avatar.png') %>
 										</td>
 										<td>
 											<%- statusHelper(linkPrefix, item.status, item.id) %>

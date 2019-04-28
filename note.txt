@@ -877,3 +877,7 @@ Tương tự fix lỗi khi click vào dashboard
 - Save avatar:
 	Upload ảnh người dùng chọn làm avatar
 	Lưu tên ảnh vào trong bảng users
+- Show avatar:
+	Hiển thị ra những hình ảnh avatar của user lên view list user
+	Không cần sắp xếp theo trường này
+	Trường hợp user chưa có avatar thì hiển thị 1 hình ảnh avatar mặc định

@@ -14,7 +14,7 @@ module.exports = {
 
         return UsersModel
             .find(objWhere)
-            .select('name status ordering created modified group.name')
+            .select('name avatar status ordering created modified group.name')
             .sort(sort)
             .skip((params.pagination.currentPage - 1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);

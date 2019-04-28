@@ -50,3 +50,8 @@ img.error-page-img {
 input.ordering{
     width: 64px
 }
+
+.img-avatar{
+    width: 60px;
+    margin: auto;
+}
