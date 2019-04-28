@@ -18,7 +18,7 @@ const isNotEqual = (req, ele) => {
     }
 }
 
-const validator = (req) => {
+const validator = (req, errUpload, task) => {
     let errors = false;
     req.checkBody('name', util.format(notify.ERROR_NAME, options.name.min, options.name.max))
         .isLength({ min: options.name.min, max: options.name.max });
@@ -36,6 +36,20 @@ const validator = (req) => {
     req.checkBody('content', util.format(notify.ERROR_NAME, options.content.min, options.content.max))
         .isLength({ min: options.content.min, max: options.content.max });
     errors = req.validationErrors();
+
+    if (errUpload) {
+        if (errUpload.code === 'LIMIT_FILE_SIZE') {
+            errors.push({ 'param': 'avatar', 'msg': notify.ERROR_FILE_LIMIT });
+        }
+
+        if (errUpload.extname) {
+            errors.push({ 'param': 'avatar', 'msg': errUpload.extname });
+        }
+    } else {
+        if (!req.file && task === 'add') {
+            errors.push({ 'param': 'avatar', 'msg': notify.ERROR_FILE_REQUIRE });
+        }
+    }
     
     return errors;
 };

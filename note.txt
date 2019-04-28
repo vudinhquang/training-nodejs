@@ -902,3 +902,5 @@ Tương tự fix lỗi khi click vào dashboard
 	Validate yêu cầu chọn 1 tập tin làm avatar khi thêm 1 người dùng
 	Khi thực hiện chức năng Edit thì thành viên đó đã có ảnh trước rồi -> không bắt buộc người dùng phải thêm tấm 
 		hình mới
+- Optimize validate:
+	Đưa các phần về lỗi validate vào trong cùng 1 tập tin validate của user làm gọn code trong routes

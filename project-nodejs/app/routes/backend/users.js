@@ -189,22 +189,8 @@ router.get('/form(/:id)?', async (req, res, next) => {
 router.post('/save', (req, res, next) => {
 	uploadAvatar(req, res, async (errUpload) => {
 		let item = Object.assign({}, req.body);
-		let errors = ValidateUsers.validator(req);
 		let task = (item.id !== '') ? 'edit' : 'add';
-
-		if (errUpload) {
-			if (errUpload.code === 'LIMIT_FILE_SIZE') {
-				errors.push({ 'param': 'avatar', 'msg': notify.ERROR_FILE_LIMIT });
-			}
-
-			if (errUpload.extname) {
-				errors.push({ 'param': 'avatar', 'msg': errUpload.extname });
-			}
-		} else {
-			if (!req.file && task === 'add') {
-				errors.push({ 'param': 'avatar', 'msg': notify.ERROR_FILE_REQUIRE });
-			}
-		}
+		let errors = ValidateUsers.validator(req, errUpload, task);
 
 		if (errors) {
 			let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
