@@ -206,6 +206,7 @@ router.post('/save', (req, res, next) => {
 			});
 		} else {
 			let message = (task === 'add') ? notify.ADD_SUCCESS : notify.EDIT_SUCCESS;
+			item.avatar = req.file.filename;
 			UsersModel.saveItem(item, { 'task': task }).then(() => {
 				req.flash('success', message, false);
 				res.redirect(linkIndex);

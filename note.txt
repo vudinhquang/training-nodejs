@@ -874,3 +874,6 @@ Tương tự fix lỗi khi click vào dashboard
 
 -----Xây dựng chức năng upload avatar
 - Upload Avatar: Thực hiện validate avatar khi thêm user mới
+- Save avatar:
+	Upload ảnh người dùng chọn làm avatar
+	Lưu tên ảnh vào trong bảng users
