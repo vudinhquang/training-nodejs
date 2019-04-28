@@ -1,6 +1,7 @@
 var multer       = require('multer');
 var randomstring = require("randomstring");
 const path       = require('path');
+const fs = require('fs');
 
 let uploadFile = (field, folderDes =  '/users', fileNameLength = 10, fileSizeMb = 1, fileExtension = 'jpeg|jpg|png|gif') => {
 	let storage = multer.diskStorage({
@@ -34,6 +35,22 @@ let uploadFile = (field, folderDes =  '/users', fileNameLength = 10, fileSizeMb 
 	return upload;
 }
 
+let removeFile = (folder, fileName) => {
+	let path = folder + fileName;
+	if(fileName){
+		fs.exists(path, (exists) => {
+			if (exists) {
+				if(fileName !== 'no-avatar'){
+					fs.unlink(path, (err) => {
+						if (err) throw err;
+					});
+				}
+			}
+		});
+	}
+}
+
 module.exports = {
-    uploadFile
+	uploadFile,
+	removeFile
 }

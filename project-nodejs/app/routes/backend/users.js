@@ -8,7 +8,7 @@ const UsersModel = require(__path_models + '/users');
 const GroupsModel = require(__path_models + '/groups');
 const ValidateUsers = require(__path_validators + '/users');
 const UtilsHelpers = require(__path_helpers + '/utils');
-const UploadHelpers = require(__path_helpers + '/upload');
+const FileHelpers = require(__path_helpers + '/file');
 const ParamsHelpers = require(__path_helpers + '/params');
 
 const linkIndex = '/' + systemConfig.prefixAdmin + '/users';
@@ -16,7 +16,7 @@ const pageTitleIndex = 'User Managment';
 const pageTitleAdd = pageTitleIndex + ' - Add';
 const pageTitleEdit = pageTitleIndex + ' - Edit';
 const folderView = __path_views + '/pages/users';
-const uploadAvatar = UploadHelpers.uploadFile('avatar', '/users', 10, 1, 'jpeg|jpg|png|gif');
+const uploadAvatar = FileHelpers.uploadFile('avatar', '/users', 10, 1, 'jpeg|jpg|png|gif');
 
 // Test upload - form
 router.get('/upload', (req, res, next) => {

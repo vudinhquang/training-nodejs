@@ -890,3 +890,6 @@ Tương tự fix lỗi khi click vào dashboard
 
 - Delete Avatar - Multi:
 	Khi xóa nhiều user thì cũng xóa hết các hình của các user đó
+
+- FileHelper:
+	Xây dựng helper phần thực hiện xóa file avatar

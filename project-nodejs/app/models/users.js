@@ -1,5 +1,5 @@
-const UsersModel = require(__path_schemas + '/users');
-const fs = require('fs');
+const UsersModel  = require(__path_schemas + '/users');
+const FileHelpers = require(__path_helpers + '/file');
 
 module.exports = {
     listItems: (params, options = {}) => {
@@ -79,15 +79,7 @@ module.exports = {
     , deleteItem: async (id, options = {}) => {
         if(options.task === 'delete-one'){
             await UsersModel.findById(id).then((item) => {
-                fs.exists('public/uploads/users/' + item.avatar, (exists) => {
-                    if (exists) {
-                        if(item.avatar !== 'no-avatar'){
-                            fs.unlink('public/uploads/users/' + item.avatar, (err) => {
-                                if (err) throw err;
-                            });
-                        }
-                    }
-                });
+                FileHelpers.removeFile('public/uploads/users/', item.avatar);
             });
 
             return UsersModel.deleteOne({ _id: id });
@@ -97,28 +89,12 @@ module.exports = {
             if(Array.isArray(id)){
                 for(let index = 0; index < id.length; index++){
                     await UsersModel.findById(id[index]).then((item) => {
-                        fs.exists('public/uploads/users/' + item.avatar, (exists) => {
-                            if (exists) {
-                                if(item.avatar !== 'no-avatar'){
-                                    fs.unlink('public/uploads/users/' + item.avatar, (err) => {
-                                        if (err) throw err;
-                                    });
-                                }
-                            }
-                        });
+                        FileHelpers.removeFile('public/uploads/users/', item.avatar);
                     });
                 }
             }else{
                 await UsersModel.findById(id).then((item) => {
-                    fs.exists('public/uploads/users/' + item.avatar, (exists) => {
-                        if (exists) {
-                            if(item.avatar !== 'no-avatar'){
-                                fs.unlink('public/uploads/users/' + item.avatar, (err) => {
-                                    if (err) throw err;
-                                });
-                            }
-                        }
-                    });
+                    FileHelpers.removeFile('public/uploads/users/', item.avatar);
                 });
             }
 
