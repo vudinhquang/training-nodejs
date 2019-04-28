@@ -94,6 +94,34 @@ module.exports = {
         }
 
         if(options.task === 'delete-multi'){
+            if(Array.isArray(id)){
+                for(let index = 0; index < id.length; index++){
+                    await UsersModel.findById(id[index]).then((item) => {
+                        fs.exists('public/uploads/users/' + item.avatar, (exists) => {
+                            if (exists) {
+                                if(item.avatar !== 'no-avatar'){
+                                    fs.unlink('public/uploads/users/' + item.avatar, (err) => {
+                                        if (err) throw err;
+                                    });
+                                }
+                            }
+                        });
+                    });
+                }
+            }else{
+                await UsersModel.findById(id).then((item) => {
+                    fs.exists('public/uploads/users/' + item.avatar, (exists) => {
+                        if (exists) {
+                            if(item.avatar !== 'no-avatar'){
+                                fs.unlink('public/uploads/users/' + item.avatar, (err) => {
+                                    if (err) throw err;
+                                });
+                            }
+                        }
+                    });
+                });
+            }
+
             return UsersModel.deleteMany({ _id: { $in: id } });
         }
     }

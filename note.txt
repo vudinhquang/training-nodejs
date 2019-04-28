@@ -887,3 +887,6 @@ Tương tự fix lỗi khi click vào dashboard
 	Keyword: nodejs fs
 	Nếu ảnh có tên là no-avatar thì sẽ ko khóa, ảnh có tên khác thì thực hiện xóa
 	Việc thực hiện xóa avatar cũng để cho deleteItem trong Model nó thực hiện
+
+- Delete Avatar - Multi:
+	Khi xóa nhiều user thì cũng xóa hết các hình của các user đó
