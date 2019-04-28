@@ -871,3 +871,6 @@ Tương tự fix lỗi khi click vào dashboard
 - Multer - customError:
 	Bắt câu thông báo lỗi khi thực hiện việc upload
 	Định nghĩa khi validate extension file
+
+-----Xây dựng chức năng upload avatar
+- Upload Avatar: Thực hiện validate avatar khi thêm user mới

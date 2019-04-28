@@ -29,8 +29,8 @@ router.get('/upload', (req, res, next) => {
 
 // Test upload - post
 router.post('/upload', (req, res, next) => {
-	let errors = [];
 	uploadAvatar(req, res, function (err) {
+		let errors = [];
 		if (err) {
 			if (err.code === 'LIMIT_FILE_SIZE') {
 				errors.push({ 'param': 'avatar', 'msg': 'Kích thước file upload quá lớn' });
@@ -177,30 +177,41 @@ router.get('/form(/:id)?', async (req, res, next) => {
 });
 
 // Add and Edit
-router.post('/save', async (req, res, next) => {
-	let item = Object.assign({}, req.body);
-	let errors = ValidateUsers.validator(req);
-	let task = (item.id !== '') ? 'edit' : 'add';
-	if (errors) {
-		let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
-		let groupsItems = [];
-		await GroupsModel.listItemsInSelectbox().then((items) => {
-			groupsItems = items;
-			groupsItems.unshift({ _id: 'novalue', name: 'All group' });
-		});
-		res.render(folderView + '/form', {
-			pageTitle,
-			item,
-			errors,
-			groupsItems
-		});
-	} else {
-		let message = (task === 'add') ? notify.ADD_SUCCESS : notify.EDIT_SUCCESS;
-		UsersModel.saveItem(item, { 'task': task }).then(() => {
-			req.flash('success', message, false);
-			res.redirect(linkIndex);
-		});
-	}
+router.post('/save', (req, res, next) => {
+	uploadAvatar(req, res, async (errUpload) => {
+		let item = Object.assign({}, req.body);
+		let errors = ValidateUsers.validator(req);
+		let task = (item.id !== '') ? 'edit' : 'add';
+		if (errUpload) {
+			if (errUpload.code === 'LIMIT_FILE_SIZE') {
+				errors.push({ 'param': 'avatar', 'msg': 'Kích thước file upload quá lớn' });
+			}
+
+			if(errUpload.extname){
+				errors.push({ 'param': 'avatar', 'msg': errUpload.extname });
+			}
+		}
+		if (errors) {
+			let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
+			let groupsItems = [];
+			await GroupsModel.listItemsInSelectbox().then((items) => {
+				groupsItems = items;
+				groupsItems.unshift({ _id: 'novalue', name: 'All group' });
+			});
+			res.render(folderView + '/form', {
+				pageTitle,
+				item,
+				errors,
+				groupsItems
+			});
+		} else {
+			let message = (task === 'add') ? notify.ADD_SUCCESS : notify.EDIT_SUCCESS;
+			UsersModel.saveItem(item, { 'task': task }).then(() => {
+				req.flash('success', message, false);
+				res.redirect(linkIndex);
+			});
+		}
+	});
 });
 
 // Sort
