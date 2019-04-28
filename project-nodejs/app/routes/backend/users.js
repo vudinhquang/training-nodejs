@@ -36,7 +36,7 @@ router.post('/upload', (req, res, next) => {
 				errors.push({ 'param': 'avatar', 'msg': 'Kích thước file upload quá lớn' });
 			}
 
-			if(err.extname){
+			if (err.extname) {
 				errors.push({ 'param': 'avatar', 'msg': err.extname });
 			}
 		}
@@ -120,9 +120,18 @@ router.post('/change-ordering', function (req, res, next) {
 	});
 });
 
+// Delete image
+// router.get('/delete/:id', (req, res, next) => {
+// 	let id = ParamsHelpers.getParam(req.params, 'id', '');
+// 	fs.unlink('public/uploads/users/abc.jpg', (err) => {
+// 		if (err) throw err;
+// 	});
+// });
+
 // Delete item
 router.get('/delete/:id', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
+
 	UsersModel.deleteItem(id, { 'task': 'delete-one' }).then((result) => {
 		req.flash('success', notify.DELETE_SUCCESS, false);
 		res.redirect(linkIndex);
@@ -187,7 +196,7 @@ router.post('/save', (req, res, next) => {
 				errors.push({ 'param': 'avatar', 'msg': 'Kích thước file upload quá lớn' });
 			}
 
-			if(errUpload.extname){
+			if (errUpload.extname) {
 				errors.push({ 'param': 'avatar', 'msg': errUpload.extname });
 			}
 		}

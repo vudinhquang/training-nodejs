@@ -1,4 +1,5 @@
 const UsersModel = require(__path_schemas + '/users');
+const fs = require('fs');
 
 module.exports = {
     listItems: (params, options = {}) => {
@@ -75,8 +76,20 @@ module.exports = {
         }
     }
 
-    , deleteItem: (id, options = {}) => {
+    , deleteItem: async (id, options = {}) => {
         if(options.task === 'delete-one'){
+            await UsersModel.findById(id).then((item) => {
+                fs.exists('public/uploads/users/' + item.avatar, (exists) => {
+                    if (exists) {
+                        if(item.avatar !== 'no-avatar'){
+                            fs.unlink('public/uploads/users/' + item.avatar, (err) => {
+                                if (err) throw err;
+                            });
+                        }
+                    }
+                });
+            });
+
             return UsersModel.deleteOne({ _id: id });
         }
 

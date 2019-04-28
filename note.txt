@@ -881,3 +881,9 @@ Tương tự fix lỗi khi click vào dashboard
 	Hiển thị ra những hình ảnh avatar của user lên view list user
 	Không cần sắp xếp theo trường này
 	Trường hợp user chưa có avatar thì hiển thị 1 hình ảnh avatar mặc định
+- Delete Avatar - Single:
+	Khi thực hiện xóa user thì ngoài việc xóa thông tin user trong database thì cần phải thực hiện xóa hình ảnh
+		avatar của user
+	Keyword: nodejs fs
+	Nếu ảnh có tên là no-avatar thì sẽ ko khóa, ảnh có tên khác thì thực hiện xóa
+	Việc thực hiện xóa avatar cũng để cho deleteItem trong Model nó thực hiện
