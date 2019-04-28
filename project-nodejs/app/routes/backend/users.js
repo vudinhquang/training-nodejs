@@ -191,19 +191,25 @@ router.post('/save', (req, res, next) => {
 		let item = Object.assign({}, req.body);
 		let errors = ValidateUsers.validator(req);
 		let task = (item.id !== '') ? 'edit' : 'add';
+
 		if (errUpload) {
 			if (errUpload.code === 'LIMIT_FILE_SIZE') {
-				errors.push({ 'param': 'avatar', 'msg': 'Kích thước file upload quá lớn' });
+				errors.push({ 'param': 'avatar', 'msg': notify.ERROR_FILE_LIMIT });
 			}
 
 			if (errUpload.extname) {
 				errors.push({ 'param': 'avatar', 'msg': errUpload.extname });
 			}
+		} else {
+			if (!req.file && task === 'add') {
+				errors.push({ 'param': 'avatar', 'msg': notify.ERROR_FILE_REQUIRE });
+			}
 		}
+
 		if (errors) {
 			let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
 			let groupsItems = [];
-			FileHelpers.removeFile('public/uploads/users/', req.file.filename);  // Xóa tấm hình khi form không hợp lệ
+			if (req.file) FileHelpers.removeFile('public/uploads/users/', req.file.filename);  // Xóa tấm hình khi form không hợp lệ
 			await GroupsModel.listItemsInSelectbox().then((items) => {
 				groupsItems = items;
 				groupsItems.unshift({ _id: 'novalue', name: 'All group' });

@@ -12,4 +12,7 @@ module.exports = {
     , ERROR_STATUS: 'Phải chọn giá trị status'
     , ERROR_GROUP: 'Phải chọn giá trị khác rỗng'
     , ERROR_GROUPACP: 'Phải chọn giá trị status'
+    , ERROR_FILE_REQUIRE: 'Vui lòng chọn file upload'
+    , ERROR_FILE_LIMIT: 'Kích thước file không phù hợp'
+    , ERROR_FILE_EXTENSION: 'Phần mở rộng file không hợp lệ'
 }

@@ -898,3 +898,7 @@ Tương tự fix lỗi khi click vào dashboard
 		thành công nhưng tập tin vẫn được upload
 	Các cách sử lý:
 		- Vẫn chấp nhận cho nó upload lên, sau đó tiến hành xóa file đó đi
+- Custom error:
+	Validate yêu cầu chọn 1 tập tin làm avatar khi thêm 1 người dùng
+	Khi thực hiện chức năng Edit thì thành viên đó đã có ảnh trước rồi -> không bắt buộc người dùng phải thêm tấm 
+		hình mới
