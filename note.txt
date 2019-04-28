@@ -893,3 +893,8 @@ Tương tự fix lỗi khi click vào dashboard
 
 - FileHelper:
 	Xây dựng helper phần thực hiện xóa file avatar
+- Fix upload image:
+	Khi thêm mới 1 user mà chỉ chọn 1 tập tin làm avatar trong khi đó các trường khác ko làm gì -> validate không
+		thành công nhưng tập tin vẫn được upload
+	Các cách sử lý:
+		- Vẫn chấp nhận cho nó upload lên, sau đó tiến hành xóa file đó đi

@@ -203,6 +203,7 @@ router.post('/save', (req, res, next) => {
 		if (errors) {
 			let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
 			let groupsItems = [];
+			FileHelpers.removeFile('public/uploads/users/', req.file.filename);  // Xóa tấm hình khi form không hợp lệ
 			await GroupsModel.listItemsInSelectbox().then((items) => {
 				groupsItems = items;
 				groupsItems.unshift({ _id: 'novalue', name: 'All group' });
