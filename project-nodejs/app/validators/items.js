@@ -30,6 +30,7 @@ const validator = (req) => {
     req.checkBody('content', util.format(notify.ERROR_NAME, options.content.min, options.content.max))
         .isLength({ min: options.content.min, max: options.content.max });
     errors = req.validationErrors();
+    if(!errors) errors = [];
     
     return errors;
 };

@@ -128,7 +128,7 @@ router.post('/save', (req, res, next) => {
 	let errors  = ValidateItems.validator(req);
 	let task    = (item.id !== '') ? 'edit' : 'add';
 
-	if(errors){
+	if (errors.length > 0) {
 		let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
 		res.render(folderView + '/form', {
 			pageTitle,

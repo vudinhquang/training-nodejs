@@ -927,3 +927,7 @@ Tương tự fix lỗi khi click vào dashboard
 		validate rồi sau đó validate avatar
 	Cách khác đó là dùng javascript để sắp xếp lại các fields trước khi thực hiện vấn đề gửi
 	Khi Edit chọn avatar không hợp lệ -> hình cũ vẫn phải được giữ lại
+
+-----Hoàn chỉnh chức năng validate
+- Validate:
+	Đồng bộ hóa mã nguồn validate của item và kiểm tra errors khi check validate trên routes giống với user
