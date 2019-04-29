@@ -54,7 +54,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 	params.currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
 	params.sortField = ParamsHelpers.getParam(req.session, 'sort_field', 'ordering');
 	params.sortType = ParamsHelpers.getParam(req.session, 'sort_type', 'asc');
-	params.groupID = ParamsHelpers.getParam(req.session, 'group_id', 'novalue');
+	params.groupID = ParamsHelpers.getParam(req.session, 'group_id', 'allvalue');
 	req.session.destroy();
 
 	params.pagination = {
@@ -69,7 +69,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 
 	await GroupsModel.listItemsInSelectbox(params).then((items) => {
 		groupsItems = items;
-		groupsItems.unshift({ _id: 'novalue', name: 'All group' });
+		groupsItems.unshift({ _id: 'allvalue', name: 'All group' });
 	});
 
 	await UsersModel.countItems(params).then((data) => {
@@ -153,7 +153,7 @@ router.get('/form(/:id)?', async (req, res, next) => {
 		name: '',
 		ordering: '',
 		status: 'novalue',
-		group_id: 'novalue',
+		group_id: 'allvalue',
 		group_name: ''
 	};
 	let errors = null;
@@ -161,7 +161,7 @@ router.get('/form(/:id)?', async (req, res, next) => {
 
 	await GroupsModel.listItemsInSelectbox().then((items) => {
 		groupsItems = items;
-		groupsItems.unshift({ _id: 'novalue', name: 'All group' });
+		groupsItems.unshift({ _id: 'allvalue', name: 'All group' });
 	});
 
 	if (id === '') {	//Add
@@ -192,14 +192,15 @@ router.post('/save', (req, res, next) => {
 		let task = (item.id !== '') ? 'edit' : 'add';
 		let errors = ValidateUsers.validator(req, errUpload, task);
 
-		if (errors) {
+		if (errors.length > 0) {
 			let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
 			let groupsItems = [];
 			if (req.file) FileHelpers.removeFile('public/uploads/users/', req.file.filename);  // Xóa tấm hình khi form không hợp lệ
 			await GroupsModel.listItemsInSelectbox().then((items) => {
 				groupsItems = items;
-				groupsItems.unshift({ _id: 'novalue', name: 'All group' });
+				groupsItems.unshift({ _id: 'allvalue', name: 'All group' });
 			});
+			if(task === 'edit') item.avatar = item.image_old;
 			res.render(folderView + '/form', {
 				pageTitle,
 				item,
@@ -232,7 +233,7 @@ router.get('/sort/:sort_field/:sort_type', (req, res, next) => {
 
 // Filter Group
 router.get('/filter-group/:group_id', (req, res, next) => {
-	req.session.group_id = ParamsHelpers.getParam(req.params, 'group_id', 'novalue');
+	req.session.group_id = ParamsHelpers.getParam(req.params, 'group_id', 'allvalue');
 
 	res.redirect(linkIndex);
 });
