@@ -907,3 +907,13 @@ Tương tự fix lỗi khi click vào dashboard
 
 - Edit - show avatar:
 	Khi edit thì phải hiển thị lên tấm hình avatar hiện tại của user đó
+- Edit - submit:
+	Khi thực hiện Edit user -> hình ảnh avatar của user đó cũng đã được hiện thị lên
+	-> Giải quyết 2 vấn đề:
+		Không edit hình ảnh avatar mà chỉ edit thông tin của các trường khác -> phải giữ lại hình ảnh cũng
+			phải giữ lại
+		Vừa edit thông tin ở phía ngoài và vừa edit hình ảnh avatar
+	Như vậy thì khi Edit cần giải quyết 2 trường hợp đó là: Họ chỉ edit những thông tin cơ bản or edit cả hình avatar
+	Tại tập tin Form khi Edit thì hiển thị tấm hình cũ
+	Tên của tấm hình cũ -> đặt trong ô input ẩn
+	Khi edit mà edit hình mới thì cần phải xóa tấm hình cũ đi

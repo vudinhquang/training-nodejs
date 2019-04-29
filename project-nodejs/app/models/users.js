@@ -122,6 +122,7 @@ module.exports = {
                         , ordering: parseInt(item.ordering)
                         , status: item.status
                         , content: item.content
+                        , avatar: item.avatar
                         , group: {
                             id: item.group_id,
                             name: item.group_name,

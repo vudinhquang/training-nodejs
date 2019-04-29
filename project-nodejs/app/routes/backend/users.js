@@ -208,7 +208,12 @@ router.post('/save', (req, res, next) => {
 			});
 		} else {
 			let message = (task === 'add') ? notify.ADD_SUCCESS : notify.EDIT_SUCCESS;
-			item.avatar = req.file.filename;
+			if(!req.file){ // không có upload lại hình
+				item.avatar = item.image_old;
+			} else{
+				item.avatar = req.file.filename;
+				if(item.image_old && task == 'edit') FileHelpers.removeFile('public/uploads/users/', item.image_old);
+			}
 			UsersModel.saveItem(item, { 'task': task }).then(() => {
 				req.flash('success', message, false);
 				res.redirect(linkIndex);
