@@ -904,3 +904,6 @@ Tương tự fix lỗi khi click vào dashboard
 		hình mới
 - Optimize validate:
 	Đưa các phần về lỗi validate vào trong cùng 1 tập tin validate của user làm gọn code trong routes
+
+- Edit - show avatar:
+	Khi edit thì phải hiển thị lên tấm hình avatar hiện tại của user đó

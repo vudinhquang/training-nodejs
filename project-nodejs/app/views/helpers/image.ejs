@@ -1,10 +1,10 @@
 <% 
-    imageHelper = (folder, imageName, alt = 'Image', noavatar = 'no-avatar.png') => { 
+    imageHelper = (folder, imageName, alt = 'Image', noavatar = 'no-avatar.png', className = 'img-responsive img-avatar') => { 
         let xhtml = '';
         if(!imageName){
             imageName = noavatar;
         }
-        xhtml = `<img src="${folder + imageName}" class="img-responsive img-avatar" alt="${alt}">`;
+        xhtml = `<img src="${folder + imageName}" class="${className}" alt="${alt}">`;
         
         return xhtml;
     } 
