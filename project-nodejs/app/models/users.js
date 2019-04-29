@@ -9,7 +9,7 @@ module.exports = {
         let sort		  = {};
         sort[params.sortField]   = params.sortType;
 
-        if(params.groupID !== 'novalue') objWhere['group.id'] = params.groupID; 
+        if(params.groupID !== 'allvalue') objWhere['group.id'] = params.groupID; 
 	    if(params.currentStatus !== 'all') objWhere.status = params.currentStatus;
         if(params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
 
@@ -27,7 +27,7 @@ module.exports = {
 
     , countItems: (params, options = {}) => {
         let objWhere = {};
-        if (params.groupID !== 'novalue') objWhere['group.id'] = params.groupID;
+        if (params.groupID !== 'allvalue') objWhere['group.id'] = params.groupID;
         if (params.currentStatus !== 'all') objWhere.status = params.currentStatus;
         if (params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
 

@@ -4,14 +4,14 @@ const util   = require('util');
 const options = {
     name: { min: 5, max: 20 }
     , ordering: { min: 0, max: 100 }
-    // , status: { value: 'novalue' }
-    // , group_id: { value: 'novalue' }
-    , selectEle: { value: 'novalue' }
+    , status: { value: 'novalue' }
+    , group_id: { value: 'allvalue' }
+    // , selectEle: { value: 'novalue' }
     , content: { min: 5, max: 200 }
 };
 
 const isNotEqual = (req, ele) => {
-    if (req.body[ele] !== options.selectEle.value) {
+    if (req.body[ele] !== options[ele].value) {
         return true;
     } else {
         return false;
@@ -19,7 +19,6 @@ const isNotEqual = (req, ele) => {
 }
 
 const validator = (req, errUpload, task) => {
-    let errors = false;
     req.checkBody('name', util.format(notify.ERROR_NAME, options.name.min, options.name.max))
         .isLength({ min: options.name.min, max: options.name.max });
     req.checkBody('ordering', util.format(notify.ERROR_ORDERING, options.ordering.min, options.ordering.max))
@@ -36,7 +35,7 @@ const validator = (req, errUpload, task) => {
     req.checkBody('content', util.format(notify.ERROR_NAME, options.content.min, options.content.max))
         .isLength({ min: options.content.min, max: options.content.max });
     errors = req.validationErrors();
-
+    if(!errors) errors = [];
     if (errUpload) {
         if (errUpload.code === 'LIMIT_FILE_SIZE') {
             errors.push({ 'param': 'avatar', 'msg': notify.ERROR_FILE_LIMIT });

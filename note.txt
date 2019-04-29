@@ -917,3 +917,13 @@ Tương tự fix lỗi khi click vào dashboard
 	Tại tập tin Form khi Edit thì hiển thị tấm hình cũ
 	Tên của tấm hình cũ -> đặt trong ô input ẩn
 	Khi edit mà edit hình mới thì cần phải xóa tấm hình cũ đi
+- Edit - finish:
+	Keyword: req.body empty multer
+	Trường hợp thêm mới và edit mà nhập vào hình ko hợp lệ thì ko validate được và ko giữ được giá trị của các trường 
+		khác đứng sau avatar trên view form
+	Như vậy thì khi mà validate avatar bị lỗi thì những phần tử ở phía dưới avatar trên Form nó sẽ bị vô hiệu hóa và ko
+		được validate
+	Cách khắc phục đơn giản nhất đó là đặt vị trí của avatar ở dưới cuối Form để cho tất cả các phần ở phía trên nó được
+		validate rồi sau đó validate avatar
+	Cách khác đó là dùng javascript để sắp xếp lại các fields trước khi thực hiện vấn đề gửi
+	Khi Edit chọn avatar không hợp lệ -> hình cũ vẫn phải được giữ lại
