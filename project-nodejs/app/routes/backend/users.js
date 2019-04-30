@@ -15,7 +15,7 @@ const linkIndex = '/' + systemConfig.prefixAdmin + '/users';
 const pageTitleIndex = 'User Managment';
 const pageTitleAdd = pageTitleIndex + ' - Add';
 const pageTitleEdit = pageTitleIndex + ' - Edit';
-const folderView = __path_views + '/pages/users';
+const folderView = __path_views_admin + '/pages/users';
 const uploadAvatar = FileHelpers.uploadFile('avatar', '/users', 10, 1, 'jpeg|jpg|png|gif');
 
 // Test upload - form

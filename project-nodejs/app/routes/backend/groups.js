@@ -14,7 +14,7 @@ const linkIndex = '/' + systemConfig.prefixAdmin + '/groups';
 const pageTitleIndex = 'Group Managment';
 const pageTitleAdd   = pageTitleIndex + ' - Add';
 const pageTitleEdit  = pageTitleIndex + ' - Edit';
-const folderView = __path_views + '/pages/groups';
+const folderView = __path_views_admin + '/pages/groups';
 
 // List groups
 router.get('(/status/:status)?', async (req, res, next) => {

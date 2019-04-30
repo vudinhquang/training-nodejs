@@ -936,3 +936,15 @@ Tương tự fix lỗi khi click vào dashboard
 - Article: Xây dựng phần quản lý bài viết
 	Mối quan hệ của article và category giống với mối quan hệ của user và group
 	user có avatar thì article có ảnh làm hình đại diện của 1 bài viết nào đó
+
+----------------------------------------------------------------------------------------------------
+							Xây dựng nhóm chức năng kết hợp Frontend và Backend
+
+-----Nhúng giao diện cho vùng Frontend
+- Folder view:	Các folder chứa tập tin views, chia ra để quản lý
+	module admin
+	module blog
+	-> Thay đổi nơi chứa folder views theo module:
+	Thay đôi và sắp xếp lại vị trí của các tập tin, thư mục nên các đường dẫn cũng bị thay đổi
+	app: Thay đổi đường dẫn đến flash, layout và render của layout
+	routes: Đường dẫn đến folder view(folderView)

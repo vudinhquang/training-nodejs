@@ -15,7 +15,7 @@ const linkIndex = '/' + systemConfig.prefixAdmin + '/article';
 const pageTitleIndex = 'Article Managment';
 const pageTitleAdd = pageTitleIndex + ' - Add';
 const pageTitleEdit = pageTitleIndex + ' - Edit';
-const folderView = __path_views + '/pages/article';
+const folderView = __path_views_admin + '/pages/article';
 const uploadThumb = FileHelpers.uploadFile('thumb', '/article', 10, 1, 'jpeg|jpg|png|gif');
 
 // List articles
