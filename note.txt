@@ -948,3 +948,5 @@ Tương tự fix lỗi khi click vào dashboard
 	Thay đôi và sắp xếp lại vị trí của các tập tin, thư mục nên các đường dẫn cũng bị thay đổi
 	app: Thay đổi đường dẫn đến flash, layout và render của layout
 	routes: Đường dẫn đến folder view(folderView)
+
+- Intro Template: Template cho phần frontend
