@@ -950,3 +950,10 @@ Tương tự fix lỗi khi click vào dashboard
 	routes: Đường dẫn đến folder view(folderView)
 
 - Intro Template: Template cho phần frontend
+
+- Folder template:
+	Trong folder public là những tập tin về tài nguyên css. js...
+	Để dễ hệ thống thì chia làm các folder để quản lý
+	Lúc này đường dẫn sẽ bị thay đổi, do đó ở những phần kéo vào css và js... cần phải thay đổi lại
+	elements/header: Nơi kéo vào css
+	elements/scripts: Nơi kéo vào js
