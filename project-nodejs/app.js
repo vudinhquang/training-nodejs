@@ -77,7 +77,7 @@ app.locals.moment = require('moment');
 
 // Setup router
 app.use(`/${systemConfig.prefixAdmin}`, require(__path_routes + '/backend/index'));
-app.use('/', require(__path_routes + '/frontend/index'));
+app.use(`/${systemConfig.prefixBlog}`, require(__path_routes + '/frontend/index'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

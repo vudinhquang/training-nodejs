@@ -957,3 +957,16 @@ Tương tự fix lỗi khi click vào dashboard
 	Lúc này đường dẫn sẽ bị thay đổi, do đó ở những phần kéo vào css và js... cần phải thay đổi lại
 	elements/header: Nơi kéo vào css
 	elements/scripts: Nơi kéo vào js
+
+- Nhúng Template:
+	Nhúng giao diện cho phần frontend
+	Phân chia tập tin, tách tập tin cho blog: elements, pages, frontend.ejs(template)
+		elements: footer. head, header, script, sidebar, top_post
+		pages: category, home, post
+		layout: frontend.ejs
+	Hiện tại thì khi truy cập vào http://localhost:6969/admin/ thì sẽ truy cập được vào template backend
+		layout đang được thiết lập là backend trong admin
+	Khi truy cập vào đường dẫn http://localhost:6969/ thì sẽ truy cập đường vào template frontend
+		layout phải được thiết lập là frontend
+	-> Trong phần khai báo routes thì có thể chỉ định layout giành cho router đó là layout nào
+	Keyword: How to specify layout in res.render function

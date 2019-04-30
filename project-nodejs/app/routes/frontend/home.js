@@ -1,11 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-const folderView	 =  __path_views + '/pages/publish';
+const folderView = __path_views_blog + '/pages/home';
+const layoutBlog = __path_views_blog + '/frontend';
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render(folderView + '/index', { pageTitle: 'publishPage' });
+router.get('/', function (req, res, next) {
+	res.render(folderView + '/index', {
+		layout: layoutBlog
+	});
 });
 
 module.exports = router;
