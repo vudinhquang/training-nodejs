@@ -6,4 +6,5 @@ module.exports = {
     , modelGroup: 'Group'
     , modelUser: 'User'
     , modelCategory: 'Category'
+    , modelArticle: 'Article'
 }

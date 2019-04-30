@@ -1,6 +1,6 @@
-const UsersModel  = require(__path_schemas + '/users');
+const ArticlesModel  = require(__path_schemas + '/article');
 const FileHelpers = require(__path_helpers + '/file');
-const uploadFolder = 'public/uploads/users/';
+const uploadFolder = 'public/uploads/article/';
 
 module.exports = {
     listItems: (params, options = {}) => {
@@ -10,29 +10,29 @@ module.exports = {
         let sort		  = {};
         sort[params.sortField]   = params.sortType;
 
-        if(params.groupID !== 'allvalue') objWhere['group.id'] = params.groupID; 
+        if(params.categoryID !== 'allvalue') objWhere['category.id'] = params.categoryID; 
 	    if(params.currentStatus !== 'all') objWhere.status = params.currentStatus;
         if(params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
 
-        return UsersModel
+        return ArticlesModel
             .find(objWhere)
-            .select('name avatar status ordering created modified group.name')
+            .select('name thumb status ordering created modified category.name')
             .sort(sort)
             .skip((params.pagination.currentPage - 1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
     }
 
     , getItem: (id, options = {}) => {
-        return UsersModel.findById(id);
+        return ArticlesModel.findById(id);
     }
 
     , countItems: (params, options = {}) => {
         let objWhere = {};
-        if (params.groupID !== 'allvalue') objWhere['group.id'] = params.groupID;
+        if (params.categoryID !== 'allvalue') objWhere['category.id'] = params.categoryID;
         if (params.currentStatus !== 'all') objWhere.status = params.currentStatus;
         if (params.keyword !== '') objWhere.name = new RegExp(params.keyword, 'i');
 
-        return UsersModel.countDocuments(objWhere);
+        return ArticlesModel.countDocuments(objWhere);
     }
 
     , changeStatus: (id, currentStatus, options = {}) => {
@@ -47,12 +47,12 @@ module.exports = {
             };
     
         if(options.task === 'update-one'){
-            return UsersModel.updateOne({ _id: id }, data);
+            return ArticlesModel.updateOne({ _id: id }, data);
         }
 
         if(options.task === 'update-multi'){
             data.status = currentStatus;
-            return UsersModel.updateMany({ _id: { $in: id } }, data);
+            return ArticlesModel.updateMany({ _id: { $in: id } }, data);
         }
     }
 
@@ -69,37 +69,37 @@ module.exports = {
         if (Array.isArray(cids)) { // Change ordering - Multi
             for(let index = 0; index < cids.length; index++){
                 data.ordering = parseInt(orderings[index]);
-                await UsersModel.updateOne({ _id: cids[index]}, data);
+                await ArticlesModel.updateOne({ _id: cids[index]}, data);
             }
             return Promise.resolve('Succsess');
         } else { // Change ordering - One
-            return UsersModel.updateOne({ _id: cids }, data);
+            return ArticlesModel.updateOne({ _id: cids }, data);
         }
     }
 
     , deleteItem: async (id, options = {}) => {
         if(options.task === 'delete-one'){
-            await UsersModel.findById(id).then((item) => {
-                FileHelpers.removeFile(uploadFolder, item.avatar);
+            await ArticlesModel.findById(id).then((item) => {
+                FileHelpers.removeFile(uploadFolder, item.thumb);
             });
 
-            return UsersModel.deleteOne({ _id: id });
+            return ArticlesModel.deleteOne({ _id: id });
         }
 
         if(options.task === 'delete-multi'){
             if(Array.isArray(id)){
                 for(let index = 0; index < id.length; index++){
-                    await UsersModel.findById(id[index]).then((item) => {
-                        FileHelpers.removeFile(uploadFolder, item.avatar);
+                    await ArticlesModel.findById(id[index]).then((item) => {
+                        FileHelpers.removeFile(uploadFolder, item.thumb);
                     });
                 }
             }else{
-                await UsersModel.findById(id).then((item) => {
-                    FileHelpers.removeFile(uploadFolder, item.avatar);
+                await ArticlesModel.findById(id).then((item) => {
+                    FileHelpers.removeFile(uploadFolder, item.thumb);
                 });
             }
 
-            return UsersModel.deleteMany({ _id: { $in: id } });
+            return ArticlesModel.deleteMany({ _id: { $in: id } });
         }
     }
 
@@ -110,23 +110,23 @@ module.exports = {
 				, user_name: 'admin'
 				, time: Date.now()
             };
-			item.group = {
-				id: item.group_id,
-				name: item.group_name,
+			item.category = {
+				id: item.category_id,
+				name: item.category_name,
 			}
-			return new UsersModel(item).save();
+			return new ArticlesModel(item).save();
         }
 
         if(options.task === 'edit'){
-			return UsersModel.updateOne({ _id: item.id }, {
+			return ArticlesModel.updateOne({ _id: item.id }, {
                         name: item.name
                         , ordering: parseInt(item.ordering)
                         , status: item.status
                         , content: item.content
-                        , avatar: item.avatar
-                        , group: {
-                            id: item.group_id,
-                            name: item.group_name,
+                        , thumb: item.thumb
+                        , category: {
+                            id: item.category_id,
+                            name: item.category_name,
                         }
                         , modified:{
                             user_id: 0
@@ -136,9 +136,9 @@ module.exports = {
                     });
         }
 
-        if(options.task === 'change-group-name'){
-			return UsersModel.updateMany({ 'group.id': item.id }, {
-                        group: {
+        if(options.task === 'change-category-name'){
+			return ArticlesModel.updateMany({ 'category.id': item.id }, {
+                        category: {
                             id: item.id,
                             name: item.name
                         }

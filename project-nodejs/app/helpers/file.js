@@ -37,12 +37,12 @@ let uploadFile = (field, folderDes =  '/users', fileNameLength = 10, fileSizeMb 
 	return upload;
 }
 
-let removeFile = (folder, fileName) => {
+let removeFile = (folder, fileName, defaultImage = 'no-avatar.png') => {
 	let path = folder + fileName;
 	if(fileName){
 		fs.exists(path, (exists) => {
 			if (exists) {
-				if(fileName !== 'no-avatar'){
+				if(fileName !== defaultImage){
 					fs.unlink(path, (err) => {
 						if (err) throw err;
 					});

@@ -931,3 +931,8 @@ Tương tự fix lỗi khi click vào dashboard
 -----Hoàn chỉnh chức năng validate
 - Validate:
 	Đồng bộ hóa mã nguồn validate của item và kiểm tra errors khi check validate trên routes giống với user
+
+-----Xây dựng chức năng quản lý bài viết
+- Article: Xây dựng phần quản lý bài viết
+	Mối quan hệ của article và category giống với mối quan hệ của user và group
+	user có avatar thì article có ảnh làm hình đại diện của 1 bài viết nào đó

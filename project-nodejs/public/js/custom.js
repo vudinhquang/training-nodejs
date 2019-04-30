@@ -139,9 +139,19 @@ $(document).ready(function () {
         $('input[name="group_name"]').val($(this).find('option:selected').text()); //TH chọn Choose Group: validate đã kiểm tra
     });
 
+    $('select[name="category_id"]').change(function(){
+        $('input[name="category_name"]').val($(this).find('option:selected').text()); //TH chọn Choose Group: validate đã kiểm tra
+    });
+
     $('select[name="filter_group"]').change(function () {
         var path = window.location.pathname.split('/');
         var linkRedirect = '/' + path[1] + '/' + path[2] + '/filter-group/' + $(this).val();
+        window.location.pathname = linkRedirect;
+    });
+
+    $('select[name="filter_category"]').change(function () {
+        var path = window.location.pathname.split('/');
+        var linkRedirect = '/' + path[1] + '/' + path[2] + '/filter-category/' + $(this).val();
         window.location.pathname = linkRedirect;
     });
 
@@ -152,6 +162,12 @@ $(document).ready(function () {
     $("form[name=form-upload]").submit(function (event) {
         let avatar = $(this).find("input[name=avatar]");
         $(this).find("input[name=avatar]").remove();
+        $(this).append(avatar).css({ 'display': 'none' });
+    });
+
+    $("form[name=form-upload]").submit(function (event) {
+        let avatar = $(this).find("input[name=thumb]");
+        $(this).find("input[name=thumb]").remove();
         $(this).append(avatar).css({ 'display': 'none' });
     });
 });
