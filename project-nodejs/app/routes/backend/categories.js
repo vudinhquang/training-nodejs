@@ -5,7 +5,7 @@ const util  = require('util');
 const systemConfig     = require(__path_configs + '/system');
 const notify           = require(__path_configs + '/notify');
 const CategoryModel    = require(__path_models + '/categories');
-const UsersModel       = require(__path_models + '/users');
+const ArticleModel       = require(__path_models + '/article');
 const ValidateCategory = require(__path_validators + '/category');
 const UtilsHelpers     = require(__path_helpers + '/utils');
 const ParamsHelpers    = require(__path_helpers + '/params');
@@ -59,15 +59,15 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 });
 
 // Change Group ACP
-router.get('/change-group-acp/:id/:group_acp', (req, res, next) => {
-	let currentGroupACP = ParamsHelpers.getParam(req.params, 'group_acp', 'yes');
-	let id 				= ParamsHelpers.getParam(req.params, 'id', '');
+// router.get('/change-group-acp/:id/:group_acp', (req, res, next) => {
+// 	let currentGroupACP = ParamsHelpers.getParam(req.params, 'group_acp', 'yes');
+// 	let id 				= ParamsHelpers.getParam(req.params, 'id', '');
 
-	CategoryModel.changeGroupACP(currentGroupACP, id).then((result) => {
-		req.flash('success', notify.CHANGE_GROUP_ACP_SUCCSESS, false);
-		res.redirect(linkIndex);
-	});
-});
+// 	CategoryModel.changeGroupACP(currentGroupACP, id).then((result) => {
+// 		req.flash('success', notify.CHANGE_GROUP_ACP_SUCCSESS, false);
+// 		res.redirect(linkIndex);
+// 	});
+// });
 
 // Change status - Multi
 router.post('/change-status/:status', (req, res, next) => {
@@ -153,7 +153,7 @@ router.post('/save', (req, res, next) => {
 				req.flash('success', message, false);
 				res.redirect(linkIndex);
 			}else if(task === 'edit'){
-				UsersModel.saveItem(item, {'task': 'change-group-name'}).then(() => {
+				ArticleModel.saveItem(item, {'task': 'change-category-name'}).then(() => {
 					req.flash('success', notify.EDIT_SUCCESS, false);
 					res.redirect(linkIndex);
 				});

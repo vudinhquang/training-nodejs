@@ -139,7 +139,6 @@ router.post('/save', (req, res, next) => {
 	let item = Object.assign({}, req.body);
 	let errors = ValidateGroups.validator(req);
 	let task    = (item.id !== '') ? 'edit' : 'add';
-
 	if(errors){
 		let pageTitle = (task === 'add') ? pageTitleAdd : pageTitleEdit;
 		res.render(folderView + '/form', {
