@@ -22,11 +22,23 @@ module.exports = {
             .limit(params.pagination.totalItemsPerPage);
     }
 
-    , listItemsSpecial: (params, options = {}) => {
-        return ArticlesModel.find({ 'status': 'active', 'special': 'active' })
-            .select('name created.user_name created.time category.name thumb')
-            .limit(3)
-            .sort({ 'ordering': 'asc' });
+    , listItemsFrontend: (params = {}, options = {}) => {
+        let find    = {};
+        let select  = 'name created.user_name created.time category.name thumb';
+        let limit   = 3;
+        let sort    = {};
+
+        if(options.task === 'items-special'){
+            find    = { 'status': 'active', 'special': 'active' };
+            sort    = { 'ordering': 'asc' };
+        }
+
+        if(options.task === 'items-news'){
+            find    = { 'status': 'active' };
+            sort    = { 'created.time': 'desc' };
+        }
+
+        return ArticlesModel.find(find).select(select).limit(limit).sort(sort);
     }
 
     , getItem: (id, options = {}) => {

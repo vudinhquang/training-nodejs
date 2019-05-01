@@ -9,14 +9,21 @@ const layoutBlog = __path_views_blog + '/frontend';
 /* GET home page. */
 router.get('/', async (req, res, next) => {
 	let itemsSpecial = [];
-	await ArticleModel.listItemsSpecial(req.params).then((items) => {
-		itemsSpecial = items
+	let itemsNews    = [];
+
+	await ArticleModel.listItemsFrontend({}, {'task': 'items-special'}).then((items) => {
+		itemsSpecial = items;
+	})
+
+	await ArticleModel.listItemsFrontend({}, {'task': 'items-news'}).then((items) => {
+		itemsNews = items;
 	})
 
 	res.render(folderView + '/index', {
 		layout: layoutBlog,
 		top_post: true,
-		itemsSpecial
+		itemsSpecial,
+		itemsNews
 	});
 });
 
