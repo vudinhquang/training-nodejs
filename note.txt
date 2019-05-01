@@ -970,3 +970,10 @@ Tương tự fix lỗi khi click vào dashboard
 		layout phải được thiết lập là frontend
 	-> Trong phần khai báo routes thì có thể chỉ định layout giành cho router đó là layout nào
 	Keyword: How to specify layout in res.render function
+
+- Top post:
+	Khai báo router cho category và post
+	category: Lấy giao diện hiển thị các bài viết trong 1 category
+	post: Xem thông tin chi tiết 1 bài viết 
+		phần những bài viết liên quan lấy 1 số bài viết cùng category với bài viết đó
+	Cụm bài viết top_post chỉ hiển thị trên trang index(home)

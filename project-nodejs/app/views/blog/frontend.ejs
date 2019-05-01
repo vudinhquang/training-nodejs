@@ -6,7 +6,12 @@
 	<body>
 		<% include ./elements/header %>
 		<div class="site-main-container">	
-				
+			<!-- Start top-post Area -->
+			<% if(top_post === true){ %>
+                <% include ./elements/top_post %>
+            <% } %>
+			<!-- End top-post Area -->
+
 			<!-- Start latest-post Area -->
 			<section class="latest-post-area pb-120">
 				<div class="container no-padding">
