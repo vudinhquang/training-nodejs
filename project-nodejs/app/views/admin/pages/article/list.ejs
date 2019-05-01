@@ -1,6 +1,7 @@
 <% include ../../helpers/filter-status %>
 <% include ../../helpers/action %>
 <% include ../../helpers/status %>
+<% include ../../helpers/special %>
 <% include ../../helpers/pagination %>
 <% include ../../helpers/source-by %>
 <% include ../../helpers/sort %>
@@ -72,6 +73,7 @@
 									<%- sortHelper(linkPrefix, 'Name', 'name', params.sortField, params.sortType, 'width:12%') %>
 									<th>Thumb</th>
 									<%- sortHelper(linkPrefix, 'Status', 'status', params.sortField, params.sortType) %>
+									<%- sortHelper(linkPrefix, 'Special', 'special', params.sortField, params.sortType) %>
 									<%- sortHelper(linkPrefix, 'Ordering', 'ordering', params.sortField, params.sortType) %>
 									<%- sortHelper(linkPrefix, 'Category', 'category.name', params.sortField, params.sortType) %>
 									<th>Created</th>
@@ -97,6 +99,9 @@
 										</td>
 										<td>
 											<%- statusHelper(linkPrefix, item.status, item.id) %>
+										</td>
+										<td>
+											<%- specialHelper(linkPrefix, item.special, item.id) %>
 										</td>
 										<td>
 											<input type="number" value="<%= item.ordering %>" class="text-center ordering ">

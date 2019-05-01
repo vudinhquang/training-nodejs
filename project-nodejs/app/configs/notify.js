@@ -1,5 +1,6 @@
 module.exports = {
     CHANGE_STATUS_SUCCSESS: 'Cập nhật status thành công!'
+    , CHANGE_SPECIAL_SUCCESS: 'Cập nhật special thành công'
     , CHANGE_STATUS_MULTI_SUCCSESS: 'Có %d phần tử được cập nhật status thành công!'
     , CHANGE_GROUP_ACP_SUCCSESS: 'Cập nhật Group ACP thành công!'
     , CHANGE_ORDERING_SUCCESS: 'Cập nhật ordering thành công'

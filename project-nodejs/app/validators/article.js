@@ -1,10 +1,11 @@
 const notify = require(__path_configs + '/notify');
-const util   = require('util');
+const util = require('util');
 
 const options = {
     name: { min: 5, max: 20 }
     , ordering: { min: 0, max: 100 }
     , status: { value: 'novalue' }
+    , special: { value: 'novalue' }
     , category_id: { value: 'allvalue' }
     // , selectEle: { value: 'novalue' }
     , content: { min: 5, max: 200 }
@@ -28,14 +29,18 @@ const validator = (req, errUpload, task) => {
         .custom(() => {
             return isNotEqual(req, 'status');
         });
+    req.checkBody('special', notify.ERROR_STATUS)
+        .custom(() => {
+            return isNotEqual(req, 'special');
+        });
     req.checkBody('category_id', notify.ERROR_GROUP)
         .custom(() => {
-        return isNotEqual(req, 'category_id');
-    });
+            return isNotEqual(req, 'category_id');
+        });
     req.checkBody('content', util.format(notify.ERROR_NAME, options.content.min, options.content.max))
         .isLength({ min: options.content.min, max: options.content.max });
     errors = req.validationErrors();
-    if(!errors) errors = [];
+    if (!errors) errors = [];
     if (errUpload) {
         if (errUpload.code === 'LIMIT_FILE_SIZE') {
             errors.push({ 'param': 'thumb', 'msg': notify.ERROR_FILE_LIMIT });
@@ -49,7 +54,7 @@ const validator = (req, errUpload, task) => {
             errors.push({ 'param': 'thumb', 'msg': notify.ERROR_FILE_REQUIRE });
         }
     }
-    
+
     return errors;
 };
 

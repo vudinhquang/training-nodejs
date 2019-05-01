@@ -59,6 +59,17 @@ router.get('(/status/:status)?', async (req, res, next) => {
 		});
 });
 
+// Change special
+router.get('/change-special/:id/:special', (req, res, next) => {
+	let currentSpecial	= ParamsHelpers.getParam(req.params, 'special', 'active'); 
+	let id				= ParamsHelpers.getParam(req.params, 'id', ''); 
+
+	ArticleModel.changeSpecial(id, currentSpecial, {task: "update-one"}).then((result)=> {
+		req.flash('success', notify.CHANGE_SPECIAL_SUCCESS, false);
+		res.redirect(linkIndex);
+	})
+});
+
 // Change status
 router.get('/change-status/:id/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
@@ -116,6 +127,7 @@ router.get('/form(/:id)?', async (req, res, next) => {
 		name: '',
 		ordering: '',
 		status: 'novalue',
+		special: 'novalue',
 		category_id: 'allvalue',
 		category_name: ''
 	};

@@ -977,3 +977,13 @@ Tương tự fix lỗi khi click vào dashboard
 	post: Xem thông tin chi tiết 1 bài viết 
 		phần những bài viết liên quan lấy 1 số bài viết cùng category với bài viết đó
 	Cụm bài viết top_post chỉ hiển thị trên trang index(home)
+
+-----Xây dựng vùng hiển thị bài viết nổi bật
+- Analyst:
+	Thêm 1 trường mới đó là special vào cho bảng articles, giá trị của special là true thì cho nó hiển thị ở
+		vùng top post
+	Việc thay đổi giá trị của trường special thì thực hiện cũng giống như status
+	Các việc cần phải thực hiện đó là:
+		backend: thay đổi special
+		frontend: lấy các bài viết có special = true
+- Backend: Chọn 1 bài viết nào đó có nằm ở vị trí top hay không, special được thêm vào và làm tương tự như status
