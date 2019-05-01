@@ -997,3 +997,6 @@ Tương tự fix lỗi khi click vào dashboard
 		Nếu chỉ có 1 -> có 1 template để hiện thị 1 bài viết
 		Nếu không có -> có 1 template để hiện thị 0 bài viết
 		Cách 2: Nếu có 3 thì mới hiển thị, còn ko thì ko hiển thị
+
+- Xây dựng vùng hiển thị bài viết mới nhất:
+- Fix special: Xử dụng async await để sửa lại routes phần lấy dữ liệu bài viết hiển thị trên phần top post
