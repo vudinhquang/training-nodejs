@@ -22,6 +22,13 @@ module.exports = {
             .limit(params.pagination.totalItemsPerPage);
     }
 
+    , listItemsSpecial: (params, options = {}) => {
+        return ArticlesModel.find({ 'status': 'active', 'special': 'active' })
+            .select('name created.user_name created.time category.name thumb')
+            .limit(3)
+            .sort({ 'ordering': 'asc' });
+    }
+
     , getItem: (id, options = {}) => {
         return ArticlesModel.findById(id);
     }

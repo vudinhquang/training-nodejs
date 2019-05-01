@@ -987,3 +987,13 @@ Tương tự fix lỗi khi click vào dashboard
 		backend: thay đổi special
 		frontend: lấy các bài viết có special = true
 - Backend: Chọn 1 bài viết nào đó có nằm ở vị trí top hay không, special được thêm vào và làm tương tự như status
+
+- Frontend: Lấy những bài viết để nó show ra hiển thị ở vị trí top
+	Các bài viết này phải có special là active, đồng thời giá trị của status cũng phải là active
+	Giới hạn các phần tử lấy ra là 3
+	Định dạng thời gian -> config giá trị
+	Tình huống mở rộng: Không phải lúc nào cũng có 3 bài viết có giá trị special là true
+		Nếu chỉ có 2 -> có 1 template để hiện thị 2 bài viết
+		Nếu chỉ có 1 -> có 1 template để hiện thị 1 bài viết
+		Nếu không có -> có 1 template để hiện thị 0 bài viết
+		Cách 2: Nếu có 3 thì mới hiển thị, còn ko thì ko hiển thị

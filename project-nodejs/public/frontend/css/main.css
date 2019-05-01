@@ -285,7 +285,11 @@ td, th {
 }
 
 .mt-10 {
-  margin-top: 10px;
+  margin-top: 7px;
+}
+
+.mt-10:nth-child(1) {
+  margin-top: 0px;
 }
 
 .mt-15 {
