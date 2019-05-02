@@ -1014,3 +1014,5 @@ Tương tự fix lỗi khi click vào dashboard
 	Khi truy cập vào 1 category nào đó thì sẽ hiển thị ra các bài viết nằm trong category đó
 - Get data: 
 	Lấy ra danh sách các bài viết dựa vào id của category
+- Show data: Hiển thị thông tin các bài viết của từng category
+	Ở đây xử lý với trường hợp là có dữ liệu
