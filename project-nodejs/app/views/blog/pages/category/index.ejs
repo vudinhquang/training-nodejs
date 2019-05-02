@@ -1,3 +1,5 @@
+<% include ./../../helpers/format-date %>
+<% include ./../../helpers/format-summary %>
 <%
     const folder_uploads = 'uploads/article/';
 %>
@@ -19,10 +21,10 @@
                     </a>
                     <ul class="meta">
                         <li><a href="#"><span class="lnr lnr-user"></span><%= item.created.user_name %></a></li>
-                        <li><a href="#"><span class="lnr lnr-calendar-full"></span><%= moment(item.created.time).format(systemConfig.format_time_frontend) %></a></li>
+                        <li><a href="#"><span class="lnr lnr-calendar-full"></span><%= formatDate(item.created.time) %></a></li>
                     </ul>
                     <p class="excert">
-                        <%- item.content.substr(0, 150) %> ...
+                        <%- formatSummary(item.content) %> ...
                     </p>
                 </div>
             </div>
