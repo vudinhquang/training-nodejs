@@ -1022,3 +1022,13 @@ Tương tự fix lỗi khi click vào dashboard
 	Keyword: js remove html tag -> text.replace(/<[^>]+>/g, '');
 	Thông thường thì nếu tạo thêm ra 1 trường cho phần miêu tả ngắn summary thì thường nó là 1 text area(ko có editer) 
 	nên khi nhập nó ko có định dạng gì cả, lúc đó thì sẽ ko cần sử dụng phần xử lý chuỗi là loại bỏ đi các thẻ html.
+
+-----Xây dựng các thành phần của trang
+- Page: Thực hiện hoàn thiện thành phần menu và xử lý khi người dùng truy cập vào 1 trang ko tồn tại
+	Hoàn thiện phần menu: thêm trang contact và about
+		Điều chỉnh link và khai báo router(contact và about)
+	Hướng phát triển mở rộng:
+		contact: có thể thêm Form liên hệ của người dùng
+		about: có thể nhúng thêm địa chỉ của website, bản đồ, giới thiệu website...
+		Khi người dùng vào 1 trang ko tồn tại thì mở ra trang 404
+			Khi có lỗi xảy ra mình định nghĩa 2 môi trường đó là dev và production -> thiết lập trong config
