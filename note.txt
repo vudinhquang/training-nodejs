@@ -1007,3 +1007,6 @@ Tương tự fix lỗi khi click vào dashboard
 		trên trang index 
 	Đối với phần cắt chuỗi bằng substring thì cần xử lý tinh giả dụ: vũ đình quang -> vũ đình...
 		chưa được xử lý tinh thì hay có dạng đó là: vũ đình qua...
+
+-----Xây dựng trang hiển thị bài viết của category
+- Category Menu: Lấy ra các category và đổ vào phần menu category nằm ở header của trang home

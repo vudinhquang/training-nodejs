@@ -17,6 +17,20 @@ module.exports = {
             .limit(params.pagination.totalItemsPerPage);
     }
 
+    , listItemsFrontend: (params = {}, options = {}) => {
+        let find = {};
+        let select = 'name';
+        let limit = 10;
+        let sort = {};
+
+        if (options.task == 'items-in-menu'){
+            find = {'status':'active'};
+            sort = {'ordering': 'asc'};            
+        }
+
+        return CategoriesModel.find(find).select(select).limit(limit).sort(sort);
+    }
+
     , listItemsInSelectbox: (params, options = {}) => {
         return CategoriesModel.find({},{_id:1, name:1});
     }

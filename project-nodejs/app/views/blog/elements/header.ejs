@@ -70,18 +70,11 @@
                     <li class="menu-has-children">
                         <a href="">Category</a>
                         <ul>
-                            <li>
-                                <a href="#">Category1</a>
-                            </li>
-                            <li>
-                                <a href="#">Category2</a>
-                            </li>
-                            <li>
-                                <a href="#">Category3</a>
-                            </li>
-                            <li>
-                                <a href="#">Category4</a>
-                            </li>
+                            <% itemsCategory.forEach((category) => { %>  
+                                <li>
+                                    <a href="#"><%= category.name %></a>
+                                </li>
+                            <%})%>
                         </ul>
                     </li>
                     <li>
