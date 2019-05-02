@@ -34,6 +34,7 @@ module.exports = {
         }
 
         if(options.task === 'items-news'){
+            select  = 'name created.user_name created.time category.name thumb content';
             find    = { 'status': 'active' };
             sort    = { 'created.time': 'desc' };
         }

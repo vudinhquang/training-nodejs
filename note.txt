@@ -1001,3 +1001,9 @@ Tương tự fix lỗi khi click vào dashboard
 -----Xây dựng vùng hiển thị bài viết mới nhất:
 - Fix special: Xử dụng async await để sửa lại routes phần lấy dữ liệu bài viết hiển thị trên phần top post
 - Get data: Thực hiện lấy data new post và viết lại clear code phần top post và new post
+- Show data: Hiển thị những bài viết mới nhất
+	keyword: javascript substring
+	Vì nội dung của content quá dài nên thông thường thì người ta dùng phần miêu ta ngắn của bài viết để hiển thị
+		trên trang index 
+	Đối với phần cắt chuỗi bằng substring thì cần xử lý tinh giả dụ: vũ đình quang -> vũ đình...
+		chưa được xử lý tinh thì hay có dạng đó là: vũ đình qua...
