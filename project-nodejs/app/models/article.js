@@ -39,6 +39,12 @@ module.exports = {
             sort    = { 'created.time': 'desc' };
         }
 
+        if(options.task === 'items-in-category'){
+            select  = 'name created.user_name created.time category.name thumb content';
+            find    = {'status': 'active', 'category.id': params.id};
+            sort    = { 'created.time': 'desc' };
+        }
+
         return ArticlesModel.find(find).select(select).limit(limit).sort(sort);
     }
 
