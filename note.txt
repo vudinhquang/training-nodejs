@@ -1010,3 +1010,5 @@ Tương tự fix lỗi khi click vào dashboard
 
 -----Xây dựng trang hiển thị bài viết của category
 - Category Menu: Lấy ra các category và đổ vào phần menu category nằm ở header của trang home
+- Link: Gắn link cho các category nằm trong header
+	Khi truy cập vào 1 category nào đó thì sẽ hiển thị ra các bài viết nằm trong category đó

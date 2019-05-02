@@ -72,7 +72,7 @@
                         <ul>
                             <% itemsCategory.forEach((category) => { %>  
                                 <li>
-                                    <a href="#"><%= category.name %></a>
+                                    <a href="/category/<%= category.id %>"><%= category.name %></a>
                                 </li>
                             <%})%>
                         </ul>
@@ -107,9 +107,11 @@
                         <i class="lnr lnr-chevron-down"></i>
                         <a href="" class="sf-with-ul">Category</a>
                         <ul style="display: none;">
-                            <li>
-                                <a href="#">category.name</a>
-                            </li>
+                            <% itemsCategory.forEach((category) => { %>  
+                                <li>
+                                    <a href="#"><%= category.name %></a>
+                                </li>
+                            <%})%>
                         </ul>
                     </li>
                     <li>
