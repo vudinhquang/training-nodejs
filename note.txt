@@ -1032,3 +1032,40 @@ Tương tự fix lỗi khi click vào dashboard
 		about: có thể nhúng thêm địa chỉ của website, bản đồ, giới thiệu website...
 		Khi người dùng vào 1 trang ko tồn tại thì mở ra trang 404
 			Khi có lỗi xảy ra mình định nghĩa 2 môi trường đó là dev và production -> thiết lập trong config
+- Setting:
+	Trên trang của ta có 1 số phần như là logo, twister, địa chỉ, số điện thoại, email, social network, ảnh quảng cáo,
+		footer, link kết nối đến facebook, twister.
+	Những phần này ko nên fix cứng trong code
+
+	Cách thiết kế:
+	1-Info: Tạo  form cho người dùng nhập vào
+		Logo  -> input type= file cho người dùng up 1 tập tin lên(logo)
+		Email -> input type= text cho người dùng nhập vào địa chỉ email web của họ
+				vuquangk53@gmail.com			true(mail liên hệ chính)
+				vuquang@gmail.com				false
+		Phone -> input type= text
+		Copyright
+	2-Social network: Khi lấy để hiện thị lên màn hình, nếu cái nào có giá trị thì đổ lên view, nếu ko có giá trị thì 
+		không cần đổ
+		facebook -> input type= text
+		youtobe  -> input type= text
+	3-Script và Custom HTML
+		Ví dụ: Khi người dùng muốn thay đổi giá style cho bài viết(màu)
+		Header:				<style> h1 {color: red} </style>
+		Footer: Nội dung style người dùng nhập vào nằm ở cuối trang, trước thẻ đóng </body>
+		Google Analyst
+		Google adsense
+	4-Fanpage
+	Colection setting:
+		id			key				value					description				params
+		1			logo			hdhdhdh.jpg				Logo của trang web
+		2			email			vuquangk53@gmail.com	Email liên hệ			vuquangk53@gmail.com, vuquang@gmail.com	
+		3			phone 			0908903
+		4			custom_html		<style> h1 {color: red} </style>
+
+	Sau khi lưu các giá trên trị vào db xong rồi, nếu muốn nhanh nữa thì tiến hành lưu vào trong cookie của người dùng
+	(Local storage) -> Đọc hết trong bảng setting rồi lưu vào trong cookie. Trong những lần sau khi mà người dùng truy
+		cập thì thay vì đọc từ db thì mình sẽ đọc từ Local storage
+		Có thể thiết lập thời gian của local storage
+		Mỗi lần vào -> kiểm tra trong local storage xem nó đã tồn tại quá time chưa, nếu quá rồi thì đọc trong bảng setting
+			ra, chưa thì vẫn đọc trong local storage
