@@ -13,6 +13,7 @@ router.get('/:id', async (req, res, next) => {
 	let itemsCategory   = [];
 	let itemsInCategory = [];
 	let idCategory 		= ParamsHelpers.getParam(req.params, 'id', '');
+	let itemsRandom   = [];
 
 	await CategoryModel.listItemsFrontend({}, {'task': 'items-in-menu'}).then((items) => { 
 		itemsCategory = items; 
@@ -22,11 +23,16 @@ router.get('/:id', async (req, res, next) => {
 		itemsInCategory = items; 
 	});
 
+	await ArticleModel.listItemsFrontend({}, {'task': 'items-random'}).then((items) => { 
+		itemsRandom = items; 
+	});
+
 	res.render(folderView + '/index', {
 		layout: layoutBlog,
 		top_post: false,
 		itemsCategory,
-		itemsInCategory
+		itemsInCategory,
+		itemsRandom
 	});
 });
 

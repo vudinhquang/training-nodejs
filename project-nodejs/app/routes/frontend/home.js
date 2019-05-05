@@ -12,6 +12,7 @@ router.get('/', async (req, res, next) => {
 	let itemsSpecial  = [];
 	let itemsNews     = [];
 	let itemsCategory = [];
+	let itemsRandom   = [];
 
 	await ArticleModel.listItemsFrontend({}, {'task': 'items-special'}).then((items) => {
 		itemsSpecial = items;
@@ -25,12 +26,16 @@ router.get('/', async (req, res, next) => {
 		itemsCategory = items; 
 	});
 
+	await ArticleModel.listItemsFrontend({}, {'task': 'items-random'}).then((items) => { 
+		itemsRandom = items; 
+	});
 	res.render(folderView + '/index', {
 		layout: layoutBlog,
 		top_post: true,
 		itemsCategory,
 		itemsSpecial,
-		itemsNews
+		itemsNews,
+		itemsRandom
 	});
 });
 

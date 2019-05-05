@@ -1069,3 +1069,7 @@ Tương tự fix lỗi khi click vào dashboard
 		Có thể thiết lập thời gian của local storage
 		Mỗi lần vào -> kiểm tra trong local storage xem nó đã tồn tại quá time chưa, nếu quá rồi thì đọc trong bảng setting
 			ra, chưa thì vẫn đọc trong local storage
+- Random post: Phần hiển thị các bài viết nhẫu nhiên
+	Mỗi lần truy cập thì lấy nhẫu nhiên 3 bài viết hiển thị lên phần random post
+	Có thể xây dựng thêm 1 số box khác như là bài viết được xem nhiều
+	Keyword: js check is not defined
