@@ -24,7 +24,7 @@ module.exports = {
 
     , listItemsFrontend: (params = {}, options = {}) => {
         let find = {};
-        let select = 'name created.user_name created.time category.name thumb';
+        let select = 'name created.user_name created.time category.id category.name thumb';
         let limit = 3;
         let sort = {};
 
@@ -34,13 +34,13 @@ module.exports = {
         }
 
         if (options.task === 'items-news') {
-            select = 'name created.user_name created.time category.name thumb content';
+            select = 'name created.user_name created.time category.id category.name thumb content';
             find = { 'status': 'active' };
             sort = { 'created.time': 'desc' };
         }
 
         if (options.task === 'items-in-category') {
-            select = 'name created.user_name created.time category.name thumb content';
+            select = 'name created.user_name created.time category.id category.name thumb content';
             find = { 'status': 'active', 'category.id': params.id };
             sort = { 'created.time': 'desc' };
         }
@@ -48,7 +48,7 @@ module.exports = {
         if (options.task == 'items-random') {
             return ArticlesModel.aggregate([
                 { $match: { status: 'active' } },
-                { $project: { name: 1, created: 1, thumb: 1 } },
+                { $project: {name: 1, created: 1, thumb: 1 } },
                 { $sample: { size: 3 } }
             ]);
         }
@@ -58,6 +58,11 @@ module.exports = {
 
     , getItem: (id, options = {}) => {
         return ArticlesModel.findById(id);
+    }
+
+    , getItemFrontend: (id, options = {}) => {
+        return ArticlesModel.findById(id)
+            .select('name thumb created content category.name');
     }
 
     , countItems: (params, options = {}) => {

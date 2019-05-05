@@ -1089,3 +1089,7 @@ Tương tự fix lỗi khi click vào dashboard
 			lấy 1 bài viết)
 		Không phải category cũng lấy mà trong bảng category thêm 1 thuộc tính nữa is_show_home(true/false) -> Có hiển thị 
 		ở trang home hay không
+
+- Get article: Hiển thị thông tin chi tiết của từng bài viết
+	Gắn link cho các phần đã thự hiện
+	Lấy thông tin chi tiết của bài viết

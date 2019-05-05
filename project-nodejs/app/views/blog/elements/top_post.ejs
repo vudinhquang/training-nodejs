@@ -11,9 +11,9 @@
                 </div>
                 <div class="top-post-details">
                     <ul class="tags">
-                        <li><a href="#"><%= itemsSpecial[0].category.name %></a></li>
+                        <li><a href="/category/<%= itemsSpecial[0].category.id %>"><%= itemsSpecial[0].category.name %></a></li>
                     </ul>
-                    <a href="image-post.html">
+                    <a href="/article/<%= itemsSpecial[0].id %>">
                         <h3><%= itemsSpecial[0].name %></h3>
                     </a>
                     <ul class="meta">
@@ -31,9 +31,9 @@
                         </div>
                         <div class="top-post-details">
                             <ul class="tags">
-                                <li><a href="#"><%= itemsSpecial[i].category.name %></a></li>
+                                <li><a href="/category/<%= itemsSpecial[i].category.id %>"><%= itemsSpecial[i].category.name %></a></li>
                             </ul>
-                            <a href="#">
+                            <a href="/article/<%= itemsSpecial[i].id %>">
                                 <h4><%= itemsSpecial[i].name %></h4>
                             </a>
                             <ul class="meta">

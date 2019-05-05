@@ -6,5 +6,6 @@ router.use('/category', require('./category'));
 router.use('/about', require('./about'));
 router.use('/contact', require('./contact'));
 router.use('/post', require('./post'));
+router.use('/article', require('./article'));
 
 module.exports = router;
