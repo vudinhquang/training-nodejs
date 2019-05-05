@@ -62,7 +62,7 @@ module.exports = {
 
     , getItemFrontend: (id, options = {}) => {
         return ArticlesModel.findById(id)
-            .select('name thumb created content category.name');
+            .select('name thumb created content category.id category.name');
     }
 
     , countItems: (params, options = {}) => {

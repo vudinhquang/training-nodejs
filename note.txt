@@ -1093,3 +1093,11 @@ Tương tự fix lỗi khi click vào dashboard
 - Get article: Hiển thị thông tin chi tiết của từng bài viết
 	Gắn link cho các phần đã thự hiện
 	Lấy thông tin chi tiết của bài viết
+- Show article: Hiển thị thông tin chi tiết của 1 bài viết
+	Prev Post: Bài viết trước bài này
+	Next Post: Bài viết sau bài này
+	-> Phù hợp với dạng các bài viết trong chuyên đề nào đó
+		Bài 1: php cơ bản
+		Bài 2: number
+		Bài 3: Array
+		--> Có thể xử lý theo thứ tự của các bài viết ordering
