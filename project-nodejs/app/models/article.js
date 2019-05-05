@@ -45,12 +45,18 @@ module.exports = {
             sort = { 'created.time': 'desc' };
         }
 
-        if (options.task == 'items-random') {
+        if (options.task === 'items-random') {
             return ArticlesModel.aggregate([
                 { $match: { status: 'active' } },
                 { $project: {name: 1, created: 1, thumb: 1 } },
                 { $sample: { size: 3 } }
             ]);
+        }
+
+        if (options.task === 'items-others'){
+            select = 'name created.user_name created.time category.id category.name thumb content';
+            find = {'status': 'active', '_id': {$ne: params._id}, 'category.id': params.category.id};
+            sort = {'created.time': 'desc'};   
         }
 
         return ArticlesModel.find(find).select(select).limit(limit).sort(sort);

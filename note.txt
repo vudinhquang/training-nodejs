@@ -1101,3 +1101,6 @@ Tương tự fix lỗi khi click vào dashboard
 		Bài 2: number
 		Bài 3: Array
 		--> Có thể xử lý theo thứ tự của các bài viết ordering
+- Related article: Các bài viết trong cùng 1 category
+	Các bài viết được lấy ra ko được bao gồm bài viết hiện tại
+	Keyword: nodejs mongoose find id not equal
