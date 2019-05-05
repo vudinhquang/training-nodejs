@@ -1073,3 +1073,19 @@ Tương tự fix lỗi khi click vào dashboard
 	Mỗi lần truy cập thì lấy nhẫu nhiên 3 bài viết hiển thị lên phần random post
 	Có thể xây dựng thêm 1 số box khác như là bài viết được xem nhiều
 	Keyword: js check is not defined
+
+-----Xây dựng trang hiển thị chi tiết bài viết
+- View type:
+	Linh hoạt và tùy biến hiển thị của từng category	
+	Thêm 1 thuộc tính nữa cho category để cho biết rằng category này hiển thị theo kiểu list hay kiểu Thumb(view_types:
+		list, thumb)
+	Admin Category
+		List
+		Thumb
+	Views: Tách ra thành từng tập tin cho từng loại giao diện, đối với từng loại category sẽ kéo vào giao diện cho phù hợp
+
+	Trang home:
+		Thay vì hiển thị phần popular thì có thể lấy ra danh sách các bài viết trong từng category(mỗi category có thể chỉ
+			lấy 1 bài viết)
+		Không phải category cũng lấy mà trong bảng category thêm 1 thuộc tính nữa is_show_home(true/false) -> Có hiển thị 
+		ở trang home hay không
