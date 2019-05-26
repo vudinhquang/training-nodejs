@@ -7,6 +7,8 @@ var schema = new mongoose.Schema({
     , ordering: Number
     , content: String
     , avatar: String
+    , password: String
+    , username: String
     , group:{
         id: String
         , name: String

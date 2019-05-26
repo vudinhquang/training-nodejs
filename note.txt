@@ -1104,3 +1104,12 @@ Tương tự fix lỗi khi click vào dashboard
 - Related article: Các bài viết trong cùng 1 category
 	Các bài viết được lấy ra ko được bao gồm bài viết hiện tại
 	Keyword: nodejs mongoose find id not equal
+
+----------------------------------------------------------------------------------------------------
+							Xây dựng nhóm chức năng quyền truy cập
+
+-----Xây dựng chức năng đăng nhập vùng quản trị
+- Page Login
+	Chỉ khi nào người dùng đăng nhập thì mới cho họ truy cập vào vùng quản trị
+	Bảng user -> có thêm username và password
+	Muốn hoàn chỉnh thì trong phần quản lý user cần có thêm cột user, bổ sung thêm chức năng thêm mới user
