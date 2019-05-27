@@ -1113,3 +1113,14 @@ Tương tự fix lỗi khi click vào dashboard
 	Chỉ khi nào người dùng đăng nhập thì mới cho họ truy cập vào vùng quản trị
 	Bảng user -> có thêm username và password
 	Muốn hoàn chỉnh thì trong phần quản lý user cần có thêm cột user, bổ sung thêm chức năng thêm mới user
+- passport config:
+	Khi đăng nhập -> kiểm tra thông tin đăng nhập username và password có khớp hay không -> nếu đúng thì cho đăng
+	nhập và lưu Session thông tin người đăng nhập
+	Sử dụng package là passportjs giúp các vấn đề thực hiện các thao tác đăng nhập
+	Site: http://www.passportjs.org/docs/authenticate/
+	keyword: nodejs passport example
+	Cài đặt: npm install passport
+	Cơ chế đăng nhập thông qua username và password
+	Config:
+		var passport = require('passport');
+		var LocalStrategy = require('passport-local').Strategy;

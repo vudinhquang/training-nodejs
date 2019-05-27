@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const passport = require('passport');
 
 const flash = require('express-flash-notification');
 const validator = require('express-validator');
@@ -43,6 +44,8 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true,
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash(app, {
 	viewName: __path_views_admin + '/elements/notify',
 }));

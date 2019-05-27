@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 const systemConfig  = require(__path_configs + '/system');
 const notify	    = require(__path_configs + '/notify');
 const folderView	= __path_views_admin + '/pages/auth';
@@ -30,9 +33,19 @@ router.post('/login', function(req, res, next) {
 	if(errors.length > 0) { 
 		res.render(folderView + '/login', {  layout: layoutLogin, item, errors });
 	}else {
-		console.log('OK');
+		console.log('OK 123');
+		passport.authenticate('local', { 
+			successRedirect: linkIndex,
+			failureRedirect: linkLogin
+		})(req, res, next);
 	}
 });
 
+passport.use(new LocalStrategy(
+	function(username, password, done) {
+		console.log(username + '----' + password);
+		return done(null, false);
+	}
+));
 
 module.exports = router;
