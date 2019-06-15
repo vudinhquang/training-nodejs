@@ -37,10 +37,10 @@ router.post('/login', function(req, res, next) {
 	if(errors.length > 0) { 
 		res.render(folderView + '/login', {  layout: layoutLogin, item, errors });
 	}else {
-		console.log('OK 123');
 		passport.authenticate('local', { 
 			successRedirect: linkIndex,
-			failureRedirect: linkLogin
+			failureRedirect: linkLogin,
+			failureFlash: true
 		})(req, res, next);
 	}
 });
@@ -50,12 +50,10 @@ passport.use(new LocalStrategy(
 		UsersModel.getItemByUserName(username, null).then((users) => {
 			let user = users[0];
 			if (!user) {
-				console.log('Không tồn tại user');
-				return done(null, false);
+				return done(null, false, { message: notify.ERROR_LOGIN});
 			}else{
 				if (md5(password) !== user.password) {
-					console.log('Mật khẩu không đúng');
-					return done(null, false);
+					return done(null, false, { message: notify.ERROR_LOGIN});
 				}else {
 					console.log('Đăng nhập ok');
 					return done(null, user);

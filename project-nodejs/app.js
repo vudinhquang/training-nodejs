@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const passport = require('passport');
 
-const flash = require('express-flash-notification');
+var flash = require('connect-flash');
 const validator = require('express-validator');
 const session = require('express-session');
 
@@ -49,20 +49,13 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash(app, {
-	viewName: __path_views_admin + '/elements/notify',
-}));
+app.use(flash());
+app.use(function(req, res, next) {
+	res.locals.messages = req.flash();
+	next();
+});
 
 app.use(validator());
-// app.use(validator(
-// 	{
-// 		customValidators:{
-// 			isNotEqual: (val1, val2) =>{
-// 				return val1 !== val2;
-// 			}
-// 		}
-// 	}
-// ));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -93,7 +86,7 @@ app.use(function (req, res, next) {
 // error handler
 app.use(async (err, req, res, next) => {
 	// set locals, only providing error in development
-	res.locals.message = err.message;
+	// res.locals.message = err.message;
 	res.locals.error = req.app.get('env') === 'development' ? err : {};
 
 	// render the error page

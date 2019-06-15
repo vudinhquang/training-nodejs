@@ -1138,3 +1138,10 @@ Tương tự fix lỗi khi click vào dashboard
 	Sau khi login xong -> bổ sung thêm logout
 	Sau khi logout thì chuyển đến trang login
 	Khai báo thời gian tồn tại của cookie
+- Flash message:
+	Hiển thị các thông tin thông báo khi mà người dùng nhập sai thông tin khi đăng nhập
+	Sử dụng connect-flash để hiển thị ra câu thông báo lỗi
+	npm install connect-flash
+	Khai báo sử dụng: app.use(flash())
+	Fix lại phần hiển thị các câu thông báo khi thực hiện thay thế flash cũ bằng connect-flash
+	Bổ sung thêm link logout cho phần navbar default bên tay trái

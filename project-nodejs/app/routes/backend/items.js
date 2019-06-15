@@ -53,7 +53,7 @@ router.get('/change-status/:id/:status', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
 
 	ItemsModel.changeStatus(id, currentStatus, {'task': 'update-one'}).then((result) => {
-		req.flash('success', notify.CHANGE_STATUS_SUCCSESS, false);
+		req.flash('success', notify.CHANGE_STATUS_SUCCSESS);
 		res.redirect(linkIndex);
 	});
 });
@@ -63,7 +63,7 @@ router.post('/change-status/:status', (req, res, next) => {
 	let currentStatus = ParamsHelpers.getParam(req.params, 'status', 'active');
 
 	ItemsModel.changeStatus(req.body.cid, currentStatus, {'task': 'update-multi'}).then((result) => {
-		req.flash('success', util.format(notify.CHANGE_STATUS_MULTI_SUCCSESS, result.n), false);
+		req.flash('success', util.format(notify.CHANGE_STATUS_MULTI_SUCCSESS, result.n));
 		res.redirect(linkIndex);
 	});
 });
@@ -74,7 +74,7 @@ router.post('/change-ordering', function (req, res, next) {
 	let orderings = req.body.ordering;
 	
 	ItemsModel.changeOrdering(cids, orderings).then((result) => {
-		req.flash('success', notify.CHANGE_ORDERING_SUCCESS, false);
+		req.flash('success', notify.CHANGE_ORDERING_SUCCESS);
 		res.redirect(linkIndex);
 	});
 });
@@ -83,7 +83,7 @@ router.post('/change-ordering', function (req, res, next) {
 router.get('/delete/:id', (req, res, next) => {
 	let id = ParamsHelpers.getParam(req.params, 'id', '');
 	ItemsModel.deleteItem(id, {'task': 'delete-one'}).then((result) => {
-		req.flash('success', notify.DELETE_SUCCESS, false);
+		req.flash('success', notify.DELETE_SUCCESS);
 		res.redirect(linkIndex);
 	});
 });
@@ -91,7 +91,7 @@ router.get('/delete/:id', (req, res, next) => {
 // Delete - Multi
 router.post('/delete', (req, res, next) => {
 	ItemsModel.deleteItem(req.body.cid, {'task': 'delete-multi'}).then((result) => {
-		req.flash('success', util.format(notify.DELETE_MULTI_SUCCESS, result.n), false);
+		req.flash('success', util.format(notify.DELETE_MULTI_SUCCESS, result.n));
 		res.redirect(linkIndex);
 	});
 });
@@ -138,7 +138,7 @@ router.post('/save', (req, res, next) => {
 	}else{
 		let message = (task === 'add') ? notify.ADD_SUCCESS : notify.EDIT_SUCCESS;
 		ItemsModel.saveItem(item, {'task': task}).then(() => {
-			req.flash('success', message, false);
+			req.flash('success', message);
 			res.redirect(linkIndex);
 		});
 	}
