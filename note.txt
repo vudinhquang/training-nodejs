@@ -1124,3 +1124,12 @@ Tương tự fix lỗi khi click vào dashboard
 	Config:
 		var passport = require('passport');
 		var LocalStrategy = require('passport-local').Strategy;
+ - Check login:
+	Tiến hành kiểm tra thông tin xem nó có hợp nệ hay không
+	Xây dựng thêm phương thức mới là getItemByUserName() trong phần Model user, tìm kiếm thông tin của user theo
+		username
+	Trong trường hợp username nhập vào có tồn tại trong db thì cần mã hóa mật khẩu nhập vào và so sánh với mật
+		khẩu được lưu trong db xem có trùng khớp hay không
+	Keyword: nodejs md5
+	npm install md5
+	Xử lý các tình huống user không tông tại, user tồn tại nhưng mật khẩu không đúng

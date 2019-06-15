@@ -26,6 +26,13 @@ module.exports = {
         return UsersModel.findById(id);
     }
 
+    , getItemByUserName: (username, options = null) => {
+        if (options === null) {
+            return UsersModel.find({status: 'active', username: username})
+                            .select('username password avatar status group.name')
+        }
+    }
+
     , countItems: (params, options = {}) => {
         let objWhere = {};
         if (params.groupID !== 'allvalue') objWhere['group.id'] = params.groupID;

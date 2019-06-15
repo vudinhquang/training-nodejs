@@ -3,9 +3,11 @@ var router = express.Router();
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var md5 = require('md5');
 
 const systemConfig  = require(__path_configs + '/system');
 const notify	    = require(__path_configs + '/notify');
+const UsersModel = require(__path_models + '/users');
 const folderView	= __path_views_admin + '/pages/auth';
 const layoutLogin   = __path_views_admin + '/login';
 const linkIndex		= '/' + systemConfig.prefixAdmin + '/dashboard'
@@ -43,8 +45,21 @@ router.post('/login', function(req, res, next) {
 
 passport.use(new LocalStrategy(
 	function(username, password, done) {
-		console.log(username + '----' + password);
-		return done(null, false);
+		UsersModel.getItemByUserName(username, null).then((users) => {
+			let user = users[0];
+			if (!user) {
+				console.log('Không tồn tại user');
+				return done(null, false);
+			}else{
+				if (md5(password) !== user.password) {
+					console.log('Mật khẩu không đúng');
+					return done(null, false);
+				}else {
+					console.log('Đăng nhập ok');
+					return done(null, true);
+				}
+			}
+		});
 	}
 ));
 
