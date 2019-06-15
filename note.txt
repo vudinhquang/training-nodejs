@@ -1133,3 +1133,8 @@ Tương tự fix lỗi khi click vào dashboard
 	Keyword: nodejs md5
 	npm install md5
 	Xử lý các tình huống user không tông tại, user tồn tại nhưng mật khẩu không đúng
+- Login Logout:
+	Xử lý khi nhập thông tin đúng rồi nhưng lại gây ra lỗi Failed to serialize user into session
+	Sau khi login xong -> bổ sung thêm logout
+	Sau khi logout thì chuyển đến trang login
+	Khai báo thời gian tồn tại của cookie

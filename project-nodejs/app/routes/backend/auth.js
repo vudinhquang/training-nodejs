@@ -16,6 +16,8 @@ const ValidateLogin	= require(__path_validators + '/login');
 
 /* GET logout page. */
 router.get('/logout', function(req, res, next) {
+	req.logout();
+	res.redirect(linkLogin);
 });
 
 /* GET login page. */
@@ -56,11 +58,21 @@ passport.use(new LocalStrategy(
 					return done(null, false);
 				}else {
 					console.log('Đăng nhập ok');
-					return done(null, true);
+					return done(null, user);
 				}
 			}
 		});
 	}
 ));
+
+passport.serializeUser(function(user, done) {
+	done(null, user._id);
+});
+  
+passport.deserializeUser(function(id, done) {
+	UsersModel.getItem(id, null).then((user) =>{
+		done(null, user);
+	});
+});
 
 module.exports = router;

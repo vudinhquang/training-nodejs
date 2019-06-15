@@ -43,6 +43,9 @@ app.use(session({
 	secret: 'qtgbjhyd',
 	resave: false,
 	saveUninitialized: true,
+	cookie: {
+		maxAge: 5*60*1000
+	}
 }));
 app.use(passport.initialize());
 app.use(passport.session());
