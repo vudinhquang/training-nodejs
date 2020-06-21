@@ -9,6 +9,7 @@
         let to                 = currentPage*totalItemsPerPage;
         let from               = to - totalItemsPerPage + 1;
         if(to > totalItems) to = totalItems;
+        if(totalItemsPerPage > totalItems) totalItemsPerPage = totalItems;
 
         if(totalPages > 1){
             let xhtmlStart = '', xhtmlPrevious = '', xhtmlPages = '', xhtmlNext = '', xhtmlEnd = '';  
@@ -17,13 +18,19 @@
             else link += '?page=';
 
             if(currentPage > 1){
-                xhtmlStart = `<li><a href="${link}1">«</a></li>`;
+                xhtmlStart = `<li><a href="${link}1">First</a></li>`;
                 xhtmlPrevious = `<li><a href="${link}${currentPage-1}">Previous</a></li>`;
+            } else {
+                xhtmlStart = `<li><span>First</span></li>`;
+                xhtmlPrevious = `<li><span>Previous</span></li>`;
             }
     
             if(currentPage < totalPages){
                 xhtmlNext = `<li><a href="${link}${currentPage+1}">Next</a></li>`;
                 xhtmlEnd = `<li><a href="${link}${totalPages}">End</a></li>`;
+            } else {
+                xhtmlNext = `<li><span>Next</span></li>`;
+                xhtmlEnd = `<li><span>End</span></li>`;
             }
     
             let middle = Math.ceil(pageRanges/2);

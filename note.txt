@@ -10,7 +10,9 @@
 		Windows PowerShell hoặc sử dụng Git Bash để kiểm tra bằng câu lệnh: node -v
 	Dùng câu lệnh npm -v để kiểm tra phiên bản(Node Package Manager), khi sử dụng nodejs thì cần cài thêm các 
 		package vào --> npm giúp ta cài thêm các package vào. Khi cài đặt node thì nó sẽ tự động cài thêm npm
-		
+	Để kiểm tra đã cài đặt nodejs được chưa thì tự tạo 1 file js bất kỳ chẳng hạn server.js rồi dùng câu lệnh
+		node server.js để chạy thử tập tin đó
+
 - Hello NodeJS:
 	Để thực thi chương trình trên Visual Studio Code thì sử dụng phím tắt là Ctrl + `
 	https://nodejs.org --> DOCS --> Guides --> tạo 1 tập tin là app.js và thực thi chương trình bằng câu lệnh 
@@ -101,7 +103,8 @@
 	mà nó sẽ tự động thực hiện --> cần phải sử dụng được nodemon trong Express generator.
 	Keyword: Express generator auto restart
 	Cài đặt nodemon: npm install -g nodemon
-	Để sử dụng được nodemon:
+	Để sử dụng được nodemon: 
+	-> package.json
 		"scripts": {
 			"start": "nodemon ./bin/www"
 		},
@@ -214,6 +217,10 @@
 		vào biến pageTitle --> lỗi bị phát sinh --> muốn không có lỗi thì khi render ra trang error thì chỉ cần truyền vào
 		thêm biến pageTitle
 	Có thể thay đổi cho trang Error như vị trí, nội dung hiển thị...
+	Trong môi trường phát triển giành cho lập trình viên thì cho hiện thị các câu thông báo: 
+		<h1><%= message %></h1>
+		<h2><%= error.status %></h2>
+		<pre><%= error.stack %></pre> 
 
 - Review NodeJS:
 	Tìm hiểu cơ bản về nodejs
@@ -267,6 +274,7 @@
 	Ở đây thì dữ liệu được đổ ra view /admin/items --> Trong routes của items phải thực hiện lấy ra các items trong
 		DB rồi truyền ra view
 	Keyword: javascript print object
+	<%= JSON.stringify(items) %> để hiện thị đối tượng trên view dưới dạng JSON
 
 - Foreach:
 	Khi đổ dữ liệu items ra view sử dụng Foreach --> hiển thị dữ liệu ra phần list item
@@ -333,6 +341,10 @@
 		--> 'status' được bổ sung vào URL
 	Error: Có lỗi bất đồng bộ xảy ra khi hiện thị giá trị count của mỗi status
 
+-----------------------------------------------------------------------------------------
+							   Xây dựng trang quản lý Item 
+							   
+Xây Dựng Chức Năng Tìm Kiếm
 - Submit keyword: Thực hiện lấy giá trị keyword nhập vào khi nhấn nút Submit
 	Khi nhắn nút tìm kiếm thì giá trị keyword được gắn lên trên URL, sau đó lấy giá trị keyword trên URL xuống để tìm
 		kiếm
@@ -438,6 +450,7 @@
 
 - Fix pagination: Hoàn thiện cho phần phân trang
 	Giải quyết trường hợp khi totalPages nhỏ hơn hoặc bằng giá trị thiết lập pageRanges -> min sẽ có giá trị là 1
+		min = ((max - pageRanges + 1) <= 1) ? 1 : (max - pageRanges + 1);
 	Khi nếu chỉ có 1 trang thôi thì không cần hiển thị cũng được --> xhtmlPagination = ''
 
 - Link pagination:
@@ -448,11 +461,13 @@
 		hơn thì ở phần tạo link của pagination cần thêm 1 variable là type(items, user, category) -> dễ dàng tái sử dụng 
 		mã nguồn	
 
+----------------------------------------------------------------------------------------------------
+
+									Xây dựng chức năng Change Status
+
 - Link change status: Thay đổi trạng thái của 1 phần tử nào đó
 	admin/items/change-status/12/active -> lấy được id và status của phần tử hiện tại
 	res.send('test'): Truyền ra browser giá trị là 'test'
-
-----------------------------------------------------------------------------------------------------
 
 - Change status:
 	Từ giá trị id và Status tiến hành cập nhật lại status cho item
@@ -558,7 +573,7 @@
 		Do đối tượng item đã được gán trực tiếp giá trị của req.body có dạng: 
 			[Object: null prototype] { name: 'ABC 123', ordering: '123', status: 'active', id: '' }
 	Fix: Để khắc phục lỗi này thì không nên gán từ req.body 
-		hoặc parse ra obj: req.body = JSON.parse(JSON.stringify(req.body));
+		có parse ra obj: req.body = JSON.parse(JSON.stringify(req.body));
 
 - Xây dựng chức năng Validator:
 	keyword: nodejs express validator
@@ -656,7 +671,11 @@
 - Publish:
 	Tiến hành đưa sản phẩm lên hosting
 	keyword: nodejs deploy
-	App: project-nodejs-ver1
+	App: nodejs-ver1
+	-> Open app: https://nodejs-ver1.herokuapp.com/(link truy cập)
+		trang Admin: https://nodejs-ver1.herokuapp.com/admin/items
+	Sau khi cài đặt Heroku CLI vào thư mục dự án cần deploy và thực hiện các câu lệnh từ heroku login để deploy
+	heroku logs: Lệnh để debug khi có lỗi khi deploy
 
 Install the Heroku CLI
 Download and install the Heroku CLI.
@@ -686,6 +705,8 @@ Error: Failed to lookup view "pages/publish/index" in views directory "/app/view
 	-> Fix home.js trong routes
 Tương tự fix lỗi khi click vào dashboard
 
+----------------------------------------------------------------------------------------------------
+									     Part 2
 ----------------------------------------------------------------------------------------------------
 									Xây dựng trang quản lý Items nâng cao
 
@@ -740,6 +761,8 @@ Tương tự fix lỗi khi click vào dashboard
 - CKEditor: 
 	Thêm thuộc tính mới về mô tả Item, nội dung này người dùng có thể định dạng chữ...
 	-> Sử dụng ckeditor
+	<script src="backend/js/ckeditor/ckeditor.js"></script>
+	<textarea class="form-control" name="content" rows="2"  id="content_ckeditor" >
 
 - Save:
 	Tiến hành validate thông tin có hợp nệ hay không
@@ -776,6 +799,7 @@ Tương tự fix lỗi khi click vào dashboard
 	Khi thêm user mới thì có SelectBox để chọn user đó thuộc về group nào
 	selectboxGroupsItems: Xây dựng 1 helper để tạo ra SelectBox trên view
 	groupsItems.unshift(): Bổ sung thêm 1 phần tử mới vào đầu mảng
+	GroupsModel.find({},{_id:1, name:1}): Các trường cần lấy là id và name
 
 - Group - Validate:
 	Ctrl + K + 0: đóng lại
@@ -852,7 +876,8 @@ Tương tự fix lỗi khi click vào dashboard
 	Site:https://www.npmjs.com/package/multer
 	Cài đặt: $ npm install --save multer
 	Thiết lập nơi chứa tập tin mà ta upload lên
-
+	Demo: http://localhost:6969/admin/users/upload
+	NOTE: Multer will not process any form which is not multipart (multipart/form-data).
 - Multer - fileName fileSize:
 	Sử dụng hàm sinh ra chuỗi ngẫu nhiên để đặt tên cho file được upload lên
 		Keyword: nodejs random string
@@ -871,6 +896,16 @@ Tương tự fix lỗi khi click vào dashboard
 - Multer - customError:
 	Bắt câu thông báo lỗi khi thực hiện việc upload
 	Định nghĩa khi validate extension file
+		if (err) {
+			if (err.code === 'LIMIT_FILE_SIZE') {
+				errors.push({ 'param': 'avatar', 'msg': 'Kích thước file upload quá lớn' });
+			}
+
+			if (err.extname) {
+				errors.push({ 'param': 'avatar', 'msg': err.extname });
+			}
+		}
+	Khi có lỗi xảy ra thì đẩy thêm phần tử vào errors rồi truyền ra view
 
 -----Xây dựng chức năng upload avatar
 - Upload Avatar: Thực hiện validate avatar khi thêm user mới
@@ -927,7 +962,15 @@ Tương tự fix lỗi khi click vào dashboard
 		validate rồi sau đó validate avatar
 	Cách khác đó là dùng javascript để sắp xếp lại các fields trước khi thực hiện vấn đề gửi
 	Khi Edit chọn avatar không hợp lệ -> hình cũ vẫn phải được giữ lại
-
+	Form: name="form-upload"
+		$("form[name=form-upload]").submit(function (event) {
+			let avatar = $(this).find("input[name=avatar]");
+			$(this).find("input[name=avatar]").remove();
+			$(this).append(avatar).css({ 'display': 'none' });
+		});
+    errors = req.validationErrors();
+    if(!errors) errors = [];
+	let errors = req.validationErrors() !== false ? re.validationErrors() : [];
 -----Hoàn chỉnh chức năng validate
 - Validate:
 	Đồng bộ hóa mã nguồn validate của item và kiểm tra errors khi check validate trên routes giống với user
@@ -1027,6 +1070,11 @@ Tương tự fix lỗi khi click vào dashboard
 - Page: Thực hiện hoàn thiện thành phần menu và xử lý khi người dùng truy cập vào 1 trang ko tồn tại
 	Hoàn thiện phần menu: thêm trang contact và about
 		Điều chỉnh link và khai báo router(contact và about)
+	Khi người dùng gõ vào 1 đường dẫn không tồn tại thì mở ra trang không tồn tại
+		env: 'production' // Truyền production dev
+		Trang này không cho hiển thị top_post
+		layout hiển thị là layout frontend
+		Hiển thị itemsCategory(Ở Menu)
 	Hướng phát triển mở rộng:
 		contact: có thể thêm Form liên hệ của người dùng
 		about: có thể nhúng thêm địa chỉ của website, bản đồ, giới thiệu website...
@@ -1113,6 +1161,11 @@ Tương tự fix lỗi khi click vào dashboard
 	Chỉ khi nào người dùng đăng nhập thì mới cho họ truy cập vào vùng quản trị
 	Bảng user -> có thêm username và password
 	Muốn hoàn chỉnh thì trong phần quản lý user cần có thêm cột user, bổ sung thêm chức năng thêm mới user
+	layout mới cho trang login khác với backend và frontend
+	auth.js
+	http://localhost:6969/admin/auth/login
+	username: admin
+	password: 123456
 - passport config:
 	Khi đăng nhập -> kiểm tra thông tin đăng nhập username và password có khớp hay không -> nếu đúng thì cho đăng
 	nhập và lưu Session thông tin người đăng nhập
@@ -1124,6 +1177,16 @@ Tương tự fix lỗi khi click vào dashboard
 	Config:
 		var passport = require('passport');
 		var LocalStrategy = require('passport-local').Strategy;
+		passport.authenticate('local', { 
+			successRedirect: linkIndex,
+			failureRedirect: linkLogin,
+			failureFlash: true
+		})(req, res, next);
+			(req, res, next): Cần phải truyền
+	app.js
+		const passport = require('passport');
+		app.use(passport.initialize());
+		app.use(passport.session());
  - Check login:
 	Tiến hành kiểm tra thông tin xem nó có hợp nệ hay không
 	Xây dựng thêm phương thức mới là getItemByUserName() trong phần Model user, tìm kiếm thông tin của user theo
@@ -1133,15 +1196,49 @@ Tương tự fix lỗi khi click vào dashboard
 	Keyword: nodejs md5
 	npm install md5
 	Xử lý các tình huống user không tông tại, user tồn tại nhưng mật khẩu không đúng
+	md5(123456): e10adc3949ba59abbe56e057f20f883e
 - Login Logout:
 	Xử lý khi nhập thông tin đúng rồi nhưng lại gây ra lỗi Failed to serialize user into session
+		-> Bổ sung thêm 2 phương thức passport.serializeUser() và passport.deserializeUser()
 	Sau khi login xong -> bổ sung thêm logout
 	Sau khi logout thì chuyển đến trang login
-	Khai báo thời gian tồn tại của cookie
+	Khai báo thời gian tồn tại của cookie: 5 phút
+	cookie: {
+		maxAge: 5*60*1000
+	}
 - Flash message:
 	Hiển thị các thông tin thông báo khi mà người dùng nhập sai thông tin khi đăng nhập
 	Sử dụng connect-flash để hiển thị ra câu thông báo lỗi
 	npm install connect-flash
 	Khai báo sử dụng: app.use(flash())
 	Fix lại phần hiển thị các câu thông báo khi thực hiện thay thế flash cũ bằng connect-flash
+		express-flash-notification -> connect-flash
+	Cấu hình cũ của flash cũng bỏ đi và thay bằng cấu hình flash mới
+		app.use(flash(app, {
+			viewName: __path_views_admin + 'elements/notify'
+		}))
+		↓
+		app.use(flash());
+	Các thao tác để lưu vào trong Session
+		req.flash('success', message); khi thực hiện thao tác redirect
+		res.render('index', { messages: req.flash('info') }); Khi render ra view
+	app.use(function(req, res, next) {
+		res.locals.messages = req.flash();
+		next();
+	});
+	Truyền messages ra ngoài
+	notify.ejs: Duyệt qua các phần tử trong messages để in ra ngoài
+		<% Object.keys(messages).forEach(function(type) { %>
+			<div class="alert alert-<%= ((type === 'error') ? 'danger' : type ) %>" role="alert">
+				<% messages[type].forEach(function(message) { %>
+					<span class="close-btn">&times;</span><%= message %>
+				<% }) %>
+			</div>
+		<% }) %>
 	Bổ sung thêm link logout cho phần navbar default bên tay trái
+	https://stackoverflow.com/questions/23160743/how-to-send-flash-messages-in-express-4-0
+*(Use: Ban đầu vào ứng dụng)
+	Cài đặt nodemon: npm install -g nodemon
+	npm start
+	var port = normalizePort(process.env.PORT || '6969');
+	app.set('port', port);

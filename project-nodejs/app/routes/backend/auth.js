@@ -22,7 +22,7 @@ router.get('/logout', function(req, res, next) {
 
 /* GET login page. */
 router.get('/login', function(req, res, next) {
-	let item	= {'email': '', 'password': ''};
+	let item	= {'username': '', 'password': ''};
 	let errors   = null;
 
 	res.render(folderView + '/login', { layout: layoutLogin, errors, item });
@@ -64,7 +64,7 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser(function(user, done) {
-	done(null, user._id);
+	done(null, user);
 });
   
 passport.deserializeUser(function(id, done) {

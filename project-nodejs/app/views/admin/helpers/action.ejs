@@ -11,6 +11,9 @@
         ];
         actions.forEach((action) => {
             let link = linkPrefix + action.value;
+            if(action.value === '') {
+                link = action.value;
+            }
             xhtmlAction += `<option value="${link}">${action.name}</option>`;
         });
 

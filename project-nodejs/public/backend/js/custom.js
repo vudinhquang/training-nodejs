@@ -37,6 +37,10 @@ $(document).ready(function () {
     // hiden notify
     hiddenNotify(".close-btn");
 
+    setTimeout(function() {
+        $(".close-btn").parent().css({'display': 'none'})
+    }, 7000);
+
     //click checkbox
     $("input[name=cid]").click(function () {
         if ($(this).is(':checked')) {

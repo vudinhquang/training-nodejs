@@ -8,7 +8,6 @@ const passport = require('passport');
 var flash = require('connect-flash');
 const validator = require('express-validator');
 const session = require('express-session');
-
 var expressLayouts = require('express-ejs-layouts');
 var mongoose = require('mongoose');
 
@@ -67,7 +66,6 @@ app.set('layout', __path_views_admin + '/backend');
 // app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Local variable
