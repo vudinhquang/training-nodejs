@@ -1206,6 +1206,16 @@ Tương tự fix lỗi khi click vào dashboard
 	cookie: {
 		maxAge: 5*60*1000
 	}
+
+	Đăng nhập user và sử dụng Json Web Token
+		Mã hóa 1 object thành 1 string 
+		npm install jsonwebtoken
+		const jwt = require('jsonwebtoken')//Mã hoá 1 jsonObject thành token(string)
+		localStorage: Sau khi đăng nhập xong lưu giá trị token vào trong localStorage
+		Test:
+			http://localhost:6969/admin/items
+			http://localhost:6969/admin/article
+	Đã đăng nhập rồi mà vào trang login thì redirect về trang dashboard
 - Flash message:
 	Hiển thị các thông tin thông báo khi mà người dùng nhập sai thông tin khi đăng nhập
 	Sử dụng connect-flash để hiển thị ra câu thông báo lỗi

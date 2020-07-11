@@ -1,6 +1,13 @@
+var md5 = require('md5');
+
+const jwt = require('jsonwebtoken') // Mã hoá 1 jsonObject thành token(string)
+var LocalStorage = require('node-localstorage').LocalStorage,
+localStorage = new LocalStorage('./scratch');
+
 const UsersModel  = require(__path_schemas + '/users');
 const FileHelpers = require(__path_helpers + '/file');
 const uploadFolder = 'public/uploads/users/';
+const secretString = "secret string" // tự cho 1 string tuỳ ý
 
 module.exports = {
     listItems: (params, options = {}) => {
@@ -20,6 +27,57 @@ module.exports = {
             .sort(sort)
             .skip((params.pagination.currentPage - 1) * params.pagination.totalItemsPerPage)
             .limit(params.pagination.totalItemsPerPage);
+    }
+
+    //Viết hàm login user
+    , loginUser: async (item) => {
+        try {       
+            let foundUser = await UsersModel.findOne({username: item.username.trim()})
+                                .exec()
+            if(!foundUser) {
+                throw "User không tồn tại"
+            }
+            if(foundUser.status !== "active") {
+                throw "User chưa kích hoạt, bạn phải mở mail kích hoạt trước"               
+            }
+            let encryptedPassword = foundUser.password;
+            if (md5(item.password) === encryptedPassword) {
+                // Đăng nhập thành công
+                let jsonObject = {
+                    id: foundUser._id
+                };
+                let tokenKey = await jwt.sign(jsonObject, 
+                                    secretString, {
+                                        expiresIn: 86400 // Expire trong 24 giờ(86400)
+                                    });            
+                // Trả về thông tin user kèm tokenKey
+                let userObject = await foundUser.toObject();        
+                userObject.tokenKey = tokenKey;
+                
+                return userObject;
+            } else {
+                throw "Tên user hoặc mật khẩu sai";
+            }
+        } catch(error) {
+            throw error;
+        }
+    }
+
+    , verifyJWT: async (tokenKey) => {
+        try {        
+            let decodedJson = await jwt.verify(tokenKey, secretString);
+            if(Date.now() / 1000 >  decodedJson.exp) {
+                throw "Token hết hạn, mời bạn login lại"
+            }
+
+            let foundUser = await UsersModel.findById(decodedJson.id);
+            if (!foundUser) {
+                throw "Ko tìm thấy user với token này"
+            }
+            return foundUser
+        } catch(error) {
+            throw error
+        }                 
     }
 
     , getItem: (id, options = {}) => {

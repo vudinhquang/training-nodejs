@@ -4,6 +4,8 @@ var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var md5 = require('md5');
+var LocalStorage = require('node-localstorage').LocalStorage,
+localStorage = new LocalStorage('./scratch');
 
 const systemConfig  = require(__path_configs + '/system');
 const notify	    = require(__path_configs + '/notify');
@@ -13,10 +15,12 @@ const layoutLogin   = __path_views_admin + '/login';
 const linkIndex		= '/' + systemConfig.prefixAdmin + '/dashboard'
 const linkLogin		= '/' + systemConfig.prefixAdmin + '/auth/login'
 const ValidateLogin	= require(__path_validators + '/login');
+const ParamsHelpers = require(__path_helpers + '/params');
 
 /* GET logout page. */
 router.get('/logout', function(req, res, next) {
-	req.logout();
+	localStorage.removeItem('tokenKey');
+	localStorage.removeItem('logIn');
 	res.redirect(linkLogin);
 });
 
@@ -25,10 +29,13 @@ router.get('/login', function(req, res, next) {
 	let item	= {'username': '', 'password': ''};
 	let errors   = null;
 
+	if(localStorage.getItem('logIn')) res.redirect(linkIndex);
+
 	res.render(folderView + '/login', { layout: layoutLogin, errors, item });
 });
 
 /* POST login page. */
+/*
 router.post('/login', function(req, res, next) {
 	req.body = JSON.parse(JSON.stringify(req.body));
 	
@@ -44,7 +51,33 @@ router.post('/login', function(req, res, next) {
 		})(req, res, next);
 	}
 });
+*/
 
+router.post('/login', async (req, res, next) => {
+	if(localStorage.getItem('logIn')) res.redirect(linkIndex);
+	req.body = JSON.parse(JSON.stringify(req.body));
+	
+	let item 	= Object.assign(req.body);
+	let errors  = ValidateLogin.validator(req);
+	if(errors.length > 0) { 
+		res.render(folderView + '/login', {  layout: layoutLogin, item, errors });
+	}else {
+		try {
+			let foundUser = await UsersModel.loginUser(item);
+			// req.session.tokenKey = ParamsHelpers.getParam(req.params, 'tokenKey', foundUser.tokenKey);
+			if(foundUser._id) {
+				localStorage.setItem('tokenKey', foundUser.tokenKey);
+				localStorage.setItem('logIn', true);
+				res.redirect(linkIndex);
+			} else {
+				res.redirect(linkLogin);
+			}
+		} catch(error) {
+			res.redirect(linkLogin);
+		}
+	}
+});
+/*
 passport.use(new LocalStrategy(
 	function(username, password, done) {
 		UsersModel.getItemByUserName(username, null).then((users) => {
@@ -72,5 +105,5 @@ passport.deserializeUser(function(id, done) {
 		done(null, user);
 	});
 });
-
+*/
 module.exports = router;
