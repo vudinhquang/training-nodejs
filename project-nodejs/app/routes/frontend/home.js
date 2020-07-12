@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 const ArticleModel 	= require(__path_models + '/article');
-const CategoryModel = require(__path_models + '/categories');
 
 const folderView = __path_views_blog + '/pages/home';
 const layoutBlog = __path_views_blog + '/frontend';
@@ -11,7 +10,6 @@ const layoutBlog = __path_views_blog + '/frontend';
 router.get('/', async (req, res, next) => {
 	let itemsSpecial  = [];
 	let itemsNews     = [];
-	let itemsCategory = [];
 	let itemsRandom   = [];
 
 	await ArticleModel.listItemsFrontend({}, {'task': 'items-special'}).then((items) => {
@@ -22,17 +20,12 @@ router.get('/', async (req, res, next) => {
 		itemsNews = items;
 	});
 
-	await CategoryModel.listItemsFrontend({}, {'task': 'items-in-menu'}).then((items) => { 
-		itemsCategory = items; 
-	});
-
 	await ArticleModel.listItemsFrontend({}, {'task': 'items-random'}).then((items) => { 
 		itemsRandom = items; 
 	});
 	res.render(folderView + '/index', {
 		layout: layoutBlog,
 		top_post: true,
-		itemsCategory,
 		itemsSpecial,
 		itemsNews,
 		itemsRandom
