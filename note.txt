@@ -1282,4 +1282,11 @@ Category for menu
 	Giải phải để chỉ thực hiện lấy danh sách category 1 lần -> Middleware
 Article randmom
 	itemsRandom cũng được dùng chung ở nhiều chỗ -> Xây dựng middleware cho itemsRandom
+No permission
+	Ở trang Error thì cũng ko cần lấy ra Category vì đã lấy ra ở Middleware rồi
+	No Permission cũng dùng layout giống như trang Error
+		layout: layoutBlog
+	router.get('/no-permission', middleGetUserInfo, middleGetCategoryForMenu, middleArticleRandom, function(req, res, next) {
+		res.render(folderView + '/no-permission', { layout: layoutBlog, top_post: false });
+	});
 	

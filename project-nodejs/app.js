@@ -96,19 +96,10 @@ app.use(async (err, req, res, next) => {
 
 	// render the error page
 	if (systemConfig.env == "production") {
-		const CategoryModel = require(__path_models + '/categories');
-
-		let itemsCategory = [];
-
-		await CategoryModel.listItemsFrontend({}, {task: 'items-in-menu'} ).then( (items) => { 
-			itemsCategory = items; 
-		});
-
 		res.status(err.status || 500);
 		res.render(__path_views_blog + '/pages/error', {
 			top_post: false,
-			layout: __path_views_blog + '/frontend',
-			itemsCategory
+			layout: __path_views_blog + '/frontend'
 		});
 	}
 
