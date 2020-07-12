@@ -10,7 +10,6 @@ const layoutBlog = __path_views_blog + '/frontend';
 router.get('/', async (req, res, next) => {
 	let itemsSpecial  = [];
 	let itemsNews     = [];
-	let itemsRandom   = [];
 
 	await ArticleModel.listItemsFrontend({}, {'task': 'items-special'}).then((items) => {
 		itemsSpecial = items;
@@ -20,15 +19,11 @@ router.get('/', async (req, res, next) => {
 		itemsNews = items;
 	});
 
-	await ArticleModel.listItemsFrontend({}, {'task': 'items-random'}).then((items) => { 
-		itemsRandom = items; 
-	});
 	res.render(folderView + '/index', {
 		layout: layoutBlog,
 		top_post: true,
 		itemsSpecial,
-		itemsNews,
-		itemsRandom
+		itemsNews
 	});
 });
 

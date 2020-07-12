@@ -10,12 +10,7 @@ const layoutBlog    = __path_views_blog + '/frontend';
 /* GET home page. */
 router.get('/:id', async (req, res, next) => {
 	let idArticle 		= ParamsHelpers.getParam(req.params, 'id', '');
-	let itemsRandom   = [];
 	let itemsOthers		= [];
-
-	await ArticleModel.listItemsFrontend({}, {'task': 'items-random'}).then((items) => { 
-		itemsRandom = items; 
-	});
 
 	await ArticleModel.getItemFrontend(idArticle, {} ).then( (item) => { 
 		itemArticle = item; 
@@ -29,8 +24,7 @@ router.get('/:id', async (req, res, next) => {
 		layout: layoutBlog,
 		top_post: false,
 		itemsOthers,
-		itemArticle,
-		itemsRandom
+		itemArticle
 	});
 });
 

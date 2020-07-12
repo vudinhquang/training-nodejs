@@ -1280,3 +1280,6 @@ Show user menu
 Category for menu
 	Các trang lấy ra danh sách Category đó là: Home, About, Article, Category, Contact
 	Giải phải để chỉ thực hiện lấy danh sách category 1 lần -> Middleware
+Article randmom
+	itemsRandom cũng được dùng chung ở nhiều chỗ -> Xây dựng middleware cho itemsRandom
+	

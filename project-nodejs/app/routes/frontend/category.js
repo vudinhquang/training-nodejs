@@ -11,21 +11,15 @@ const layoutBlog = __path_views_blog + '/frontend';
 router.get('/:id', async (req, res, next) => {
 	let itemsInCategory = [];
 	let idCategory 		= ParamsHelpers.getParam(req.params, 'id', '');
-	let itemsRandom   = [];
 
 	await ArticleModel.listItemsFrontend({'id': idCategory}, {task: 'items-in-category'} ).then( (items) => { 
 		itemsInCategory = items; 
 	});
 
-	await ArticleModel.listItemsFrontend({}, {'task': 'items-random'}).then((items) => { 
-		itemsRandom = items; 
-	});
-
 	res.render(folderView + '/index', {
 		layout: layoutBlog,
 		top_post: false,
-		itemsInCategory,
-		itemsRandom
+		itemsInCategory
 	});
 });
 

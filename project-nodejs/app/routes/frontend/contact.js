@@ -1,23 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-const ArticleModel 	= require(__path_models + '/article');
-
 const folderView	 = __path_views_blog + '/pages/contact';
 const layoutBlog    = __path_views_blog + '/frontend';
 
 /* GET contact page. */
 router.get('/', async (req, res, next) => {
-	let itemsRandom   = [];
-
-	await ArticleModel.listItemsFrontend({}, {'task': 'items-random'}).then((items) => { 
-		itemsRandom = items; 
-	});
 
 	res.render(folderView + '/index', {
 		layout: layoutBlog,
-		top_post: false,
-		itemsRandom
+		top_post: false
 	});
 });
 
