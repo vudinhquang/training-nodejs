@@ -34,6 +34,11 @@ router.get('/login', function(req, res, next) {
 	res.render(folderView + '/login', { layout: layoutLogin, errors, item });
 });
 
+/* GET dashboard page. */
+router.get('/no-permission', function(req, res, next) {
+	res.render(folderView + '/no-permission', { pageTitle: 'No Permission' });
+});
+
 /* POST login page. */
 /*
 router.post('/login', function(req, res, next) {

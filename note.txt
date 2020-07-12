@@ -1252,3 +1252,8 @@ Tương tự fix lỗi khi click vào dashboard
 	npm start
 	var port = normalizePort(process.env.PORT || '6969');
 	app.set('port', port);
+Permission: Giới hạn người truy cập vào trong phần quản trị Admin
+	Đối với vùng quản trị thì không phải người nào đăng nhập cũng cho truy cập vào vùng quản trị mà chỉ 
+		có người dùng admin mới có quyền truy cập 
+	Làm đúng yêu cầu thì chỉ có những người dùng nào có Group ACP là true thì mới được truy cập Admin
+	
