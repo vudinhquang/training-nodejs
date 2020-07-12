@@ -39,7 +39,7 @@ router.get('/login', async (req, res, next) => {
 
 /* GET dashboard page. */
 router.get('/no-permission', function(req, res, next) {
-	res.render(folderView + '/no-permission', { pageTitle: 'No Permission' });
+	res.render(folderView + '/no-permission', { layout: layoutLogin });
 });
 
 /* POST login page. */

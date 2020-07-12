@@ -5,7 +5,7 @@ const StringHelpers 	= require(__path_helpers + '/string');
 const systemConfig  = require(__path_configs + '/system');
 const linkLogin		= StringHelpers.formatLink('/' + systemConfig.prefixBlog + '/auth/login');
 const UsersModel    = require(__path_models + '/users');
-const linkNoPermission	 = '/' + systemConfig.prefixAdmin + '/auth/no-permission';
+const linkNoPermission	 = StringHelpers.formatLink('/' + systemConfig.prefixBlog + '/auth/no-permission');
 
 module.exports = async(req, res, next) => {
     try {        

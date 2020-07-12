@@ -1,3 +1,5 @@
+<% include ./../helpers/show-menu-user %>
+
 <%
 	const linkLogin = systemConfig.prefixBlog + `/auth/login`;
 %>
@@ -87,10 +89,8 @@
                     <li>
                         <a href="/contact">Contact</a>
                     </li>
-                    <li>
-                        <a href="<%= linkLogin %>">Login</a>
-                    </li>
-                    <%= JSON.stringify(userInfo) %>
+                    
+                    <%- showMenuUser(userInfo) %>
                 </ul>
             </nav>
             <!-- #nav-menu-container -->

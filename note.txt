@@ -1270,4 +1270,11 @@ Login
 	Passing variables to the next middleware using next() in Express.js
 		res.locals.userInfo = user;
 			Tryền giá trị ra view 
+Show user menu
+	Trang frontend: Nếu mà người dùng đã đăng nhập rồi thì hiển thị Button Logout
+		Khi chưa đăng nhập thì hiển thị Login 
+		Nếu mà người dùng đã đăng nhập và có quyền truy cập vào vùng quản trị admin thì thêm link để truy cập vào 
+			vùng Admin
+	Kiểm tra 1 đối tượng có rỗng không
+		Object.keys(userInfo).length > 0
 	
