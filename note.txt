@@ -1256,4 +1256,18 @@ Permission: Giới hạn người truy cập vào trong phần quản trị Admi
 	Đối với vùng quản trị thì không phải người nào đăng nhập cũng cho truy cập vào vùng quản trị mà chỉ 
 		có người dùng admin mới có quyền truy cập 
 	Làm đúng yêu cầu thì chỉ có những người dùng nào có Group ACP là true thì mới được truy cập Admin
+
+----------------------------------------------------------------------------------------------------
+							Tối ưu và hoàn chỉnh phần frontend
+
+Login
+	Login không nên để ở trong admin mà đưa ra phần frontend
+	helper formatLink() thực hiện loại bỏ đi dấu "/" ở vị trí đầu tiên khi link có 2 dấu "/" ở vị trí đầu tiên 
+	req.flash('danger', notify.ERROR_LOGIN ); 
+	res.redirect(linkLogin);
+		Gửi thông báo đăng nhập sai và hiển thị lên câu thông báo thông tin đăng nhập sai
+	Middleware get-user-info để truyền dữ liệu ra phần View
+	Passing variables to the next middleware using next() in Express.js
+		res.locals.userInfo = user;
+			Tryền giá trị ra view 
 	

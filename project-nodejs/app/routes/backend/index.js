@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-const Authenticate = require(__path_routes + '/authenticate');
+const middleAuthentication = require(__path_middleware + '/auth');
 
-router.use('/auth', require('./auth'));
-router.use('/', Authenticate.isAuthorized, require('./home'));
+router.use('/', middleAuthentication, require('./home'));
 router.use('/dashboard', require('./dashboard'));
 router.use('/items', require('./items'));
 router.use('/groups', require('./groups'));

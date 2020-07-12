@@ -15,6 +15,14 @@ let createAlias = (value) => {
     return str;
 }
 
+let formatLink = (value) => {
+    if(value[1] == "/") {
+        value = value.substr(1);
+    };
+    return value;
+}
+
 module.exports = {
-    createAlias
+    createAlias,
+    formatLink
 }

@@ -6,6 +6,7 @@ module.exports = {
     , folder_schemas    : 'schemas'
     , folder_models     : 'models'
     , folder_validators : 'validators'
+    , folder_middleware   : 'middleware'
     , folder_views		: 'views'
     , folder_module_admin : 'admin'
     , folder_module_blog : 'blog'

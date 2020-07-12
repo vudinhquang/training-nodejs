@@ -22,6 +22,7 @@ global.__path_routes = __path_app + '/' + pathConfig.folder_routes;
 global.__path_schemas = __path_app + '/' + pathConfig.folder_schemas;
 global.__path_models = __path_app + '/' + pathConfig.folder_models;
 global.__path_validators = __path_app + '/' + pathConfig.folder_validators;
+global.__path_middleware= __path_app + '/' + pathConfig.folder_middleware;
 
 global.__path_views = __path_app + '/' + pathConfig.folder_views;
 global.__path_views_admin = __path_views + '/' + pathConfig.folder_module_admin;

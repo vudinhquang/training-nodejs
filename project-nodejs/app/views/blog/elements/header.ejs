@@ -1,3 +1,7 @@
+<%
+	const linkLogin = systemConfig.prefixBlog + `/auth/login`;
+%>
+
 <header>
     <div class="header-top">
         <div class="container">
@@ -83,6 +87,10 @@
                     <li>
                         <a href="/contact">Contact</a>
                     </li>
+                    <li>
+                        <a href="<%= linkLogin %>">Login</a>
+                    </li>
+                    <%= JSON.stringify(userInfo) %>
                 </ul>
             </nav>
             <!-- #nav-menu-container -->
