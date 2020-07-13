@@ -1337,4 +1337,12 @@ SocketIO
 		trực tuyến...
 	Một mình SocketIO thì không thể làm được mà phải dùng nó kết hợp với các ngôn ngữ khác để xây dụng như: 
 		PHP, ASP, NodeJs, Java ...
+Sử dụng SocketIO trong NodeJS
+	Prepare
+		http://expressjs.com/
+		Khởi tạo Server nodejs: npm init 
+		npm install express
+		Tạo file app.js
+		Cài nodemon: npm install nodemon
+		Khởi động: nodemon app.js
 	
