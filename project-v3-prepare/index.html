@@ -27,6 +27,10 @@
                 socket.on("SERVER_SEND_SOCKET_ID", (data) => {
                     $("h3#content").html(data.socket_id);
                 });
+                
+                socket.on("SERVER_RETURN_MESSAGE", (data) => {
+                    console.log(data);
+                });
 
                 // Send message to server
                 $('form').submit(function(e) {

@@ -1387,4 +1387,8 @@ SocketIO emit
 			});
 	Client send
 		Gửi thông điệp từ client lên server 
+	Socket emit: Thằng nào gửi thì thằng đó nhận
+		Client A B C D 
+		Client A send Server
+			Server send A: socket.emit()
 	

@@ -15,7 +15,9 @@ io.on('connection', (socket) => {
 
     // Get message from client
     socket.on('CLIENT_SEND_SOCKET_MESSAGE', (data) => {
-        console.log('message: ' + data);
+        socket.emit('SERVER_RETURN_MESSAGE', {
+            'str': data.toUpperCase()
+        });
     });
 
     socket.on('disconnect', () => {
