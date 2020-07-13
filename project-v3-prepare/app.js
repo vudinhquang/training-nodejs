@@ -14,12 +14,25 @@ io.on('connection', (socket) => {
     });
 
     // Get message from client
+    /*
     socket.on('CLIENT_SEND_SOCKET_MESSAGE', (data) => {
         socket.emit('SERVER_RETURN_MESSAGE', {
             'str': data.toUpperCase()
         });
     });
-
+    */
+    /*
+    socket.on('CLIENT_SEND_SOCKET_MESSAGE', (data) => {
+        io.emit('SERVER_RETURN_MESSAGE', {
+            'str': data.toUpperCase()
+        });
+    });
+    */
+    socket.on('CLIENT_SEND_SOCKET_MESSAGE', (data) => {
+        socket.broadcast.emit('SERVER_RETURN_MESSAGE', {
+            'str': data.toUpperCase()
+        });
+    });
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });

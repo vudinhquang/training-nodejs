@@ -1391,4 +1391,18 @@ SocketIO emit
 		Client A B C D 
 		Client A send Server
 			Server send A: socket.emit()
+	Io emit: A gửi thông báo lên server, server sẽ gửi đến tất cả các username
+		Client A B C D 
+		Client A send Server
+			Server send A B C D 
+			Server gửi cho tất cả 
+			socket: Quản lý các kết nối
+			io: Tất cả các socket 
+		A gửi Server, Server trả về A, ứng dụng cho chức năng đăng nhập. Nếu username sai -> trả về 
+			thông báo cho A 
+		A gửi Server, Server trả về A B C D
+			Chức năng đăng nhập facebook, khi đăng nhập online -> các người bạn cũng thấy ol
+		A gửi Server, Server trả về A B C
+			Khi A đăng nhập, hôm đó là ngày sinh nhật của A -> Server sẽ gửi thông điệp đến B C D để 
+			thông báo là sn của A
 	
