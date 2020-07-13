@@ -1328,3 +1328,13 @@ Publish
 	
 	URL: https://nodejs-ver2.herokuapp.com/
 	
+======================================================================================================
+										Ver 3
+======================================================================================================
+							SocketIO với các tình huống sử dụng
+SocketIO
+	SocketIO dùng để xây dựng các ứng dụng Realtime như: Chat, game online, tỉ giá, giao dịch tiền tệ, đấu giá 
+		trực tuyến...
+	Một mình SocketIO thì không thể làm được mà phải dùng nó kết hợp với các ngôn ngữ khác để xây dụng như: 
+		PHP, ASP, NodeJs, Java ...
+	
