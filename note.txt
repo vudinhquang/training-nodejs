@@ -1376,4 +1376,13 @@ Sử dụng SocketIO trong NodeJS
 		Bắt sự kiện khi người dùng thoát khỏi trình duyệt 
 		Mỗi connect của user được quản lý bởi 1 socket phân biệt
 		Khi bắt được khi người dùng thực hiện ngắt kết nối 
+SocketIO emit
+	Server send
+		Tương tác từ server gửi về cho client -> sử dụng Emitting events
+			socket.emit('SERVER_SEND_SOCKET_ID', socket.id); 
+			Dữ liệu gửi ra có thể là 1 đối tượng Json
+		Bên phía client nhận kết quả
+			socket.on("SERVER_SEND_SOCKET_ID", (data) => {
+				console.log(data);
+			});
 	
