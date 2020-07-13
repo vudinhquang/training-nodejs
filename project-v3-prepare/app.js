@@ -7,10 +7,17 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
+    // Send message to client
     socket.emit('SERVER_SEND_SOCKET_ID', {
         'socket_id': socket.id, 
         'name': 'Socket'
     });
+
+    // Get message from client
+    socket.on('CLIENT_SEND_SOCKET_MESSAGE', (data) => {
+        console.log('message: ' + data);
+    });
+
     socket.on('disconnect', () => {
         console.log('user disconnected');
     });

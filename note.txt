@@ -1385,4 +1385,6 @@ SocketIO emit
 			socket.on("SERVER_SEND_SOCKET_ID", (data) => {
 				console.log(data);
 			});
+	Client send
+		Gửi thông điệp từ client lên server 
 	

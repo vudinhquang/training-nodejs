@@ -27,7 +27,15 @@
                 socket.on("SERVER_SEND_SOCKET_ID", (data) => {
                     $("h3#content").html(data.socket_id);
                 });
-            })
+
+                // Send message to server
+                $('form').submit(function(e) {
+                    e.preventDefault(); // prevents page reloading
+                    socket.emit('CLIENT_SEND_SOCKET_MESSAGE', $('#m').val());
+                    $('#m').val('');
+                    return false;
+                });
+            });
         </script>
     </body>
 </html> 
