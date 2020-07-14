@@ -1409,4 +1409,8 @@ SocketIO emit
 				'str': data.toUpperCase()
 			});
 	Broadcast
+------------------------------------------------------------------------------------------------------
+							Tích hợp SocketIO vào project NodeJS ver2
+Xây dựng module chat
+	Template
 	
