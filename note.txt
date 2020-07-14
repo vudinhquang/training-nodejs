@@ -1405,4 +1405,8 @@ SocketIO emit
 		A gửi Server, Server trả về A B C
 			Khi A đăng nhập, hôm đó là ngày sinh nhật của A -> Server sẽ gửi thông điệp đến B C D để 
 			thông báo là sn của A
+			socket.broadcast.emit('SERVER_RETURN_MESSAGE', {
+				'str': data.toUpperCase()
+			});
+	Broadcast
 	
