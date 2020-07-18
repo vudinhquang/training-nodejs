@@ -1,4 +1,5 @@
 <%
+    const linkPrefix     = systemConfig.prefixBlog;
     const folder_uploads = 'uploads/article/';
 %>
 <section class="top-post-area pt-10">
@@ -11,14 +12,14 @@
                 </div>
                 <div class="top-post-details">
                     <ul class="tags">
-                        <li><a href="/category/<%= itemsSpecial[0].category.id %>"><%= itemsSpecial[0].category.name %></a></li>
+                        <li><a href="<%= linkPrefix %>/category/<%= itemsSpecial[0].category.id %>"><%= itemsSpecial[0].category.name %></a></li>
                     </ul>
-                    <a href="/article/<%= itemsSpecial[0].id %>">
+                    <a href="<%= linkPrefix %>/article/<%= itemsSpecial[0].id %>">
                         <h3><%= itemsSpecial[0].name %></h3>
                     </a>
                     <ul class="meta">
-                        <li><a href="#"><span class="lnr lnr-user"></span><%= itemsSpecial[0].created.user_name %></a></li>
-                        <li><a href="#"><span class="lnr lnr-calendar-full"></span><%= moment(itemsSpecial[0].created.time).format(systemConfig.format_time_frontend) %></a></li>
+                        <li><span class="lnr lnr-user"></span><%= itemsSpecial[0].created.user_name %></li>
+                        <li><span class="lnr lnr-calendar-full"></span><%= moment(itemsSpecial[0].created.time).format(systemConfig.format_time_frontend) %></li>
                     </ul>
                 </div>
             </div>
@@ -31,14 +32,14 @@
                         </div>
                         <div class="top-post-details">
                             <ul class="tags">
-                                <li><a href="/category/<%= itemsSpecial[i].category.id %>"><%= itemsSpecial[i].category.name %></a></li>
+                                <li><a href="<%= linkPrefix %>/category/<%= itemsSpecial[i].category.id %>"><%= itemsSpecial[i].category.name %></a></li>
                             </ul>
-                            <a href="/article/<%= itemsSpecial[i].id %>">
+                            <a href="<%= linkPrefix %>/article/<%= itemsSpecial[i].id %>">
                                 <h4><%= itemsSpecial[i].name %></h4>
                             </a>
                             <ul class="meta">
-                                <li><a href="#"><span class="lnr lnr-user"></span><%= itemsSpecial[i].created.user_name %></a></li>
-                                <li><a href="#"><span class="lnr lnr-calendar-full"></span><%= moment(itemsSpecial[i].created.time).format(systemConfig.format_time_frontend) %></a></li>
+                                <li><span class="lnr lnr-user"></span><%= itemsSpecial[i].created.user_name %></li>
+                                <li><span class="lnr lnr-calendar-full"></span><%= moment(itemsSpecial[i].created.time).format(systemConfig.format_time_frontend) %></li>
                             </ul>
                         </div>
                     </div>

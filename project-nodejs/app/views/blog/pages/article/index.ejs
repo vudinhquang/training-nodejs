@@ -1,6 +1,7 @@
 <% include ./../../helpers/format-date %>
 <% include ./../../helpers/format-summary %>
 <%
+    const linkPrefix     = systemConfig.prefixBlog;
     const folder_uploads = 'uploads/article/';
 %>
 
@@ -13,16 +14,14 @@
         </div>
         <div class="content-wrap">
             <ul class="tags mt-10">
-                <li><a href="/category/<%= itemArticle.category.id %>"><%= itemArticle.category.name %></a></li>
+                <li><a href="<%= linkPrefix %>/category/<%= itemArticle.category.id %>"><%= itemArticle.category.name %></a></li>
             </ul>
-            <a href="#">
-                <h3><%= itemArticle.name %></h3>
-            </a>
+            <h3><%= itemArticle.name %></h3>
 
             <ul class="meta pb-20">
-                <li><a href="#"><span class="lnr lnr-user"></span><%= itemArticle.created.user_name %></a></li>
-                <li><a href="#"><span
-                            class="lnr lnr-calendar-full"></span><%= formatDate(itemArticle.created.time) %></a></li>
+                <li><span class="lnr lnr-user"></span><%= itemArticle.created.user_name %></li>
+                <li><span
+                            class="lnr lnr-calendar-full"></span><%= formatDate(itemArticle.created.time) %></li>
             </ul>
             <p>
                 <%- itemArticle.content %>
@@ -42,19 +41,19 @@
                         </div>
                         <ul class="tags">
                             <li><a
-                                    href="/category/<%= itemsOthers[i].category.id %>"><%= itemsOthers[i].category.name %></a>
+                                    href="<%= linkPrefix %>/category/<%= itemsOthers[i].category.id %>"><%= itemsOthers[i].category.name %></a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-7 post-right">
-                        <a href="/article/<%= itemsOthers[i].id %>">
+                        <a href="<%= linkPrefix %>/article/<%= itemsOthers[i].id %>">
                             <h4><%= itemsOthers[i].name %></h4>
                         </a>
                         <ul class="meta">
-                            <li><a href="#"><span
-                                        class="lnr lnr-user"></span><%= itemsOthers[i].created.user_name %></a></li>
-                            <li><a href="#"><span
-                                        class="lnr lnr-calendar-full"></span><%= formatDate(itemsOthers[i].created.time) %></a>
+                            <li><span
+                                        class="lnr lnr-user"></span><%= itemsOthers[i].created.user_name %></li>
+                            <li><span
+                                        class="lnr lnr-calendar-full"></span><%= formatDate(itemsOthers[i].created.time) %>
                             </li>
                         </ul>
                         <p class="excert"><%- formatSummary(itemsOthers[i].content) %> ...</p>

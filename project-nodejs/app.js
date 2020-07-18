@@ -96,6 +96,20 @@ app.use(async (err, req, res, next) => {
 
 	// render the error page
 	if (systemConfig.env == "production") {
+		const CategoryModel     = require(__path_models + '/categories');
+		const UsersModel    = require(__path_models + '/users');
+		
+		await CategoryModel
+		.listItemsFrontend(null, {task: 'items-in-menu'} )
+		.then( (items) => { res.locals.itemsCategory = items; });
+
+		try {        
+			let user = await UsersModel.verifyJWT(localStorage.getItem('tokenKey'));
+			res.locals.userInfo = user;
+		} catch(error) {
+			res.locals.userInfo = {};
+		}
+
 		res.status(err.status || 500);
 		res.render(__path_views_blog + '/pages/error', {
 			top_post: false,

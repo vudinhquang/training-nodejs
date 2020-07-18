@@ -1,6 +1,7 @@
 <% include ./../../helpers/format-date %>
 <% include ./../../helpers/format-summary %>
 <%
+    const linkPrefix     = systemConfig.prefixBlog;
     const folder_uploads = 'uploads/article/';
 %>
 <div class="col-lg-8 post-list">
@@ -16,12 +17,12 @@
                     </div>
                 </div>
                 <div class="col-lg-7 post-right">
-                    <a href="/article/<%= item.id %>">
+                    <a href="<%= linkPrefix %>/article/<%= item.id %>">
                         <h4><%= item.name %></h4>
                     </a>
                     <ul class="meta">
-                        <li><a href="#"><span class="lnr lnr-user"></span><%= item.created.user_name %></a></li>
-                        <li><a href="#"><span class="lnr lnr-calendar-full"></span><%= formatDate(item.created.time) %></a></li>
+                        <li><span class="lnr lnr-user"></span><%= item.created.user_name %></li>
+                        <li><span class="lnr lnr-calendar-full"></span><%= formatDate(item.created.time) %></li>
                     </ul>
                     <p class="excert">
                         <%- formatSummary(item.content) %> ...

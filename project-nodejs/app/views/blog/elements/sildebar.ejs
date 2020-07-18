@@ -1,5 +1,6 @@
 <% include ../helpers/format-date %>
 <%
+    const linkPrefix     = systemConfig.prefixBlog;
     const folder_uploads = 'uploads/article/';
 %>
 
@@ -14,14 +15,12 @@
                             <img src="<%= folder_uploads + itemsRandom[i].thumb %>" alt="" width="100">
                         </div>
                         <div class="details">
-                            <a href="/article/<%= itemsRandom[i]._id %>">
+                            <a href="<%= linkPrefix %>/article/<%= itemsRandom[i]._id %>">
                                 <h6><%= itemsRandom[i].name %></h6>
                             </a>
                             <ul class="meta">
                                 <li>
-                                    <a href="#">
-                                        <span class="lnr lnr-calendar-full"></span><%= formatDate(itemsRandom[i].created.time) %>
-                                    </a>
+                                    <span class="lnr lnr-calendar-full"></span><%= formatDate(itemsRandom[i].created.time) %>
                                 </li>
                             </ul>
                         </div>
@@ -37,28 +36,28 @@
                         <i class="fa fa-facebook" aria-hidden="true"></i>
                         <p>983 Likes</p>
                     </div>
-                    <a href="#">Like our page</a>
+                    <a href="<%= linkPrefix %>">Like our page</a>
                 </li>
                 <li class="d-flex justify-content-between align-items-center tw">
                     <div class="icons d-flex flex-row align-items-center">
                         <i class="fa fa-twitter" aria-hidden="true"></i>
                         <p>983 Followers</p>
                     </div>
-                    <a href="#">Follow Us</a>
+                    <a href="<%= linkPrefix %>">Follow Us</a>
                 </li>
                 <li class="d-flex justify-content-between align-items-center yt">
                     <div class="icons d-flex flex-row align-items-center">
                         <i class="fa fa-youtube-play" aria-hidden="true"></i>
                         <p>983 Subscriber</p>
                     </div>
-                    <a href="#">Subscribe</a>
+                    <a href="<%= linkPrefix %>">Subscribe</a>
                 </li>
                 <li class="d-flex justify-content-between align-items-center rs">
                     <div class="icons d-flex flex-row align-items-center">
                         <i class="fa fa-rss" aria-hidden="true"></i>
                         <p>983 Subscribe</p>
                     </div>
-                    <a href="#">Subscribe</a>
+                    <a href="<%= linkPrefix %>">Subscribe</a>
                 </li>
             </ul>
         </div>

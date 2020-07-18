@@ -1413,4 +1413,8 @@ SocketIO emit
 							Tích hợp SocketIO vào project NodeJS ver2
 Xây dựng module chat
 	Template
+		AdminLTE
+	Fix blog
+		Thay đổi cách truy cập vào trang tin tức ban đầu http://localhost:8181 -> http://localhost:8181/blog
+		Cấu hình prefixBlog -> blog
 	
