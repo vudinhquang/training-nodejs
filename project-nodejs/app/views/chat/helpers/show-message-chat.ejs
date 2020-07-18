@@ -5,11 +5,20 @@
         for(let i = 0; i < chats.length; i++){ 
             let chat = chats[i];
             let userAvatar = 'uploads/users/' + chat.avatar;
+            let typeShow = "";
+            let classUsername = "pull-left";
+            let classCreated = "pull-right";
 
-            xhtmlChats += `<div class="direct-chat-msg">
+            if(userInfo.username == chat.username ){
+                typeShow        = "right";
+                classUsername   = "pull-right";
+                classCreated    = "pull-left";
+            }
+
+            xhtmlChats += `<div class="direct-chat-msg ${typeShow}">
                             <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name pull-left">${chat.username}</span>
-                                <span class="direct-chat-timestamp pull-right">${formatDate(chat.created)}</span>
+                                <span class="direct-chat-name ${classUsername}">${chat.username}</span>
+                                <span class="direct-chat-timestamp ${classCreated}">${formatDate(chat.created)}</span>
                             </div>
                             <img class="direct-chat-img" src="${userAvatar}"
                                 alt="${chat.username}">
