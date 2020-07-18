@@ -1446,4 +1446,11 @@ Tích hợp SocketIO vào project
 	Test socket
 		Using socket.io in Express 4 and express-generator's /bin/www
 		https://stackoverflow.com/questions/24609991/using-socket-io-in-express-4-and-express-generators-bin-www
+
+------------------------------------------------------------------------------------------------------
+							Xây dựng chức năng chat toàn hệ thống
+
+Xây dựng chức năng chat cơ bản
+	Split index
+		Tách nhỏ tập tin index ra thành nhiều tập tin con
 	
