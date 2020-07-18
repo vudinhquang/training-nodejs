@@ -1439,4 +1439,8 @@ Hoàn chỉnh chức năng login logout
 	Show acp
 		Gắn thêm Admin Control Panel trong trường hợp người dùng truy cập là admin 
 	Split nav
+Tích hợp SocketIO vào project
+	Socketio
+		using SocketIO with express
+		npm install socket.io
 	

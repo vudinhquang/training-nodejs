@@ -10,6 +10,7 @@ const validator = require('express-validator');
 const session = require('express-session');
 var expressLayouts = require('express-ejs-layouts');
 var mongoose = require('mongoose');
+var socket_io    = require( "socket.io" );
 
 const pathConfig = require('./path');
 
@@ -43,6 +44,16 @@ const databaseConfig = require(__path_configs + '/database');
 mongoose.connect(`mongodb+srv://${databaseConfig.username}:${databaseConfig.password}@cluster0-jhlkz.mongodb.net/${databaseConfig.database}?retryWrites=true`, { useNewUrlParser: true });
 
 var app = express();
+
+// Socket.io
+var io           = socket_io();
+app.io           = io;
+
+// socket.io events
+io.on( "connection", function( socket )
+{
+    console.log( "A user connected" );
+});
 
 app.use(cookieParser());
 app.use(session({
