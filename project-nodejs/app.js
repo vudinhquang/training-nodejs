@@ -49,12 +49,6 @@ var app = express();
 var io           = socket_io();
 app.io           = io;
 
-// socket.io events
-io.on( "connection", function( socket )
-{
-    console.log( "A user connected" );
-});
-
 app.use(cookieParser());
 app.use(session({
 	secret: 'qtgbjhyd',
@@ -93,7 +87,7 @@ app.locals.moment = require('moment');
 // Setup router
 app.use(`/${systemConfig.prefixAdmin}`, require(__path_routes_admin + '/index'));
 app.use(`/${systemConfig.prefixBlog}`, require(__path_routes_blog + '/index'));
-app.use(`/${systemConfig.prefixChat}`, require(__path_routes_chat + '/index'));
+app.use(`/${systemConfig.prefixChat}`, require(__path_routes_chat + '/index')(io));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
