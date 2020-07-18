@@ -77,15 +77,41 @@
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
-        <form action="#" method="post">
+        <form action="#" method="post" id="form-chat">
             <div class="input-group">
-                <input type="text" name="message" placeholder="Type Message ..."
-                    class="form-control">
+                <input type="text" name="message" placeholder="Type Message ..." id="message" class="form-control">
+                <input type="hidden" name="username" value="<%= userInfo.username %>">
+                <input type="hidden" name="avatar" value="<%= userInfo.avatar %>">
                 <span class="input-group-btn">
-                <button type="submit" class="btn btn-primary btn-flat">Send</button>
+                    <button type="submit" class="btn btn-primary btn-flat">Send</button>
                 </span>
             </div>
         </form>
     </div>
     <!-- /.box-footer-->
 </div>
+<script type="text/javascript">
+    $(function() {
+        let $elmInputMessage  = $('input#message');
+        let $elmInputUsername = $('input[name="username"]');
+        let $elmInputAvatar   = $('input[name="avatar"]');
+        let $elmFormChat      = $('form#form-chat');
+
+        let socket              = io.connect('http://localhost:8181');
+        socket.on("SERVER_SEND_SOCKETID", (data) => {
+            console.log(data);
+        });
+
+        // CLIENT SEND MESSAGE
+        $elmFormChat.submit(function() {
+            socket.emit('CLIENT_SEND_ALL_MESSAGE', {
+                content: $elmInputMessage.val(),
+                username: $elmInputUsername.val(),
+                avatar: $elmInputAvatar.val()
+            });
+
+            $elmInputMessage.val('');
+            return false;
+        });
+    })
+</script> 

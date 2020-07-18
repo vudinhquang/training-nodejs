@@ -9,9 +9,3 @@
         <% include ./box-room %> 
     </div>
 </div>
-<script type="text/javascript">
-    var socket              = io.connect('http://localhost:8181');
-    socket.on("SERVER_SEND_SOCKETID", (data) => {
-        console.log(data);
-    });
-</script> 

@@ -1455,4 +1455,16 @@ Xây dựng chức năng chat cơ bản
 		Tách nhỏ tập tin index ra thành nhiều tập tin con
 	Chat model
 		content, username, avatar, created
+	Client send
+		Không load lại trang: return false;
+        $elmFormChat.submit(function() {
+            socket.emit('CLIENT_SEND_ALL_MESSAGE', {
+                content: $elmInputMessage.val(),
+                username: $elmInputUsername.val(),
+                avatar: $elmInputAvatar.val()
+            });
+
+            $elmInputMessage.val('');
+            return false;
+        });
 	
