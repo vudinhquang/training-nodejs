@@ -1483,3 +1483,6 @@ Xây dựng chức năng chat cơ bản
 			</div>
 			<!-- /.direct-chat-text -->
 		</div>
+	Show message 01
+		Khi gửi tin nhắn thì sau khi lưu vào trong DB thì dùng SocketIO để gửi cho client đang truy cập
+	

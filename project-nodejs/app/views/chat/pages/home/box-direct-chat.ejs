@@ -6,7 +6,7 @@
     <!-- /.box-header -->
     <div class="box-body">
         <!-- Conversations are loaded here -->
-        <div class="direct-chat-messages">
+        <div class="direct-chat-messages" id="area-list-message">
             <%- showMessageChat(itemsChat) %>
         </div>
     </div>
@@ -31,11 +31,24 @@
         let $elmInputUsername = $('input[name="username"]');
         let $elmInputAvatar   = $('input[name="avatar"]');
         let $elmFormChat      = $('form#form-chat');
+        let $elmListMessage   = $('div#area-list-message');
 
         let socket              = io.connect('http://localhost:8181');
 
         socket.on("SERVER_RETURN_ALL_MESSAGE", (data) => {
-            console.log(data);
+            let xhtmlChat = `<div class="direct-chat-msg">
+                            <div class="direct-chat-info clearfix">
+                                <span class="direct-chat-name pull-left">${data.username}</span>
+                                <span class="direct-chat-timestamp pull-right">${data.created}</span>
+                            </div>
+                            <img class="direct-chat-img" src="uploads/users/${data.avatar}"
+                                alt="${data.username}">
+                            <div class="direct-chat-text">
+                                ${data.content}
+                            </div>
+                        </div>`;
+            
+            $elmListMessage.append(xhtmlChat);
         });
 
         // CLIENT SEND MESSAGE
