@@ -13,7 +13,6 @@ module.exports = async(req, res, next) => {
         if(user.username) {
             return next();
         }
-        res.redirect(linkLogin);
     } catch(error) {
         res.redirect(linkLogin);
     }
