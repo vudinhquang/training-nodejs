@@ -7,4 +7,5 @@ module.exports = {
     , modelUser: 'User'
     , modelCategory: 'Category'
     , modelArticle: 'Article'
+    , col_chats: 'chats'
 }

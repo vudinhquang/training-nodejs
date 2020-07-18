@@ -1453,4 +1453,6 @@ Tích hợp SocketIO vào project
 Xây dựng chức năng chat cơ bản
 	Split index
 		Tách nhỏ tập tin index ra thành nhiều tập tin con
+	Chat model
+		content, username, avatar, created
 	
