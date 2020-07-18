@@ -1420,9 +1420,14 @@ Xây dựng module chat
 	Module chat
 		C:\xampp\htdocs\training-nodejs\project-nodejs\app\configs\system.js
 			prefixChat: ''
-			env: 'dev' // Truyền production dev
-		C:\xampp\htdocs\training-nodejs\project-nodejs\path.js 
+			env: 'dev'
+		C:\xampp\htdocs\training-nodejs\project-nodejs\path.js
 			folder_module_chat  : 'chat'
-		Ctrl + P: Tìm theo tên file
-		C:\xampp\htdocs\training-nodejs\project-nodejs\app.js 
-		Đồng nhất theo tên các module: admin, blog, chat
+		C:\xampp\htdocs\training-nodejs\project-nodejs\app.js
+			global.__path_views_chat  = __path_views + '/' + pathConfig.folder_module_chat;
+			app.use(`/${systemConfig.prefixChat}`, require(__path_routes + '/chat/index'));
+		Đồng nhất tên các thư mục: admin, blog, chat của folder routes và view cùng với phần định nghĩa trong 
+			path.js
+Hoàn chỉnh chức năng login logout
+	Embed template
+	
