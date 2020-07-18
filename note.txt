@@ -1467,4 +1467,5 @@ Xây dựng chức năng chat cơ bản
             $elmInputMessage.val('');
             return false;
         });
+	Server return
 	

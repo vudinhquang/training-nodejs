@@ -98,7 +98,8 @@
         let $elmFormChat      = $('form#form-chat');
 
         let socket              = io.connect('http://localhost:8181');
-        socket.on("SERVER_SEND_SOCKETID", (data) => {
+
+        socket.on("SERVER_RETURN_ALL_MESSAGE", (data) => {
             console.log(data);
         });
 

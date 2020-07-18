@@ -1,4 +1,4 @@
-const ChatsModel 	= require(__path_schemas + 'chats');
+const ChatsModel 	= require(__path_schemas + '/chats');
 
 module.exports = {
     listItems: (params, options = null) => {
