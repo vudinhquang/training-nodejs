@@ -1417,4 +1417,12 @@ Xây dựng module chat
 	Fix blog
 		Thay đổi cách truy cập vào trang tin tức ban đầu http://localhost:8181 -> http://localhost:8181/blog
 		Cấu hình prefixBlog -> blog
-	
+	Module chat
+		C:\xampp\htdocs\training-nodejs\project-nodejs\app\configs\system.js
+			prefixChat: ''
+			env: 'dev' // Truyền production dev
+		C:\xampp\htdocs\training-nodejs\project-nodejs\path.js 
+			folder_module_chat  : 'chat'
+		Ctrl + P: Tìm theo tên file
+		C:\xampp\htdocs\training-nodejs\project-nodejs\app.js 
+		Đồng nhất theo tên các module: admin, blog, chat
