@@ -1434,4 +1434,6 @@ Hoàn chỉnh chức năng login logout
 		Chuyển login từ module blog sang module chat 
 	Show username
 	Show avatar
+	Permission
+		Khi chưa truy cập thì không có quyền truy cập vào module chat 
 	

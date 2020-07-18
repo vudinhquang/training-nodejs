@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-const middleAuthentication = require(__path_middleware + '/auth');
+const middleAuthenticationBackend = require(__path_middleware + '/auth-backend');
 
-router.use('/', middleAuthentication, require('./home'));
+router.use('/', middleAuthenticationBackend, require('./home'));
 router.use('/dashboard', require('./dashboard'));
 router.use('/items', require('./items'));
 router.use('/groups', require('./groups'));
