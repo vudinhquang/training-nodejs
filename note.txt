@@ -1438,4 +1438,5 @@ Hoàn chỉnh chức năng login logout
 		Khi chưa truy cập thì không có quyền truy cập vào module chat 
 	Show acp
 		Gắn thêm Admin Control Panel trong trường hợp người dùng truy cập là admin 
+	Split nav
 	

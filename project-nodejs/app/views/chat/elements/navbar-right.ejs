@@ -1,0 +1,10 @@
+<% include ./../helpers/show-box-user %>
+
+<div class="navbar-custom-menu">
+    <ul class="nav navbar-nav">
+        <% include ./navbar-right-messages %>
+        <% include ./navbar-right-notify %>
+        <!-- User Account Menu -->
+        <%- showBoxUser(userInfo) %>
+    </ul>
+</div>
