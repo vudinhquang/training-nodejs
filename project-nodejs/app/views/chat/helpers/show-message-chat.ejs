@@ -1,0 +1,24 @@
+<% include ./format-date %>
+<% 
+    showMessageChat = (chats) => { 
+        xhtmlChats = '';
+        for(let i = 0; i < chats.length; i++){ 
+            let chat = chats[i];
+            let userAvatar = 'uploads/users/' + chat.avatar;
+
+            xhtmlChats += `<div class="direct-chat-msg">
+                            <div class="direct-chat-info clearfix">
+                                <span class="direct-chat-name pull-left">${chat.username}</span>
+                                <span class="direct-chat-timestamp pull-right">${formatDate(chat.created)}</span>
+                            </div>
+                            <img class="direct-chat-img" src="${userAvatar}"
+                                alt="${chat.username}">
+                            <div class="direct-chat-text">
+                                ${chat.content}
+                            </div>
+                        </div>`;
+        } 
+        
+        return xhtmlChats;
+    } 
+%>

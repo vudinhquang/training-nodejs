@@ -7,9 +7,13 @@ const layoutChat	 = __path_views_chat + '/main';
 
 module.exports = function(io) {
 	/* GET home page. */
-	router.get('/', function(req, res, next) {
+	router.get('/', async (req, res, next) => {
+        let itemsChat	= [];
+
+        await ChatsModel.listItems(null, null).then( (items) => { itemsChat = items; });
 		res.render(`${folderView}/index`, {
-			layout: layoutChat
+            layout: layoutChat,
+            itemsChat
 		});
 	});
 

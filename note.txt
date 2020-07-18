@@ -1468,4 +1468,18 @@ Xây dựng chức năng chat cơ bản
             return false;
         });
 	Server return
-	
+	List message
+		Template chat:
+		<div class="direct-chat-msg right">
+			<div class="direct-chat-info clearfix">
+				<span class="direct-chat-name pull-right">Sarah Bullock</span>
+				<span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+			</div>
+			<!-- /.direct-chat-info -->
+			<img class="direct-chat-img" src="chat/img/user3-128x128.jpg"
+				alt="Message User Image"><!-- /.direct-chat-img -->
+			<div class="direct-chat-text">
+				You better believe it!
+			</div>
+			<!-- /.direct-chat-text -->
+		</div>
