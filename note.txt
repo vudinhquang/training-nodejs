@@ -1486,4 +1486,5 @@ Xây dựng chức năng chat cơ bản
 	Show message 01
 		Khi gửi tin nhắn thì sau khi lưu vào trong DB thì dùng SocketIO để gửi cho client đang truy cập
 	Show message 02
+	Show message 03
 	
