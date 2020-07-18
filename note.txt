@@ -1430,4 +1430,6 @@ Xây dựng module chat
 			path.js
 Hoàn chỉnh chức năng login logout
 	Embed template
+	Login template
+		Chuyển login từ module blog sang module chat 
 	
