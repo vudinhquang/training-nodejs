@@ -1433,5 +1433,5 @@ Hoàn chỉnh chức năng login logout
 	Login template
 		Chuyển login từ module blog sang module chat 
 	Show username
-	Show username
+	Show avatar
 	
