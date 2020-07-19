@@ -1501,4 +1501,8 @@ Xây dựng chức năng chat nâng cao
 		Phía server: Nếu mà ký tự tin nhắn gửi lên nhỏ hơn 5 ký tự
 	Typing 01
 	Typing 02
+
+Xây dựng chức năng User online
+	Analyst
+		SocketIO bắt được sự kiện ngay khi người dùng mới online và thay đổi status của người dùng đó 
 	
