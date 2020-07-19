@@ -1496,6 +1496,8 @@ Xây dựng chức năng chat nâng cao
 		js/emojionearea.min.js
 		Sau khi gửi tin nhắn xong thì xóa đi nội dung có trong ô input 
 		emojioneArea clear text
+			let emojioneArea = $elmInputMessage.emojioneArea();
+			emojioneArea.data("emojioneArea").setText('');
 	Validate
 		Phía Client: ban đầu khi truy cập vào thì ko active nút Send, sau khi nhập thì active
 		Phía server: Nếu mà ký tự tin nhắn gửi lên nhỏ hơn 5 ký tự
@@ -1511,4 +1513,24 @@ Xây dựng chức năng User online
 		Duplicate user: Khi bên server tiến hành thêm vào danh sách user online thì kiểm tra theo username
 			xem trong danh sách đã có user đó hay chưa, nếu chưa thì mới tiến hành thêm vào danh sách 
 	Show user online
+
+Tình huống mở rộng và tối ưu mã nguồn
+	Template message chat 01
+		Khi server đổ về các tin nhắn và tiến hành đổ vào html
+            let xhtmlChat = `<div class="direct-chat-msg ${typeShow}">
+                            <div class="direct-chat-info clearfix">
+                                <span class="direct-chat-name ${classUsername}">${data.username}</span>
+                                <span class="direct-chat-timestamp ${classCreated}">${data.created}</span>
+                            </div>
+                            <img class="direct-chat-img" src="uploads/users/${data.avatar}"
+                                alt="${data.username}">
+                            <div class="direct-chat-text">
+                                ${data.content}
+                            </div>
+                        </div>`;
+            
+            $elmListMessage.append(xhtmlChat);
+		Thay vào đó thì sử dụng mustache.js
+		Thư viện: mustache.js
+			https://github.com/janl/mustache.js/
 	
