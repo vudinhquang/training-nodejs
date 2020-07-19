@@ -42,6 +42,10 @@ module.exports = function(io) {
 				});
 			}
         });
+
+        socket.on('CLIENT_SEND_TYPING', async (data) => {
+			socket.broadcast.emit('SERVER_SEND_USER_TYPING', { username : data.username });
+		});
     });
     
     return router;

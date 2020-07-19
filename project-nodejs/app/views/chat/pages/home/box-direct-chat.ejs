@@ -14,7 +14,7 @@
     <div class="box-footer">
         <form action="#" method="post" id="form-chat">
             <div class="input-group">
-                <input type="text" name="message" placeholder="Type Message ..." id="message" class="form-control">
+                <input type="text" name="message" placeholder="Type Message ..." id="message" class="form-control emojionearea-editor">
                 <input type="hidden" name="username" value="<%= userInfo.username %>">
                 <input type="hidden" name="avatar" value="<%= userInfo.avatar %>">
                 <span class="input-group-btn">
@@ -71,6 +71,11 @@
             $(xhtmlNotify).insertBefore($elmFormChat);
         });
 
+        socket.on("SERVER_SEND_USER_TYPING", (data) => {
+            let xhtmlUserTyping = `<p class="show-typing">${data.username} is typing ...</p>`;
+            $(xhtmlUserTyping).insertBefore($elmFormChat);
+        });
+
         // CLIENT SEND MESSAGE
         $elmFormChat.submit(function() {
             socket.emit('CLIENT_SEND_ALL_MESSAGE', {
@@ -84,5 +89,9 @@
             $("div#area-notify").remove();
             return false;
         });
+
+        $(document).on('keyup', '.emojionearea-editor', function() {
+            socket.emit('CLIENT_SEND_TYPING', { username: $elmInputUsername.val() });
+        })
     })
 </script> 
