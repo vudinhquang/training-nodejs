@@ -38,11 +38,14 @@
         let socket  = io.connect('http://localhost:8181');
 
         socket.on("connect", () => {
-            let params = {
+            socket.emit('USER_CONNECT', {
                 username: $elmInputUsername.val(),
-                avatar: $elmInputAvatar.val(),
-            };
-            socket.emit('USER_CONNECT', params);
+                avatar: $elmInputAvatar.val()
+            });
+        })
+
+        socket.on("SERVER_SEND_ALL_LIST_USER", (data) => {
+            console.log(data);
         })
     })
 </script> 

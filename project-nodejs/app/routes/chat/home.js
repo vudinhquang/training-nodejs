@@ -4,12 +4,14 @@ var router = express.Router();
 var moment = require('moment');
 
 const ChatsModel	 = require(__path_models + '/chats');
+var UsersServer		= require(__path_helpers + '/users-server');
 const folderView	 = __path_views_chat + '/pages/home';
 const layoutChat	 = __path_views_chat + '/main';
 const systemConfig 	= require(__path_configs + '/system');
 const notify  		= require(__path_configs + '/notify');
 
 module.exports = function(io) {
+    let users = new UsersServer();
 	/* GET home page. */
 	router.get('/', async (req, res, next) => {
         let itemsChat	= [];
@@ -43,12 +45,20 @@ module.exports = function(io) {
 			}
         });
 
-        socket.on('USER_CONNECT', async (data) => {
-			console.log(data);
-        });
-
         socket.on('CLIENT_SEND_TYPING', async (data) => {
 			socket.broadcast.emit('SERVER_SEND_USER_TYPING', { username : data.username, showTyping: data.showTyping });
+        });
+
+        socket.on('USER_CONNECT', async (data) => {
+            users.addUser(socket.id, data.username, data.avatar);
+			io.emit('SERVER_SEND_ALL_LIST_USER', users.getListUsers());
+        });
+        
+		socket.on('disconnect', () => {
+			let user = users.removeUser(socket.id);
+			if(user) {
+				io.emit('SERVER_SEND_ALL_LIST_USER',users.getListUsers());
+			}
 		});
     });
     

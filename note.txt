@@ -1506,4 +1506,8 @@ Xây dựng chức năng User online
 	Analyst
 		SocketIO bắt được sự kiện ngay khi người dùng mới online và thay đổi status của người dùng đó 
 	Client connect
+	Server send listUser
+		Server thêm vào danh sách những người dùng đang online rồi trả danh sách về cho client
+		Duplicate user: Khi bên server tiến hành thêm vào danh sách user online thì kiểm tra theo username
+			xem trong danh sách đã có user đó hay chưa, nếu chưa thì mới tiến hành thêm vào danh sách 
 	
