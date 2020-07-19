@@ -32,7 +32,17 @@
 </div>
 <script type="text/javascript">
     $(function() {
-        let socket              = io.connect('http://localhost:8181');
-        
+        let $elmInputUsername = $('input[name="username"]');
+        let $elmInputAvatar   = $('input[name="avatar"]');
+
+        let socket  = io.connect('http://localhost:8181');
+
+        socket.on("connect", () => {
+            let params = {
+                username: $elmInputUsername.val(),
+                avatar: $elmInputAvatar.val(),
+            };
+            socket.emit('USER_CONNECT', params);
+        })
     })
 </script> 

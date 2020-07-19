@@ -1505,4 +1505,5 @@ Xây dựng chức năng chat nâng cao
 Xây dựng chức năng User online
 	Analyst
 		SocketIO bắt được sự kiện ngay khi người dùng mới online và thay đổi status của người dùng đó 
+	Client connect
 	
