@@ -1496,4 +1496,7 @@ Xây dựng chức năng chat nâng cao
 		js/emojionearea.min.js
 		Sau khi gửi tin nhắn xong thì xóa đi nội dung có trong ô input 
 		emojioneArea clear text
+	Validate
+		Phía Client: ban đầu khi truy cập vào thì ko active nút Send, sau khi nhập thì active
+		Phía server: Nếu mà ký tự tin nhắn gửi lên nhỏ hơn 5 ký tự
 	

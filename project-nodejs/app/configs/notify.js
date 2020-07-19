@@ -19,4 +19,6 @@ module.exports = {
     , ERROR_LOGIN_USERNAME_NOTEXIST: 'Username không tồn tại'
     , ERROR_LOGIN_PASSWORD_INCORRECT: 'Password không chính xác'
     , ERROR_LOGIN: 'Thông tin đăng nhập không chính xác'
+
+    , ERROR_MSG_CHAT_TOO_SHORT: 'Chiều dài tin nhắn quá ngắn'
 }
