@@ -32,6 +32,7 @@
         let $elmInputAvatar   = $('input[name="avatar"]');
         let $elmFormChat      = $('form#form-chat');
         let $elmListMessage   = $('div#area-list-message');
+        let timeoutObj;
 
         $elmInputMessage.emojioneArea();
 
@@ -72,8 +73,12 @@
         });
 
         socket.on("SERVER_SEND_USER_TYPING", (data) => {
-            let xhtmlUserTyping = `<p class="show-typing">${data.username} is typing ...</p>`;
-            $(xhtmlUserTyping).insertBefore($elmFormChat);
+            if(data.showTyping) {
+                let xhtmlUserTyping = `<p class="show-typing">${data.username} is typing ...</p>`;
+                $(xhtmlUserTyping).insertBefore($elmFormChat);
+            } else {
+                $("p.show-typing").remove();
+            }
         });
 
         // CLIENT SEND MESSAGE
@@ -90,8 +95,14 @@
             return false;
         });
 
+        function cancelTyping() {
+            socket.emit('CLIENT_SEND_TYPING', { username: $elmInputUsername.val(), showTyping: false });
+        }
+
         $(document).on('keyup', '.emojionearea-editor', function() {
-            socket.emit('CLIENT_SEND_TYPING', { username: $elmInputUsername.val() });
+            clearTimeout(timeoutObj);
+            timeoutObj = setTimeout(cancelTyping, 2000);
+            socket.emit('CLIENT_SEND_TYPING', { username: $elmInputUsername.val(), showTyping: true });
         })
     })
 </script> 

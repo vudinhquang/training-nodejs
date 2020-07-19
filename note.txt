@@ -1499,4 +1499,6 @@ Xây dựng chức năng chat nâng cao
 	Validate
 		Phía Client: ban đầu khi truy cập vào thì ko active nút Send, sau khi nhập thì active
 		Phía server: Nếu mà ký tự tin nhắn gửi lên nhỏ hơn 5 ký tự
+	Typing 01
+	Typing 02
 	
