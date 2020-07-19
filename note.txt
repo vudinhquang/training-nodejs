@@ -1487,4 +1487,13 @@ Xây dựng chức năng chat cơ bản
 		Khi gửi tin nhắn thì sau khi lưu vào trong DB thì dùng SocketIO để gửi cho client đang truy cập
 	Show message 02
 	Show message 03
+
+Xây dựng chức năng chat nâng cao
+	Video Icon
+		Đưa icon vào trong nội dung chat 
+		emojioneArea: https://github.com/mervick/emojionearea
+		css/emojionearea.min.css
+		js/emojionearea.min.js
+		Sau khi gửi tin nhắn xong thì xóa đi nội dung có trong ô input 
+		emojioneArea clear text
 	

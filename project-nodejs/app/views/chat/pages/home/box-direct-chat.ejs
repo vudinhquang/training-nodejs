@@ -33,6 +33,8 @@
         let $elmFormChat      = $('form#form-chat');
         let $elmListMessage   = $('div#area-list-message');
 
+        $elmInputMessage.emojioneArea();
+
         let socket              = io.connect('http://localhost:8181');
 
         socket.on("SERVER_RETURN_ALL_MESSAGE", (data) => {
@@ -70,6 +72,8 @@
             });
 
             $elmInputMessage.val('');
+            $(".emojionearea-editor").html('');
+
             return false;
         });
     })
