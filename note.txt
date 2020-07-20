@@ -1534,4 +1534,5 @@ Tình huống mở rộng và tối ưu mã nguồn
 		Thư viện: mustache.js
 			https://github.com/janl/mustache.js/
 	Template message chat 02
+	Template notify typing
 	

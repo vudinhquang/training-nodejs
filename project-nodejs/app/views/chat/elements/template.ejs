@@ -11,3 +11,14 @@
         </div>
     </div>
 </script>
+
+<script id="template-notify-error" type="x-tmpl-mustache">
+    <div class="alert alert-danger alert-dismissible" id="area-notify">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <strong>Error: </strong>{{data.content}}
+    </div>
+</script>
+
+<script id="template-user-typing" type="x-tmpl-mustache">
+    <p class="show-typing">{{data.username}} is typing ...</p>
+</script>
