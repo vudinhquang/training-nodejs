@@ -19,6 +19,7 @@
         let $elmInputAvatar   = $('input[name="avatar"]');
         let $elmTotalUser	    = $('span#total-user');
         let $elmListUsers	    = $('div#list-users');
+        let $tmplUserOnline     = $('#template-user-online');
 
         let socket  = io.connect('http://localhost:8181');
 
@@ -30,21 +31,14 @@
         })
 
         socket.on("SERVER_SEND_ALL_LIST_USER", (data) => {
-            let xhtml = '';
+            let template = $tmplUserOnline.html();
+            let xhtml    = '';
             for(let i = 0; i < data.length; i++) {
                 let user = data[i];
                 if(user.username !== $elmInputUsername.val()) {
-                    xhtml += `<div class="user">
-                            <div  class="col-md-8 user-avatar">
-                                <img class="contacts-list-img" src="uploads/users/${user.avatar}"
-                                    alt="${user.username}">
-                                <h5>${user.username}</h5>
-                            </div>
-                            <div class="col-md-4"><button type="button" class="btn btn-block btn-primary btn-w btn-sm">Add friend</button></div>
-                        </div>`;
+                    xhtml += Mustache.render(template, { user });
                 }
             }
-
             $elmListUsers.html(xhtml);
             $elmTotalUser.html(data.length - 1);
         })

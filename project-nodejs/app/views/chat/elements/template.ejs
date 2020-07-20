@@ -22,3 +22,15 @@
 <script id="template-user-typing" type="x-tmpl-mustache">
     <p class="show-typing">{{data.username}} is typing ...</p>
 </script>
+
+<script id="template-user-online" type="x-tmpl-mustache">
+    <div class="user">
+        <div class="col-md-8 col-sm-8 col-xs-8 user-avatar">
+            <img class="contacts-list-img" src="uploads/users/{{user.avatar}}" alt="{{user.username}}">
+            <h5>{{user.username}}</h5>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <button data-username="{{user.username}}" data-socketid="{{user.id}}" data-avatar="{{user.avatar}}" type="button" class="btn btn-block btn-primary btn-w btn-sm control-add-friend">Add friend </button>
+        </div>
+    </div>
+</script>
