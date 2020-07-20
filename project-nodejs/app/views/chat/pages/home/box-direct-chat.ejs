@@ -85,10 +85,12 @@
             socket.emit('CLIENT_SEND_TYPING', { username: $elmInputUsername.val(), showTyping: false });
         }
 
-        $(document).on('keyup', '.emojionearea-editor', function() {
-            clearTimeout(timeoutObj);
-            timeoutObj = setTimeout(cancelTyping, 2000);
-            socket.emit('CLIENT_SEND_TYPING', { username: $elmInputUsername.val(), showTyping: true });
+        $elmInputMessage.data("emojioneArea").on("keyup paste emojibtn.click", function() {
+            if (this.getText().length > 3) {
+                clearTimeout(timeoutObj);
+                timeoutObj = setTimeout(cancelTyping, 2000);
+                socket.emit('CLIENT_SEND_TYPING', { username: $elmInputUsername.val(), showTyping: true });
+            }
         })
     })
 </script> 

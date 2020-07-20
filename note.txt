@@ -1542,3 +1542,6 @@ Tình huống mở rộng và tối ưu mã nguồn
 			io.emit('SERVER_SEND_ALL_LIST_USER',users.getListUsers());
 		}
 	});
+	Fix typing
+		emojioneArea gettext
+	
