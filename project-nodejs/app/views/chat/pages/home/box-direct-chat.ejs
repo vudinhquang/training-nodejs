@@ -21,19 +21,6 @@
             </div>
         </form>
     </div>
-    <script id="template-chat-message" type="x-tmpl-mustache">
-        <div class="direct-chat-msg {{ typeShow }}">
-            <div class="direct-chat-info clearfix">
-                <span class="direct-chat-name {{ classUsername }}">{{ username }}</span>
-                <span class="direct-chat-timestamp {{ classCreated }}">{{ created }}</span>
-            </div>
-            <img class="direct-chat-img" src="uploads/users/{{ avatar }}"
-                alt="{{ username }}">
-            <div class="direct-chat-text">
-                {{ content }}
-            </div>
-        </div>
-    </script>
 </div>
 <script type="text/javascript">
     $(function() {
@@ -42,6 +29,7 @@
         let $elmInputAvatar   = $('input[name="avatar"]');
         let $elmFormChat      = $('form#form-chat');
         let $elmListMessage   = $('div#area-list-message');
+        let $tmplMessageChat  = $('#template-chat-message')
         let timeoutObj;
 
         let emojioneArea = $elmInputMessage.emojioneArea();
@@ -59,18 +47,8 @@
                 classCreated    = "pull-left";
             }
 
-            var template = $('#template-chat-message').html();
-            var rendered = Mustache.render(template, { 
-                typeShow,
-                classUsername,
-                username: data.username,
-                classCreated,
-                created: data.created,
-                avatar: data.avatar,
-                content: data.content
-            });
-
-            $elmListMessage.append(rendered);
+            var template = $tmplMessageChat.html();
+            $elmListMessage.append(Mustache.render(template, { typeShow, classUsername, classCreated, data }));
         });
 
         socket.on("SERVER_RETURN_ERROR", (data) => {

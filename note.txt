@@ -1533,4 +1533,5 @@ Tình huống mở rộng và tối ưu mã nguồn
 		Thay vào đó thì sử dụng mustache.js
 		Thư viện: mustache.js
 			https://github.com/janl/mustache.js/
+	Template message chat 02
 	
