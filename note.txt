@@ -1544,4 +1544,9 @@ Tình huống mở rộng và tối ưu mã nguồn
 	});
 	Fix typing
 		emojioneArea gettext
+	Js file
+		Để lấy nội dung js đúng với phiên bản của socketIO đang được cài rồi lưu vào trong local 
+		http://localhost:8181/socket.io/socket.io.js
+		Trang login thì chưa dùng đến socketIO
+			<% include ./elements/scripts-login %> 
 	
