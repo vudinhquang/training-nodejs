@@ -10,4 +10,5 @@ router.use('/groups', require('./groups'));
 router.use('/users', require('./users'));
 router.use('/category', require('./categories'));
 router.use('/article', require('./article'));
+router.use('/rooms', require('./rooms'));
 module.exports = router;

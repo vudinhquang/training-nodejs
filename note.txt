@@ -1550,3 +1550,9 @@ Tình huống mở rộng và tối ưu mã nguồn
 		Trang login thì chưa dùng đến socketIO
 			<% include ./elements/scripts-login %> 
 	
+------------------------------------------------------------------------------------------------------
+							Xây dựng chức năng chat theo phòng
+							
+Xây dựng chức năng quản lý phòng chat
+	Backend
+	
