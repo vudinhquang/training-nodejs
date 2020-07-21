@@ -1555,4 +1555,5 @@ Tình huống mở rộng và tối ưu mã nguồn
 							
 Xây dựng chức năng quản lý phòng chat
 	Backend
+	Frontend
 	

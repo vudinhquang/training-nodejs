@@ -4,6 +4,7 @@ var router = express.Router();
 var moment = require('moment');
 
 const ChatsModel	 = require(__path_models + '/chats');
+const RoomsModel	= require(__path_models + '/rooms');
 var UsersServer		= require(__path_helpers + '/users-server');
 const folderView	 = __path_views_chat + '/pages/home';
 const layoutChat	 = __path_views_chat + '/main';
@@ -15,11 +16,14 @@ module.exports = function(io) {
 	/* GET home page. */
 	router.get('/', async (req, res, next) => {
         let itemsChat	= [];
+        let itemsRoom	= [];
 
+        await RoomsModel.listItemsForFrontend(null, null).then( (rooms) => { itemsRoom = rooms; });
         await ChatsModel.listItems(null, null).then( (items) => { itemsChat = items; });
 		res.render(`${folderView}/index`, {
             layout: layoutChat,
-            itemsChat
+            itemsChat,
+            itemsRoom
 		});
 	});
 
