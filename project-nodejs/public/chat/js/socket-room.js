@@ -3,7 +3,8 @@ $(function() {
     let $elmInputAvatar	    = $('input[name="avatar"]');
     let $elmInputRoom	    = $('input[name="roomID"]');
     let $tmplUserOnline     = $('#template-user-online');
-    let $elmTotalUser	    = $('span.total-user');
+    let $elmTotalUserOnline = $('span.total-user-online');
+    let $elmTotalMember	    = $('span.total-member');
     let $elmListUsers	    = $('div#list-users');
 
     let socket = io.connect('http://localhost:8181');
@@ -25,6 +26,7 @@ $(function() {
             }
         }
         $elmListUsers.html(xhtml);
-        $elmTotalUser.html(data.length - 1);
+        $elmTotalUserOnline.html(data.length - 1);
+        $elmTotalMember.html(data.length);
     });
 })

@@ -1563,4 +1563,6 @@ Xây dựng chức năng truy cập phòng chat
 	Uer join
 	List user
 	Total user
+Xây dựng chức năng chat theo phòng
+	Fix total
 	
