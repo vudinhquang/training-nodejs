@@ -1560,4 +1560,5 @@ Xây dựng chức năng quản lý phòng chat
 
 Xây dựng chức năng truy cập phòng chat
 	User-room
+	Uer join
 	

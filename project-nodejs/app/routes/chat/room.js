@@ -6,6 +6,7 @@ const RoomsModel	= require(__path_models + '/rooms');
 const ParamsHelpers = require(__path_helpers + '/params');
 const folderView	= __path_views_chat + '/pages/room/';
 const layoutChat    = __path_views_chat + '/main';
+var UsersRoom		= require(__path_helpers + '/users-room');
 
 module.exports = function(io) {
 
@@ -21,6 +22,14 @@ module.exports = function(io) {
 		});
 	});
 
+	var usersRoom = new UsersRoom();
+	io.on('connection', function(socket){
+		socket.on('CLIENT_SEND_JOIN_ROOM', (data) => {
+			socket.join(data.room);
+			usersRoom.addUser(socket.id, data.username, data.avatar, data.room);
+			io.to(data.room).emit('SERVER_SEND_LIST_USER', usersRoom.getListUsers(data.room));
+		});
+	});
+
     return router;
 }
-
