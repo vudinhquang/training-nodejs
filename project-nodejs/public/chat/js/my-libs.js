@@ -21,6 +21,15 @@ function paramsUserSendAllMessage($elmInputMessage, $elmInputUsername, $elmInput
     }
 }
 
+function paramsUserSendAllMessageFromRoom($elmInputMessage, $elmInputUsername, $elmInputAvatar, $elmInputRoom){
+    return {
+        content: $elmInputMessage.val(),
+        username: $elmInputUsername.val(),
+        avatar: $elmInputAvatar.val(),
+        room    : $elmInputRoom.val()
+    }
+}
+
 function paramsUserTyping($elmInputUsername, showTyping){
     return { 
         username: $elmInputUsername.val(), 

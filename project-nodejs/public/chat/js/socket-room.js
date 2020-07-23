@@ -21,6 +21,14 @@ $(function() {
         socket.emit(`${prefixSocket}CLIENT_SEND_JOIN_ROOM`, paramsUserConnectRoom($elmInputUsername, $elmInputAvatar, $elmInputRoom));
     });
 
+    socket.on(`${prefixSocket}RETURN_ALL_MESSAGE`, (data) => {
+        showListMessage(data, $elmInputUsername, $tmplMessageChat, $elmListMessage)
+    });
+
+    socket.on(`${prefixSocket}RETURN_ERROR`, (data) => {
+        showError(data, $tmplNotifyError, $elmFormChat)
+    });
+    
     socket.on(`${prefixSocket}SEND_USER_TYPING`, (data) => {
         showTyping(data, $tmplUserTyping, $elmFormChat)
     });
@@ -28,6 +36,15 @@ $(function() {
     socket.on(`${prefixSocket}SEND_LIST_USER`, (data) => {
         showListUserOnline(data, $elmInputUsername, $tmplUserOnline,  $elmListUsers, $elmTotalUserOnline)
         $elmTotalMember.html(data.length);
+    });
+
+    $elmFormChat.submit(function() {
+        socket.emit(`${prefixSocket}CLIENT_SEND_ALL_MESSAGE`, paramsUserSendAllMessageFromRoom($elmInputMessage, $elmInputUsername, $elmInputAvatar, $elmInputRoom));
+
+        $elmInputMessage.val('');
+        emojioneArea.data("emojioneArea").setText('');
+        $("div#area-notify").remove();
+        return false;
     });
 
     function cancelTyping() {

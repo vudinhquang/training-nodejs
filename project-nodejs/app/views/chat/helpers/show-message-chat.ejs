@@ -1,6 +1,6 @@
 <% include ./format-date %>
 <% 
-    showMessageChat = (chats) => { 
+    showMessageChat = (chats, userInfo) => { 
         xhtmlChats = '';
         for(let i = 0; i < chats.length; i++){ 
             let chat = chats[i];
