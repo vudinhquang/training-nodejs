@@ -3,7 +3,7 @@ $(function() {
     let $elmInputAvatar	    = $('input[name="avatar"]');
     let $elmInputRoom	    = $('input[name="roomID"]');
     let $tmplUserOnline     = $('#template-user-online');
-    let $elmTotalUser	    = $('span#total-user');
+    let $elmTotalUser	    = $('span.total-user');
     let $elmListUsers	    = $('div#list-users');
 
     let socket = io.connect('http://localhost:8181');

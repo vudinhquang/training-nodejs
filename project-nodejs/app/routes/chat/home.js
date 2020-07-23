@@ -59,10 +59,10 @@ module.exports = function(io) {
         });
         
 		socket.on('disconnect', () => {
-			// let user = users.removeUser(socket.id);
-			// if(user) {
-			// 	io.emit('SERVER_SEND_ALL_LIST_USER',users.getListUsers());
-			// }
+			let user = users.removeUser(socket.id);
+			if(user) {
+				io.emit('SERVER_SEND_ALL_LIST_USER',users.getListUsers());
+			}
 		});
     });
     

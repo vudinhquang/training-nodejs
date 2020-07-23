@@ -1562,4 +1562,5 @@ Xây dựng chức năng truy cập phòng chat
 	User-room
 	Uer join
 	List user
+	Total user
 	
