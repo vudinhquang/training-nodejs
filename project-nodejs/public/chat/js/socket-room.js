@@ -2,6 +2,9 @@ $(function() {
     let $elmInputUsername	= $('input[name="username"]');
     let $elmInputAvatar	    = $('input[name="avatar"]');
     let $elmInputRoom	    = $('input[name="roomID"]');
+    let $tmplUserOnline     = $('#template-user-online');
+    let $elmTotalUser	    = $('span#total-user');
+    let $elmListUsers	    = $('div#list-users');
 
     let socket = io.connect('http://localhost:8181');
     socket.on("connect", () => {
@@ -13,8 +16,15 @@ $(function() {
     });
 
     socket.on('SERVER_SEND_LIST_USER', (data) => {
-        console.log(data);
-        // showListUserOnline(data, $elmInputUsername, $tmplUserOnline, $elmListUsers, $elmTotalUserOnline);
-        // $elmTotalMember.html(data.length);
+        let template = $tmplUserOnline.html();
+        let xhtml    = '';
+        for(let i = 0; i < data.length; i++) {
+            let user = data[i];
+            if(user.username !== $elmInputUsername.val()) {
+                xhtml += Mustache.render(template, { user });
+            }
+        }
+        $elmListUsers.html(xhtml);
+        $elmTotalUser.html(data.length - 1);
     });
 })

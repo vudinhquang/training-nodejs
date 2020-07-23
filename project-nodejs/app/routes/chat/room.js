@@ -29,6 +29,13 @@ module.exports = function(io) {
 			usersRoom.addUser(socket.id, data.username, data.avatar, data.room);
 			io.to(data.room).emit('SERVER_SEND_LIST_USER', usersRoom.getListUsers(data.room));
 		});
+
+		socket.on('disconnect', () => {
+			let user = usersRoom.removeUser(socket.id);
+			if(user) {
+				io.to(user.room).emit('SERVER_SEND_LIST_USER', usersRoom.getListUsers(user.room));
+			}
+		});
 	});
 
     return router;
