@@ -15,61 +15,28 @@ $(function() {
     let emojioneArea = $elmInputMessage.emojioneArea();
 
     socket.on("connect", () => {
-        socket.emit('USER_CONNECT', {
-            username: $elmInputUsername.val(),
-            avatar: $elmInputAvatar.val()
-        });
+        socket.emit('USER_CONNECT', paramsUserConnectServer($elmInputUsername, $elmInputAvatar));
     })
 
     socket.on("SERVER_RETURN_ALL_MESSAGE", (data) => {
-        let typeShow = "";
-        let classUsername = "pull-left";
-        let classCreated = "pull-right";
-
-        if($elmInputUsername.val() == data.username ){
-            typeShow        = "right";
-            classUsername   = "pull-right";
-            classCreated    = "pull-left";
-        }
-
-        let template = $tmplMessageChat.html();
-        $elmListMessage.append(Mustache.render(template, { typeShow, classUsername, classCreated, data }));
+        showListMessage(data, $elmInputUsername, $tmplMessageChat, $elmListMessage)
     });
 
     socket.on("SERVER_RETURN_ERROR", (data) => {
-        let template = $tmplNotifyError.html();
-        $(Mustache.render(template, { data })).insertBefore($elmFormChat);
+        showError(data, $tmplNotifyError, $elmFormChat)
     });
 
     socket.on("SERVER_SEND_USER_TYPING", (data) => {
-        if(data.showTyping) {
-            let template = $tmplUserTyping.html();
-            $(Mustache.render(template, { data })).insertBefore($elmFormChat);
-        } else {
-            $("p.show-typing").remove();
-        }
+        showTyping(data, $tmplUserTyping, $elmFormChat)
     });
 
     socket.on("SERVER_SEND_ALL_LIST_USER", (data) => {
-        let template = $tmplUserOnline.html();
-        let xhtml    = '';
-        for(let i = 0; i < data.length; i++) {
-            let user = data[i];
-            if(user.username !== $elmInputUsername.val()) {
-                xhtml += Mustache.render(template, { user });
-            }
-        }
-        $elmListUsers.html(xhtml);
-        $elmTotalUser.html(data.length - 1);
+        showListUserOnline(data, $elmInputUsername, $tmplUserOnline,  $elmListUsers, $elmTotalUser)
     })
 
     // CLIENT SEND MESSAGE
     $elmFormChat.submit(function() {
-        socket.emit('CLIENT_SEND_ALL_MESSAGE', {
-            content: $elmInputMessage.val(),
-            username: $elmInputUsername.val(),
-            avatar: $elmInputAvatar.val()
-        });
+        socket.emit('CLIENT_SEND_ALL_MESSAGE', paramsUserSendAllMessage($elmInputMessage, $elmInputUsername, $elmInputAvatar));
 
         $elmInputMessage.val('');
         emojioneArea.data("emojioneArea").setText('');
@@ -78,14 +45,14 @@ $(function() {
     });
 
     function cancelTyping() {
-        socket.emit('CLIENT_SEND_TYPING', { username: $elmInputUsername.val(), showTyping: false });
+        socket.emit('CLIENT_SEND_TYPING', paramsUserTyping($elmInputUsername, false));
     }
 
     $elmInputMessage.data("emojioneArea").on("keyup paste emojibtn.click", function() {
         if (this.getText().length > 3) {
             clearTimeout(timeoutObj);
             timeoutObj = setTimeout(cancelTyping, 2000);
-            socket.emit('CLIENT_SEND_TYPING', { username: $elmInputUsername.val(), showTyping: true });
+            socket.emit('CLIENT_SEND_TYPING', paramsUserTyping($elmInputUsername, true));
         }
     })
 })
