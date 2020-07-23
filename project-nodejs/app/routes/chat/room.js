@@ -33,6 +33,10 @@ module.exports = function(io) {
 			io.to(data.room).emit(`${prefixSocket}SEND_LIST_USER`, usersRoom.getListUsers(data.room));
 		});
 
+        socket.on(`${prefixSocket}CLIENT_SEND_TYPING`, async (data) => {
+			socket.to(data.room).emit(`${prefixSocket}SEND_USER_TYPING`, { username : data.username, showTyping: data.showTyping });
+        });
+
 		socket.on('disconnect', () => {
 			let user = usersRoom.removeUser(socket.id);
 			if(user) {

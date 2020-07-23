@@ -28,6 +28,14 @@ function paramsUserTyping($elmInputUsername, showTyping){
     }
 }
 
+function paramsUserTypingFromRoom($elmInputUsername, showTyping, $elmInputRoom){
+    return { 
+        username: $elmInputUsername.val(), 
+        showTyping: showTyping ,
+        room    : $elmInputRoom.val()
+    }
+}
+
 function showListMessage(data, $elmInputUsername, $tmplMessageChat, $elmListMessage) {
     let typeShow = "";
     let classUsername = "pull-left";

@@ -8,5 +8,6 @@ module.exports = {
     , modelCategory: 'Category'
     , modelArticle: 'Article'
     , col_chats: 'chats'
+    , col_chats_room: 'chats-rooms'
     , col_rooms: 'rooms'
 }
