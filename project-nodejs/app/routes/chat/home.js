@@ -13,6 +13,8 @@ const notify  		= require(__path_configs + '/notify');
 
 module.exports = function(io) {
     let users = new UsersServer();
+    let prefixSocket = "SERVER_";
+
 	/* GET home page. */
 	router.get('/', async (req, res, next) => {
         let itemsChat	= [];
@@ -23,18 +25,16 @@ module.exports = function(io) {
 		res.render(`${folderView}/index`, {
             layout: layoutChat,
             itemsChat,
-            itemsRoom
+            itemsRoom,
+            prefixSocket
 		});
 	});
 
-    // socket.io events
     io.on( "connection", function ( socket ) {
-        socket.emit('SERVER_SEND_SOCKETID', socket.id);
-
-        socket.on('CLIENT_SEND_ALL_MESSAGE', async (data) => {
+        socket.on(`${prefixSocket}CLIENT_SEND_ALL_MESSAGE`, async (data) => {
 			if(data.content.length > 5) {
                 await ChatsModel.saveItem(data, {task: "add"}).then((result) => {
-                    io.emit('SERVER_RETURN_ALL_MESSAGE', {
+                    io.emit(`${prefixSocket}RETURN_ALL_MESSAGE`, {
                         content: result.content,
                         username: result.username,
                         avatar: result.avatar,
@@ -42,26 +42,26 @@ module.exports = function(io) {
                     });
                 });
 			}else {
-				socket.emit('SERVER_RETURN_ERROR', {
+				socket.emit(`${prefixSocket}RETURN_ERROR`, {
 					type: 'error',
 					content:  notify.ERROR_MSG_CHAT_TOO_SHORT
 				});
 			}
         });
 
-        socket.on('CLIENT_SEND_TYPING', async (data) => {
-			socket.broadcast.emit('SERVER_SEND_USER_TYPING', { username : data.username, showTyping: data.showTyping });
+        socket.on(`${prefixSocket}CLIENT_SEND_TYPING`, async (data) => {
+			socket.broadcast.emit(`${prefixSocket}SEND_USER_TYPING`, { username : data.username, showTyping: data.showTyping });
         });
 
-        socket.on('USER_CONNECT', async (data) => {
+        socket.on(`${prefixSocket}USER_CONNECT`, async (data) => {
             users.addUser(socket.id, data.username, data.avatar);
-			io.emit('SERVER_SEND_ALL_LIST_USER', users.getListUsers());
+			io.emit(`${prefixSocket}SEND_ALL_LIST_USER`, users.getListUsers());
         });
         
 		socket.on('disconnect', () => {
 			let user = users.removeUser(socket.id);
 			if(user) {
-				io.emit('SERVER_SEND_ALL_LIST_USER',users.getListUsers());
+				io.emit(`${prefixSocket}SEND_ALL_LIST_USER`,users.getListUsers());
 			}
 		});
     });

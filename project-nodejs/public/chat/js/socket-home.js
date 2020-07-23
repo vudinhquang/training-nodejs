@@ -2,6 +2,7 @@ $(function() {
     let $elmInputMessage    = $('input#message');
     let $elmInputUsername   = $('input[name="username"]');
     let $elmInputAvatar     = $('input[name="avatar"]');
+    let prefixSocket        = $('input[name="prefixSocket"]').val();
     let $elmFormChat        = $('form#form-chat');
     let $elmListMessage     = $('div#area-list-message');
     let $tmplMessageChat    = $('#template-chat-message')
@@ -15,28 +16,28 @@ $(function() {
     let emojioneArea = $elmInputMessage.emojioneArea();
 
     socket.on("connect", () => {
-        socket.emit('USER_CONNECT', paramsUserConnectServer($elmInputUsername, $elmInputAvatar));
+        socket.emit(`${prefixSocket}USER_CONNECT`, paramsUserConnectServer($elmInputUsername, $elmInputAvatar));
     })
 
-    socket.on("SERVER_RETURN_ALL_MESSAGE", (data) => {
+    socket.on(`${prefixSocket}RETURN_ALL_MESSAGE`, (data) => {
         showListMessage(data, $elmInputUsername, $tmplMessageChat, $elmListMessage)
     });
 
-    socket.on("SERVER_RETURN_ERROR", (data) => {
+    socket.on(`${prefixSocket}RETURN_ERROR`, (data) => {
         showError(data, $tmplNotifyError, $elmFormChat)
     });
 
-    socket.on("SERVER_SEND_USER_TYPING", (data) => {
+    socket.on(`${prefixSocket}SEND_USER_TYPING`, (data) => {
         showTyping(data, $tmplUserTyping, $elmFormChat)
     });
 
-    socket.on("SERVER_SEND_ALL_LIST_USER", (data) => {
+    socket.on(`${prefixSocket}SEND_ALL_LIST_USER`, (data) => {
         showListUserOnline(data, $elmInputUsername, $tmplUserOnline,  $elmListUsers, $elmTotalUser)
     })
 
     // CLIENT SEND MESSAGE
     $elmFormChat.submit(function() {
-        socket.emit('CLIENT_SEND_ALL_MESSAGE', paramsUserSendAllMessage($elmInputMessage, $elmInputUsername, $elmInputAvatar));
+        socket.emit(`${prefixSocket}CLIENT_SEND_ALL_MESSAGE`, paramsUserSendAllMessage($elmInputMessage, $elmInputUsername, $elmInputAvatar));
 
         $elmInputMessage.val('');
         emojioneArea.data("emojioneArea").setText('');
@@ -45,14 +46,14 @@ $(function() {
     });
 
     function cancelTyping() {
-        socket.emit('CLIENT_SEND_TYPING', paramsUserTyping($elmInputUsername, false));
+        socket.emit(`${prefixSocket}CLIENT_SEND_TYPING`, paramsUserTyping($elmInputUsername, false));
     }
 
     $elmInputMessage.data("emojioneArea").on("keyup paste emojibtn.click", function() {
         if (this.getText().length > 3) {
             clearTimeout(timeoutObj);
             timeoutObj = setTimeout(cancelTyping, 2000);
-            socket.emit('CLIENT_SEND_TYPING', paramsUserTyping($elmInputUsername, true));
+            socket.emit(`${prefixSocket}CLIENT_SEND_TYPING`, paramsUserTyping($elmInputUsername, true));
         }
     })
 })
