@@ -38,13 +38,13 @@ module.exports = function(io) {
 		socket.on(`${prefixSocket}CLIENT_SEND_JOIN_ROOM`, (data) => {
 			socket.join(data.room);
 			usersRoom.addUser(socket.id, data.username, data.avatar, data.room);
-			socket.to(data.room).emit(`${prefixSocket}SEND_LIST_USER`, usersRoom.getListUsers(data.room));
+			io.to(data.room).emit(`${prefixSocket}SEND_LIST_USER`, usersRoom.getListUsers(data.room));
 		});
 
         socket.on(`${prefixSocket}CLIENT_SEND_ALL_MESSAGE`, async (data) => {
 			if(data.content.length > 5) {
                 await ChatsRoomModel.saveItem(data, {task: "add"}).then((result) => {
-                    socket.to(data.room).emit(`${prefixSocket}RETURN_ALL_MESSAGE`, {
+                    io.to(data.room).emit(`${prefixSocket}RETURN_ALL_MESSAGE`, {
                         content: result.content,
 						username: result.username,
 						room: result.room,
@@ -67,7 +67,7 @@ module.exports = function(io) {
 		socket.on('disconnect', () => {
 			let user = usersRoom.removeUser(socket.id);
 			if(user) {
-				socket.to(user.room).emit(`${prefixSocket}SEND_LIST_USER`, usersRoom.getListUsers(user.room));
+				io.to(user.room).emit(`${prefixSocket}SEND_LIST_USER`, usersRoom.getListUsers(user.room));
 			}
 		});
 	});

@@ -74,7 +74,7 @@ function showTyping(data, $tmplUserTyping, $elmFormChat){
     }
 }
 
-function showListUserOnline(data, $elmInputUsername, $tmplUserOnline,  $elmListUsers, $elmTotalUser){
+function showListUserOnline(data, $elmInputUsername, $tmplUserOnline,  $elmListUsers, $elmTotalUserOnline){
     let template = $tmplUserOnline.html();
     let xhtml    = '';
     for(let i = 0; i < data.length; i++) {
@@ -84,5 +84,5 @@ function showListUserOnline(data, $elmInputUsername, $tmplUserOnline,  $elmListU
         }
     }
     $elmListUsers.html(xhtml);
-    $elmTotalUser.html(data.length - 1);
+    $elmTotalUserOnline.html(data.length - 1);
 }

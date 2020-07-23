@@ -1570,4 +1570,43 @@ Xây dựng chức năng chat theo phòng
 	User typing
 	Save message
 	List message
+
+Xây dựng chức năng kết bạn cơ bản
+	Analyst
+		admin gửi lời mời kết bạn nobita 
+		FromUsername admin
+		toUsername nobita 
+
+		username admin
+		↓
+		friendList    [] 
+		requestTo     [nobita]
+		requestFrom   []
+		totalRequest  1
+		username nobita
+		↓
+		friendList   [] 
+		requestTo    []
+		requestFrom  [admin]
+		totalRequest
+
+		admin gửi lời mời kết bạn doremon
+		username admin
+		↓
+		friendList    [] 
+		requestTo     [nobita, doremon]
+		requestFrom   []
+		totalRequest  2
+		username nobita
+		↓
+		friendList   [] 
+		requestTo    []
+		requestFrom  [admin]
+		totalRequest
+		username doremon
+		↓
+		friendList   [] 
+		requestTo    []
+		requestFrom  [admin]
+		totalRequest
 	

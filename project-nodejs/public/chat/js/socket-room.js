@@ -34,7 +34,7 @@ $(function() {
     });
 
     socket.on(`${prefixSocket}SEND_LIST_USER`, (data) => {
-        showListUserOnline(data, $elmInputUsername, $tmplUserOnline,  $elmListUsers, $elmTotalUserOnline)
+        showListUserOnline(data, $elmInputUsername, $tmplUserOnline,  $elmListUsers, $elmTotalUserOnline);
         $elmTotalMember.html(data.length);
     });
 
