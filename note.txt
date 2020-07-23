@@ -1557,4 +1557,7 @@ Xây dựng chức năng quản lý phòng chat
 	Backend
 	Frontend
 	Room info
+
+Xây dựng chức năng truy cập phòng chat
+	User-room
 	
