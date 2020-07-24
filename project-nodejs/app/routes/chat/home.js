@@ -49,6 +49,13 @@ module.exports = function(io) {
 			}
         });
 
+		socket.on(`${prefixSocket}CLIENT_SEND_ADD_FRIEND`, async (data) => {
+            io.to(data.toSocketID).emit(`${prefixSocket}SEND_NEW_REQUEST_ADD_FRIEND`, {
+                fromUsername: data.fromUsername,
+                fromAvatar	: data.fromAvatar,
+            })
+        });
+
         socket.on(`${prefixSocket}CLIENT_SEND_TYPING`, async (data) => {
 			socket.broadcast.emit(`${prefixSocket}SEND_USER_TYPING`, { username : data.username, showTyping: data.showTyping });
         });

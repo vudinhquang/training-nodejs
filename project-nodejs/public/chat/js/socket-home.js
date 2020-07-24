@@ -57,7 +57,12 @@ $(function() {
         }
     });
 
+    socket.on(`${prefixSocket}SEND_NEW_REQUEST_ADD_FRIEND`, (data) => {
+        console.log(data);
+    });
+
     $(document).on("click", "button.control-add-friend" , function(event) {
+        let toSocketID  = $(this).data("socketid");
         $.ajax({
             method: "POST",
             url: "/api/add-friend",
@@ -69,7 +74,11 @@ $(function() {
                 toAvatar    : $(this).data("avatar")
             }
         }).done(function( data ) {
-            console.log(data);
+            socket.emit(`${prefixSocket}CLIENT_SEND_ADD_FRIEND`, {
+                fromUsername: $elmInputUsername.val(),
+                fromAvatar  : $elmInputAvatar.val(),
+                toSocketID  : toSocketID
+            });
         });
     });
 })
