@@ -1613,4 +1613,5 @@ Xây dựng chức năng kết bạn cơ bản
 	Request-add-friend
 		$inc: The $inc operator increments a field by a specified value
 		$push: The $push operator appends a specified value to an array.
+	Receive-add-friend
 	

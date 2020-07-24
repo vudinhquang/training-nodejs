@@ -9,6 +9,7 @@ router.post('/add-friend', async (req, res, next) => {
     item.toUsername 	= req.body.toUsername;
     
     await UsersModel.saveItem(item, {task: "request-add-friend"});
+    await UsersModel.saveItem(item, {task: "receive-add-friend"});
 
 	res.json(item);
 });

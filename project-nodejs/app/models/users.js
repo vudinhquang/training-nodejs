@@ -227,5 +227,20 @@ module.exports = {
                 }
             );
         }
+
+        if(options.task == "receive-add-friend") {
+            return UsersModel.updateOne({
+                    username: item.toUsername,
+                    'requestFrom.username': { $ne: item.fromUsername },
+                    'friendList.username': { $ne: item.fromUsername },
+                }, {
+                    $push: {
+                        requestFrom: {
+                            username:  item.fromUsername
+                        }
+                    }
+                }
+            );
+        }
     }
 }
