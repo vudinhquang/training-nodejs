@@ -23,6 +23,13 @@ var schema = new mongoose.Schema({
         , user_name: String       
         , time: Date   
     }
+    , requestTo: [
+        { username: String }
+    ]
+    , requestFrom: [
+        { username: String }
+    ]
+    , totalRequest: Number
 });
 
 module.exports = mongoose.model(databaseConfig.modelUser, schema);
