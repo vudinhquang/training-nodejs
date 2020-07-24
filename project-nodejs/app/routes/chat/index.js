@@ -8,6 +8,7 @@ module.exports = function(io) {
     router.use('/auth', require('./auth'));
     router.use('/', middleAuthenticationChat, middleGetUserInfo, require('./home')(io));
     router.use('/room', require('./room')(io));
+    router.use('/api', require('./api'));
     
     return router;
 }

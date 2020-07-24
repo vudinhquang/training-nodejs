@@ -1609,4 +1609,5 @@ Xây dựng chức năng kết bạn cơ bản
 		requestTo    []
 		requestFrom  [admin]
 		totalRequest
+	Client send ajax
 	

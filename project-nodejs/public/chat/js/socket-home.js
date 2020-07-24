@@ -55,5 +55,19 @@ $(function() {
             timeoutObj = setTimeout(cancelTyping, 2000);
             socket.emit(`${prefixSocket}CLIENT_SEND_TYPING`, paramsUserTyping($elmInputUsername, true));
         }
-    })
+    });
+
+    $(document).on("click", "button.control-add-friend" , function(event) {
+        $.ajax({
+            method: "POST",
+            url: "/api/add-friend",
+            dataType: "json",
+            data: {
+                fromUsername: $elmInputUsername.val(),
+                toUsername  : $(this).data("username")
+            }
+        }).done(function( data ) {
+            console.log(data);
+        });
+    });
 })
