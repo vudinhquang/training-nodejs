@@ -218,11 +218,9 @@ module.exports = {
                 },{ 
                     $push: {
                         requestTo: {
-                            username:  item.toUsername
+                            username:  item.toUsername,
+                            avatar: item.toAvatar,
                         }
-                    },
-                    $inc: {
-                        totalRequest: +1
                     }
                 }
             );
@@ -236,8 +234,12 @@ module.exports = {
                 }, {
                     $push: {
                         requestFrom: {
-                            username:  item.fromUsername
+                            username:  item.fromUsername,
+                            avatar: item.fromAvatar,
                         }
+                    },
+                    $inc: {
+                        totalRequest: +1
                     }
                 }
             );

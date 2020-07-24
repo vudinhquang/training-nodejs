@@ -24,10 +24,13 @@ var schema = new mongoose.Schema({
         , time: Date   
     }
     , requestTo: [
-        { username: String }
+        { username: String, avatar: String }
     ]
     , requestFrom: [
-        { username: String }
+        { username: String, avatar: String }
+    ]
+    , friendList: [
+        { username: String, avatar: String}
     ]
     , totalRequest: Number
 });

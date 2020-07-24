@@ -64,7 +64,9 @@ $(function() {
             dataType: "json",
             data: {
                 fromUsername: $elmInputUsername.val(),
-                toUsername  : $(this).data("username")
+                fromAvatar  : $elmInputAvatar.val(),
+                toUsername  : $(this).data("username"),
+                toAvatar    : $(this).data("avatar")
             }
         }).done(function( data ) {
             console.log(data);

@@ -1582,13 +1582,13 @@ Xây dựng chức năng kết bạn cơ bản
 		friendList    [] 
 		requestTo     [nobita]
 		requestFrom   []
-		totalRequest  1
+		totalRequest  
 		username nobita
 		↓
 		friendList   [] 
 		requestTo    []
 		requestFrom  [admin]
-		totalRequest
+		totalRequest 1
 
 		admin gửi lời mời kết bạn doremon
 		username admin
@@ -1596,22 +1596,29 @@ Xây dựng chức năng kết bạn cơ bản
 		friendList    [] 
 		requestTo     [nobita, doremon]
 		requestFrom   []
-		totalRequest  2
+		totalRequest  
 		username nobita
 		↓
 		friendList   [] 
 		requestTo    []
 		requestFrom  [admin]
-		totalRequest
+		totalRequest 1
 		username doremon
 		↓
 		friendList   [] 
 		requestTo    []
 		requestFrom  [admin]
-		totalRequest
+		totalRequest 1
 	Client send ajax
 	Request-add-friend
 		$inc: The $inc operator increments a field by a specified value
 		$push: The $push operator appends a specified value to an array.
 	Receive-add-friend
+	Fix add friend
+		Lưu avatar của A 
+		B(A) C(A) D(A) E(A)
+		A thay đổi avatar thì phải update lại cho B C D E -> hành động thay đổi avatar là thường xuyên -> không nên dùng 
+														  -> hành động thay đổi avatar là ít -> có thể dùng
+		Không lưu avatar của A
+		B login, sẽ truy vấn thông tin avatar của A hiện tại dựa vào username của A 
 	
