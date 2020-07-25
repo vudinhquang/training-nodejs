@@ -2,11 +2,13 @@ $(function() {
     let $elmInputMessage    = $('input#message');
     let $elmInputUsername   = $('input[name="username"]');
     let $elmInputAvatar     = $('input[name="avatar"]');
+    let $elmTotalUserInvite = $("span.total-user-invite");
     let prefixSocket        = $('input[name="prefixSocket"]').val();
     let $elmFormChat        = $('form#form-chat');
     let $elmListMessage     = $('div#area-list-message');
     let $tmplMessageChat    = $('#template-chat-message')
     let $tmplNotifyError    = $('#template-notify-error');
+    let $tmplUserInvite     = $('#template-user-invite');
     let $tmplUserTyping     = $('#template-user-typing');
     let $elmTotalUser	    = $('span#total-user');
     let $elmListUsers	    = $('div#list-users');
@@ -58,7 +60,16 @@ $(function() {
     });
 
     socket.on(`${prefixSocket}SEND_NEW_REQUEST_ADD_FRIEND`, (data) => {
-        console.log(data);
+        let totalUserInvite     = parseInt($elmTotalUserInvite.html());
+        let template = $tmplUserInvite.html();
+        
+        if(totalUserInvite == 0) {
+            $(`<li><ul class="menu"><li>` 
+                + Mustache.render(template, { data }) 
+                + `</li></ul></li><li class="footer"><a href="#">View all</a></li>`).insertAfter($("li#list-user-invite")
+            );
+        }
+        $elmTotalUserInvite.html(totalUserInvite + 1);
     });
 
     $(document).on("click", "button.control-add-friend" , function(event) {

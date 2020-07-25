@@ -1,7 +1,7 @@
 <% 
     showBoxRequestFriend = (totalRequest, requestList) => { 
         
-        xhtmlBoxRequestFriend = `<li class="header"  id="list-user-invite">You have <span class="total-user-invite">${totalRequest}</span> invitations</li>`;
+        xhtmlBoxRequestFriend = `<li class="header" id="list-user-invite">You have <span class="total-user-invite">${totalRequest}</span> invitations</li>`;
         if(totalRequest > 0) {
             xhtmlBoxRequestFriend = `<li><ul class="menu"><li>`;
             for(let i = 0; i < totalRequest; i++){ 
