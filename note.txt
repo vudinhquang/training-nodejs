@@ -1672,4 +1672,5 @@ Xây dựng chức năng kết bạn nâng cao
 			B friendList(A)
 	Invitation
 		Trang hiển thị danh sách người kết bạn 
+	Invitation sent
 	

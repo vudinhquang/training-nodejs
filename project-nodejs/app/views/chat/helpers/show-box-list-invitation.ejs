@@ -1,9 +1,15 @@
 
 <%
-    showBoxListInvitation = (totalRequest, requestList) => {
+    showBoxListInvitation = (totalRequest, requestList, type) => {
         xhtml = ``;
         if(totalRequest > 0) {
             xhtmlButton = ``;
+            if(type == "receive") {
+                xhtmlButton = `<button type="button" class="btn btn-block btn-primary">Accept</button>
+                            <button type="button" class="btn btn-block btn-defaultt" >Deny</button>`;
+            }else if(type == "send") {
+                xhtmlButton = `<button type="button" class="btn btn-block btn-primary">Clear</button>`;
+            }
 
             for(let i = 0; i < totalRequest; i++){ 
                 let request     = requestList[i];
@@ -14,10 +20,7 @@
                             <img class="contacts-list-img" src="${userAvatar}" alt="${username}">
                             <h5>${username}</h5>
                         </div>
-                        <div class="col-md-5 col-sm-5 col-xs-5 btn-action-invite">
-                            <button type="button" class="btn btn-block btn-primary">Accept</button>
-                            <button type="button" class="btn btn-block btn-defaultt" >Deny</button>
-                        </div>
+                        <div class="col-md-5 col-sm-5 col-xs-5 btn-action-invite">${xhtmlButton}</div>
                     </div>`;
             }
         }else {

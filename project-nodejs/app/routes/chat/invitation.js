@@ -10,6 +10,12 @@ router.get('/receive', async (req, res, next) => {
     });
 });
 
+router.get('/send', async (req, res, next) => {
+    res.render(`${folderView}send`, {
+        layout: layoutChat
+    });
+});
+
 module.exports = router;
 
 
