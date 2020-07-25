@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+const systemConfig  = require(__path_configs + '/system');
+const ParamsHelpers = require(__path_helpers + '/params');
 const UsersModel 	= require(__path_models + '/users');
 
 router.post('/add-friend', async (req, res, next) => {
@@ -14,6 +16,19 @@ router.post('/add-friend', async (req, res, next) => {
     await UsersModel.saveItem(item, {task: "receive-add-friend"});
 
 	res.json(item);
+});
+
+router.post('/add-friend-deny', async (req, res, next) => {
+    let item            = {}
+    let userId          = ParamsHelpers.getParam(req.session, systemConfig.sess_login, '');
+    let user            = await UsersModel.getItem(userId);	
+    item.senderName     = req.body.senderName;
+    item.receiverName   = user.username;
+
+    await UsersModel.saveItem(item, {task: "add-friend-deny-receiver"});
+    await UsersModel.saveItem(item, {task: "add-friend-deny-sender"});
+    
+    res.json(item);
 });
 
 module.exports = router;

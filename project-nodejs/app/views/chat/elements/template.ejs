@@ -42,8 +42,8 @@
             <h5>{{data.fromUsername}}</h5>
         </div>
         <div class="col-md-5 col-sm-5 col-xs-5 btn-action-invite">
-            <button type="button" class="btn btn-block btn-primary">Accept</button>
-            <button type="button" class="btn btn-block btn-default">Deny</button>
+            <button data-sendername="{{data.fromUsername}}" type="button" class="btn btn-block btn-primary control-add-friend-accept">Accept</button>
+            <button data-sendername="{{data.fromUsername}}" type="button" class="btn btn-block btn-default control-add-friend-deny">Deny</button>
         </div>
     </div>
 </script>

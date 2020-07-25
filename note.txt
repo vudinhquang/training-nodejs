@@ -1639,4 +1639,26 @@ Xây dựng chức năng kết bạn nâng cao
 		http://bootstrap-notify.remabledesigns.com/
 		bootstrap-notify.min.js
 	Optimize
+	Deny 01
+		A gửi lời mời kết bạn đến B
+		A requestTo(B)
+		B requestFrom(A)
+		  totalRequest 1 
+		Nếu B từ chối lời mời kết bạn của A 
+			A requestTo()
+			B requestFrom()
+			totalRequest 0 
+		Nếu B đồng ý lời mời kết bạn của A 
+			A requestTo()
+			B requestFrom()
+			totalRequest 0 
+			A friendList(B)
+			B friendList(A)
+		Xóa:
+			$pull: {
+				requestFrom: {
+					username:  item.senderName
+				}
+			}
+		Thêm: $push 
 	

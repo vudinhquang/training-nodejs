@@ -233,5 +233,32 @@ module.exports = {
                 }
             );
         }
+
+        if(options.task == "add-friend-deny-receiver") {
+            return UsersModel.updateOne({
+                    username: item.receiverName
+                }, {
+                    $pull: {
+                        requestFrom: {
+                            username:  item.senderName
+                        }
+                    },
+                    $inc: {
+                        totalRequest: -1
+                    }
+                }
+            );
+        }
+        
+        if(options.task == "add-friend-deny-sender") {
+            return UsersModel.updateOne({
+                    username: item.senderName
+                }, {
+                    $pull: {
+                        requestTo: {username:  item.receiverName}
+                    }
+                }
+            );
+        }
     }
 }

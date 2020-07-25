@@ -90,4 +90,19 @@ $(function() {
             socket.emit(`${prefixSocket}CLIENT_SEND_ADD_FRIEND`, paramsClientSendAddFriend($elmInputUsername, $elmInputAvatar, toSocketID));
         });
     });
+
+    $(document).on("click", "button.control-add-friend-deny" , function(event) {
+        let senderName = $(this).data("sendername");
+        $.ajax({
+            method: "POST",
+            url: "/api/add-friend-deny",
+            dataType: "json",
+            data: {
+                senderName: senderName,
+            }
+        }).done(function( data ) {
+            console.log(data);
+        });
+        return false;
+    });
 })
