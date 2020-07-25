@@ -1633,4 +1633,5 @@ Xây dựng chức năng kết bạn nâng cao
 		var cookieSession = require('cookie-session');
 		npm install cookie-session
 	Show request 01
+	Show request 02
 	

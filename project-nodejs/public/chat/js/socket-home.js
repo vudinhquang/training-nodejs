@@ -68,6 +68,8 @@ $(function() {
                 + Mustache.render(template, { data }) 
                 + `</li></ul></li><li class="footer"><a href="#">View all</a></li>`).insertAfter($("li#list-user-invite")
             );
+        } else {
+            $(Mustache.render(template, { data })).insertBefore($('div.user-invite').first());
         }
         $elmTotalUserInvite.html(totalUserInvite + 1);
     });
