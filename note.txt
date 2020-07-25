@@ -1670,4 +1670,6 @@ Xây dựng chức năng kết bạn nâng cao
 			totalRequest 0 
 			A friendList(B)
 			B friendList(A)
+	Invitation
+		Trang hiển thị danh sách người kết bạn 
 	

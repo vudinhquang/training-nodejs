@@ -1,0 +1,13 @@
+<% include ./../../helpers/show-box-list-invitation %>
+<%
+    if (typeof userInfo.totalRequest === 'undefined') userInfo.totalRequest = 0;
+%>
+<div class="box box-primary one-box" id="notify-receive">
+    <div class="box-header with-border">
+        <h3 class="box-title">Invitations</h3>
+        <span class="badge bg-light-blue count" ><%= userInfo.totalRequest %></span>
+    </div>
+    <div class="box-body">
+        <%- showBoxListInvitation(userInfo.totalRequest, userInfo.requestFrom) %>
+    </div>
+</div>
