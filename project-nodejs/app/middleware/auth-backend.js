@@ -1,21 +1,23 @@
-var LocalStorage = require('node-localstorage').LocalStorage,
-localStorage = new LocalStorage('./scratch');
-
 const StringHelpers 	= require(__path_helpers + '/string');
 const systemConfig  = require(__path_configs + '/system');
+const ParamsHelpers = require(__path_helpers + '/params');
 const linkLogin		= StringHelpers.formatLink('/' + systemConfig.prefixChat + '/auth/login');
 const UsersModel    = require(__path_models + '/users');
 const linkNoPermission	 = StringHelpers.formatLink('/' + systemConfig.prefixChat + '/auth/no-permission');
 
 module.exports = async(req, res, next) => {
-    try {        
-        let user = await UsersModel.verifyJWT(localStorage.getItem('tokenKey'));
-        if(user.username === "admin") {
-            return next();
+    try {
+        let userId = ParamsHelpers.getParam(req.session, systemConfig.sess_login, '');
+        if (userId) {
+            let user = await UsersModel.getItem(userId);
+            if(user.username === "admin") {
+                return next();
+            } else {
+                return res.redirect(linkNoPermission);
+            }
         } else {
-            res.redirect(linkNoPermission);
+            return res.redirect(linkLogin);
         }
-        next();
     } catch(error) {
         res.redirect(linkLogin);
     }

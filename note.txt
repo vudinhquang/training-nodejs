@@ -1629,4 +1629,7 @@ Xây dựng chức năng kết bạn nâng cao
 		Thông báo gửi đến nobita 
 		// sending to individual socketid (private message)
 		io.to(socketId).emit('hey', 'I just met you');
+----Sửa login, logout, authen
+		var cookieSession = require('cookie-session');
+		npm install cookie-session
 	

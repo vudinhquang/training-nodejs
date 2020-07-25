@@ -8,6 +8,7 @@ const passport = require('passport');
 var flash = require('connect-flash');
 const validator = require('express-validator');
 const session = require('express-session');
+var cookieSession = require('cookie-session');
 var expressLayouts = require('express-ejs-layouts');
 var mongoose = require('mongoose');
 var socket_io    = require( "socket.io" );
@@ -50,12 +51,15 @@ var io           = socket_io();
 app.io           = io;
 
 app.use(cookieParser());
-app.use(session({
-	secret: 'qtgbjhyd',
+app.use(cookieSession({
+	name: systemConfig.sess_name,
+	saveUninitialized: false,
 	resave: false,
-	saveUninitialized: true,
+	secret: systemConfig.sess_secret,
 	cookie: {
-		maxAge: 5*60*1000
+		maxAge: systemConfig.sess_lifetime,
+		sameSite: true,
+		secure: systemConfig.sess_secure
 	}
 }));
 app.use(passport.initialize());

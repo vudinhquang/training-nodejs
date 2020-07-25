@@ -33,27 +33,16 @@ module.exports = {
     , loginUser: async (item) => {
         try {       
             let foundUser = await UsersModel.findOne({username: item.username.trim()})
-                                .exec()
+                                .exec();
             if(!foundUser) {
                 throw "User không tồn tại"
             }
             if(foundUser.status !== "active") {
                 throw "User chưa kích hoạt, bạn phải mở mail kích hoạt trước"               
             }
-            let encryptedPassword = foundUser.password;
-            if (md5(item.password) === encryptedPassword) {
-                // Đăng nhập thành công
-                let jsonObject = {
-                    id: foundUser._id
-                };
-                let tokenKey = await jwt.sign(jsonObject, 
-                                    secretString, {
-                                        expiresIn: 86400 // Expire trong 24 giờ(86400)
-                                    });            
-                // Trả về thông tin user kèm tokenKey
-                let userObject = await foundUser.toObject();        
-                userObject.tokenKey = tokenKey;
-                
+            userObject = foundUser.toObject();  
+            let encryptedPassword = userObject.password;
+            if (md5(item.password) === encryptedPassword) {        
                 return userObject;
             } else {
                 throw "Tên user hoặc mật khẩu sai";

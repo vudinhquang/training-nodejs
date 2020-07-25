@@ -23,7 +23,7 @@ router.get('(/status/:status)?', async (req, res, next) => {
 	params.currentStatus = ParamsHelpers.getParam(req.params, 'status', 'all');
 	params.sortField 	  = ParamsHelpers.getParam(req.session, 'sort_field', 'ordering');
 	params.sortType 	  = ParamsHelpers.getParam(req.session, 'sort_type', 'asc');
-	req.session.destroy();
+	req.session.sort_field = req.session.sort_type = null;
 	params.pagination = {
 		totalItems: 1,
 		totalItemsPerPage: 5,

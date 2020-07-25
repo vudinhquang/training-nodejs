@@ -14,6 +14,7 @@ const StringHelpers 	= require(__path_helpers + '/string');
 const systemConfig  = require(__path_configs + '/system');
 const notify	    = require(__path_configs + '/notify');
 const UsersModel = require(__path_models + '/users');
+const ParamsHelpers = require(__path_helpers + '/params');
 const folderView	= __path_views_chat + '/pages/auth';
 const layoutLogin   = __path_views_chat + '/login';
 const layoutChat   	= __path_views_chat + '/main';
@@ -23,8 +24,9 @@ const ValidateLogin	= require(__path_validators + '/login');
 
 /* GET logout page. */
 router.get('/logout', function(req, res, next) {
-	localStorage.removeItem('tokenKey');
-	res.redirect(linkLogin);
+	req.session = null;
+	res.clearCookie(systemConfig.userId);
+	return res.redirect(linkLogin);
 });
 
 /* GET login page. */
@@ -32,12 +34,11 @@ router.get('/login', async (req, res, next) => {
 	let item	= {'username': '', 'password': ''};
 	let errors   = null;
 
-    try {        
-        let user = await UsersModel.verifyJWT(localStorage.getItem('tokenKey'));
-        if(user) return res.redirect(linkIndex);
-    } catch(error) {
-        return res.render(folderView + '/login', { layout: layoutLogin, errors, item });
-    }
+	if(req.session.sess_login) {
+		return res.redirect(linkIndex);
+	} else {
+		return res.render(folderView + '/login', { layout: layoutLogin, errors, item });
+	}
 });
 
 /* GET dashboard page. */
@@ -73,15 +74,9 @@ router.post('/login', async (req, res, next) => {
 		res.render(folderView + '/login', {  layout: layoutLogin, item, errors });
 	}else {
 		try {
-			let foundUser = await UsersModel.loginUser(item);
-			// req.session.tokenKey = ParamsHelpers.getParam(req.params, 'tokenKey', foundUser.tokenKey);
-			if(foundUser._id) {
-				localStorage.setItem('tokenKey', foundUser.tokenKey);
-				res.redirect(linkIndex);
-			} else {
-				req.flash('danger', notify.ERROR_LOGIN );
-				res.redirect(linkLogin);
-			}
+            let foundUser = await UsersModel.loginUser(item);			
+			req.session.userId = ParamsHelpers.getParam(req.session, systemConfig.sess_login, foundUser._id);
+            res.redirect(linkIndex);
 		} catch(error) {
 			req.flash('danger', notify.ERROR_LOGIN );
 			res.redirect(linkLogin);
