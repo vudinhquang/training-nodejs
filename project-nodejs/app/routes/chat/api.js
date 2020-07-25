@@ -31,4 +31,17 @@ router.post('/add-friend-deny', async (req, res, next) => {
     res.json(item);
 });
 
+router.post('/add-friend-accept', async (req, res, next) => {
+    let item            = {}
+    let userId          = ParamsHelpers.getParam(req.session, systemConfig.sess_login, '');
+    let user            = await UsersModel.getItem(userId);	
+
+    item.senderName     = req.body.senderName;
+    item.receiverName   = user.username;
+    
+    await UsersModel.saveItem(item, {task: "add-friend-accept-receiver"});
+    await UsersModel.saveItem(item, {task: "add-friend-accept-sender"});
+    res.json(item);
+});
+
 module.exports = router;

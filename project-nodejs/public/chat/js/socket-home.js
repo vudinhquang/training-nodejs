@@ -108,4 +108,22 @@ $(function() {
         });
         return false;
     });
+
+    $(document).on("click", "button.control-add-friend-accept" , function(event) {
+        let senderName      = $(this).data("sendername");
+        $.ajax({
+            method: "POST",
+            url: "/api/add-friend-accept",
+            dataType: "json",
+            data: {
+                senderName: senderName
+            }
+        }).done(function( data ) {
+            let totalUserInvite     = parseInt($elmTotalUserInvite.html());
+            $elmTotalUserInvite.html(totalUserInvite - 1);
+
+            $(`div.user-invite[data-name="${data.senderName}"]`).fadeOut();
+        });
+        return false;
+    });
 })

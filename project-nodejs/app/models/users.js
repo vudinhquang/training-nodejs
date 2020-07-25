@@ -260,5 +260,44 @@ module.exports = {
                 }
             );
         }
+
+        if(options.task == "add-friend-accept-receiver") {
+            return UsersModel.updateOne({
+                    username: item.receiverName,
+                    'friendList.username': { $ne: item.senderName },
+                }, {
+                    $push: {
+                        friendList: {
+                            username:  item.senderName
+                        }
+                    },
+                    $pull: { 
+                        requestFrom: {
+                            username:  item.senderName
+                        }
+                    },
+                    $inc: {
+                        totalRequest: -1
+                    }
+                }
+            );
+        }
+
+        if(options.task == "add-friend-accept-sender") {
+            return UsersModel.updateOne({
+                    username: item.senderName,
+                    'friendList.username': { $ne: item.receiverName },
+                }, {
+                    $push: {
+                        friendList: {
+                            username:  item.receiverName
+                        }
+                    },
+                    $pull: {
+                        requestTo: {username:  item.receiverName}
+                    }
+                }
+            );
+        }
     }
 }

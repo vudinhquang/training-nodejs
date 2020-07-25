@@ -1662,4 +1662,12 @@ Xây dựng chức năng kết bạn nâng cao
 			}
 		Thêm: $push 
 	Deny 02
+	Accept
+		A gửi lời mời kết bạn đến B
+		Nếu B đồng ý lời mời kết bạn của A 
+			A requestTo()
+			B requestFrom()
+			totalRequest 0 
+			A friendList(B)
+			B friendList(A)
 	
