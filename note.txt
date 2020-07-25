@@ -1634,4 +1634,8 @@ Xây dựng chức năng kết bạn nâng cao
 		npm install cookie-session
 	Show request 01
 	Show request 02
+	Notify request
+		Thư viện Bootstrap notify
+		http://bootstrap-notify.remabledesigns.com/
+		bootstrap-notify.min.js
 	

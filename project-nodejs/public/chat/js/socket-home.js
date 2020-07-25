@@ -72,6 +72,18 @@ $(function() {
             $(Mustache.render(template, { data })).insertBefore($('div.user-invite').first());
         }
         $elmTotalUserInvite.html(totalUserInvite + 1);
+
+        $.notify({
+            // options
+            message: `${data.fromUsername} vừa gửi lời mời kết bạn đến bạn !` 
+        },{
+            type: 'success',
+            allow_dismiss: true,
+            placement: {
+                from: "bottom",
+                align: "right"
+            }
+        });
     });
 
     $(document).on("click", "button.control-add-friend" , function(event) {
