@@ -37,7 +37,9 @@ router.post('/add-friend-accept', async (req, res, next) => {
     let user            = await UsersModel.getItem(userId);	
 
     item.senderName     = req.body.senderName;
+    item.senderAvatar   = req.body.senderAvatar;
     item.receiverName   = user.username;
+    item.receiverAvatar = user.avatar;
     
     await UsersModel.saveItem(item, {task: "add-friend-accept-receiver"});
     await UsersModel.saveItem(item, {task: "add-friend-accept-sender"});

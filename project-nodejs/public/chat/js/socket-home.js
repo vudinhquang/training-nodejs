@@ -111,12 +111,14 @@ $(function() {
 
     $(document).on("click", "button.control-add-friend-accept" , function(event) {
         let senderName      = $(this).data("sendername");
+        let senderAvatar    = $(this).data("senderavatar");
         $.ajax({
             method: "POST",
             url: "/api/add-friend-accept",
             dataType: "json",
             data: {
-                senderName: senderName
+                senderName,
+                senderAvatar
             }
         }).done(function( data ) {
             let totalUserInvite     = parseInt($elmTotalUserInvite.html());

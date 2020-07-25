@@ -1673,4 +1673,5 @@ Xây dựng chức năng kết bạn nâng cao
 	Invitation
 		Trang hiển thị danh sách người kết bạn 
 	Invitation sent
+	Friend
 	

@@ -9,7 +9,9 @@
                             <button type="button" class="btn btn-block btn-defaultt" >Deny</button>`;
             }else if(type == "send") {
                 xhtmlButton = `<button type="button" class="btn btn-block btn-primary">Clear</button>`;
-            }
+            } else if(type == "friend") {
+                xhtmlButton = `<button type="button" class="btn btn-block btn-primary">Remove</button>`;
+            };
 
             for(let i = 0; i < totalRequest; i++){ 
                 let request     = requestList[i];

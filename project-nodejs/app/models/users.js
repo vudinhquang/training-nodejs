@@ -268,7 +268,8 @@ module.exports = {
                 }, {
                     $push: {
                         friendList: {
-                            username:  item.senderName
+                            username:  item.senderName,
+                            avatar: item.senderAvatar
                         }
                     },
                     $pull: { 
@@ -290,7 +291,8 @@ module.exports = {
                 }, {
                     $push: {
                         friendList: {
-                            username:  item.receiverName
+                            username:  item.receiverName,
+                            avatar: item.receiverAvatar
                         }
                     },
                     $pull: {
