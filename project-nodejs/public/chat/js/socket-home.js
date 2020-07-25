@@ -73,37 +73,21 @@ $(function() {
         }
         $elmTotalUserInvite.html(totalUserInvite + 1);
 
-        $.notify({
-            // options
-            message: `${data.fromUsername} vừa gửi lời mời kết bạn đến bạn !` 
-        },{
-            type: 'success',
-            allow_dismiss: true,
-            placement: {
-                from: "bottom",
-                align: "right"
-            }
-        });
+        showNotify(`${data.fromUsername} vừa gửi lời mời kết bạn đến bạn !`);
     });
 
     $(document).on("click", "button.control-add-friend" , function(event) {
         let toSocketID  = $(this).data("socketid");
+        let toUsername  = $(this).data("username");
+        let toAvatar    = $(this).data("avatar");
+
         $.ajax({
             method: "POST",
             url: "/api/add-friend",
             dataType: "json",
-            data: {
-                fromUsername: $elmInputUsername.val(),
-                fromAvatar  : $elmInputAvatar.val(),
-                toUsername  : $(this).data("username"),
-                toAvatar    : $(this).data("avatar")
-            }
+            data: paramsUserSendRequestAddFriend($elmInputUsername, $elmInputAvatar, toUsername, toAvatar)
         }).done(function( data ) {
-            socket.emit(`${prefixSocket}CLIENT_SEND_ADD_FRIEND`, {
-                fromUsername: $elmInputUsername.val(),
-                fromAvatar  : $elmInputAvatar.val(),
-                toSocketID  : toSocketID
-            });
+            socket.emit(`${prefixSocket}CLIENT_SEND_ADD_FRIEND`, paramsClientSendAddFriend($elmInputUsername, $elmInputAvatar, toSocketID));
         });
     });
 })

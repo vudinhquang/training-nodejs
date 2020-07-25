@@ -1638,4 +1638,5 @@ Xây dựng chức năng kết bạn nâng cao
 		Thư viện Bootstrap notify
 		http://bootstrap-notify.remabledesigns.com/
 		bootstrap-notify.min.js
+	Optimize
 	

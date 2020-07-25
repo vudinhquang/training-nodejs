@@ -5,6 +5,36 @@ function paramsUserConnectServer($elmInputUsername, $elmInputAvatar){
     }
 }
 
+function paramsUserSendRequestAddFriend($elmInputUsername, $elmInputAvatar, toUsername, toAvatar){
+    return {
+        fromUsername: $elmInputUsername.val(),
+        fromAvatar  : $elmInputAvatar.val(),
+        toUsername,
+        toAvatar
+    }
+}
+
+function paramsClientSendAddFriend($elmInputUsername, $elmInputAvatar, toSocketID){
+    return {
+        fromUsername: $elmInputUsername.val(),
+        fromAvatar  : $elmInputAvatar.val(),
+        toSocketID
+    }
+}
+
+function showNotify(content) {
+    $.notify({
+        message: content
+    },{
+        type: 'success',
+        allow_dismiss: true,
+        placement: {
+            from: "bottom",
+            align: "right"
+        }
+    });
+}
+
 function paramsUserConnectRoom($elmInputUsername, $elmInputAvatar, $elmInputRoom){
     return {
         username: $elmInputUsername.val(),
