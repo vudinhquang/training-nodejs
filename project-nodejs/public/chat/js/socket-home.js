@@ -101,7 +101,10 @@ $(function() {
                 senderName: senderName,
             }
         }).done(function( data ) {
-            console.log(data);
+            let totalUserInvite     = parseInt($elmTotalUserInvite.html());
+            $elmTotalUserInvite.html(totalUserInvite - 1);
+
+            $(`div.user-invite[data-name="${data.senderName}"]`).fadeOut();
         });
         return false;
     });
