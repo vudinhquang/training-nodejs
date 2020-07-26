@@ -1750,4 +1750,4 @@ Tình huống mở rộng và tối ưu mã nguồn
 		3.Nếu admin đã gửi lời mới cho nobita     - Sent 
 		4.Nếu doremon đã gửi lời mời cho admin    - Accept Deny 
 	Button add friend 03
-	
+	Fix
