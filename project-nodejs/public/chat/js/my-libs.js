@@ -104,16 +104,39 @@ function showTyping(data, $tmplUserTyping, $elmFormChat){
     }
 }
 
-function showListUserOnline(data, $elmInputUsername, $elmInputRelationship, $tmplUserOnline,  $elmListUsers, $elmTotalUserOnline){
+function showListUserOnline(data, $elmInputUsername, $elmInputRelationship, $elmListUsers, $elmTotalUserOnline){
     let parseInfo=JSON.parse($elmInputRelationship.val());
-    let template = $tmplUserOnline.html();
     let xhtml    = '';
     for(let i = 0; i < data.length; i++) {
         let user = data[i];
         if(user.username !== $elmInputUsername.val()) {
+            let type = getRelationship(parseInfo, user.username);
+
+            let templateId      = '#template-user-online';
+            let $tmplUserOnline = $(templateId);
+            if( type !== null){
+                templateId += '-' + type;
+                $tmplUserOnline = $(templateId);
+            }
+            
+            let template = $tmplUserOnline.html();
             xhtml += Mustache.render(template, { user });
         }
     }
     $elmListUsers.html(xhtml);
     $elmTotalUserOnline.html(data.length - 1);
+}
+
+function getRelationship(objRelationship, value){
+    let keys=Object.keys(objRelationship);
+    for (let i=0; i< keys.length;i++) {
+        let key=keys[i];
+        for (let j = 0; j < objRelationship[key].length; j++) {
+            let item=objRelationship[key][j];
+            if (item.username === value) {
+                return key;
+            }
+        }
+    }
+    return null;
 }

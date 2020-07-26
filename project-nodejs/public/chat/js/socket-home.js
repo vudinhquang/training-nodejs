@@ -13,7 +13,6 @@ $(function() {
     let $tmplUserTyping     = $('#template-user-typing');
     let $elmTotalUser	    = $('span#total-user');
     let $elmListUsers	    = $('div#list-users');
-    let $tmplUserOnline     = $('#template-user-online');
     let socket              = io.connect('http://localhost:8181');
     let timeoutObj;
     let emojioneArea = $elmInputMessage.emojioneArea();
@@ -35,7 +34,7 @@ $(function() {
     });
 
     socket.on(`${prefixSocket}SEND_ALL_LIST_USER`, (data) => {
-        showListUserOnline(data, $elmInputUsername, $elmInputRelationship, $tmplUserOnline,  $elmListUsers, $elmTotalUser)
+        showListUserOnline(data, $elmInputUsername, $elmInputRelationship, $elmListUsers, $elmTotalUser)
     })
 
     // CLIENT SEND MESSAGE
