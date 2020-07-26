@@ -1,10 +1,30 @@
 const ChatsModel 	= require(__path_schemas + '/chats');
+// const databaseConfig = require(__path_configs + '/database');
 
 module.exports = {
     listItems: (params, options = null) => {
         let objWhere    = {};
         let sort		= {'created' : 'asc'};
-
+        /*
+        return ChatsModel.aggregate([
+            { 
+                $lookup: {
+                    from: databaseConfig.col_users,
+                    localField: 'username',
+                    foreignField: 'username',
+                    as: 'myResult'
+                }
+            },
+            { 
+                $project: { 
+                    "username" : 1 , 
+                    "myResult.avatar" : 1, 
+                    "content": 1,
+                    "created": 1,
+                }
+            }
+        ]);
+        */
         return ChatsModel.find(objWhere)
             //.populate('user', 'avatar username')
             .select('content created avatar username')

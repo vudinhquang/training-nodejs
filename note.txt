@@ -1706,4 +1706,31 @@ Tình huống mở rộng và tối ưu mã nguồn
 			submit:
 				socket.emit(`${prefixSocket}CLIENT_SEND_ALL_MESSAGE`, paramsUserSendAllMessage($elmInputMessage, 
 					$elmInputUsername, $elmInputAvatar, $elmInputUserID));
+	Lookup
+		Đối với bảng chats có các trường hợp lưu:
+			TH1: username, avatar
+			TH2: userId, từ giá trị userId join với bảng users bằng Populate để lấy username và avatar
+			TH3: username
+		Bảng chats lưu username 
+			từ username lấy avatar trong bảng users 
+		mongoose aggregation
+		chats Model: 
+			return ChatsModel.aggregate([
+				{ 
+					$lookup: {
+						from: databaseConfig.col_users,
+						localField: 'username',
+						foreignField: 'username',
+						as: 'myResult'
+					}
+				},
+				{ 
+					$project: { 
+						"username" : 1 , 
+						"myResult.avatar" : 1, 
+						"content": 1,
+						"created": 1,
+					}
+				}
+			]);
 		
