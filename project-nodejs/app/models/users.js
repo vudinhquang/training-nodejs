@@ -10,6 +10,17 @@ const uploadFolder = 'public/uploads/users/';
 const secretString = "secret string" // tự cho 1 string tuỳ ý
 
 module.exports = {
+
+    checkCondition:(item,options=null)=>{
+        if(options.task == "check-add-friend"){
+            return UsersModel.findOne({
+                    username: item.fromUsername, // admin
+                    'requestTo.username': { $eq: item.toUsername }  // nobita
+                }
+            );
+        }
+    },
+    
     listItems: (params, options = {}) => {
         let objWhere = {};
         if (params.currentStatus !== 'all') objWhere.status = params.currentStatus;

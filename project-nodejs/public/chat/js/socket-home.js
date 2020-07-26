@@ -80,6 +80,8 @@ $(function() {
         let toSocketID  = $(this).data("socketid");
         let toUsername  = $(this).data("username");
         let toAvatar    = $(this).data("avatar");
+        let $elmThis    = $(this);
+        let $elmParent  = $(this).parent();
 
         $.ajax({
             method: "POST",
@@ -87,7 +89,13 @@ $(function() {
             dataType: "json",
             data: paramsUserSendRequestAddFriend($elmInputUsername, $elmInputAvatar, toUsername, toAvatar)
         }).done(function( data ) {
-            socket.emit(`${prefixSocket}CLIENT_SEND_ADD_FRIEND`, paramsClientSendAddFriend($elmInputUsername, $elmInputAvatar, toSocketID));
+            if(data.status==="fail"){
+                showNotify('Bạn đã gửi lời mời kết bạn, vui lòng chờ xác nhận!')
+            }else{
+                $elmThis.remove();
+                $elmParent.append(`<button type="button" class="btn btn-block btn-info btn-w btn-sm">Sent</button>`);
+                socket.emit(`${prefixSocket}CLIENT_SEND_ADD_FRIEND`, paramsClientSendAddFriend($elmInputUsername, $elmInputAvatar, toSocketID));
+            }
         });
     });
 

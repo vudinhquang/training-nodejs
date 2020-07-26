@@ -11,9 +11,15 @@ router.post('/add-friend', async (req, res, next) => {
 	item.fromAvatar 	= req.body.fromAvatar;
     item.toUsername 	= req.body.toUsername;
     item.toAvatar 		= req.body.toAvatar;
-    
-    await UsersModel.saveItem(item, {task: "request-add-friend"});
-    await UsersModel.saveItem(item, {task: "receive-add-friend"});
+    let check           = await UsersModel.checkCondition(item, {task:'check-add-friend'});
+
+    if(check === null){
+        item.status     = "success";
+        await UsersModel.saveItem(item, {task: "request-add-friend"});
+        await UsersModel.saveItem(item, {task: "receive-add-friend"});
+    }else{
+        item.status = "fail";
+    }
 
 	res.json(item);
 });

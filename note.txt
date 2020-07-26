@@ -1734,4 +1734,10 @@ Tình huống mở rộng và tối ưu mã nguồn
 				}
 			]);
 	List room
+	Button add friend 01
+		admin gửi lời mời kết bạn cho nobita 
+			Nút Add friend sẽ chuyển thành nút Sent 
+			Lưu thông tin kết bạn 
+			Trước khi lưu thông tin user kết bạn thì cần phải kiểm tra có lưu hay không, đối với những ai là bạn rồi 
+				hay đã gửi lời mời kết bạn rồi thì ko lưu 
 	
