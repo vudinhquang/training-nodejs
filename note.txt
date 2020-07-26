@@ -1751,3 +1751,44 @@ Tình huống mở rộng và tối ưu mã nguồn
 		4.Nếu doremon đã gửi lời mời cho admin    - Accept Deny 
 	Button add friend 03
 	Fix
+
+Publish ver3
+	Port: 8181
+	Tiến hành đưa sản phẩm lên hosting heroku
+	keyword: nodejs deploy
+	https://dashboard.heroku.com/login
+	App: nodejs-ver3
+	-> Open app: https://nodejs-ver3.herokuapp.com/(link truy cập)
+		trang Admin: https://nodejs-ver3.herokuapp.com/admin/items
+	Sau khi cài đặt Heroku CLI vào thư mục dự án cần deploy và thực hiện các câu lệnh từ heroku login để deploy
+	heroku logs: Lệnh để debug khi có lỗi khi deploy
+
+	Install the Heroku CLI
+	Download and install the Heroku CLI.
+
+	If you haven't already, log in to your Heroku account and follow the prompts to create a new SSH public key.
+
+	$ heroku login
+	Clone the repository
+	Use Git to clone project-nodejs-ver3's source code to your local machine.
+
+	$ heroku git:clone -a project-nodejs-ver3
+	$ cd project-nodejs-ver3
+	Deploy your changes
+	Make some changes to the code you just cloned and deploy them to Heroku using Git.
+
+	$ git add .
+	$ git commit -am "make it better"
+	$ git push heroku master
+
+	Sau khi push thành công quay lại trang ứng dụng của ta: https://project-nodejs-ver3.herokuapp.com/
+	Để xem log lỗi xảy ra: heroku logs --tail
+	-> nodemon: not found
+	Do đó cần sửa lại trong package.json:
+		"start": "nodemon ./bin/www" -> "start": "node ./bin/www"
+	Rồi tiến hành commit và push lên heroku
+	Error: Failed to lookup view "pages/publish/index" in views directory "/app/views"
+		-> Fix home.js trong routes
+	
+	URL: https://nodejs-ver3.herokuapp.com/
+	
