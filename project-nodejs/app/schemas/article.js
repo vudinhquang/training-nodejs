@@ -24,4 +24,4 @@ var schema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model(databaseConfig.modelArticle, schema);
+module.exports = mongoose.model(databaseConfig.col_article, schema);

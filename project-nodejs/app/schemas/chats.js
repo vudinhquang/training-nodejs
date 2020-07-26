@@ -5,6 +5,10 @@ var schema = new mongoose.Schema({
     content: String,
     username: String,
     avatar: String,
+    // user: { 
+    //     type: mongoose.Schema.Types.ObjectId, 
+    //     ref: databaseConfig.col_users 
+    // },
     created: Date
 });
 

@@ -35,4 +35,4 @@ var schema = new mongoose.Schema({
     , totalRequest: Number
 });
 
-module.exports = mongoose.model(databaseConfig.modelUser, schema);
+module.exports = mongoose.model(databaseConfig.col_users, schema);

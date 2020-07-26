@@ -19,4 +19,4 @@ var schema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model(databaseConfig.modelCategory, schema);
+module.exports = mongoose.model(databaseConfig.col_category, schema);

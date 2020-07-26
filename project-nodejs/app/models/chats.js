@@ -6,6 +6,7 @@ module.exports = {
         let sort		= {'created' : 'asc'};
 
         return ChatsModel.find(objWhere)
+            //.populate('user', 'avatar username')
             .select('content created avatar username')
             .sort(sort);
     },

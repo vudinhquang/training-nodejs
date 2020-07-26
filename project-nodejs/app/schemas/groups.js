@@ -19,4 +19,4 @@ var schema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model(databaseConfig.modelGroup, schema);
+module.exports = mongoose.model(databaseConfig.col_groups, schema);

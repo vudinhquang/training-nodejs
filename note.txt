@@ -1674,4 +1674,36 @@ Xây dựng chức năng kết bạn nâng cao
 		Trang hiển thị danh sách người kết bạn 
 	Invitation sent
 	Friend
-	
+
+Tình huống mở rộng và tối ưu mã nguồn
+	Populate
+		Vấn đê lưu avatar hay không vào các bảng khác
+		mongoose Populate
+		https://mongoosejs.com/docs/populate.html
+		Bảng chats hiện tại chứa toàn bộ tin nhắn của người dùng trong hệ thống, hiện có lưu trường avatar
+			do đó cứ mỗi lần username thay đổi avatar thì phải cập nhật lại giá trị avatar trong bảng chats 
+		Cách làm khác là từ bảng chats join qua bảng users để lấy avatar
+		Schema chat: Lưu thêm giá trị id của user
+			user: { 
+				type: mongoose.Schema.Types.ObjectId, 
+				ref: databaseConfig.col_users 
+			}
+		Model Chat:
+			return ChatsModel.find(objWhere)
+            .populate('user', 'avatar username')
+            .select('content created avatar username')
+            .sort(sort);
+		show-messsage-chat:
+			chat.username -> chat.user.username
+			chat.avatar -> chat.user.avatar
+		index(chat)
+			<input type="hidden" name="user" value="<%= userInfo._id %>">
+		my-libs:
+			paramsUserSendAllMessage($elmInputMessage, $elmInputUsername, $elmInputAvatar, $elmInputUserID)
+			user: $elmInputUserID.val()       -> mongoose.Schema.Types.ObjectId
+		socket-home:
+			let $elmInputUserID	    = $('input[name="user"]');
+			submit:
+				socket.emit(`${prefixSocket}CLIENT_SEND_ALL_MESSAGE`, paramsUserSendAllMessage($elmInputMessage, 
+					$elmInputUsername, $elmInputAvatar, $elmInputUserID));
+		
