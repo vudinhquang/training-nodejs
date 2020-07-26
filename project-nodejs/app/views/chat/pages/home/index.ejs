@@ -1,3 +1,11 @@
+<% 
+    let info_relation = {
+        "requestTo"     : userInfo.requestTo,
+        "requestFrom"   : userInfo.requestFrom,
+        "friendList"    : userInfo.friendList
+    };
+%>
+
 <div class="col-md-8 no-padding-left">
     <% include ./box-direct-chat %> 
 </div>
@@ -11,5 +19,6 @@
     <input type="hidden" name="username" value="<%= userInfo.username %>">
     <input type="hidden" name="avatar" value="<%= userInfo.avatar %>">
     <input type="hidden" name="prefixSocket" value="<%= prefixSocket %>">
+    <input type="hidden" name="relationship" value="<%= JSON.stringify(info_relation) %>">
 </div>
 <script src="chat/js/socket-home.js"></script> 

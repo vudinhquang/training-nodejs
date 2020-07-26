@@ -104,7 +104,8 @@ function showTyping(data, $tmplUserTyping, $elmFormChat){
     }
 }
 
-function showListUserOnline(data, $elmInputUsername, $tmplUserOnline,  $elmListUsers, $elmTotalUserOnline){
+function showListUserOnline(data, $elmInputUsername, $elmInputRelationship, $tmplUserOnline,  $elmListUsers, $elmTotalUserOnline){
+    let parseInfo=JSON.parse($elmInputRelationship.val());
     let template = $tmplUserOnline.html();
     let xhtml    = '';
     for(let i = 0; i < data.length; i++) {

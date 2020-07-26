@@ -1,6 +1,7 @@
 $(function() {
     let $elmInputMessage    = $('input#message');
     let $elmInputUsername   = $('input[name="username"]');
+    let $elmInputRelationship	    = $('input[name="relationship"]');
     let $elmInputAvatar     = $('input[name="avatar"]');
     let $elmTotalUserInvite = $("span.total-user-invite");
     let prefixSocket        = $('input[name="prefixSocket"]').val();
@@ -34,7 +35,7 @@ $(function() {
     });
 
     socket.on(`${prefixSocket}SEND_ALL_LIST_USER`, (data) => {
-        showListUserOnline(data, $elmInputUsername, $tmplUserOnline,  $elmListUsers, $elmTotalUser)
+        showListUserOnline(data, $elmInputUsername, $elmInputRelationship, $tmplUserOnline,  $elmListUsers, $elmTotalUser)
     })
 
     // CLIENT SEND MESSAGE

@@ -1740,4 +1740,13 @@ Tình huống mở rộng và tối ưu mã nguồn
 			Lưu thông tin kết bạn 
 			Trước khi lưu thông tin user kết bạn thì cần phải kiểm tra có lưu hay không, đối với những ai là bạn rồi 
 				hay đã gửi lời mời kết bạn rồi thì ko lưu 
+	Button add friend 02
+		Khi 1 user đăng nhập vào thì ở phần những user đang online sẽ hiển thị khác nhau tùy thuộc vào giữa user đó với 
+			những người đang online
+		admin login 
+		User online: nobita, doremon
+		1.Nếu admin và nobita chưa có mối quan hệ - add friend
+		2.Nếu là mối quan hệ bạn bè               - remove(Xóa bạn bè) 
+		3.Nếu admin đã gửi lời mới cho nobita     - Sent 
+		4.Nếu doremon đã gửi lời mời cho admin    - Accept Deny 
 	

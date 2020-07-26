@@ -35,6 +35,43 @@
     </div>
 </script>
 
+<script id="template-user-online-requestTo" type="x-tmpl-mustache">
+    <div class="user">
+        <div class="col-md-8 col-sm-8 col-xs-8 user-avatar">
+            <img class="contacts-list-img" src="uploads/users/{{user.avatar}}" alt="{{user.username}}">
+            <h5>{{user.username}}</h5>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <button type="button" class="btn btn-block btn-info btn-w btn-sm">Sent</button>
+        </div>
+    </div>
+</script>
+
+<script id="template-user-online-requestFrom" type="x-tmpl-mustache">
+    <div class="user">
+        <div class="col-md-8 col-sm-8 col-xs-8 user-avatar">
+            <img class="contacts-list-img" src="uploads/users/{{user.avatar}}" alt="{{user.username}}">
+            <h5>{{user.username}}</h5>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <button type="button" class="btn btn-block btn-primary control-add-friend-accept" style="padding: 4px 6px;">Accept</button>
+            <button type="button"  class="btn btn-block btn-default control-add-friend-deny" style="padding: 4px 6px;">Deny</button>
+        </div>
+    </div>
+</script>
+
+<script id="template-user-online-friendList" type="x-tmpl-mustache">
+    <div class="user">
+        <div class="col-md-8 col-sm-8 col-xs-8 user-avatar">
+            <img class="contacts-list-img" src="uploads/users/{{user.avatar}}" alt="{{user.username}}">
+            <h5>{{user.username}}</h5>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4">
+            <button type="button" data-username="{{user.username}}" class="btn btn-block btn-default btn-sm btn-w ">Remove</button>
+        </div>
+    </div>
+</script>
+
 <script id="template-user-invite" type="x-tmpl-mustache">
     <div class="user-invite" data-name="{{data.fromUsername}}">
         <div  class="col-md-7 col-sm-7 col-xs-7 user-avatar">
